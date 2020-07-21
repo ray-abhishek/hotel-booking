@@ -104,9 +104,7 @@ GET `/search/<location>`
                 "bathrooms" : "STRING",
                 "cost_per_night" : "STRING",
                 "cost_per_bedroom" : "STRING"
-        },
-        .
-        .
+        }
         ]
 }
 ```
@@ -134,20 +132,16 @@ GET `/home-listing/<hotel-id>`
     "data": {
         "name": "STRING", 
         "location": "STRING", 
-        "capacity": [<Number of people>,<Number of Bedrooms>,<Number of Bathrooms>],
+        "capacity": ["Number of people","Number of Bedrooms","Number of Bathrooms"],
         "description": "STRING",
         "rooms": {
             "entrance":
             [
-            {"image":"STRING", "type": "STRING"},
-            .
-            .
+            {"image":"STRING", "type": "STRING"}
             ],
             "outside":
             [
-            {"image":"STRING", "type": "STRING"},
-            .
-            .
+            {"image":"STRING", "type": "STRING"}
             ]
             },
         "location" : "STRING",
@@ -157,14 +151,8 @@ GET `/home-listing/<hotel-id>`
             "bathroom" : [],
             "amenities" : []
             },
-        "home_truths" : ["STRING",
-            .
-            .
-            ],
-        "policies" : ["STRING",
-            .
-            .
-            ],
+        "home_truths" : ["STRING"],
+        "policies" : ["STRING"],
         "similar_homes" : [
             {
                 "image" : "STRING",
@@ -176,6 +164,8 @@ GET `/home-listing/<hotel-id>`
                 "cost_per_night" : "STRING",
                 "cost_per_bedroom" : "STRING"
             }
+        ]
+    }
 }
 ```
 
