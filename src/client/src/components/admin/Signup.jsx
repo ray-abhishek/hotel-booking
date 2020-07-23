@@ -165,7 +165,7 @@ class Signup extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.signupData,
+  data: state.authReducer.signupData,
 });
 
 const mapDispatchToProps = (dispatch) => ({

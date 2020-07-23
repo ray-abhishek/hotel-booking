@@ -22,25 +22,25 @@ class Navbar extends React.Component {
           </Link>
           <div className="d-flex flex-row bd-highlight">
             <Link
-              className="p-2 bd-highlight p-3 text-decoration-none"
+              className="p-2 bd-highlight p-3 text-decoration-none text-dark"
               to="destination"
             >
               Destinations <span className={style.line}>|</span>
             </Link>
             <Link
-              className="p-2 bd-highlight p-3 text-decoration-none"
+              className="p-2 bd-highlight p-3 text-decoration-none text-dark"
               to="wishlist"
             >
               Wishlist <span className={style.line}>|</span>
             </Link>
             <Link
-              className="p-2 bd-highlight p-3 text-decoration-none"
+              className="p-2 bd-highlight p-3 text-decoration-none text-dark"
               to="get-in-touch"
             >
               Get in Touch <span className={style.line}>|</span>
             </Link>
             <Link
-              className="p-2 bd-highlight p-3 text-decoration-none"
+              className="p-2 bd-highlight p-3 text-decoration-none text-dark"
               data-toggle="modal"
               data-target="#exampleModal"
             >
@@ -133,5 +133,9 @@ class Navbar extends React.Component {
     );
   }
 }
+
+// const mapStateToProps=(state)=>({
+//   loginSuccess: state.authReducer.
+// })
 
 export default Navbar;

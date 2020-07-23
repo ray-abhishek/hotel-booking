@@ -26,7 +26,11 @@ class Login extends React.Component {
   render() {
     const { handleChange } = this;
     const { password, username } = this.state;
-    const { userLogin, state } = this.props;
+    const { userLogin, loginData } = this.props;
+
+    // if(loginData.data && loginData.data.error===false){
+    //   return <Redirect to ="/"/>
+    // }
 
     return (
       <div className={style.card}>
@@ -91,7 +95,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  state: state.loginData,
+  loginData: state.authReducer.loginData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
