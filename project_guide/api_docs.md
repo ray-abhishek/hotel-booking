@@ -9,7 +9,6 @@ POST `/signup`
 
 ```json
 {
-     
 	"email": "STRING",
 	"name":"STRING",
 	"password": "STRING",
@@ -22,6 +21,13 @@ POST `/signup`
 {
     "status": "success",
     "message": "Successfully registered."
+}
+```
+
+```json
+{
+    "status": "failure",
+    "message": "User Registration Failed. Please try again."
 }
 ```
 
@@ -48,6 +54,12 @@ POST `/login`
     "status": "success",
     "message": "Successfully logged in.",
     "Authorization": "<auth_token>"
+```
+
+```json
+{
+    "status": "failure",
+    "message": "Failed to login. Invalid credentials.",
 ```
 
 ----
@@ -85,7 +97,13 @@ GET `/search/<location>`
 {
 	"arrivalDate": "STRING",
 	"departureDate": "STRING",
-    "sleeps": "STRING"
+    "sleeps": "STRING",
+    "perpage" : "STRING",
+    "sort" : "STRING",
+    "page" : "STRING",
+    "feature" : ["FEATURE 1","FEATURE 2"],
+    "max_price" : "STRING",
+    "min_price" : "STRING"
 }
 ```
 
@@ -96,16 +114,18 @@ GET `/search/<location>`
     "status": "success",
     "data": [
         {
-                "image" : "STRING",
+                "image" : ["URL STRING 1","URL STRING 2"],
                 "name" : "STRING",
                 "location" : "STRING",
                 "people" : "STRING",
                 "bedrooms" : "STRING",
                 "bathrooms" : "STRING",
                 "cost_per_night" : "STRING",
-                "cost_per_bedroom" : "STRING"
+                "cost_per_bedroom" : "STRING",
         }
-        ]
+        ],
+    "totalresults" : "STRING",
+    "totalpages" : "STRING"
 }
 ```
 
@@ -149,24 +169,17 @@ GET `/home-listing/<hotel-id>`
             "families" : [],
             "sleeps" : [],
             "bathroom" : [],
-            "amenities" : []
+            "accessibility" : [],
+            "bedroom" : [],
+            "entertainment" : [],
+            "equipment" : [],
+            "kitchen" : [],
+            "pool" : [],
+            "property" : [],
+            "room" : []
             },
-        "home_truths" : ["STRING"],
-        "policies" : ["STRING"],
-        "similar_homes" : [
-            {
-                "image" : "STRING",
-                "name" : "STRING",
-                "location" : "STRING",
-                "people" : "STRING",
-                "bedrooms" : "STRING",
-                "bathrooms" : "STRING",
-                "cost_per_night" : "STRING",
-                "cost_per_bedroom" : "STRING"
-            }
-        ]
-    }
-}
+
+
 ```
 
 -----
