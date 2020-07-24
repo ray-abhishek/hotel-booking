@@ -1,0 +1,29 @@
+.container{
+    height: 830px;
+    width: auto;
+    margin-top: 20px;
+    padding: 50px 50px 10px 50px;
+
+    font-size: 14px;
+    color: #e9e8ea;
+    background-color: #3b393f;
+
+  }
+  
+  .fab {
+    color: white;
+    margin-right: 10px;
+  }
+  
+  hr.new1 {
+    border-top: 1px solid #e9e8ea;
+    width: auto;
+  }
+  
+  .customSelect{
+    color: #e9e8ea;
+    background-color: #3b393f;
+    width: 500px;
+    padding: 10px;
+    margin-top: 10px;
+  }
