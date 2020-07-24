@@ -52,8 +52,8 @@ def get_catalog_data(data):
         elif sort_param.lower() == 'pricehighest':
             query += "ORDER BY ee.capacity DESC"
 
-    if data.get('perpage'):
-        per_page = int(data.get('perpage'))
+    if data.get('perPage'):
+        per_page = int(data.get('perPage'))
 
     if data.get('page'):
         page = int(data.get('page'))
