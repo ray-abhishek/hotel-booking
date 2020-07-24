@@ -1,67 +1,37 @@
 # Python standard libraries
 import json
 import os
+from flask import request
+from flask_restful import Resource, reqparse
+from app.main import db
+from app.main.services.user_oauth import oauth_login
+import jwt
+from app.main.settings import key
+import datetime
 
-# Third-party libraries
-from flask import Flask, redirect, request, url_for
-from flask_login import (
-    LoginManager,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-)
-from oauthlib.oauth2 import WebApplicationClient
-import requests
-
-#Internal Imports
-from app.main.services.user_oauth import User
-import app
-
-GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "#############")
-GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", "###########")
-GOOGLE_DISCOVERY_URL = (
-    "https://accounts.google.com/.well-known/openid-configuration"
-)
-
-# User session management setup
-# https://flask-login.readthedocs.io/en/latest
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-# OAuth 2 client setup. We're using our Google Client ID to authenticate our app with Provider i.e Google
-client = WebApplicationClient(GOOGLE_CLIENT_ID)
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
-
-
-def get_google_provider_cfg():
-    #add error handling for failed API call
-    return requests.get(GOOGLE_DISCOVERY_URL).json()
-
-
-
+# Route for User login
 class UserOAuth(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('email', type=str,required=True)
+    parser.add_argument('name', type=str,required=True)
+    parser.add_argument('googleId', type=str,required=True)
+    parser.add_argument('imageUrl', type=str,required=False)
 
     @classmethod
-    def get(self):
-    # Find out what URL to hit for Google login
-        google_provider_cfg = get_google_provider_cfg()
-        authorization_endpoint = google_provider_cfg["authorization_endpoint"]
-
-        # Use library to construct the request for Google login and provide
-        # scopes that let you retrieve user's profile from Google
-        request_uri = client.prepare_request_uri(
-            authorization_endpoint,
-            redirect_uri=request.base_url + "/callback",
-            scope=["openid", "email", "profile"],
-        )
-        return redirect(request_uri)
+    def post(self):
+        data=UserOAuth.parser.parse_args()
+        print("\n\n----INSIDE UserOAuth----\n\n")
+        print(data," are the parameters passed to /ssologin")
+        flag, token, name = oauth_login(data)
+        print(flag,token,name," flag, token, name being sent to client")
+        if flag:
+            return {'status': "success", 'Authorization': token, 'message': 'Login Successful', "name" : name}
+        else:
+            return {'status': "failure", 'message': 'Login Failed'}
 
 
+
+"""
 class LoginCallback(Resource):
 
     @classmethod
@@ -106,3 +76,4 @@ class LoginCallback(Resource):
     users_email = userinfo_response.json()["email"]
     picture = userinfo_response.json()["picture"]
     users_name = userinfo_response.json()["given_name"]
+"""
