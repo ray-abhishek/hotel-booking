@@ -12,7 +12,7 @@ class Catalog(Resource):
     parser.add_argument('arrivalDate', type=str,required=False)
     parser.add_argument('departureDate', type=str,required=False)
     parser.add_argument('sleeps', type=str,required=False)
-    parser.add_argument('perpage', type=str,required=False)
+    parser.add_argument('perPage', type=str,required=False)
     parser.add_argument('sort', type=str,required=False)
     #parser.add_argument('page', type=str,required=False)
     parser.add_argument('feature', type=str,required=False, action='append')
