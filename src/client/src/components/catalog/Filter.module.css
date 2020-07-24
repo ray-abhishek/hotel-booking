@@ -1,0 +1,8 @@
+.perPage:focus {
+  font-weight: bolder;
+}
+
+.perPage {
+  border: none;
+  background: white;
+}

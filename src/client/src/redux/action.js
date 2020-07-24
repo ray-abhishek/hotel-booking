@@ -1,3 +1,43 @@
+/*
+
+import React from "react";
+
+import {
+  FETCH_HOTEL_DATA,
+  FETCH_HOTEL_DATA_FAILURE,
+  FETCH_HOTEL_DATA__SUCCESS,
+} from "./actionTypes";
+import axios from "axios";
+
+export const fetchHotelDataRequest = (payload) => ({
+  type: FETCH_HOTEL_DATA,
+  payload,
+});
+export const fetchHotelDataFailure = (payload) => ({
+  type: FETCH_HOTEL_DATA_FAILURE,
+  payload,
+});
+
+export const fetchHotelDataSuccess = (payload) => ({
+  type: FETCH_HOTEL_DATA__SUCCESS,
+  payload,
+});
+
+export const fetchRequest = (payload) => (dispatch) => {
+  console.log(payload, "payload");
+  console.log(`http://localhost:3001${payload}`, "url");
+  dispatch(fetchHotelDataRequest());
+  return axios
+    .get(`http://localhost:3001${payload}`)
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .then((res) => dispatch(fetchHotelDataSuccess(res)))
+    .catch((err) => dispatch(fetchHotelDataFailure(err)));
+};
+
+*/
 import React from 'react';
 import axios from 'axios';
 import { FETCH_LIST_REQUEST, FETCH_LIST_FAILURE, FETCH_LIST_SUCCESS } from './actionTypes';
@@ -17,7 +57,7 @@ export const fetchListSuccess=(payload)=>({
 })
 
 // Response (List of items) 
-
+/*
 export const fetchUserData=query=>dispatch=>{
     dispatch(fetchListRequest())
     return (
@@ -39,3 +79,18 @@ export const fetchUserData=query=>dispatch=>{
         })
     )
 }
+*/
+export const fetchRequest = (payload) => (dispatch) => {
+  console.log(payload, "payload");
+  console.log(`http://localhost:3001${payload}`, "url");
+  dispatch(fetchListRequest());
+  return axios
+    .get(`http://localhost:3001${payload}`)
+    .then((res) => {
+      console.log(res.data);
+      return res;
+    })
+    .then((res) => dispatch(fetchListSuccess(res.data)))
+    .catch((err) => dispatch(fetchListFailure(err)));
+};
+
