@@ -31,9 +31,9 @@ def user_login(data):
             return flag, token.decode(), data_raw.name
         
         else:
-            return flag, ""
+            return flag, "", ""
     else:
-        return flag , ""
+        return flag , "", ""
 
 
 #Function for signup of user
