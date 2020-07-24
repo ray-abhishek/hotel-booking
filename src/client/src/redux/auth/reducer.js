@@ -4,6 +4,7 @@ import { FETCH_REG_REQUEST, FETCH_REG_FAILURE,REGISTRATION_SUCCESS, FETCH_LOGIN_
 const initState=({
     signupData: [],
     loginData: [],
+    isSignup: false,
     isLoading: false,
     isLogin: false,
     isLogout: false
@@ -31,7 +32,7 @@ const reducer=(state=initState, {type, payload})=>{
             {
                 ...state,
                 isLoading: false,
-                isRegistration: true,
+                isSignup: true,
                 signupData: payload ,
             }
         )
@@ -67,7 +68,7 @@ const reducer=(state=initState, {type, payload})=>{
         return(
             {
                 ...state,
-                loginData: payload,
+                isError: true,
                 isLogin: false
             }
         )
