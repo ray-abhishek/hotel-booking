@@ -59,7 +59,8 @@ POST `/login`
 ```json
 {
     "status": "failure",
-    "message": "Failed to login. Invalid credentials.",
+    "message": "Failed to login. Invalid credentials."
+}
 ```
 
 ----
@@ -169,16 +170,11 @@ GET `/home-listing/<hotel-id>`
             "families" : [],
             "sleeps" : [],
             "bathroom" : [],
-            "accessibility" : [],
-            "bedroom" : [],
-            "entertainment" : [],
-            "equipment" : [],
-            "kitchen" : [],
-            "pool" : [],
-            "property" : [],
-            "room" : []
+            "highlights" : [],
+            "amenities" : []
             },
-
+	}
+}
 
 ```
 
