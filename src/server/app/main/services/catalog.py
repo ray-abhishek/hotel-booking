@@ -23,13 +23,13 @@ def get_catalog_data(data):
         query += ' UPPER(ee.city) = "%s" AND'%(data.get("location"))
         count_query += ' UPPER(ee.city) = "%s" AND'%(data.get("location"))
     
-    if data.get("max_price"):
-        cost = int(data["max_price"])
+    if data.get("maxPrice"):
+        cost = int(data["maxPrice"])
         query += ' ee.cost_per_night <= %s AND'%(cost)
         count_query += ' ee.cost_per_night <= %s AND'%(cost)
 
-    if data.get("min_price"):
-        cost = int(data["min_price"])
+    if data.get("minPrice"):
+        cost = int(data["minPrice"])
         query += ' ee.cost_per_night >= %s AND'%(cost)
         count_query += ' ee.cost_per_night >= %s AND'%(cost)
 
@@ -41,6 +41,17 @@ def get_catalog_data(data):
     count_query = count_query.strip('AND')
     count_query = count_query.strip('WHERE')
 
+    if data.get('sort'):
+        sort_param = data.get('sort')
+        if sort_param.lower() == 'sleepsmost':
+            query += "ORDER BY ee.capacity DESC"
+        elif sort_param.lower() == 'sleepsfewest':
+            query += "ORDER BY ee.capacity ASC"
+        elif sort_param.lower() == 'pricelowest':
+            query += "ORDER BY ee.cost_per_night ASC"
+        elif sort_param.lower() == 'pricehighest':
+            query += "ORDER BY ee.capacity DESC"
+
     if data.get('perpage'):
         per_page = int(data.get('perpage'))
 
@@ -48,9 +59,9 @@ def get_catalog_data(data):
         page = int(data.get('page'))
         offset = (page-1)*per_page
         current_items = page*per_page
-        query = query + "ORDER BY ee.cost_per_night ASC LIMIT %d, %d"%(offset, per_page)
+        query = query + " LIMIT %d, %d"%(offset, per_page)
     else:
-        query = query + "ORDER BY ee.cost_per_night ASC LIMIT %d"%(per_page)
+        query = query + " LIMIT %d"%(per_page)
 
     if data.get('feature'):
         print(data.get('feature')," are the features sent as url params")
@@ -58,7 +69,7 @@ def get_catalog_data(data):
     query = query + ';'
     count_query = count_query + ';'
     count_raw = db.engine.execute(count_query)
-
+    total_results = 0
     for row in count_raw:
         total_results = row[0]
         total_pages = int(row[0]/per_page)
@@ -107,7 +118,7 @@ def get_catalog_data(data):
 
 
     if len(send_data)>0:
-        return True, len(send_data), total_pages, send_data
+        return True, total_results, total_pages, send_data
     else:
         return True, 0, 1, []
 
@@ -115,3 +126,20 @@ def get_catalog_data(data):
 
 
 
+
+
+
+
+
+
+"""
+
+if data.get('page'):
+        page = int(data.get('page'))
+        offset = (page-1)*per_page
+        current_items = page*per_page
+        query = query + "ORDER BY ee.cost_per_night ASC LIMIT %d, %d"%(offset, per_page)
+    else:
+        query = query + "ORDER BY ee.cost_per_night ASC LIMIT %d"%(per_page)
+
+"""
