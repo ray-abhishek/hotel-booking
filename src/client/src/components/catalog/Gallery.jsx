@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchUserData } from '../../redux/action';
+import { fetchRequest } from '../../redux/action';
 
 class Gallery extends React.Component{
     constructor(props){
@@ -11,7 +11,7 @@ class Gallery extends React.Component{
     }
 
     // componentDidMount(){
-    //     this.props.fetchUserData()
+    //     this.props.fetchRequest()
     // }
    
 
@@ -56,7 +56,7 @@ const mapStateToProps=(state)=>({
 })
 
 const mapDispatchToProps=dispatch=>({
-    fetchUserData: query=>(dispatch(fetchUserData(query)))
+    fetchRequest: query=>(dispatch(fetchRequest(query)))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery)
