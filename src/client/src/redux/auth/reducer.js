@@ -1,13 +1,16 @@
 import React from 'react';
-import { FETCH_REG_REQUEST, FETCH_REG_FAILURE,REGISTRATION_SUCCESS, FETCH_LOGIN_REQUEST, FETCH_LOGIN_FAILURE, LOGIN_SUCCESS, } from './actionType';
+import { FETCH_REG_REQUEST, FETCH_REG_FAILURE,REGISTRATION_SUCCESS, FETCH_LOGIN_REQUEST, FETCH_LOGIN_FAILURE, LOGIN_SUCCESS, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, LOGOUT } from './actionType';
 
 const initState=({
     signupData: [],
     loginData: [],
-    isLogin: false
+    isLoading: false,
+    isLogin: false,
+    isLogout: false
 })
 
 const reducer=(state=initState, {type, payload})=>{
+    console.log("payload", payload)
     switch(type){
         case FETCH_REG_REQUEST:
         return(
@@ -29,7 +32,7 @@ const reducer=(state=initState, {type, payload})=>{
                 ...state,
                 isLoading: false,
                 isRegistration: true,
-                signupData: payload 
+                signupData: payload ,
             }
         )
         case FETCH_LOGIN_REQUEST:
@@ -48,7 +51,32 @@ const reducer=(state=initState, {type, payload})=>{
         return(
             {
                 ...state,
-                loginData: payload
+                loginData: payload,
+                isLogin: true
+            }
+        )
+        case GOOGLE_LOGIN_SUCCESS:
+        return(
+            {
+                ...state,
+                loginData: payload,
+                isLogin: true
+            }
+        )
+        case GOOGLE_LOGIN_FAILURE:
+        return(
+            {
+                ...state,
+                loginData: payload,
+                isLogin: false
+            }
+        )
+        case LOGOUT:
+        return(
+            {
+                
+                isLogin: false,
+                isLogout: true
             }
         )
         default:

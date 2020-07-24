@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { userLogin } from "../../redux/auth/action";
+import { userLogin, googleLogin } from "../../redux/auth/action";
 import GoogleLogin from "react-google-login";
 import style from "./Login.module.css";
 import { Redirect } from "react-router-dom";
@@ -9,8 +9,9 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
+      googleResponse:''
     };
   }
 
@@ -19,19 +20,29 @@ class Login extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+
+  // modelClose=()=>{
+  //   if(this.props.loginData.data )
+  // data-dismiss="modal"
+  // }
+ 
   responseGoogle = (response) => {
-    console.log(response);
+    // console.log(response);
+    this.setState({
+       googleResponse: response.profileObj
+    })
     console.log(response.profileObj);
+    this.props.googleLoginData(response.profileObj)
   };
   render() {
     const { handleChange } = this;
-    const { password, username } = this.state;
-    const { userLogin, loginData } = this.props;
-
+    const { password, email } = this.state;
+    const { userLogin, loginData, googleLoginData } = this.props;
+    console.log(loginData)
     // if(loginData.data && loginData.data.error===false){
     //   return <Redirect to ="/"/>
     // }
-
+    console.log(this.state.googleResponse)
     return (
       <div className={style.card}>
         <div className="form-row mt-1">
@@ -44,10 +55,10 @@ class Login extends React.Component {
               <input
                 className="form-control"
                 type="text"
-                value={username}
-                name="username"
+                value={email}
+                name="email"
                 onChange={handleChange}
-                placeholder="enter username"
+                placeholder="enter email"
               />
             </div>{" "}
           </div>
@@ -72,34 +83,37 @@ class Login extends React.Component {
         </div>
         <div className="text-center pb-3">
           <button
-            className="btn btn-primary"
+            className="btn btn-primary" data-dismiss="modal"
             onClick={() => userLogin(this.state)}
           >
             Login
           </button>
+         
         </div>
 
         <hr />
-        <div>
+        <button className="btn btn-outline-light" data-dismiss="modal">
           <GoogleLogin
             clientId="659753718488-eo6dlvve5j2c5euta6ji0iovpapfj6bu.apps.googleusercontent.com"
-            buttonText="Google"
+            buttonText="Google" data-dismiss="modal"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
             cookiePolicy={"single_host_origin"}
           />
-        </div>
+        </button>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  loginData: state.authReducer.loginData,
+  loginData: state.authReducer.loginData
+  
 });
 
 const mapDispatchToProps = (dispatch) => ({
   userLogin: (query) => dispatch(userLogin(query)),
+  googleLoginData: (res)=>dispatch(googleLogin(res))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

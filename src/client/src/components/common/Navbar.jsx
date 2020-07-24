@@ -3,15 +3,27 @@ import style from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import Login from "../admin/Login";
 import Signup from "../admin/Signup";
+import { connect } from "react-redux";
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.setState = {};
+    this.state = {
+      isToggle: false
+    };
+  }
+
+  toggleForm=()=>{
+    this.setState({
+      isToggle: !this.state.isToggle
+    })
   }
 
   render() {
-    const { handleClick } = this;
+    const { handleClick, toggleForm } = this;
+    const { loginSuccess } = this.props;
+    const {isToggle} = this.state
+    console.log(loginSuccess)
     return (
       <>
         <nav className="navbar navbar-light bg-white">
@@ -39,13 +51,28 @@ class Navbar extends React.Component {
             >
               Get in Touch <span className={style.line}>|</span>
             </Link>
+
+            {/* Login and Logout toggling */}
+            { loginSuccess.data && loginSuccess.data.status==="success"?
+            <div class="nav-item dropdown">
+            <Link className="p-2 bd-highlight p-3 text-decoration-none text-dark nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            to ="/">
+              Welcome {loginSuccess.data.name}
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <Link class="dropdown-item" to="ra">Booking History</Link>
+          <Link class="dropdown-item" to="destiraanation">Change Password</Link>
+          <Link class="dropdown-item" to="desratination">Logout</Link>
+        </div>
+
+
+            </Link></div>:
             <Link
               className="p-2 bd-highlight p-3 text-decoration-none text-dark"
               data-toggle="modal"
               data-target="#exampleModal"
             >
               Log in <span className={style.line}></span>
-            </Link>
+            </Link>}
 
             <div
               class="modal fade"
@@ -71,52 +98,16 @@ class Navbar extends React.Component {
                     </button>
                   </div>
                   <div class="modal-body">
-                    <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a
-                          class="nav-item nav-link active"
-                          id="nav-home-tab"
-                          data-toggle="tab"
-                          href="#nav-home"
-                          role="tab"
-                          aria-controls="nav-home"
-                          aria-selected="true"
-                        >
-                          Login
-                        </a>
-                        <a
-                          class="nav-item nav-link"
-                          id="nav-profile-tab"
-                          data-toggle="tab"
-                          href="#nav-profile"
-                          role="tab"
-                          aria-controls="nav-profile"
-                          aria-selected="false"
-                        >
-                          Signup
-                        </a>
-                      </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                      <div
-                        class="tab-pane fade show active"
-                        id="nav-home"
-                        role="tabpanel"
-                        aria-labelledby="nav-home-tab"
-                      >
-                        {" "}
-                        <Login />{" "}
-                      </div>
-                      <div
-                        class="tab-pane fade"
-                        id="nav-profile"
-                        role="tabpanel"
-                        aria-labelledby="nav-profile-tab"
-                      >
-                        {" "}
-                        <Signup />{" "}
-                      </div>
-                    </div>
+                    {isToggle===false?
+                    <>
+                     <p className="text-center">New to onefinestay? <Link onClick={toggleForm}>Signup</Link></p><Login/></>
+                    :
+                    <>                  
+                    <p  className="text-center">If you already have an account, <Link onClick={toggleForm}>Login</Link> <Signup /></p></>
+                    }
+                    
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -134,8 +125,8 @@ class Navbar extends React.Component {
   }
 }
 
-// const mapStateToProps=(state)=>({
-//   loginSuccess: state.authReducer.
-// })
+const mapStateToProps=(state)=>({
+  loginSuccess: state.authReducer.loginData,
+})
 
-export default Navbar;
+export default connect(mapStateToProps, null)(Navbar)

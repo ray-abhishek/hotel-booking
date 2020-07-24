@@ -11,10 +11,7 @@ class Signup extends React.Component {
     this.state = {
       name: "",
       email: "",
-      password: "",
-      username: "",
-      mobile: "",
-      description: "",
+      password: ""
     };
   }
 
@@ -29,11 +26,13 @@ class Signup extends React.Component {
     console.log(response.profileObj);
   };
 
+
   render() {
     const { handleChange } = this;
-    const { name, email, password, username, mobile, description } = this.state;
+    const { name, email, password } = this.state;
     const { userRegistration, handleData } = this.props;
     const { data } = this.props.data;
+    console.log(data)
     // if(data && data.error === false){
     //         handleData()
     //       return  <Redirect to="/login"/>
@@ -90,64 +89,16 @@ class Signup extends React.Component {
               />
             </div>
           </div>
-
-          <div className="form-group col-12">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-user-circle"></i>
-              </span>
-              <input
-                className="form-control"
-                style={{ marginBottom: 5 }}
-                type="text"
-                value={username}
-                name="username"
-                onChange={handleChange}
-                placeholder="enter your username"
-              />
-            </div>
-          </div>
-          <div className="form-group col-12">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-mobile-alt"></i>
-              </span>
-              <input
-                className="form-control"
-                style={{ marginBottom: 5 }}
-                type="number"
-                value={mobile}
-                name="mobile"
-                onChange={handleChange}
-                placeholder="enter your mobile no"
-              />
-            </div>
-          </div>
-          <div className="form-group col-12">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="far fa-file-alt"></i>
-              </span>
-              <input
-                className="form-control"
-                style={{ marginBottom: 5 }}
-                type="text"
-                value={description}
-                name="description"
-                onChange={handleChange}
-                placeholder="enter your description"
-              />
-            </div>
-          </div>
         </div>
 
         <div className="text-center pb-3">
           <button
-            className="btn btn-primary"
+            className="btn btn-primary" data-dismiss="modal"
             onClick={() => userRegistration(this.state)}
           >
-            Sign UP
+            Sign UP 
           </button>
+          
         </div>
         <hr />
         <div>
