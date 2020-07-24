@@ -21,22 +21,13 @@ import Gallery from './components/catalog/Gallery';
 function App() {
   return (
     <div className="App">
-    /*
-      <BrowserRouter>
-      <Provider store={store}>
-      */
+    
       <Navbar />
 
       <Routes />
       <Footer />
 
-    /*
-      <Gallery />
-    
-    <Footer />  
-    </Provider>
-    </BrowserRouter>
-    */
+ 
     </div>
   );
 }

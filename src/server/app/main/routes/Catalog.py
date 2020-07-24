@@ -12,9 +12,9 @@ class Catalog(Resource):
     parser.add_argument('arrivalDate', type=str,required=False)
     parser.add_argument('departureDate', type=str,required=False)
     parser.add_argument('sleeps', type=str,required=False)
-    parser.add_argument('perpage', type=str,required=False)
+    parser.add_argument('perPage', type=str,required=False)
     parser.add_argument('sort', type=str,required=False)
-    #parser.add_argument('page', type=str,required=False)
+    parser.add_argument('page', type=str,required=False)
     parser.add_argument('feature', type=str,required=False, action='append')
     
     parser.add_argument('maxPrice', type=str,required=False)
@@ -22,10 +22,10 @@ class Catalog(Resource):
 
 
     @classmethod
-    def get(self, location=None, page=1):
+    def get(self, location=None):
         data = Catalog.parser.parse_args()
         print("\n\n---INSIDE GET Catalog---\n")
-        data["page"] = page
+        #data["page"] = page
         print(location," is location")
         if location:
             data["location"] = location
