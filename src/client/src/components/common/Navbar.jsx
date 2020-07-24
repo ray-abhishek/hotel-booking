@@ -18,11 +18,13 @@ class Navbar extends React.Component {
       isToggle: !this.state.isToggle
     })
   }
+  
 
   render() {
     const { handleClick, toggleForm } = this;
-    const { loginSuccess } = this.props;
+    const { loginSuccess, isSignup } = this.props;
     const {isToggle} = this.state
+  
     console.log(loginSuccess)
     return (
       <>
@@ -100,11 +102,24 @@ class Navbar extends React.Component {
                   <div class="modal-body">
                     {isToggle===false?
                     <>
+                     <p className="text-center">New to onefinestay? <Link onClick={toggleForm}>Signup</Link></p>
+                     {isSignup==true?<Signup/>:<Login/> } 
+                     </>
+                    :
+                    <>                  
+                    <p  className="text-center">If you already have an account, <Link onClick={toggleForm}>Login</Link> 
+                    {isSignup==true?<Login/>:<Signup/> } 
+                    </p></>
+                    }
+                    {/* {isSignup===true?
+                    <>
                      <p className="text-center">New to onefinestay? <Link onClick={toggleForm}>Signup</Link></p><Login/></>
                     :
                     <>                  
-                    <p  className="text-center">If you already have an account, <Link onClick={toggleForm}>Login</Link> <Signup /></p></>
-                    }
+                    <p  className="text-center">If you already have an account, <Link onClick={toggleForm}>Login</Link> 
+                    <Signup />
+                    </p></>
+                    } */}
                     
                     
                     
@@ -127,6 +142,7 @@ class Navbar extends React.Component {
 
 const mapStateToProps=(state)=>({
   loginSuccess: state.authReducer.loginData,
+  isSignup: state.authReducer.isSignup
 })
 
 export default connect(mapStateToProps, null)(Navbar)
