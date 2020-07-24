@@ -82,10 +82,10 @@ export const fetchUserData=query=>dispatch=>{
 */
 export const fetchRequest = (payload) => (dispatch) => {
   console.log(payload, "payload");
-  console.log(`http://localhost:3001${payload}`, "url");
+  console.log(`https://2f26ccf36c6e.ngrok.io${payload}`, "url");
   dispatch(fetchListRequest());
   return axios
-    .get(`http://localhost:3001${payload}`)
+    .get(`https://2f26ccf36c6e.ngrok.io${payload}`)
     .then((res) => {
       console.log(res.data);
       return res;

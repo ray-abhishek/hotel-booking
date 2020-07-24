@@ -23,7 +23,7 @@ const rootReducer = combineReducers({ authReducer: reducer, dataReducer: dataRed
 
 const composeEhnancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
- const store = createStore(rootReducer, composeEhnancers(applyMiddleware(thunk)))
+const store = createStore(rootReducer, composeEhnancers(applyMiddleware(thunk)))
 
- export default store;
+export default store;
 
