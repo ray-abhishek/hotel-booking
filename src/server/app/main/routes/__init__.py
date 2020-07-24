@@ -4,7 +4,7 @@ from app.main import api
 from app.main.routes.User import UserLogin, UserSignup, UserLogout
 from app.main.routes.Catalog import Catalog
 from app.main.routes.Entity import Entity
-#from app.main.routes.User_oAuth import UserOAuth, LoginCallback
+from app.main.routes.User_oAuth import UserOAuth
 
 def add_resources(app):
     """
@@ -14,11 +14,11 @@ def add_resources(app):
         app (object): object of Flask representing the app in context
     """
     api.add_resource(UserLogin, '/login')
-    #api.add_resource(UserOAuth, '/login')
+    api.add_resource(UserOAuth, '/ssologin')
     #api.add_resource(LoginCallback, '/login/callback')
     api.add_resource(UserSignup, '/signup')
     api.add_resource(UserLogout, '/logout')
-    api.add_resource(Catalog, '/search', '/search/<location>')
+    api.add_resource(Catalog, '/search', '/search/<location>', '/search/<location>/<page>')
     #api.add_resource(Catalog, '/search/<location>')
     api.add_resource(Entity, '/add')
 
