@@ -57,8 +57,8 @@ class Navbar extends React.Component {
             {/* Login and Logout toggling */}
             { loginSuccess.data && loginSuccess.data.status==="success"?
             <div class="nav-item dropdown">
-            <Link className="p-2 bd-highlight p-3 text-decoration-none text-dark nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            to ="/">
+            <div className="p-2 bd-highlight p-3 text-decoration-none text-dark nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
               Welcome {loginSuccess.data.name}
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <Link class="dropdown-item" to="ra">Booking History</Link>
@@ -67,7 +67,7 @@ class Navbar extends React.Component {
         </div>
 
 
-            </Link></div>:
+            </div></div>:
             <Link
               className="p-2 bd-highlight p-3 text-decoration-none text-dark"
               data-toggle="modal"
