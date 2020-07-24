@@ -17,7 +17,7 @@ class Filter extends Component {
 
   handleOnChange = (e) => {
     const { id } = e.target;
-    const { features } = this.state;
+    const { features, minPrice, perPage } = this.state;
     const { location, history, match } = this.props;
     let index = features.indexOf(id);
     index == -1 ? features.push(id) : features.splice(index, 1);
@@ -28,51 +28,102 @@ class Filter extends Component {
     //uri construction
     let url =
       match.url[match.url.length - 1] !== "/" ? match.url + "/" : match.url;
-    let stringArr = features.map((ele, i) =>
-      i == 0 ? `?feature=${ele}` : `&feature=${ele}`
-    );
-    url += stringArr.join("");
-    features.length > 0 ? history.push(url) : history.push(url);
+    console.log(url, "url");
+
+    if (features.length > 0) {
+      let stringArr = features.map((ele, i) =>
+        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+      );
+      url += stringArr.join("");
+      url += minPrice !== 100 ? `&minPrice=${minPrice}` : "";
+      url += perPage > 10 ? `&perPage=${perPage}` : "";
+    } else {
+      if (minPrice !== 100 && perPage > 10) {
+        url += `?minPrice=${minPrice}&perPage=${perPage}`;
+      } else if (minPrice !== 100) {
+        url += `?minPrice=${minPrice}`;
+      } else if (perPage > 10) {
+        url += `?perPage=${perPage}`;
+      }
+    }
+
+    history.push(url);
     this.props.fetchRequest(url);
   };
 
   handlePriceChange = (e) => {
-    const { location, history } = this.props;
+    const { features, minPrice, perPage } = this.state;
+    const { location, history, match } = this.props;
 
     this.setState({
       minPrice: e.target.valueAsNumber,
     });
-    let url = location.pathname + location.search;
-    url +=
-      location.search == ""
-        ? `/?minPrice=${this.state.minPrice}`
-        : `&minPrice=${this.state.minPrice}`;
 
-    console.log(`${url}`, "this is a new url");
-    history.push(`${location.pathname}${url}`);
-    this.props.fetchRequest(`${location.pathname}${url}`);
+    let url =
+      match.url[match.url.length - 1] !== "/" ? match.url + "/" : match.url;
+    console.log(url, "url");
+
+    if (features.length > 0) {
+      let stringArr = features.map((ele, i) =>
+        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+      );
+      url += stringArr.join("");
+      url +=
+        e.target.valueAsNumber !== 100
+          ? `&minPrice=${e.target.valueAsNumber}`
+          : "";
+      url += perPage > 10 ? `&perPage=${perPage}` : "";
+    } else {
+      if (e.target.valueAsNumber !== 100 && perPage > 10) {
+        url += `?minPrice=${e.target.valueAsNumber}&perPage=${perPage}`;
+      } else if (e.target.valueAsNumber !== 100) {
+        url += `?minPrice=${e.target.valueAsNumber}`;
+      } else if (perPage > 10) {
+        url += `?perPage=${perPage}`;
+      }
+    }
+
+    history.push(url);
+    this.props.fetchRequest(url);
   };
 
   handlePerPageChange = (e) => {
-    const { location, history } = this.props;
+    const { features, minPrice, perPage } = this.state;
+    const { location, history, match } = this.props;
 
     this.setState({
       perPage: e.target.id,
     });
-    let url = location.pathname + location.search;
-    url +=
-      location.search == ""
-        ? `/?perPage=${e.target.id}`
-        : `&perPage=${e.target.id}`;
+    let url =
+      match.url[match.url.length - 1] !== "/" ? match.url + "/" : match.url;
+    console.log(url, "url");
+
+    if (features.length > 0) {
+      let stringArr = features.map((ele, i) =>
+        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+      );
+      url += stringArr.join("");
+      url += minPrice !== 100 ? `&minPrice=${minPrice}` : "";
+      url += e.target.id > 10 ? `&perPage=${e.target.id}` : "";
+    } else {
+      if (minPrice !== 100 && e.target.id > 10) {
+        url += `?minPrice=${minPrice}&perPage=${e.target.id}`;
+      } else if (minPrice !== 100) {
+        url += `?minPrice=${minPrice}`;
+      } else if (e.target.id > 10) {
+        url += `?perPage=${e.target.id}`;
+      }
+    }
+
     history.push(url);
     this.props.fetchRequest(url);
   };
 
   render() {
     console.log(this.props, "props");
-    console.log(this.state, "state");
+    // console.log(this.state, "state");
     const { history, location, match } = this.props;
-    console.log(location);
+    // console.log(location);
     const { fetchRequest, fetchHotelDataSuccess } = this.props;
     return (
       <div className="row">
@@ -88,6 +139,7 @@ class Filter extends Component {
                   min="100"
                   max="5000"
                   step="200"
+                  value={`${this.state.minPrice}`}
                   onChange={(e) => this.handlePriceChange(e)}
                 />
               </div>
@@ -566,7 +618,14 @@ class Filter extends Component {
                     this.setState({
                       sort: e.target.value,
                     });
-                    this.props.history.push(`search/?sort=${e.target.value}`);
+                    if (location.search == "")
+                      this.props.history.push(
+                        `${match.url}/?sort=${e.target.value}`
+                      );
+                    else
+                      this.props.history.push(
+                        `${match.url}&sort=${e.target.value}`
+                      );
                   }}
                   class="form-control"
                   id="sort"

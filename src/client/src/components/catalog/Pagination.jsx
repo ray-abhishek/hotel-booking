@@ -15,8 +15,8 @@ export default class Sort extends Component {
     this.setState({
       page: e.target.id,
     });
-
-    history.push(`/search/${e.target.id}`);
+    if (e.target.id == 1) history.push(`/search/${location.search}`);
+    else history.push(`/search/${e.target.id}/${location.search}`);
   };
 
   render() {
