@@ -30,9 +30,9 @@ function App() {
       <Routes />
       <Footer />
 
-    
-      <Gallery />
     /*
+      <Gallery />
+    
     <Footer />  
     </Provider>
     </BrowserRouter>
