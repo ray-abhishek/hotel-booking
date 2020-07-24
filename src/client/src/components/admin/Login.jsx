@@ -11,7 +11,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      googleResponse:''
+      googleResponse: "",
     };
   }
 
@@ -21,28 +21,21 @@ class Login extends React.Component {
     });
   };
 
-  // modelClose=()=>{
-  //   if(this.props.loginData.data )
-  // data-dismiss="modal"
-  // }
- 
+  // Google Response
+
   responseGoogle = (response) => {
-    // console.log(response);
     this.setState({
-       googleResponse: response.profileObj
-    })
-    console.log(response.profileObj);
-    this.props.googleLoginData(response.profileObj)
+      googleResponse: response.profileObj,
+    });
+    // console.log(response.profileObj);
+    this.props.googleLoginData(response.profileObj);
   };
   render() {
     const { handleChange } = this;
     const { password, email } = this.state;
-    const { userLogin, loginData, googleLoginData } = this.props;
-    console.log(loginData)
-    // if(loginData.data && loginData.data.error===false){
-    //   return <Redirect to ="/"/>
-    // }
-    console.log(this.state.googleResponse)
+    const { userLogin, loginData, googleLoginData, isLogin } = this.props;
+    console.log(loginData);
+  
     return (
       <div className={style.card}>
         <div className="form-row mt-1">
@@ -58,7 +51,7 @@ class Login extends React.Component {
                 value={email}
                 name="email"
                 onChange={handleChange}
-                placeholder="enter email"
+                placeholder="enter email" required
               />
             </div>{" "}
           </div>
@@ -75,27 +68,34 @@ class Login extends React.Component {
                 value={password}
                 name="password"
                 onChange={handleChange}
-                placeholder=" enter your password"
+                placeholder=" enter your password" required
               />
             </div>
           </div>
           <br />
         </div>
+
+        {/* Login Button and message display of success and failure */}
         <div className="text-center pb-3">
           <button
-            className="btn btn-primary" data-dismiss="modal"
+            className="btn btn-primary"
+            data-dismiss={isLogin === true ? "modal" : undefined}
             onClick={() => userLogin(this.state)}
           >
-            Login
+            {isLogin ? "Ok" : "Login"}
           </button>
-         
         </div>
-
+        {loginData.data && loginData.data.status === "failure"
+          ? loginData.data && loginData.data.message
+          : loginData.data && loginData.data.message}
         <hr />
+
+        {/* Google login Logic */}
         <button className="btn btn-outline-light" data-dismiss="modal">
           <GoogleLogin
             clientId="659753718488-eo6dlvve5j2c5euta6ji0iovpapfj6bu.apps.googleusercontent.com"
-            buttonText="Google" data-dismiss="modal"
+            buttonText="Google"
+            data-dismiss="modal"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
             cookiePolicy={"single_host_origin"}
@@ -107,13 +107,13 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  loginData: state.authReducer.loginData
-  
+  loginData: state.authReducer.loginData,
+  isLogin: state.authReducer.isLogin,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   userLogin: (query) => dispatch(userLogin(query)),
-  googleLoginData: (res)=>dispatch(googleLogin(res))
+  googleLoginData: (res) => dispatch(googleLogin(res)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { userRegistration } from "../../redux/auth/action";
+import { userRegistration, googleLogin } from "../../redux/auth/action";
 import GoogleLogin from "react-google-login";
 import style from "./Login.module.css";
 import { Redirect } from "react-router-dom";
+import Login from "./Login";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Signup extends React.Component {
     this.state = {
       name: "",
       email: "",
-      password: ""
+      password: "",
+      googleResponse: "",
     };
   }
 
@@ -21,22 +23,22 @@ class Signup extends React.Component {
     });
   };
 
+  // Google Auth response 
   responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
+    this.setState({
+      googleResponse: response.profileObj,
+    });
+    console.log("sign up google res", response.profileObj);
+    this.props.googleLoginData(response.profileObj);
   };
-
 
   render() {
     const { handleChange } = this;
     const { name, email, password } = this.state;
-    const { userRegistration, handleData } = this.props;
+    const { userRegistration, handleData, isSignup } = this.props;
     const { data } = this.props.data;
-    console.log(data)
-    // if(data && data.error === false){
-    //         handleData()
-    //       return  <Redirect to="/login"/>
-    //     }
+    console.log(data);
+
     return (
       <div className={style.card}>
         <br />
@@ -53,7 +55,7 @@ class Signup extends React.Component {
                 value={name}
                 name="name"
                 onChange={handleChange}
-                placeholder="enter your name"
+                placeholder="enter your name" required
               />
             </div>
           </div>
@@ -69,7 +71,7 @@ class Signup extends React.Component {
                 value={email}
                 name="email"
                 onChange={handleChange}
-                placeholder="enter your email"
+                placeholder="enter your email" required
               />
             </div>
           </div>
@@ -85,23 +87,27 @@ class Signup extends React.Component {
                 value={password}
                 name="password"
                 onChange={handleChange}
-                placeholder="enter your password"
+                placeholder="enter your password" required
               />
             </div>
           </div>
         </div>
-
+      {/* // signup button */}
         <div className="text-center pb-3">
           <button
-            className="btn btn-primary" data-dismiss="modal"
+            className="btn btn-primary"
             onClick={() => userRegistration(this.state)}
           >
-            Sign UP 
+            Sign UP
           </button>
-          
+          {/* {data && data.status==="failure"? data && data.message:
+         data && data.message} */}
         </div>
         <hr />
         <div>
+
+          {/* Google Login  */}
+
           <GoogleLogin
             clientId="659753718488-eo6dlvve5j2c5euta6ji0iovpapfj6bu.apps.googleusercontent.com"
             buttonText="Google"
@@ -117,10 +123,12 @@ class Signup extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.authReducer.signupData,
+  isSignup: state.authReducer.isSignup,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   userRegistration: (query) => dispatch(userRegistration(query)),
+  googleLoginData: (res) => dispatch(googleLogin(res)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
