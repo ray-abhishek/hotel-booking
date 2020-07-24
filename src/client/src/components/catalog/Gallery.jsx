@@ -10,10 +10,10 @@ class Gallery extends React.Component{
         }
     }
 
-    // componentDidMount(){
-    //     this.props.fetchRequest()
-    // }
-   
+    /// componentDidMount(){
+         ///this.props.fetchRequest(this.props.location.pathname)
+    ///}
+    
 
     render(){
 

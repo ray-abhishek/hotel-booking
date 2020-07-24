@@ -108,7 +108,7 @@ def get_catalog_data(data):
         #print(images," are entrance images")
         temp_hotel["hotel_images"] = images["entrance"]
         temp_hotel["name"] = row["name"]
-        temp_hotel["location"] = str(row["city"])+str(row["address"])
+        temp_hotel["location"] = str(row["city"])+" , "+str(row["address"])
         temp_hotel["people"] = row["capacity"]
         temp_hotel["bedrooms"] = row["bedrooms"]
         temp_hotel["bathrooms"] = row["bathrooms"]
