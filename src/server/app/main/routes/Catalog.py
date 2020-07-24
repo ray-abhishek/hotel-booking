@@ -14,17 +14,18 @@ class Catalog(Resource):
     parser.add_argument('sleeps', type=str,required=False)
     parser.add_argument('perpage', type=str,required=False)
     parser.add_argument('sort', type=str,required=False)
-    parser.add_argument('page', type=str,required=False)
+    #parser.add_argument('page', type=str,required=False)
     parser.add_argument('feature', type=str,required=False, action='append')
     
-    parser.add_argument('max_price', type=str,required=False)
-    parser.add_argument('min_price', type=str,required=False)
+    parser.add_argument('maxPrice', type=str,required=False)
+    parser.add_argument('minPrice', type=str,required=False)
 
 
     @classmethod
-    def get(self, location=None):
+    def get(self, location=None, page=1):
         data = Catalog.parser.parse_args()
         print("\n\n---INSIDE GET Catalog---\n")
+        data["page"] = page
         print(location," is location")
         if location:
             data["location"] = location
