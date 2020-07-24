@@ -19,7 +19,7 @@ class UserLogin(Resource):
         print("\n\n----INSIDE UserLogin----\n\n")
         print(data," are the parameters passed to /login")
         flag, token, name = user_login(data)
-
+        print(flag,token,name," flag, token, name being sent to client")
         if flag:
             return {'status': "success", 'Authorization': token, 'message': 'Login Successful', "name" : name}
         else:
