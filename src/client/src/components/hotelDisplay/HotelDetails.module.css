@@ -1,0 +1,13 @@
+.car{
+    width: 1047px;
+    height: 100px;
+    position: absolute;
+    left: -235px;
+    background-color: red;
+
+}
+/* .car{
+    background-color: red;
+} */
+
+/* outline: 0px; transition: left 0s ease 0s, top 0s ease 0s; position: absolute; left: -1235px; top: 0px; width: 3047.5px; height: 100%; */

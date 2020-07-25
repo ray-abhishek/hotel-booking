@@ -45,7 +45,7 @@ const Routes = (props) => {
       /> */}
       <Route
         exact
-        path="/home-listing/:hotel-id/"
+        path="/home-listing/:id/"
         render={(props) => <HotelDisplay {...props} />}
       />
       <Route
