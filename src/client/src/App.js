@@ -16,14 +16,14 @@ import Footer from './components/common/Footer';
 //import { Provider } from 'react-redux';
 import store from './redux/store';
 import Gallery from './components/catalog/Gallery';
-
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
     <div className="App">
     
       <Navbar />
-
+      <LandingPage />
       <Routes />
       <Footer />
 
