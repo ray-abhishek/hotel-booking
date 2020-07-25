@@ -4,10 +4,10 @@ import styles from './LandingPage.module.css';
 function Header(){
 
     return(
-        <div className={styles.homeImg}>
+        <div>
             <div>
-                Hello Imdia
-            <img src="../images/home-page.jpg"  className="img-fluid "/>
+                
+            <img src="../images/home-page.jpg"  className="img-fluid"/>
             </div>
         </div>
     )
