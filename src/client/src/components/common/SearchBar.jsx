@@ -1,3 +1,4 @@
+
  import React, { Component } from "react";
  import style from "./SearchBar.module.css";
  import DatePicker from "react-datepicker";
@@ -205,3 +206,4 @@ const child4 = {
 const submitButton = {
     maxHeight : '42px',
 }
+
