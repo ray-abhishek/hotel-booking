@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ImageCarousel from '../components/hotelDisplay/ImageCarousel';
 import { Route } from 'react-router-dom';
 import Description from '../components/hotelDisplay/aboutHotel/Description';
@@ -32,3 +33,4 @@ class HotelDisplay extends React.Component {
 
 
 export default HotelDisplay;
+
