@@ -36,7 +36,7 @@ class HotelDisplay extends React.Component {
         <ImageCarousel />
         <Features {...this.props} />
         <Description {...this.props} />
-        <Rooms {...this.props} />
+        {/* <Rooms {...this.props} /> */}
         <FindOutMore />
         <HomeTruths {...this.props} />
         <Policies {...this.props} />

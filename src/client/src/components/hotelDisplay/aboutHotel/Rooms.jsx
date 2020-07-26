@@ -38,7 +38,7 @@ class Rooms extends React.Component {
               </h6>
             </div>
             <div class="row">
-              {hotelDetails &&
+              {hotelDetails["hotel_images"] &&
                 hotelDetails["hotel_images"]["entrance"].map((ele) => (
                   <div className="card">
                     <img
