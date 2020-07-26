@@ -9,7 +9,6 @@ function Catalog(props) {
     <div>
       <Filter {...props} />
       <Pagination {...props} />
-      
     </div>
   );
 }
