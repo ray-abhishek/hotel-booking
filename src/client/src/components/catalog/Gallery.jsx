@@ -28,6 +28,7 @@ class Gallery extends React.Component{
         console.log(data)
         return(
             <div className="container">
+
                 {data?.map((item)=>(
                     <div onClick={()=>this.handleSearch(item.id)} className="card mb-3 border-0">
                        
