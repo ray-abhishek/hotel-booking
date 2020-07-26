@@ -1,0 +1,13 @@
+.myDropdownToggle::after {
+  content: none;
+  border: none;
+  background: white;
+}
+
+.myDropdownToggle {
+  border: none;
+  background: white;
+}
+.test {
+  background: black;
+}
