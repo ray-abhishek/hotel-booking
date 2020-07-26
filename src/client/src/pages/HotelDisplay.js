@@ -1,15 +1,15 @@
 import React from "react";
+
 import ImageCarousel from "../components/hotelDisplay/ImageCarousel";
 import { Route } from "react-router-dom";
 import Description from "../components/hotelDisplay/aboutHotel/Description";
 import Features from "../components/hotelDisplay/aboutHotel/Features";
 import SimilarHomes from "../components/hotelDisplay/SimilarHomes";
-import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
+import FindOutMore from "../components/hotelDisplay/aboutHotel/FindOutMore";
 import HomeTruths from "../components/hotelDisplay/aboutHotel/HomeTruths";
 import Policies from "../components/hotelDisplay/aboutHotel/Policies";
-import { connect } from "react-redux";
 import { fetchRequest } from "../redux/action";
-import FindOutMore from "../components/hotelDisplay/aboutHotel/FindOutMore";
+import { connect } from "react-redux";
 // import Axios from 'axios';
 
 class HotelDisplay extends React.Component {

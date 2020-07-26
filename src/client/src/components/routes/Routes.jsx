@@ -5,7 +5,7 @@ import Catalog from "../../pages/Catalog";
 import BookingPage from "../../pages/BookingPage";
 import ConfirmationPage from "../../pages/ConfirmationPage";
 import HotelDisplay from "../../pages/HotelDisplay";
-import SearchBar from "../common/SearchBar";
+//import SearchBar from "../common/SearchBar";
 
 const Routes = (props) => {
   return (

@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../components/landingPage/Header";
-
 import Collections from "../components/landingPage/Collections";
 import { connect } from "react-redux";
 import Inspiration from "../components/landingPage/Inspiration";
