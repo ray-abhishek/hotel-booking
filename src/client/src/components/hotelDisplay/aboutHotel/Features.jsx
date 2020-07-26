@@ -16,7 +16,12 @@ class Features extends React.Component {
           <div class="card border-0 mx-5 my-3">
             <div class="card-body text-center text-md-left">
               <h5>
-                <span class="badge badge-secondary">City</span>{" "}
+                <span
+                  class="badge badge-secondary mb-3"
+                  style={{ background: "darkblue" }}
+                >
+                  City
+                </span>{" "}
                 <small className="text-muted">Find out more</small>{" "}
               </h5>
               <h1 class="card-subtitle d-sm-none d-block">
@@ -36,7 +41,7 @@ class Features extends React.Component {
                 {hotelDetails["location"]}
               </h6>
               <div className="row offset-2 offset-md-0">
-                <div className="col-4 col-md-3 ">
+                <div className="col-4 col-lg-3 ">
                   <div className="row">
                     <img
                       className="pr-3"
@@ -48,7 +53,7 @@ class Features extends React.Component {
                     <span className=" d-none d-sm-block pl-1">people</span>
                   </div>
                 </div>
-                <div className="col-3 col-md-3">
+                <div className="col-4 col-lg-3">
                   <div className="row">
                     <img
                       className="pr-3"
@@ -60,7 +65,7 @@ class Features extends React.Component {
                     <span className=" d-none d-sm-block pl-1">bedrooms</span>
                   </div>
                 </div>
-                <div className="col-3 col-md-3">
+                <div className="col-4 col-lg-3">
                   <div className="row">
                     <img
                       className="pr-3"
