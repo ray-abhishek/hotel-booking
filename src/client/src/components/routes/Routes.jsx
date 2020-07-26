@@ -23,11 +23,7 @@ const Routes = (props) => {
         path="/search/:page"
         render={(props) => <Catalog {...props} />}
       />
-      {/* <Route
-        exact
-        path="/search/:page/:query"
-        render={(props) => <Catalog {...props} />}
-      /> */}
+
       <Route
         exact
         path="/search/:location/:id"
@@ -38,11 +34,7 @@ const Routes = (props) => {
         path="/search/:location/:id/:page"
         render={(props) => <Catalog {...props} />}
       />
-      {/* <Route
-        exact
-        path="/search/:location/:page/:query"
-        render={(props) => <Catalog {...props} />}
-      /> */}
+
       <Route
         exact
         path="/home-listing/:id/"
