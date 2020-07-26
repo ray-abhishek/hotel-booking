@@ -21,7 +21,7 @@ class Gallery extends React.Component{
         console.log(data)
         return(
             <div className="container">
-              
+              ddd
                 {data?.map((item)=>(
                     <div>
                     <div key={item.id} className="row">

@@ -4,17 +4,16 @@ import LandingPage from "../../pages/LandingPage";
 import Catalog from "../../pages/Catalog";
 import BookingPage from "../../pages/BookingPage";
 import ConfirmationPage from "../../pages/ConfirmationPage";
-import HotelDisplay from "../../pages/HotelDisplay";
-import SearchBar from "../common/SearchBar";
+import HotelDisplayPage from "../../pages/HotelDisplay";
+//import SearchBar from "../common/SearchBar";
 
-const Routes = (props) => {
+function Routes(props){
   return (
     <>
       <Switch />
       <Route
-        // exact
-        path="/"
         exact
+        path="/"
         render={(props) => <LandingPage {...props} />}
       />
       <Route exact path="/search" render={(props) => <Catalog {...props} />} />
@@ -46,17 +45,17 @@ const Routes = (props) => {
       <Route
         exact
         path="/home-listing/:hotel-id/"
-        render={(props) => <HotelDisplay {...props} />}
+        render={(props) => <HotelDisplayPage {...props} />}
       />
       <Route
         exact
         path="/home-listing/:hotel-id/request-booking"
-        render={(props) => <BookingPage />}
+        render={(props) => <BookingPage {...props}/>}
       />
       <Route
         exact
         path="/home-listing/:hotel-id/request-booking/confirmed"
-        render={(props) => <ConfirmationPage />}
+        render={(props) => <ConfirmationPage {...props}/>}
       />
       <Switch />
     </>
