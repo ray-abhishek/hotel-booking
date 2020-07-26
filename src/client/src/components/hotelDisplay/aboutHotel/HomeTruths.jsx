@@ -1,6 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default class HomeTruths extends React.Component {
+class HomeTruths extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -11,18 +12,25 @@ export default class HomeTruths extends React.Component {
     console.log(data);
     return (
       <div>
-        <div class="card">
-          <div className="card-heading">Home truths</div>
+        <div class="card border-0 mx-5 my-3">
           <div class="card-body">
-            -
-            <li>
-              The bunk bed in the second bedroom will comfortably sleep two
-              adults on the bottom double, and has room for a further one adult
-              on the top bunk.
-            </li>
+            <ul style={{ listStyle: "none" }}>
+              <h5 className="card-heading">Home truths</h5>
+              <li>
+                - The bunk bed in the second bedroom will comfortably sleep two
+                adults on the bottom double, and has room for a further one
+                adult on the top bunk.
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  hotelDetails: state.dataReducer.data,
+});
+
+export default connect(mapStateToProps, null)(HomeTruths);
