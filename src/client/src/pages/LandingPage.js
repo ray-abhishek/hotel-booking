@@ -4,7 +4,6 @@ import Collections from '../components/landingPage/Collections'
 import { connect } from "react-redux";
 import Inspiration from '../components/landingPage/Inspiration';
 
-
 class LandingPage extends React.Component{
     constructor(props){
         super(props);
@@ -28,3 +27,4 @@ const mapDispatchToProps = (dispatch) => ({
   });
 
 export default connect(null, mapDispatchToProps)(LandingPage);
+

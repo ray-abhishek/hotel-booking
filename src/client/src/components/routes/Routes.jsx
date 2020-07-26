@@ -4,7 +4,7 @@ import LandingPage from "../../pages/LandingPage";
 import Catalog from "../../pages/Catalog";
 import BookingPage from "../../pages/BookingPage";
 import ConfirmationPage from "../../pages/ConfirmationPage";
-import HotelDisplayPage from "../../pages/HotelDisplay";
+import HotelDisplay from "../../pages/HotelDisplay";
 //import SearchBar from "../common/SearchBar";
 
 function Routes(props){
@@ -44,8 +44,10 @@ function Routes(props){
       /> */}
       <Route
         exact
-        path="/home-listing/:hotel-id/"
-        render={(props) => <HotelDisplayPage {...props} />}
+
+        path="/home-listing/:id/"
+        render={(props) => <HotelDisplay {...props} />}
+
       />
       <Route
         exact
