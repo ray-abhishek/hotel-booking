@@ -9,6 +9,14 @@ class HomeTruths extends React.Component {
 
   render() {
     const { data, title, location, people, bathrooms, bedrooms } = this.props;
+    let round = {
+      height: "70px",
+      width: "70px",
+      borderRadius: "100%",
+      background: "rgb(199, 199, 192)",
+      padding: "14px",
+    };
+    let font = { fontSize: "1.5vw" };
     console.log(data);
     return (
       <div class="card mx-5 my-3">
@@ -17,9 +25,11 @@ class HomeTruths extends React.Component {
         </div>
         <dir className="row">
           <dir className="col-3 px-5">
-            <i class="display-1 fas fa-home"></i>
+            <div style={round}>
+              <i class="h1 fas fa-home"></i>
+            </div>
             <div>
-              <p>
+              <p style={font}>
                 Exclusively
                 <br />
                 onefinestay
@@ -27,28 +37,34 @@ class HomeTruths extends React.Component {
             </div>
           </dir>
           <dir className="col-3 px-5">
-            <i class="display-1 fas fa-handshake"></i>
-            <div>
-              <p>
-                Personal
-                <br />
-                Meet &amp; Greet
-              </p>
+            <div style={round}>
+              <i class="h1 fas fa-handshake"></i>
             </div>
+            {/* <div> */}
+            <p style={font}>
+              Personal
+              <br />
+              Meet &amp; Greet
+            </p>
+            {/* </div> */}
           </dir>
           <dir className="col-3 px-5">
-            <i class="display-1 fas fa-toilet-paper"></i>
+            <div style={round}>
+              <i class="h1 fas fa-toilet-paper"></i>
+            </div>
             <div>
-              <p>
+              <p style={font}>
                 Toiletries
                 <br /> &amp; linens
               </p>
             </div>
           </dir>
           <dir className="col-3 px-5">
-            <i class="display-1 far fa-clock"></i>
+            <div style={round}>
+              <i class="h1 far fa-clock"></i>
+            </div>
             <div>
-              <p>
+              <p style={font}>
                 24/7
                 <br />
                 support

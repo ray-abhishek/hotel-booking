@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import style from "./SearchBar.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+// import { Redirect } from "react-router-dom";
 
 const ExampleCustomArrival = ({ value, onClick }) => (
   <button style={{ border: "none", background: "white" }} onClick={onClick}>
@@ -37,6 +38,23 @@ export default class SearchBar extends Component {
     });
   };
 
+  handleOnClick = (e) => {
+    console.log(this.props, "clicked");
+    let url = "/search";
+    if (this.state.city) {
+      url += `/${this.state.city}`;
+      // url += !this.state.arrivalDate ? "" : `${this.state.arrivalDate}`;
+      // url += !this.state.departureDate ? "" : `${this.state.departureDate}`;
+      // url += !this.state.guests ? "" : `${this.state.guests}`;
+      this.props.history.push(url);
+    } else {
+      // url += !this.state.arrivalDate ? "" : `${this.state.arrivalDate}`;
+      // url += !this.state.departureDate ? "" : `${this.state.departureDate}`;
+      // url += !this.state.guests ? "" : `${this.state.guests}`;
+      this.props.history.push(url);
+    }
+  };
+
   render() {
     return (
       <div style={searchBarStyle}>
@@ -53,6 +71,11 @@ export default class SearchBar extends Component {
                   list="topdestinations"
                   style={inputStyle}
                   placeholder="Where to next?"
+                  onChange={(e) => {
+                    this.setState({
+                      city: e.target.value,
+                    });
+                  }}
                 />
                 <img
                   type="search"
@@ -128,6 +151,11 @@ export default class SearchBar extends Component {
                 className="form-control border-0"
                 id="guests"
                 placeholder=""
+                onChange={(e) => {
+                  this.setState({
+                    guests: e.target.value,
+                  });
+                }}
               >
                 <option selected>Guests</option>
                 <option>1</option>
@@ -145,9 +173,7 @@ export default class SearchBar extends Component {
 
             <button
               style={submitButton}
-              onClick={(e) => {
-                console.log("worked");
-              }}
+              onClick={(e) => this.handleOnClick(e)}
               type="submit"
               className="btn btn-danger col-2"
             >

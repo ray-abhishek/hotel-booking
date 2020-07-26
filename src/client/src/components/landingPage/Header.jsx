@@ -1,14 +1,14 @@
 import React from "react";
 import SearchBar from "../common/SearchBar";
 
-function Header() {
+function Header(props) {
   return (
     <div className="w-100">
       <div style={imgStyle} className="img-fluid">
         <h1 style={h1Style}>
           Enjoy the <i>finest</i> homes and service all around the world
         </h1>
-        <SearchBar />
+        <SearchBar {...props} />
       </div>
     </div>
   );

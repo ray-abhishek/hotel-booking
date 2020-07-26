@@ -13,9 +13,9 @@ class LandingPage extends React.Component {
     console.log("HI FROM LANDING PAGE");
     return (
       <>
-        <Header />
-        <Collections />
-        <Inspiration />
+        <Header {...this.props} />
+        <Collections {...this.props} />
+        <Inspiration {...this.props} />
       </>
     );
   }

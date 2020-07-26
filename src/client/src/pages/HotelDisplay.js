@@ -30,7 +30,7 @@ class HotelDisplay extends React.Component {
     // console.log("match params", this.props.match.params);
     console.log(this.props.data, "inside homeDisplay");
     return (
-      <div>
+      <div className="col-md-8 offset-md-2 ">
         Hotel Display
         {this.props.match.params.id}
         <ImageCarousel />
