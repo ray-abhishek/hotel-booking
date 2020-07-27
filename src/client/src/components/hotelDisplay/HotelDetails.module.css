@@ -4,10 +4,193 @@
     position: absolute;
     left: -235px;
     background-color: red;
-
 }
-/* .car{
-    background-color: red;
+
+.bgc{
+    /* background-color: green; */
+    height: 200px;
+    width: 200px;
+    /* background-image: url(./1.jpg); */
+}
+
+.container{
+   width: auto;
+    overflow: hidden;
+    
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .row{
+         width: 6400px;         
+          position: relative;
+          animation-name: slideranimation;
+          animation-duration: 20s;
+          animation-iteration-count: infinite;
+          height: 200px;
+         
+  }
+
+  @keyframes slideranimation{
+          0%{
+              left: 0px;
+          }
+          20% /* 4 sec */
+          {
+              left: 0px;
+          }
+          25% /* 5se */
+          {
+              left: -800px;
+          }
+          45% /* 9 sef */
+          {
+              left: -800px;
+          }
+          50% /* 10 sef */
+          {
+              left: -1600px;
+          }
+          70% /* 14 sef */
+          {
+              left: -1600px;
+          }
+          75% /* 15 sef */
+          {
+              left: -2400px;
+          }
+      }
+  
+      .row img{
+          float: left;
+      }
+      .cardImg{
+        width: 500px;
+        height: 400px;
+        margin-right: 15px;
+      }
+
+      .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+      }
+      
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+      }
+
+      
+
+      /* .previousButton, .nextButton{
+          font-size: small;
+          height: 40px;
+          background-color: rgb(235, 14, 14);
+          direction: previous;
+           top: 50%; 
+           padding: 16px;
+           margin-top: -150px;
+           border-radius: 50%;
+      } */
+
+      /* .nextButton{
+          float: right;
+      } */
+
+
+/* date picker css */
+
+
+
+
+
+      /* 
+      .previousButton, .nextButton {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 10;
+		background: url('http://svgshare.com/i/41_.svg') no-repeat center center / 16px;
+		width: 32px;
+		height: 32px;
+		text-indent: -9999px;
+		cursor: pointer;
+}
+
+.previousButton:hover, .nextButton:hover {
+  background: url('http://svgshare.com/i/41_.svg') no-repeat center center / 16px;
+}
+
+.previousButton {
+  left: 0;
+  -webkit-transform: rotate(180deg) translateY(calc(50% + 0px));
+          transform: rotate(180deg) translateY(calc(50% + 0px));
+}
+
+.previousButton:hover {
+  left: -10px;
+}
+
+.nextButton {
+  right: 0;
+}
+
+.nextButton:hover {
+  right: -10px;
 } */
 
-/* outline: 0px; transition: left 0s ease 0s, top 0s ease 0s; position: absolute; left: -1235px; top: 0px; width: 3047.5px; height: 100%; */
+
+
+
+
+
+
+
+
+      /* .previousButton,
+      .nextButton {
+          margin: 100px; */
+        /* cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none; */
+      /* } */
+      
+      /* Position the "next button" to the right */
+      /* .nextButton {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+       */
+      /* On hover, add a black background color with a little bit see-through */
+      /* .previousButton:hover,
+      .nextButton:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      } */
