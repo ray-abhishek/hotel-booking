@@ -90,7 +90,8 @@ class FeaturesDetails extends React.Component {
         <h6 className="mb-4 font-weight-bold">Families</h6>
         <div className="row">
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.families &&
+            {hotelDetails &&
+            hotelDetails.families &&
             hotelDetails.families.includes("Babies welcome") ? (
               <img
                 type="check_slate"
@@ -111,7 +112,8 @@ class FeaturesDetails extends React.Component {
             Babies welcome
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.families &&
+            {hotelDetails &&
+            hotelDetails.families &&
             hotelDetails.families.includes("Children welcome") ? (
               <img
                 type="check_slate"
@@ -132,7 +134,8 @@ class FeaturesDetails extends React.Component {
             Children welcome
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.families &&
+            {hotelDetails &&
+            hotelDetails.families &&
             hotelDetails.families.includes("Toddlers welcome") ? (
               <img
                 type="check_slate"
@@ -153,7 +156,8 @@ class FeaturesDetails extends React.Component {
             Toddlers welcome
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.families &&
+            {hotelDetails &&
+            hotelDetails.families &&
             hotelDetails.families.includes("Pets Welcome") ? (
               <img
                 type="check_slate"
@@ -176,81 +180,64 @@ class FeaturesDetails extends React.Component {
         </div>
         <hr />
         <h6 className="mb-4 font-weight-bold">Sleeps</h6>
-        <div className="row">
-          <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails["sleeps"] && (
-              <div>
-                <div className="col-4 col-md-3 ">
-                  <div className="row">
-                    <img
-                      className="pr-3"
-                      type="guests"
-                      src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/036f324cf34b32f5778266f61328bacf.svg"
-                      alt="guests"
-                    />
-                    {hotelDetails["sleeps"][0]}
-                    <span className=" d-none d-sm-block pl-1">people</span>
-                  </div>
-                </div>
-                <div className="col-3 col-md-3">
-                  <div className="row">
-                    <img
-                      className="pr-3"
-                      type="bed"
-                      src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/902f8e1ce2c97d1c7566c8ab22432d01.svg"
-                      alt="bed"
-                    />
-                    {hotelDetails["sleeps"][1]}
-                    <span className=" d-none d-sm-block pl-1">bedrooms</span>
-                  </div>
-                </div>
-                <div>
-                  {hotelDetails["sleeps"][2]},
-                  {hotelDetails["sleeps"][3] && `${hotelDetails["sleeps"][3]}`}{" "}
-                  Bed size chart{" "}
-                </div>
-              </div>
-            )}
+        {hotelDetails && hotelDetails["sleeps"] && (
+          <div className="row">
+            <div className="col-4 ">
+              <img
+                className="pr-3"
+                type="guests"
+                src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/036f324cf34b32f5778266f61328bacf.svg"
+                alt="guests"
+              />
+              {hotelDetails["sleeps"][0]}
+            </div>
+            <div className="col-4">
+              <img
+                className="pr-3"
+                type="bed"
+                src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/902f8e1ce2c97d1c7566c8ab22432d01.svg"
+                alt="bed"
+              />
+              {hotelDetails["sleeps"][1]}
+            </div>
+            <div className="my-2 mx-3">
+              {hotelDetails["sleeps"][2]},
+              {hotelDetails["sleeps"][3] && `${hotelDetails["sleeps"][3]}`} Bed
+              size chart{" "}
+            </div>
           </div>
-        </div>
-        <h6 className="mb-4 font-weight-bold">Bathroom facilities</h6>
-        <div className="row">
-          <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails["bathroom"] &&(
-              <div>
-                <div className="col-4 col-md-3 ">
-                  <div className="row">
-                    <img
-                      className="pr-3"
-                      type="bathtub"
-                      src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/ca2e12a1baad71ca75c5b64ab8e6ea41.svg"
-                      alt="bathtub"
-                    />
-                    {hotelDetails["bathroom"][0]}
-                    <span className=" d-none d-sm-block pl-1">bathrooms</span>
-                  </div>
-                </div>
+        )}
+        <br />
+        {/* <br/> */}
+        <h6 className="my-4 font-weight-bold">Bathroom facilities</h6>
+        {hotelDetails && hotelDetails["bathroom"] && (
+          <div>
+            <div className="col-4 ">
+              <div className="row">
                 <div>
-                  {hotelDetails["bathroom"][1] &&
-                    `${hotelDetails["bathroom"][1]}`}
-                  ,
-                  {hotelDetails["bathroom"][2] &&
-                    `${hotelDetails["bathroom"][2]}`}
-                  ,
-                  {hotelDetails["bathroom"][3] &&
-                    `${hotelDetails["bathroom"][3]}`}
-                  ,
+                  <img
+                    className="pr-3"
+                    type="bathtub"
+                    src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/ca2e12a1baad71ca75c5b64ab8e6ea41.svg"
+                    alt="bathtub"
+                  />
                 </div>
+                <div>{hotelDetails["bathroom"][0]}</div>
               </div>
-            )}
+            </div>
+            <div className="my-2">
+              {hotelDetails["bathroom"][1] && `${hotelDetails["bathroom"][1]}`},
+              {hotelDetails["bathroom"][2] && `${hotelDetails["bathroom"][2]}`},
+              {hotelDetails["bathroom"][3] && `${hotelDetails["bathroom"][3]}`},
+            </div>
           </div>
-        </div>
+        )}
         <hr />
         <h6 className="mb-4 font-weight-bold">Highlights</h6>
         <div className="row">
           <div className="col-6 col-md-4 my-2">
-            {hotelDetails  &&
-              hotelDetails["highlights"]  &&
+            {hotelDetails &&
+              hotelDetails["highlights"] &&
               hotelDetails["highlights"].map((ele) => (
                 <>
                   <img
@@ -266,10 +253,12 @@ class FeaturesDetails extends React.Component {
           </div>
         </div>
 
-        <h6 className="mb-4 font-weight-bold">Amenities</h6>
+        <br />
+        <h6 className="my-4 font-weight-bold">Amenities</h6>
         <div className="row">
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.families &&
+            {hotelDetails &&
+            hotelDetails.families &&
             hotelDetails.families.includes("Babies welcome") ? (
               <img
                 type="check_slate"
@@ -290,7 +279,8 @@ class FeaturesDetails extends React.Component {
             Air-conditioning
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.families &&
+            {hotelDetails &&
+            hotelDetails.families &&
             hotelDetails.families.includes("Coffee machine") ? (
               <img
                 type="check_slate"
@@ -311,7 +301,8 @@ class FeaturesDetails extends React.Component {
             Coffee machine
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Dishwasher") ? (
               <img
                 type="check_slate"
@@ -332,7 +323,8 @@ class FeaturesDetails extends React.Component {
             Dishwasher
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Freezer") ? (
               <img
                 type="check_slate"
@@ -353,7 +345,8 @@ class FeaturesDetails extends React.Component {
             Freezer
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Fridge") ? (
               <img
                 type="check_slate"
@@ -374,7 +367,8 @@ class FeaturesDetails extends React.Component {
             Fridge
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Hairdryer") ? (
               <img
                 type="check_slate"
@@ -395,7 +389,8 @@ class FeaturesDetails extends React.Component {
             Hairdryer
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Hob") ? (
               <img
                 type="check_slate"
@@ -416,7 +411,8 @@ class FeaturesDetails extends React.Component {
             Hob
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Iron and ironing board") ? (
               <img
                 type="check_slate"
@@ -437,7 +433,8 @@ class FeaturesDetails extends React.Component {
             Iron and ironing board
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Kettle") ? (
               <img
                 type="check_slate"
@@ -458,7 +455,8 @@ class FeaturesDetails extends React.Component {
             Kettle
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Microwave") ? (
               <img
                 type="check_slate"
@@ -479,7 +477,8 @@ class FeaturesDetails extends React.Component {
             Microwave
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Music player") ? (
               <img
                 type="check_slate"
@@ -500,7 +499,8 @@ class FeaturesDetails extends React.Component {
             Music player
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Oven") ? (
               <img
                 type="check_slate"
@@ -521,7 +521,8 @@ class FeaturesDetails extends React.Component {
             Oven
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Satellite or cable") ? (
               <img
                 type="check_slate"
@@ -542,7 +543,8 @@ class FeaturesDetails extends React.Component {
             Satellite or cable
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Toaster") ? (
               <img
                 type="check_slate"
@@ -563,7 +565,8 @@ class FeaturesDetails extends React.Component {
             Toaster
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Towels") ? (
               <img
                 type="check_slate"
@@ -584,7 +587,8 @@ class FeaturesDetails extends React.Component {
             Towels
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("TV") ? (
               <img
                 type="check_slate"
@@ -605,7 +609,8 @@ class FeaturesDetails extends React.Component {
             TV
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Wifi") ? (
               <img
                 type="check_slate"
@@ -626,7 +631,8 @@ class FeaturesDetails extends React.Component {
             Wifi
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Built-in fans") ? (
               <img
                 type="check_slate"
@@ -647,7 +653,8 @@ class FeaturesDetails extends React.Component {
             Built-in fans
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Safe") ? (
               <img
                 type="check_slate"
@@ -668,7 +675,8 @@ class FeaturesDetails extends React.Component {
             Safe
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails && hotelDetails.amenities  &&
+            {hotelDetails &&
+            hotelDetails.amenities &&
             hotelDetails.amenities.includes("Washing machine") ? (
               <img
                 type="check_slate"
