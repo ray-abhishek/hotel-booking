@@ -165,7 +165,6 @@ GET `/home-listing/<hotel-id>`
             {"image":"STRING", "type": "STRING"}
             ]
             },
-        "location" : "STRING",
         "features" : {
             "families" : [],
             "sleeps" : [],
@@ -173,10 +172,49 @@ GET `/home-listing/<hotel-id>`
             "highlights" : [],
             "amenities" : []
             },
+        "cost_per_night" : "STRING",
+        "cost_per_bedroom" : "STRING"
 	}
 }
 
 ```
+
+-----
+
+### Similar Houses - Component API Call
+
+GET `/get-similar/<hotel-id>`
+
+#### REQUEST
+
+```json
+{
+	"arrivalDate": "STRING",
+	"departureDate": "STRING",
+}
+```
+
+#### RESPONSE
+
+```json
+{
+    "status": "success",
+    "data" :  [
+        {
+                "image" : ["URL STRING 1","URL STRING 2"],
+                "name" : "STRING",
+                "location" : "STRING",
+                "people" : "STRING",
+                "bedrooms" : "STRING",
+                "bathrooms" : "STRING",
+                "cost_per_night" : "STRING",
+                "cost_per_bedroom" : "STRING",
+        }
+        ]
+```
+-----
+
+
 
 -----
 
