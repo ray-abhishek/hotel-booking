@@ -85,9 +85,9 @@ class Login extends React.Component {
             {isLogin ? "Ok" : "Login"}
           </button>
         </div>
-        {loginData.data && loginData.data.status === "failure"
+        {/* {loginData.data && loginData.data.status === "failure"
           ? loginData.data && loginData.data.message
-          : loginData.data && loginData.data.message}
+          : loginData.data && loginData.data.message} */}
         <hr />
 
         {/* Google login Logic */}
