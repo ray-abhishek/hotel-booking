@@ -5,6 +5,8 @@ from app.main.routes.User import UserLogin, UserSignup, UserLogout
 from app.main.routes.Catalog import Catalog
 from app.main.routes.Entity import Entity
 from app.main.routes.User_oAuth import UserOAuth
+from app.main.routes.HotelDisplay import HotelDisplay
+from app.main.routes.SimilarHotels import SimilarHotels
 
 def add_resources(app):
     """
@@ -19,6 +21,8 @@ def add_resources(app):
     api.add_resource(UserSignup, '/signup')
     api.add_resource(UserLogout, '/logout')
     api.add_resource(Catalog, '/search', '/search/<location>', '/search/<location>/<page>')
+    api.add_resource(HotelDisplay, '/home-listing/<hotelid>')
+    api.add_resource(SimilarHotels,'/get-similar/<hotelid>')
     #api.add_resource(Catalog, '/search/<location>')
     api.add_resource(Entity, '/add')
 
