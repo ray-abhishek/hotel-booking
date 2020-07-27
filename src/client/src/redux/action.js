@@ -38,25 +38,28 @@ export const fetchRequest = (payload) => (dispatch) => {
 };
 
 */
-import React from 'react';
-import axios from 'axios';
-import { FETCH_LIST_REQUEST, FETCH_LIST_FAILURE, FETCH_LIST_SUCCESS } from './actionTypes';
+import React from "react";
+import axios from "axios";
+import {
+  FETCH_LIST_REQUEST,
+  FETCH_LIST_FAILURE,
+  FETCH_LIST_SUCCESS,
+} from "./actionTypes";
 
+export const fetchListRequest = (payload) => ({
+  type: FETCH_LIST_REQUEST,
+  payload,
+});
+export const fetchListFailure = (payload) => ({
+  type: FETCH_LIST_FAILURE,
+  payload,
+});
+export const fetchListSuccess = (payload) => ({
+  type: FETCH_LIST_SUCCESS,
+  payload,
+});
 
-export const fetchListRequest=(payload)=>({
-    type: FETCH_LIST_REQUEST,
-    payload 
-})
-export const fetchListFailure=(payload)=>({
-    type: FETCH_LIST_FAILURE,
-    payload 
-})
-export const fetchListSuccess=(payload)=>({
-    type: FETCH_LIST_SUCCESS,
-    payload 
-})
-
-// Response (List of items) 
+// Response (List of items)
 /*
 export const fetchUserData=query=>dispatch=>{
     dispatch(fetchListRequest())
@@ -82,10 +85,10 @@ export const fetchUserData=query=>dispatch=>{
 */
 export const fetchRequest = (payload) => (dispatch) => {
   console.log(payload, "payload");
-  console.log(`https://2f26ccf36c6e.ngrok.io${payload}`, "url");
+  console.log(`https://1280c16124f0.ngrok.io${payload}`, "url");
   dispatch(fetchListRequest());
   return axios
-    .get(`https://2f26ccf36c6e.ngrok.io${payload}`)
+    .get(`https://1280c16124f0.ngrok.io${payload}`)
     .then((res) => {
       console.log(res.data);
       return res;
@@ -93,4 +96,3 @@ export const fetchRequest = (payload) => (dispatch) => {
     .then((res) => dispatch(fetchListSuccess(res.data)))
     .catch((err) => dispatch(fetchListFailure(err)));
 };
-

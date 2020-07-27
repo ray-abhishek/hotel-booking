@@ -44,6 +44,7 @@ import {
   FETCH_LIST_SUCCESS,
 } from "./actionTypes";
 // import data from '../data.json';
+// import dummyData from '../data.json'; 
 
 const initState = {
   data: [],
@@ -65,6 +66,7 @@ const reducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
+        // data: dummyData,
         data: payload["data"],
         totalPages: payload["totalpages"],
         totalRes: payload["totalresults"],
