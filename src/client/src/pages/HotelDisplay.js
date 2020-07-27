@@ -9,7 +9,7 @@ import FindOutMore from "../components/hotelDisplay/aboutHotel/FindOutMore";
 import HomeTruths from "../components/hotelDisplay/aboutHotel/HomeTruths";
 import Policies from "../components/hotelDisplay/aboutHotel/Policies";
 import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
-import { fetchRequest } from "../redux/action";
+import { fetchEntityRequest } from "../redux/action";
 import { connect } from "react-redux";
 import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
 // import Axios from 'axios';
@@ -22,9 +22,9 @@ class HotelDisplay extends React.Component {
 
   componentDidMount() {
     console.log("this.componentDidMount worked");
-    const { fetchRequest, data, location } = this.props;
+    const { fetchEntityRequest, data, location } = this.props;
     let url = `${location.pathname}${location.search}`;
-    fetchRequest(url);
+    fetchEntityRequest(url);
     console.log(url, "url hotel Display");
   }
 
@@ -50,11 +50,11 @@ class HotelDisplay extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.dataReducer.data,
+  data: state.dataReducer.entityData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchRequest: (query) => dispatch(fetchRequest(query)),
+  fetchEntityRequest: (query) => dispatch(fetchEntityRequest(query)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HotelDisplay);
