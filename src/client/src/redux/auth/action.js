@@ -50,7 +50,7 @@ export const logout=(payload)=>({
 export const userRegistration=query=>dispatch=>{
     dispatch(fetchRegistrationRequest())
     return(
-        axios.post("https://2f26ccf36c6e.ngrok.io/signup",{
+        axios.post("https://2772d2a7f1db.ngrok.io/signup",{
             email: query.email,
             name: query.name,
             password: query.password
@@ -70,7 +70,7 @@ export const userRegistration=query=>dispatch=>{
 export const userLogin=query=>dispatch=>{
     dispatch(loginRequest())
     return (
-        axios.post("https://2f26ccf36c6e.ngrok.io/login",{      
+        axios.post("https://2772d2a7f1db.ngrok.io/login",{      
             email: query.email,         
             password: query.password
     }).then(loginRes=>{
@@ -89,7 +89,7 @@ export const googleLogin=query=>dispatch=>{
     dispatch(googleLoginRequest())
     console.log("axios", query)
     return (
-        axios.post("https://2f26ccf36c6e.ngrok.io/ssologin",{      
+        axios.post("https://2772d2a7f1db.ngrok.io/ssologin",{      
             
                 email: query.email,
                 name: query.name,
@@ -111,7 +111,7 @@ export const googleLogin=query=>dispatch=>{
 export const logoutUser=query=>dispatch=>{
     dispatch(logout())
     return (
-        axios.get("https://d49672f80328.ngrok.io/logout")
+        axios.get("https://2772d2a7f1db.ngrok.io/logout")
         .then(logoutRes=>{
         console.log("logoutRes",logoutRes)
         return dispatch(logout(logoutRes))
