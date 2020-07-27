@@ -90,7 +90,7 @@ class FeaturesDetails extends React.Component {
         <h6 className="mb-4 font-weight-bold">Families</h6>
         <div className="row">
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.families &&
             hotelDetails.families.includes("Babies welcome") ? (
               <img
                 type="check_slate"
@@ -111,7 +111,7 @@ class FeaturesDetails extends React.Component {
             Babies welcome
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.families &&
             hotelDetails.families.includes("Children welcome") ? (
               <img
                 type="check_slate"
@@ -132,7 +132,7 @@ class FeaturesDetails extends React.Component {
             Children welcome
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.families &&
             hotelDetails.families.includes("Toddlers welcome") ? (
               <img
                 type="check_slate"
@@ -153,7 +153,7 @@ class FeaturesDetails extends React.Component {
             Toddlers welcome
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.families &&
             hotelDetails.families.includes("Pets Welcome") ? (
               <img
                 type="check_slate"
@@ -178,7 +178,7 @@ class FeaturesDetails extends React.Component {
         <h6 className="mb-4 font-weight-bold">Sleeps</h6>
         <div className="row">
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 && (
+            {hotelDetails && hotelDetails["sleeps"] && (
               <div>
                 <div className="col-4 col-md-3 ">
                   <div className="row">
@@ -216,7 +216,7 @@ class FeaturesDetails extends React.Component {
         <h6 className="mb-4 font-weight-bold">Bathroom facilities</h6>
         <div className="row">
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 && (
+            {hotelDetails && hotelDetails["bathroom"] &&(
               <div>
                 <div className="col-4 col-md-3 ">
                   <div className="row">
@@ -248,9 +248,9 @@ class FeaturesDetails extends React.Component {
         <hr />
         <h6 className="mb-4 font-weight-bold">Highlights</h6>
         <div className="row">
-          <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
-              hotelDetails["highlights"].length > 0 &&
+          <div className="col-6 col-md-4 my-2">
+            {hotelDetails  &&
+              hotelDetails["highlights"]  &&
               hotelDetails["highlights"].map((ele) => (
                 <>
                   <img
@@ -269,7 +269,7 @@ class FeaturesDetails extends React.Component {
         <h6 className="mb-4 font-weight-bold">Amenities</h6>
         <div className="row">
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.families &&
             hotelDetails.families.includes("Babies welcome") ? (
               <img
                 type="check_slate"
@@ -290,7 +290,7 @@ class FeaturesDetails extends React.Component {
             Air-conditioning
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.families &&
             hotelDetails.families.includes("Coffee machine") ? (
               <img
                 type="check_slate"
@@ -311,7 +311,7 @@ class FeaturesDetails extends React.Component {
             Coffee machine
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Dishwasher") ? (
               <img
                 type="check_slate"
@@ -332,7 +332,7 @@ class FeaturesDetails extends React.Component {
             Dishwasher
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities &&
             hotelDetails.amenities.includes("Freezer") ? (
               <img
                 type="check_slate"
@@ -353,7 +353,7 @@ class FeaturesDetails extends React.Component {
             Freezer
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities &&
             hotelDetails.amenities.includes("Fridge") ? (
               <img
                 type="check_slate"
@@ -374,7 +374,7 @@ class FeaturesDetails extends React.Component {
             Fridge
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities &&
             hotelDetails.amenities.includes("Hairdryer") ? (
               <img
                 type="check_slate"
@@ -395,7 +395,7 @@ class FeaturesDetails extends React.Component {
             Hairdryer
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities &&
             hotelDetails.amenities.includes("Hob") ? (
               <img
                 type="check_slate"
@@ -416,7 +416,7 @@ class FeaturesDetails extends React.Component {
             Hob
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities &&
             hotelDetails.amenities.includes("Iron and ironing board") ? (
               <img
                 type="check_slate"
@@ -437,7 +437,7 @@ class FeaturesDetails extends React.Component {
             Iron and ironing board
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities &&
             hotelDetails.amenities.includes("Kettle") ? (
               <img
                 type="check_slate"
@@ -458,7 +458,7 @@ class FeaturesDetails extends React.Component {
             Kettle
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Microwave") ? (
               <img
                 type="check_slate"
@@ -479,7 +479,7 @@ class FeaturesDetails extends React.Component {
             Microwave
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Music player") ? (
               <img
                 type="check_slate"
@@ -500,7 +500,7 @@ class FeaturesDetails extends React.Component {
             Music player
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Oven") ? (
               <img
                 type="check_slate"
@@ -521,7 +521,7 @@ class FeaturesDetails extends React.Component {
             Oven
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Satellite or cable") ? (
               <img
                 type="check_slate"
@@ -542,7 +542,7 @@ class FeaturesDetails extends React.Component {
             Satellite or cable
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Toaster") ? (
               <img
                 type="check_slate"
@@ -563,7 +563,7 @@ class FeaturesDetails extends React.Component {
             Toaster
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Towels") ? (
               <img
                 type="check_slate"
@@ -584,7 +584,7 @@ class FeaturesDetails extends React.Component {
             Towels
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("TV") ? (
               <img
                 type="check_slate"
@@ -605,7 +605,7 @@ class FeaturesDetails extends React.Component {
             TV
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Wifi") ? (
               <img
                 type="check_slate"
@@ -626,7 +626,7 @@ class FeaturesDetails extends React.Component {
             Wifi
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Built-in fans") ? (
               <img
                 type="check_slate"
@@ -647,7 +647,7 @@ class FeaturesDetails extends React.Component {
             Built-in fans
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Safe") ? (
               <img
                 type="check_slate"
@@ -668,7 +668,7 @@ class FeaturesDetails extends React.Component {
             Safe
           </div>
           <div className="clo-6 col-md-4 my-2">
-            {hotelDetails.length > 0 &&
+            {hotelDetails && hotelDetails.amenities  &&
             hotelDetails.amenities.includes("Washing machine") ? (
               <img
                 type="check_slate"

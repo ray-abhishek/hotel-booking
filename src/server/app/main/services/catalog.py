@@ -106,7 +106,9 @@ def get_catalog_data(data):
         #print(json.loads(row["hotel_images"])," json hotel images")
         images = json.loads(row["hotel_images"])
         #print(images," are entrance images")
-        temp_hotel["hotel_images"] = images["entrance"]
+        temp_hotel["hotel_images"] = []
+        temp_hotel["hotel_images"].append(images["entrance"][0]["image"])
+        temp_hotel["hotel_images"].append(images["entrance"][1]["image"])
         temp_hotel["name"] = row["name"]
         temp_hotel["location"] = str(row["city"])+" , "+str(row["address"])
         temp_hotel["people"] = row["capacity"]

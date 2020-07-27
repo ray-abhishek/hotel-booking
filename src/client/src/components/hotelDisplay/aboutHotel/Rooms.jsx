@@ -33,7 +33,7 @@ class Rooms extends React.Component {
           <>
             <div>
               <h3 font-size="S" font-weight="bold" color="secondary">
-                {hotelDetails && hotelDetails.hotel_images["entrance"]}
+                {hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"]}
               </h3>
               <h6
                 font-size="S"
@@ -45,8 +45,8 @@ class Rooms extends React.Component {
               </h6>
             </div>
             <div class="row">
-              {hotelDetails.length > 0 &&
-                hotelDetails["hotel_images"].length > 0 &&
+              {hotelDetails &&
+                hotelDetails["hotel_images"] && hotelDetails["hotel_images"]["entrance"] &&
                 hotelDetails["hotel_images"]["entrance"].map((ele) => (
                   <div className="card">
                     <img
@@ -75,8 +75,8 @@ class Rooms extends React.Component {
               </h6>
             </div>
             <div class="row">
-              {hotelDetails.length > 0 &&
-                hotelDetails["hotel_images"].length > 0 &&
+              {hotelDetails && hotelDetails.hotel_images &&
+                hotelDetails["hotel_images"]["entrance"] &&
                 hotelDetails["hotel_images"]["entrance"].map((ele) => (
                   <div className="card">
                     <img
