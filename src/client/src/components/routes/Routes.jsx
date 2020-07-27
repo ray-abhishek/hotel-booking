@@ -5,7 +5,9 @@ import Catalog from "../../pages/Catalog";
 import BookingPage from "../../pages/BookingPage";
 import ConfirmationPage from "../../pages/ConfirmationPage";
 import HotelDisplay from "../../pages/HotelDisplay";
-//import SearchBar from "../common/SearchBar";
+import SearchBar from "../common/SearchBar";
+import ImageCarousel from "../hotelDisplay/ImageCarousel";
+import BookingBox from "../hotelDisplay/BookingBox";
 
 const Routes = (props) => {
   return (
@@ -23,6 +25,18 @@ const Routes = (props) => {
         path="/search/:page"
         render={(props) => <Catalog {...props} />}
       />
+      {/* commented route I have uncommented for testing purpose */}
+      {/* <Route
+        exact
+        path="/test"
+        render={(props) => <ImageCarousel {...props} />}
+      />
+      <Route
+        exact
+        path="/booking"
+        render={(props) => <BookingBox {...props} />}
+      /> */}
+      {/* Booking Box demo route above */}
 
       <Route
         exact

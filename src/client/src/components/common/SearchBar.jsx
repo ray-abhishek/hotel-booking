@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import style from "./SearchBar.module.css";
 import DatePicker from "react-datepicker";
@@ -34,6 +33,8 @@ export default class SearchBar extends Component {
     });
   };
   handledepartureDateChange = (date) => {
+    console.log(date.getDate());
+
     this.setState({
       departureDate: date,
     });
@@ -236,4 +237,3 @@ const child4 = {
 const submitButton = {
   maxHeight: "42px",
 };
-
