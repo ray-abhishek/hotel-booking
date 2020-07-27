@@ -703,7 +703,7 @@ class FeaturesDetails extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  hotelDetails: state.dataReducer.data,
+  hotelDetails: state.dataReducer.entityData,
 });
 
 export default connect(mapStateToProps, null)(FeaturesDetails);
