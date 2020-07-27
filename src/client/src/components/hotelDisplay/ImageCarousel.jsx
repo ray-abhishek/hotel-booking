@@ -48,40 +48,42 @@ class ImageCarousel extends React.Component{
         {/* { hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]}  */}
 <div class={style.row}>
   <div class={style.column}>
-    <img src="./images/1.jpg" onclick={`${openModal} ${currentSlide}`} class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick={`${openModal} ${currentSlide}`} class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+
+  <div class={style.column}>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+
+  <div class={style.column}>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/2.jpg" onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(4)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/3.jpg" onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/1.jpg" onclick="openModal();currentSlide(4)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/2.jpg" onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick={`${openModal} ${currentSlide}`} class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/3.jpg" onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/1.jpg" onclick={`${openModal} ${currentSlide}`} class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/2.jpg" onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(4)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/3.jpg" onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
   <div class={style.column}>
-    <img src="./images/1.jpg" onclick="openModal();currentSlide(4)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
-  </div>
-  <div class={style.column}>
-    <img src="./images/2.jpg" onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
-  </div>
-  <div class={style.column}>
-    <img src="./images/3.jpg" onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+    <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
   </div>
 
 
