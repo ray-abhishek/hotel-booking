@@ -32,9 +32,6 @@ class Rooms extends React.Component {
         {hotelDetails && hotelDetails.hotel_images && (
           <>
             <div>
-              {/*<h3 font-size="S" font-weight="bold" color="secondary">
-                {hotelDetails.hotel_images["entrance"]}
-        </h3>*/}
               <h6
                 font-size="S"
                 color="secondaryText"
@@ -46,22 +43,28 @@ class Rooms extends React.Component {
             </div>
             <div class="row">
               {hotelDetails &&
-                hotelDetails["hotel_images"] && hotelDetails["hotel_images"]["entrance"] &&
-                hotelDetails["hotel_images"]["entrance"].map((ele) => (
-                  <div className="card">
+                hotelDetails["hotel_images"] &&
+                hotelDetails["hotel_images"]["entrance"] &&
+                hotelDetails["hotel_images"]["entrance"].map((ele, i) => (
+                  <div className="card col-4 border-0">
                     <img
-                      src={hotelDetails["hotel_images"]["entrance"]["image"]
+                      src={
+                        hotelDetails &&
+                        hotelDetails["hotel_images"]["entrance"][i]["image"]
                       }
                       className="card-img-top"
                       alt="..."
                     />
                     <div className="card-body">
                       <p className="card-text">
-                        {hotelDetails["hotel_images"]["entrance"]["type"]}
+                        {hotelDetails &&
+                          hotelDetails["hotel_images"]["entrance"][i]["type"]}
                       </p>
                     </div>
                   </div>
                 ))}
+            </div>
+            <div className="row">
               <h6
                 font-size="S"
                 color="secondaryText"
@@ -72,18 +75,19 @@ class Rooms extends React.Component {
               </h6>
             </div>
             <div class="row">
-              {hotelDetails && hotelDetails.hotel_images &&
-                hotelDetails["hotel_images"]["entrance"] &&
-                hotelDetails["hotel_images"]["entrance"].map((ele) => (
-                  <div className="card">
+              {hotelDetails &&
+                hotelDetails["hotel_images"] &&
+                // hotelDetails["hotel_images"]["entrance"] &&
+                hotelDetails["hotel_images"]["entrance"].map((ele, i) => (
+                  <div className="card col-4 border-0">
                     <img
-                      src={hotelDetails["hotel_images"]["entrance"]["image"]}
+                      src={hotelDetails["hotel_images"]["entrance"][i]["image"]}
                       className="card-img-top"
                       alt="..."
                     />
                     <div className="card-body">
                       <p className="card-text">
-                        {hotelDetails["hotel_images"]["entrance"]["type"]}
+                        {hotelDetails["hotel_images"]["entrance"][i]["type"]}
                       </p>
                     </div>
                   </div>

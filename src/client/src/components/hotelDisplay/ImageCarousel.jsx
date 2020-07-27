@@ -2,64 +2,111 @@ import React from 'react'
 import { connect } from 'react-redux'
 import HotelDisplay from '../../pages/HotelDisplay';
 import style from './HotelDetails.module.css';
+import data from '../../data.json';
+// import Slider from 'react-animated-slider';
+import Slider from 'react-slick';
+
 
 class ImageCarousel extends React.Component{
         constructor(props){
             super(props)
             this.state={
-
+              
             }
-        }
+            this.next = this.next.bind(this);
+            this.previous = this.previous.bind(this);
+          }
+            next() {
+              this.slider.slickNext();
+            }
+            previous() {
+              this.slider.slickPrev();
+            }
         render(){
             const { hotelDetails } = this.props;
+            const {openModal, currentSlide, showSlides} = this
+            console.log("data", data)
             console.log( "image carousel" ,hotelDetails)
-            return(
+            const settings = {
+              dots: false,
+              infinite: true,
+              speed: 500,
+              slidesToShow: 1,
+              slidesToScroll: 1
+            };
 
-                <div className="ml-5" >
-                <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style={{ display: "flex", flexDirection: "row", left: -230, textAlign:"center"}}>
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="10000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][0]["image"]} className="img-fluid d-block" alt="image1" style={{width:"auto", height: 400, position: 'center'}} />
-            </div>
-            <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
-            </div>
-            <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
-            </div>
-            <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
-            </div>
-            <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
-            </div>
-            <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
-            </div>
-            <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
-            </div>
-            <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
-            </div>
+            const mystyle = {
+              color: "white",
+              backgroundColor: "DodgerBlue",
+              padding: "10px",
+              fontFamily: "Arial"
+            };
+
+            return(
+                <div>
+              {  hotelDetails && hotelDetails.hotel_images && 
+                <div className={style.container}>
+                  
        
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        </div>
+
+        <div class={style.row}>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick={`${openModal} ${currentSlide}`} class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(4)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick={`${openModal} ${currentSlide}`} class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(4)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(2)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+  <div class={style.column}>
+    <img src={hotelDetails.hotel_images["entrance"][1]["image"]} onclick="openModal();currentSlide(3)" class={`${style.hoverShadow} ${style.cursor} ${style.cardImg}`}/>
+  </div>
+
+
+  <a class={style.prev} onclick="plusSlides(-1)">&#10094;</a>
+  <a class={style.next} onclick="plusSlides(1)">&#10095;</a>
+
+  
+
+</div> 
+</div>
+              }
+              </div>
             )
+
         }
-}
+      }
+
 
 const mapStateToProps=(state)=>({
-    hotelDetails: state.dataReducer.catalogData
+    hotelDetails: state.dataReducer.entityData
 })
 
 export default connect(mapStateToProps, null) (ImageCarousel)

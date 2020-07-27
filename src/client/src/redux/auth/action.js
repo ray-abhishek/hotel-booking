@@ -110,12 +110,19 @@ export const googleLogin=query=>dispatch=>{
 
 export const logoutUser=query=>dispatch=>{
     dispatch(logout())
+    console.log("logout Query", query)
     return (
-        axios.get("https://1280c16124f0.ngrok.io/logout")
-        .then(logoutRes=>{
-        console.log("logoutRes",logoutRes)
-        return dispatch(logout(logoutRes))
-    }
+
+
+        axios.get('https://1280c16124f0.ngrok.io/logout', {
+            headers: {
+                Authorization: query //the token is a variable which holds the token
+                    }
+        }).then(logoutRes=>{
+                console.log("logoutRes",logoutRes)
+            return dispatch(logout(logoutRes))        
+            }
+
         )
         .catch((error)=>{
             console.log(error)

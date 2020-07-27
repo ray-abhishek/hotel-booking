@@ -22,10 +22,10 @@ class Gallery extends React.Component {
     const { data } = this.props;
     console.log(data);
     return (
-      <div className="container">
+      <div className="container ml-4">
         {data?.map((item) => (
           <div
-            onClick={() => this.handleSearch(item.id)}
+            
             className="card mb-3 border-0"
           >
             <div key={item.id} className="row no-gutters">
@@ -39,7 +39,7 @@ class Gallery extends React.Component {
                     <img
                       src={item.hotel_images[0]}
                       className="card-img d-block w-100 img-fluid"
-                      alt={item.name}
+                      alt={item.name} style={{height: 250}}
                     />
                   </div>
                   <div class="carousel-item">
@@ -77,7 +77,7 @@ class Gallery extends React.Component {
                 </a>
               </div>
               <div className="col-md-4 mt-4 pl-4">
-                <div className="cart-body">
+                <div onClick={() => this.handleSearch(item.id)} className="cart-body">
                   <h4 className="cart-title text-danger">{item.name}</h4>
 
                   <div className="text-muted">{item.location}</div>
