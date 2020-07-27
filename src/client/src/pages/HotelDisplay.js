@@ -8,8 +8,10 @@ import SimilarHomes from "../components/hotelDisplay/SimilarHomes";
 import FindOutMore from "../components/hotelDisplay/aboutHotel/FindOutMore";
 import HomeTruths from "../components/hotelDisplay/aboutHotel/HomeTruths";
 import Policies from "../components/hotelDisplay/aboutHotel/Policies";
+import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
 import { fetchRequest } from "../redux/action";
 import { connect } from "react-redux";
+import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
 // import Axios from 'axios';
 
 class HotelDisplay extends React.Component {
@@ -36,7 +38,8 @@ class HotelDisplay extends React.Component {
         <ImageCarousel />
         <Features {...this.props} />
         <Description {...this.props} />
-        {/* <Rooms {...this.props} /> */}
+        <Rooms {...this.props} />
+        <FeaturesDetails {...this.props} />
         <FindOutMore />
         <HomeTruths {...this.props} />
         <Policies {...this.props} />

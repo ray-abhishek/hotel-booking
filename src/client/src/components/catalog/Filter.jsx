@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Router, Link } from "react-router-dom";
 import { node } from "prop-types";
 import queryString from "query-string";
-import Gallery from "./Gallery"
+import Gallery from "./Gallery";
 
 class Filter extends Component {
   constructor(props) {
@@ -157,7 +157,7 @@ class Filter extends Component {
     // );
     return (
       <div className="row">
-        <div className="col-3">
+        <div className="col-2 offset-lg-1">
           <div className="card mb-3" style={{ height: "8rem", width: "16rem" }}>
             <div className="card-body">
               <div class="form-group">
@@ -643,10 +643,10 @@ class Filter extends Component {
             </div>
           </div>
         </div>
-        <div className="col-9">
+        <div className="col-8">
           <div className="row">
-            <div className="col-2">hotel count</div>
-            <div className="col-3 offset-3">
+            <div className="col-2 offset-md-3 offset-lg-1">hotel count</div>
+            <div className="col-3 offset-lg-2">
               <button
                 id="10"
                 onClick={(e) => this.handlePerPageChange(e)}
@@ -673,7 +673,7 @@ class Filter extends Component {
               </button>
               <span>per page</span>
             </div>
-            <div className="col-3">
+            <div className="col-2">
               <div class="form-group">
                 <select
                   onChange={(e) => {

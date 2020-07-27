@@ -8,10 +8,17 @@ class Description extends React.Component {
   }
 
   render() {
-    const { data, hotelDetails } = this.props;
+    const { hotelDetails } = this.props;
     return (
       <>
-        <div className="accordion mx-5 my-3" id="accordionExample">
+        <div
+          className="accordion mx-5 my-3"
+          id="accordionExample"
+          style={{
+            fontFamily: "tiemposText",
+            fontSize: ".9em",
+          }}
+        >
           <h2
             font-family="tiemposText"
             font-weight="400"
@@ -52,7 +59,7 @@ class Description extends React.Component {
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            {this.state.show ? "show more" : "Hide"}
+            {this.state.show ? `^ show more` : `v hide`}
           </p>
         </div>
       </>

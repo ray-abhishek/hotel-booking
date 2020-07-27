@@ -12,9 +12,15 @@ export default class Policies extends React.Component {
     console.log(data);
     return (
       <div>
-        <div class="card border-0 mx-5 my-3">
+        <div class="card border-0 my-3">
           <div class="card-body">
-            <ul style={{ listStyle: "none" }}>
+            <ul
+              style={{
+                listStyle: "none",
+                fontFamily: "tiemposText",
+                fontSize: ".9em",
+              }}
+            >
               <h5 className="card-heading text-muted  mb-5 h5">Policies</h5>
               <li className="text-muted">
                 <span className="font-weight-bold">- Cancellation.</span>{" "}

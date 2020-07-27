@@ -11,7 +11,13 @@ class Rooms extends React.Component {
     const { hotelDetails } = this.props;
     console.log(hotelDetails, "Rooms");
     return (
-      <div class="card mx-5 my-3">
+      <div
+        class="card border-0 mx-5 my-3"
+        style={{
+          fontFamily: "tiemposText",
+          fontSize: ".9em",
+        }}
+      >
         <div>
           <h2
             font-family="tiemposText"
@@ -22,11 +28,12 @@ class Rooms extends React.Component {
             Rooms
           </h2>
         </div>
-        {hotelDetails && (
+        <hr />
+        {hotelDetails.length > 0 && (
           <>
             <div>
               <h3 font-size="S" font-weight="bold" color="secondary">
-                {hotelDetails && hotelDetails.hotel_images["entrance"]}
+                {hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"]}
               </h3>
               <h6
                 font-size="S"
@@ -38,17 +45,22 @@ class Rooms extends React.Component {
               </h6>
             </div>
             <div class="row">
-              {hotelDetails["hotel_images"] &&
+              {hotelDetails &&
+                hotelDetails["hotel_images"] && hotelDetails["hotel_images"]["entrance"] &&
                 hotelDetails["hotel_images"]["entrance"].map((ele) => (
                   <div className="card">
                     <img
-                      src={hotelDetails["hotel_images"]["entrance"]["image"]}
+                      src={
+                        hotelDetails &&
+                        hotelDetails["hotel_images"]["entrance"]["image"]
+                      }
                       className="card-img-top"
                       alt="..."
                     />
                     <div className="card-body">
                       <p className="card-text">
-                        {hotelDetails["hotel_images"]["entrance"]["type"]}
+                        {hotelDetails &&
+                          hotelDetails["hotel_images"]["entrance"]["type"]}
                       </p>
                     </div>
                   </div>
@@ -63,20 +75,22 @@ class Rooms extends React.Component {
               </h6>
             </div>
             <div class="row">
-              {hotelDetails["hotel_images"]["entrance"].map((ele) => (
-                <div className="card">
-                  <img
-                    src={hotelDetails["hotel_images"]["entrance"]["image"]}
-                    className="card-img-top"
-                    alt="..."
-                  />
-                  <div className="card-body">
-                    <p className="card-text">
-                      {hotelDetails["hotel_images"]["entrance"]["type"]}
-                    </p>
+              {hotelDetails && hotelDetails.hotel_images &&
+                hotelDetails["hotel_images"]["entrance"] &&
+                hotelDetails["hotel_images"]["entrance"].map((ele) => (
+                  <div className="card">
+                    <img
+                      src={hotelDetails["hotel_images"]["entrance"]["image"]}
+                      className="card-img-top"
+                      alt="..."
+                    />
+                    <div className="card-body">
+                      <p className="card-text">
+                        {hotelDetails["hotel_images"]["entrance"]["type"]}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </>
         )}
