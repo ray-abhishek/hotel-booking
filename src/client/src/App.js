@@ -5,7 +5,7 @@ import "./App.css";
 import Navbar from "../src/components/common/Navbar";
 import Footer from "../src/components/common/Footer";
 */
-import Routes from "../src/components/routes/Routes";
+import Routes from "./components/routes/Routes";
 
 
 import React from 'react';
