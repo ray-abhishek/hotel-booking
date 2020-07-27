@@ -14,7 +14,7 @@ class SimilarHomes extends React.Component {
 
   componentDidMount(){
     console.log( "params similar page",this.props)
-    axios.get("https://73dcc534ccce.ngrok.io/get-similar/"+this.props.paramsId)
+    axios.get("https://1280c16124f0.ngrok.io/get-similar/"+this.props.paramsId)
     .then(res=>{
       console.log("res data",res.data)
       this.setState({
@@ -37,7 +37,7 @@ class SimilarHomes extends React.Component {
 
         <div class="col mb-4">
           <div class="card h-100">
-            <img src={item && item.hotel_images[0]} class="card-img-top" alt="..." />
+            <img src={item && item.hotel_images[0]} class="card-img-top img-fluid" alt="..." />
             <div class="card-body">
               <h5 class="card-title text-danger">{ item && item.name}</h5>
               <p class="card-text text-muted">
@@ -58,54 +58,7 @@ class SimilarHomes extends React.Component {
             </div>
           </div>
         </div>
-            ))}
-      
-        {/* <div class="col mb-4">
-          <div class="card h-100">
-            <img src="../images/home-page.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title text-danger">Card title</h5>
-              <p class="card-text text-muted">
-                  Location
-              </p>
-              <hr/>
-              <p className="card-text">
-                  <small>people |</small>
-                  <small>bedrooms |</small>
-                  <small>bathrooms |</small>
-              </p>
-              <p className="card-text">
-                  from $ price / night
-              </p>
-              <p className="card-text">
-                  approx $ /bedroom
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col mb-4">
-          <div class="card h-100">
-            <img src="../images/home-page.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title text-danger">Card title</h5>
-              <p class="card-text text-muted">
-                  Location
-              </p>
-              <hr/>
-              <p className="card-text">
-                  <small>people |</small>
-                  <small>bedrooms |</small>
-                  <small>bathrooms |</small>
-              </p>
-              <p className="card-text">
-                  from $ price / night
-              </p>
-              <p className="card-text">
-                  approx $ /bedroom
-              </p>
-            </div>
-          </div>
-        </div> */}
+            ))}     
       </div>
       </div>
     );

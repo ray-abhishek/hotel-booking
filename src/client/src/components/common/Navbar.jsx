@@ -4,32 +4,37 @@ import { Link } from "react-router-dom";
 import Login from "../admin/Login";
 import Signup from "../admin/Signup";
 import { connect } from "react-redux";
+import { logoutUser } from '../../redux/auth/action';
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isToggle: false
+      isToggle: false,
     };
   }
 
-  toggleForm=()=>{
+  toggleForm = () => {
     this.setState({
-      isToggle: !this.state.isToggle
-    })
-  }
-  
+      isToggle: !this.state.isToggle,
+    });
+  };
+
+  handleClick = () => {
+    console.log("loagout");
+    alert("logout");
+  };
 
   render() {
     const { handleClick, toggleForm } = this;
-    const { loginSuccess, isSignup } = this.props;
-    const {isToggle} = this.state
-  
-    console.log(loginSuccess)
+    const { loginSuccess, isSignup, isLogin, logoutUser } = this.props;
+    const { isToggle } = this.state;
+
+    console.log(loginSuccess);
     return (
       <>
         <nav className="navbar navbar-light bg-white">
-            {/* Home Link */}
+          {/* Home Link */}
           <Link to="/">
             {" "}
             <img src="./logo.svg" width="155px" height="30px" />
@@ -53,28 +58,53 @@ class Navbar extends React.Component {
             >
               Get in Touch <span className={style.line}>|</span>
             </Link>
-
             {/* Login and Logout toggling */}
-            { loginSuccess.data && loginSuccess.data.status==="success"?
-            <div class="nav-item dropdown">
-            <div className="p-2 bd-highlight p-3 text-decoration-none text-dark nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            >
-              Welcome {loginSuccess.data.name}
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link class="dropdown-item" to="ra">Booking History</Link>
-          <Link class="dropdown-item" to="destiraanation">Change Password</Link>
-          <Link class="dropdown-item" to="desratination">Logout</Link>
-        </div>
-
-
-            </div></div>:
-            <Link
-              className="p-2 bd-highlight p-3 text-decoration-none text-dark"
-              data-toggle="modal"
-              data-target="#exampleModal"
-            >
-              Log in <span className={style.line}></span>
-            </Link>}
+            {
+            // loginSuccess.data && loginSuccess.data.status === "success" 
+              isLogin===true
+            ? (
+              <nav class="navbar navbar-expand-lg">
+                {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a
+                        class=" bd-highlight text-decoration-none text-dark nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Welcome {loginSuccess.data.name}
+                      </a>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                      >
+                        <a class="dropdown-item" href="https://www.google.com/">
+                          Booking History
+                        </a>
+                        <a class="dropdown-item" href="https://www.google.com/">
+                          Change Password
+                        </a>
+                        <a class="dropdown-item" onClick={()=>logoutUser(loginSuccess.data && loginSuccess.data.Authorization)}>
+                          Logout
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                {/* </div> */}
+              </nav>
+            ) : (
+              <Link
+                className="p-2 bd-highlight p-3 text-decoration-none text-dark"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Log in <span className={style.line}></span>
+              </Link>
+            )}
 
             <div
               class="modal fade"
@@ -100,17 +130,23 @@ class Navbar extends React.Component {
                     </button>
                   </div>
                   <div class="modal-body">
-                    {isToggle===false?
-                    <>
-                     <p className="text-center">New to onefinestay? <Link onClick={toggleForm}>Signup</Link></p>
-                     {isSignup==true?<Signup/>:<Login/> } 
-                     </>
-                    :
-                    <>                  
-                    <p  className="text-center">If you already have an account, <Link onClick={toggleForm}>Login</Link> 
-                    {isSignup==true?<Login/>:<Signup/> } 
-                    </p></>
-                    }
+                    {isToggle === false ? (
+                      <>
+                        <p className="text-center">
+                          New to onefinestay?{" "}
+                          <Link onClick={toggleForm}>Signup</Link>
+                        </p>
+                        {isSignup == true ? <Signup /> : <Login />}
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-center">
+                          If you already have an account,{" "}
+                          <Link onClick={toggleForm}>Login</Link>
+                          {isSignup == true ? <Login /> : <Signup />}
+                        </p>
+                      </>
+                    )}
                     {/* {isSignup===true?
                     <>
                      <p className="text-center">New to onefinestay? <Link onClick={toggleForm}>Signup</Link></p><Login/></>
@@ -120,9 +156,6 @@ class Navbar extends React.Component {
                     <Signup />
                     </p></>
                     } */}
-                    
-                    
-                    
                   </div>
                 </div>
               </div>
@@ -140,9 +173,14 @@ class Navbar extends React.Component {
   }
 }
 
-const mapStateToProps=(state)=>({
+const mapStateToProps = (state) => ({
   loginSuccess: state.authReducer.loginData,
-  isSignup: state.authReducer.isSignup
+  isSignup: state.authReducer.isSignup,
+  isLogin: state.authReducer.isLogin
+});
+
+const mapDispatchToProps=(dispatch)=>({
+  logoutUser: (authStr)=>dispatch(logoutUser(authStr))
 })
 
-export default connect(mapStateToProps, null)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
