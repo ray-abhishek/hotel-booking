@@ -6,15 +6,9 @@
     background-color: red;
 }
 
-.bgc{
-    /* background-color: green; */
-    height: 200px;
-    width: 200px;
-    /* background-image: url(./1.jpg); */
-}
 
 .container{
-   width: auto;
+   width: 100%;
     overflow: hidden;
     
 }
@@ -28,9 +22,8 @@
           position: relative;
           animation-name: slideranimation;
           animation-duration: 20s;
-          animation-iteration-count: infinite;
-          height: 200px;
-         
+          animation-iteration-count: infinite;    
+            
   }
 
   @keyframes slideranimation{
