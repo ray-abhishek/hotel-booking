@@ -29,12 +29,12 @@ class Rooms extends React.Component {
           </h2>
         </div>
         <hr />
-        {hotelDetails.length > 0 && (
+        {hotelDetails && hotelDetails.hotel_images && (
           <>
             <div>
-              <h3 font-size="S" font-weight="bold" color="secondary">
-                {hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"]}
-              </h3>
+              {/*<h3 font-size="S" font-weight="bold" color="secondary">
+                {hotelDetails.hotel_images["entrance"]}
+        </h3>*/}
               <h6
                 font-size="S"
                 color="secondaryText"
@@ -50,17 +50,14 @@ class Rooms extends React.Component {
                 hotelDetails["hotel_images"]["entrance"].map((ele) => (
                   <div className="card">
                     <img
-                      src={
-                        hotelDetails &&
-                        hotelDetails["hotel_images"]["entrance"]["image"]
+                      src={hotelDetails["hotel_images"]["entrance"]["image"]
                       }
                       className="card-img-top"
                       alt="..."
                     />
                     <div className="card-body">
                       <p className="card-text">
-                        {hotelDetails &&
-                          hotelDetails["hotel_images"]["entrance"]["type"]}
+                        {hotelDetails["hotel_images"]["entrance"]["type"]}
                       </p>
                     </div>
                   </div>
@@ -100,7 +97,7 @@ class Rooms extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  hotelDetails: state.dataReducer.data,
+  hotelDetails: state.dataReducer.entityData,
 });
 
 export default connect(mapStateToProps, null)(Rooms);

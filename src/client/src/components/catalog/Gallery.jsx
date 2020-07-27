@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchRequest } from "../../redux/action";
+import { fetchEntityRequest } from "../../redux/action";
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -9,13 +9,13 @@ class Gallery extends React.Component {
   }
 
   /// componentDidMount(){
-  ///this.props.fetchRequest(this.props.location.pathname)
+  ///this.props.fetchEntityRequest(this.props.location.pathname)
   ///}
 
   handleSearch = (id) => {
-    const { fetchRequest, data } = this.props;
+    const { fetchEntityRequest, data } = this.props;
     this.props.history.push("/home-listing/" + id);
-    fetchRequest("/home-listing/" + id);
+    fetchEntityRequest("/home-listing/" + id);
   };
 
   render() {
@@ -112,11 +112,11 @@ class Gallery extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.dataReducer.data,
+  data: state.dataReducer.catalogData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchRequest: (query) => dispatch(fetchRequest(query)),
+  fetchEntityRequest: (query) => dispatch(fetchEntityRequest(query)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery);

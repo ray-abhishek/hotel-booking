@@ -39,15 +39,19 @@ export default reducer;
 
 import React from "react";
 import {
-  FETCH_LIST_REQUEST,
-  FETCH_LIST_FAILURE,
-  FETCH_LIST_SUCCESS,
+  FETCH_ENTITY_LIST_REQUEST,
+  FETCH_ENTITY_LIST_FAILURE,
+  FETCH_ENTITY_LIST_SUCCESS,
+  FETCH_CATALOG_LIST_REQUEST,
+  FETCH_CATALOG_LIST_FAILURE,
+  FETCH_CATALOG_LIST_SUCCESS,
 } from "./actionTypes";
 // import data from '../data.json';
 // import dummyData from '../data.json'; 
 
 const initState = {
-  data: [],
+  catalogData: [],
+  entityData : {},
   isLoading: false,
   isError: false,
   totalPages: 1,
@@ -57,21 +61,40 @@ const initState = {
 const reducer = (state = initState, { type, payload }) => {
   console.log("reducer payload", payload);
   switch (type) {
-    case FETCH_LIST_REQUEST:
+    case FETCH_ENTITY_LIST_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case FETCH_LIST_SUCCESS:
+    case FETCH_ENTITY_LIST_SUCCESS:
       return {
         ...state,
         isLoading: false,
         // data: dummyData,
-        data: payload["data"],
+        entityData: payload["data"],
         totalPages: payload["totalpages"],
         totalRes: payload["totalresults"],
       };
-    case FETCH_LIST_FAILURE:
+    case FETCH_ENTITY_LIST_FAILURE:
+      return {
+        ...state,
+        isError: true,
+      };
+    case FETCH_CATALOG_LIST_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case FETCH_CATALOG_LIST_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        // data: dummyData,
+        catalogData: payload["data"],
+        totalPages: payload["totalpages"],
+        totalRes: payload["totalresults"],
+      };
+    case FETCH_CATALOG_LIST_FAILURE:
       return {
         ...state,
         isError: true,

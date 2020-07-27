@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import style from "./Filter.module.css";
-import { fetchRequest, fetchListSuccess } from "../../redux/action";
+import { fetchCatalogRequest, fetchCatalogListSuccess } from "../../redux/action";
 import { connect } from "react-redux";
 import { Router, Link } from "react-router-dom";
 import { node } from "prop-types";
@@ -19,7 +19,7 @@ class Filter extends Component {
   }
 
   componentDidMount() {
-    const { fetchRequest, history, location, match } = this.props;
+    const { fetchCatalogRequest, history, location, match } = this.props;
     const values = queryString.parse(this.props.location.search);
     this.setState({
       feature: values.feature || [],
@@ -33,7 +33,7 @@ class Filter extends Component {
     //     ""
     //   )
     // );
-    fetchRequest(`${location.pathname}${location.search}`);
+    fetchCatalogRequest(`${location.pathname}${location.search}`);
   }
 
   handleOnChange = (e) => {
@@ -68,7 +68,7 @@ class Filter extends Component {
     }
 
     history.push(url);
-    this.props.fetchRequest(url);
+    this.props.fetchCatalogRequest(url);
   };
 
   handlePriceChange = (e) => {
@@ -103,7 +103,7 @@ class Filter extends Component {
     }
 
     history.push(url);
-    this.props.fetchRequest(url);
+    this.props.fetchCatalogRequest(url);
   };
 
   handlePerPageChange = (e) => {
@@ -134,12 +134,12 @@ class Filter extends Component {
     }
 
     history.push(url);
-    this.props.fetchRequest(url);
+    this.props.fetchCatalogRequest(url);
   };
 
   render() {
     const { history, location, match } = this.props;
-    const { fetchRequest, fetchListSuccess } = this.props;
+    const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
     const values = queryString.parse(this.props.location.search);
 
     console.log(
@@ -710,7 +710,7 @@ class Filter extends Component {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
-  fetchRequest: (payload) => dispatch(fetchRequest(payload)),
-  fetchListSuccess: (payload) => dispatch(fetchListSuccess(payload)),
+  fetchCatalogRequest: (payload) => dispatch(fetchCatalogRequest(payload)),
+  fetchCatalogListSuccess: (payload) => dispatch(fetchCatalogListSuccess(payload)),
 });
 export default connect(null, mapDispatchToProps)(Filter);

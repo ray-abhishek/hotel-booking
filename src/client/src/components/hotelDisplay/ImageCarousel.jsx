@@ -19,28 +19,28 @@ class ImageCarousel extends React.Component{
                 <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style={{ display: "flex", flexDirection: "row", left: -230, textAlign:"center"}}>
           <div class="carousel-inner">
             <div class="carousel-item active" data-interval="10000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][0]["image"]} className="img-fluid d-block" alt="image1" style={{width:"auto", height: 400, position: 'center'}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][0]["image"]} className="img-fluid d-block" alt="image1" style={{width:"auto", height: 400, position: 'center'}} />
             </div>
             <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
             </div>
             <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
             </div>
             <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
             </div>
             <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
             </div>
             <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
             </div>
             <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
             </div>
             <div class="carousel-item" data-interval="2000" style={{display:"block"}}>
-            <img src={ hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
+            <img src={ hotelDetails && hotelDetails.hotel_images && hotelDetails.hotel_images["entrance"][1]["image"]} className="img-fluid d-block" alt="image2" style={{width:"auto", height:400}} />
             </div>
        
           </div>
@@ -59,7 +59,7 @@ class ImageCarousel extends React.Component{
 }
 
 const mapStateToProps=(state)=>({
-    hotelDetails: state.dataReducer.data
+    hotelDetails: state.dataReducer.catalogData
 })
 
 export default connect(mapStateToProps, null) (ImageCarousel)
