@@ -1,53 +1,74 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default class Description extends React.Component {
+class Description extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { show: false };
   }
 
   render() {
-    const { data } = this.props;
-    console.log(data);
+    const { hotelDetails } = this.props;
     return (
-      <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button
-                class="btn btn-link"
-                type="button"
-                data-toggle="collapse"
-                data-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                show more
-              </button>
-            </h2>
-          </div>
-
-          <div
-            id="collapseOne"
-            class="collapse show"
-            aria-labelledby="headingOne"
-            data-parent="#accordionExample"
+      <>
+        <div
+          className="accordion mx-5 my-3"
+          id="accordionExample"
+          style={{
+            fontFamily: "tiemposText",
+            fontSize: ".9em",
+          }}
+        >
+          <h2
+            font-family="tiemposText"
+            font-weight="400"
+            font-size="L"
+            color="secondary"
+            className="sc-15ch3b2-1 fRbMas"
           >
-            <div class="card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-              cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-              laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-              on it squid single-origin coffee nulla assumenda shoreditch et.
-              Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-              nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-              lomo. Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
-            </div>
-          </div>
+            Description
+          </h2>
+          {hotelDetails["description"] && (
+            <h4>{hotelDetails["description"][0]}</h4>
+          )}
+
+          {hotelDetails["description"] && (
+            <p
+              id="collapseOne"
+              className="collapse show "
+              aria-labelledby="headingOne"
+              data-parent="#accordionExample"
+              style={{ overflowY: "hidden" }}
+            >
+              <div> {hotelDetails["description"][1]}</div>
+              <div>{hotelDetails["description"][2]}</div>
+            </p>
+          )}
+          {this.state.show && hotelDetails["description"] && (
+            <p>{hotelDetails["description"][1]}</p>
+          )}
+          <p
+            onClick={(e) => {
+              this.setState({
+                show: !this.state.show,
+              });
+            }}
+            className="btn btn-link"
+            data-toggle="collapse"
+            data-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            {this.state.show ? `^ show more` : `v hide`}
+          </p>
         </div>
-      </div>
+      </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  hotelDetails: state.dataReducer.data,
+});
+
+export default connect(mapStateToProps, null)(Description);

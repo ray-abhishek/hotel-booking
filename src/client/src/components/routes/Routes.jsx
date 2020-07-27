@@ -26,7 +26,7 @@ const Routes = (props) => {
         render={(props) => <Catalog {...props} />}
       />
       {/* commented route I have uncommented for testing purpose */}
-      <Route
+      {/* <Route
         exact
         path="/test"
         render={(props) => <ImageCarousel {...props} />}
@@ -35,7 +35,7 @@ const Routes = (props) => {
         exact
         path="/booking"
         render={(props) => <BookingBox {...props} />}
-      />
+      /> */}
       {/* Booking Box demo route above */}
 
       <Route
@@ -48,11 +48,7 @@ const Routes = (props) => {
         path="/search/:location/:id/:page"
         render={(props) => <Catalog {...props} />}
       />
-      {/* <Route
-        exact
-        path="/search/:location/:page/:query"
-        render={(props) => <Catalog {...props} />}
-      /> */}
+
       <Route
         exact
         path="/home-listing/:id/"
