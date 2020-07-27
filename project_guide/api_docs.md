@@ -154,7 +154,7 @@ GET `/home-listing/<hotel-id>`
         "name": "STRING", 
         "location": "STRING", 
         "capacity": ["Number of people","Number of Bedrooms","Number of Bathrooms"],
-        "description": "STRING",
+        "description": ["TITLE","DESC 1","DESC 2"],
         "rooms": {
             "entrance":
             [
