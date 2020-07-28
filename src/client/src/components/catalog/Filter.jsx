@@ -172,8 +172,8 @@ class Filter extends Component {
   };
 
   render() {
-    const { history, location, match, totalResults } = this.props;
-    const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
+    const { location, totalResults } = this.props;
+    // const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
     const values = queryString.parse(this.props.location.search);
     console.log(totalResults, " is total Results");
 
