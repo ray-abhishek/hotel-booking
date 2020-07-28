@@ -6,15 +6,13 @@ import {} from "../../redux/action";
 class Payment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      similarHomesData: [],
-    };
+    this.state = {};
   }
 
   //   componentDidMount() {
   //     console.log("params similar page", this.props);
   //     axios
-  //       .get("https://1280c16124f0.ngrok.io/get-similar/" + this.props.paramsId)
+  //       .get("https://9e93fb84fe29.ngrok.io/get-similar/" + this.props.paramsId)
   //       .then((res) => {
   //         console.log("res data", res.data);
   //         this.setState({
@@ -25,7 +23,7 @@ class Payment extends React.Component {
 
   dispalyRazorPay = async (e) => {
     try {
-      const apiURL = "https://1280c16124f0.ngrok.io";
+      const apiURL = "https://9e93fb84fe29.ngrok.io";
       e.preventDefault();
       const url = new URLSearchParams();
       url.append("order_amount", "10000");

@@ -1,24 +1,21 @@
-import React from 'react';
+import React from "react";
 import { connect } from "react-redux";
+import BookingForm from "../components/bookingPage/BookingForm";
 
-
-class BookingPage extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-
-        }
-    }
-    render(){
-        return(
-            <>
-            <h1>BOOKING PAGE</h1>
-            </>
-        )
-    }
+class BookingPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <div className="col-12 col-md-10 offset-md-1">
+        <BookingForm {...this.props} />
+      </div>
+    );
+  }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  });
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(null, mapDispatchToProps)(BookingPage);

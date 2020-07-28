@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import style from "./SearchBar.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { connect } from "react-redux";
+import { fetchCatalogRequest } from "../../redux/action";
 // import { Redirect } from "react-router-dom";
 
 const ExampleCustomArrival = ({ value, onClick }) => (
@@ -16,13 +18,13 @@ const ExampleCustomDeparture = ({ value, onClick }) => (
   </button>
 );
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       city: null,
-      arrivalDate: null,
-      departureDate: null,
+      arrivalDate: new Date(),
+      departureDate: new Date(),
       guests: null,
     };
   }
@@ -33,8 +35,6 @@ export default class SearchBar extends Component {
     });
   };
   handledepartureDateChange = (date) => {
-    console.log(date.getDate());
-
     this.setState({
       departureDate: date,
     });
@@ -42,19 +42,38 @@ export default class SearchBar extends Component {
 
   handleOnClick = (e) => {
     console.log(this.props, "clicked");
+    const { arrivalDate, departureDate } = this.state;
+    const { fetchCatalogRequest } = this.props;
     let url = "/search";
+    let arrival =
+      arrivalDate &&
+      `${arrivalDate.getFullYear()}-${
+        arrivalDate.getMonth() + 1
+      }-${arrivalDate.getDate()}`;
+    let departure =
+      departureDate &&
+      `${departureDate.getFullYear()}-${
+        departureDate.getMonth() + 1
+      }-${departureDate.getDate()}`;
+    let query = "";
     if (this.state.city) {
       url += `/${this.state.city}`;
-      // url += !this.state.arrivalDate ? "" : `${this.state.arrivalDate}`;
-      // url += !this.state.departureDate ? "" : `${this.state.departureDate}`;
-      // url += !this.state.guests ? "" : `${this.state.guests}`;
+      query += !arrivalDate ? "" : `&arrivalDate=${arrival}`;
+      query += !departureDate ? "" : `&departureDate=${departure}`;
+      query += !this.state.guests ? "" : `&sleeps=${this.state.guests}`;
+      query = query.length > 0 ? query.slice(1) : "";
+      url += query.length > 0 ? `?${query}` : "";
       this.props.history.push(url);
     } else {
-      // url += !this.state.arrivalDate ? "" : `${this.state.arrivalDate}`;
-      // url += !this.state.departureDate ? "" : `${this.state.departureDate}`;
-      // url += !this.state.guests ? "" : `${this.state.guests}`;
+      query += !arrivalDate ? "" : `&arrivalDate=${arrival}`;
+      query += !departureDate ? "" : `&departureDate=${departure}`;
+      query += !this.state.guests ? "" : `&sleeps=${this.state.guests}`;
+      query = query.length > 0 ? query.slice(1) : "";
+      url += query.length > 0 ? `?${query}` : "";
       this.props.history.push(url);
     }
+    console.log(url, "fetchCatalogRequest url");
+    fetchCatalogRequest(url);
   };
 
   render() {
@@ -237,3 +256,9 @@ const child4 = {
 const submitButton = {
   maxHeight: "42px",
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCatalogRequest: (query) => dispatch(fetchCatalogRequest(query)),
+});
+
+export default connect(null, mapDispatchToProps)(SearchBar);
