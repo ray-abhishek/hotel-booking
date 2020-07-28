@@ -24,6 +24,7 @@
     "react-slick": "^0.27.1",
     "react-stick": "^4.0.2",
     "react-sticky": "^6.0.3",
+    "react-sticky-box": "^0.9.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1"

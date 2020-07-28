@@ -26,8 +26,8 @@ class SimilarHomes extends React.Component {
   render() {
     // const { similarHomesData } = this.props;
     const { similarHomesData } = this.state;
-    console.log("params similar below", this.props.paramsId);
-    console.log("params similar hioes", this.state.similarHomesData);
+    // console.log("params similar below", this.props.paramsId);
+    // console.log("params similar hioes", this.state.similarHomesData);
     return (
       <div>
         <h2 className="m-1 p-4">Similar Homes</h2>

@@ -11,6 +11,9 @@ import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
 import { fetchEntityRequest } from "../redux/action";
 import { connect } from "react-redux";
 import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
+import BookingBox from '../components/hotelDisplay/BookingBox';
+import StickyBox from 'react-sticky-box';
+
 // import Axios from 'axios';
 
 class HotelDisplay extends React.Component {
@@ -31,20 +34,45 @@ class HotelDisplay extends React.Component {
     // console.log("match params", this.props.match.params);
     console.log(this.props.data, "inside homeDisplay");
     return (
-      <div className="col-md-8 offset-md-2 ">
-        Hotel Display
-        {this.props.match.params.id}
-        <ImageCarousel />
-        {/* <Payment {...this.props} /> */}
+
+      <>
+      <div className="container">
+        <div className="row">
+          <div className="col-12"  style={{width: "100%", left: -200, right: 0}}>
+          <ImageCarousel />
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+      <div className="row d-flex">      
+      
+      <div className="col-8 ">
+
         <Features {...this.props} />
+     
         <Description {...this.props} />
         <Rooms {...this.props} />
         <FeaturesDetails {...this.props} />
         <FindOutMore />
         <HomeTruths {...this.props} />
         <Policies {...this.props} />
+    </div>
+    <div className="col-4 mt-3">
+      <StickyBox offsetTop={20} offsetBottom={20} >
+    <BookingBox {...this.props} />
+    </StickyBox> </div>
+    </div>
+    </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+
         <SimilarHomes paramsId={this.props.match.params.id} />
-      </div>
+          </div>
+        </div>
+        </div>
+    </>
     );
   }
 }
