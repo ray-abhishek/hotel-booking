@@ -175,20 +175,28 @@ class Filter extends Component {
   };
 
   render() {
-    const {
-      history,
-      location,
-      match,
-      fetchCatalogRequest,
-      fetchCatalogListSuccess,
-    } = this.props;
+    const { history, location, match, totalResults } = this.props;
+    const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
     const values = queryString.parse(this.props.location.search);
-    console.log(this.props, "this are the props passed from catalog");
-
+    console.log(totalResults," is total Results")
+    
+    console.log(
+      values.feature,
+      values.minPrice,
+      values.sort,
+      values.perPage,
+      "values"
+    );
+    // console.log(
+    //   location.search.replace(
+    //     /(%20)(&)(feature=)(minPrice=)(sort=)(perPage=)/g,
+    //     ""
+    //   )
+    // );
     return (
-      <div className="row">
-        <div className="col-2 offset-lg-1">
-          <div className="card mb-3" style={{ height: "8rem", width: "16rem" }}>
+      <div className={`row ${style.containerBox}`}>
+        <div className={` ${style.filterBox}`}>
+          <div className="card mb-3" style={{ height: "8rem"}}>
             <div className="card-body">
               <div class="form-group">
                 <label for="formControlRange">Price per night</label>
@@ -205,7 +213,7 @@ class Filter extends Component {
               </div>
             </div>
           </div>
-          <div class="card" style={{ width: "16rem" }}>
+          <div class="card" style={{  }}>
             <div className="card-header">Features</div>
             <div class="card">
               <div className="card-body">
@@ -673,63 +681,86 @@ class Filter extends Component {
             </div>
           </div>
         </div>
-        <div className="col-8">
-          <div className="row">
-            <div className="col-2 offset-md-3 offset-lg-1">hotel count</div>
-            <div className="col-3 offset-lg-2">
-              <button
+        <div className={`${style.galleryBox}`}>
+          <div className="">
+            <div className={`${style.sortBox}`}>
+              <div className={`${style.totalHotels}`}><span className={`${style.bgHighlight}`}><b>{totalResults}</b> luxury homes to rent</span></div>
+              <div className={`${style.sortElement}`}>
+                <div className={`${style.perPageComponent}`}>
+                <button
                 id="10"
                 onClick={(e) => this.handlePerPageChange(e)}
                 className={`px-2 ${style.perPage}`}
                 // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-              >
+                >
                 10
-              </button>
-              <button
+                </button>
+                <button
                 id="30"
                 onClick={(e) => this.handlePerPageChange(e)}
                 className={`px-2 ${style.perPage}`}
                 // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-              >
+                >
                 30
-              </button>
-              <button
+                </button>
+                <button
                 id="50"
                 onClick={(e) => this.handlePerPageChange(e)}
                 className={`px-2 ${style.perPage}`}
                 // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-              >
+                >
                 50
-              </button>
+                </button>
               <span>per page</span>
             </div>
-            <div className="col-2">
-              <div class="form-group">
-                <select
-                  onChange={(e) => this.handleSortChange(e)}
-                  class="form-control"
-                  id="sort"
-                >
-                  <option selected>Sort</option>
-                  <option value="Recommended">Recommended</option>
-                  <option value="RecentlyAdded">Recently added</option>
-                  <option value="SleepsMost">Sleeps (most)</option>
-                  <option value="SleepsFewest">Sleeps (fewest)</option>
-                  <option value="PriceHighest">Price (highest)</option>
-                  <option value="PriceLowest">Price (lowest)</option>
-                </select>
+                <div className={`${style.sortButtonComponent}`}>
+                <div class="form-group">
+                  <select
+                    onChange={(e) => {
+                      this.setState({
+                        sort: e.target.value,
+                      });
+                      if (location.search == "")
+                        this.props.history.push(
+                          `${match.url}/?sort=${e.target.value}`
+                        );
+                      else
+                        this.props.history.push(
+                          `${match.url}&sort=${e.target.value}`
+                        );
+                    }}
+                    class="form-control"
+                    id="sort"
+                  >
+                    <option selected>Sort By</option>
+                    <option value="Recommended">Recommended</option>
+                    <option value="RecentlyAdded">Recently added</option>
+                    <option value="SleepsMost">Sleeps (most)</option>
+                    <option value="SleepsFewest">Sleeps (fewest)</option>
+                    <option value="PriceHighest">Price (highest)</option>
+                    <option value="PriceLowest">Price (lowest)</option>
+                  </select>
+                </div> 
+              </div> 
+              </div> 
               </div>
-            </div>
+            <Gallery {...this.props} />
           </div>
-          <Gallery {...this.props} />
+          
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  totalResults: state.dataReducer.totalRes,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   fetchCatalogRequest: (payload) => dispatch(fetchCatalogRequest(payload)),
   fetchCatalogListSuccess: (payload) =>
     dispatch(fetchCatalogListSuccess(payload)),
 });
-export default connect(null, mapDispatchToProps)(Filter);
+
+export default connect(mapStateToProps , mapDispatchToProps)(Filter);

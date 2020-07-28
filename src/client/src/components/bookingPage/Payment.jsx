@@ -37,7 +37,8 @@ class Payment extends React.Component {
         hotel_id: "1",
       });
       const { data } = response;
-      console.log(data);
+      console.log(data," is data  from /order")
+      console.log(data["data"]["order_id"]," is orderID from /order");
       const options = {
         key: "rzp_test_MqHwbPLOYmrkkI",
         amount: "10000",
@@ -46,7 +47,7 @@ class Payment extends React.Component {
         description: "Test Transaction",
         image:
           "https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg",
-        order_id: data.id,
+        order_id: data["data"]["order_id"],
         prefill: {
           name: "test Kumar",
           email: "test.kumar@example.com",
