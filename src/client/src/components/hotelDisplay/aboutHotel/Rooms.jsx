@@ -12,21 +12,21 @@ class Rooms extends React.Component {
     // console.log(hotelDetails, "Rooms");
     return (
       <div
-        class="card border-0 mx-5 my-3"
+        class="card border-0 my-3"
         style={{
           fontFamily: "tiemposText",
-          fontSize: ".9em",
+          fontSize: "14px",
         }}
       >
         <div>
-          <h2
+          <h5
             font-family="tiemposText"
             font-weight="400"
             font-size="L"
             color="secondary"
           >
             Rooms
-          </h2>
+          </h5>
         </div>
         <hr />
         {hotelDetails && hotelDetails.hotel_images && (
@@ -41,22 +41,22 @@ class Rooms extends React.Component {
                 Entrance level
               </h6>
             </div>
-            <div class="row">
+            <div class="d-flex">
               {hotelDetails &&
                 hotelDetails["hotel_images"] &&
                 hotelDetails["hotel_images"]["entrance"] &&
                 hotelDetails["hotel_images"]["entrance"].map((ele, i) => (
-                  <div className="card col-4 border-0">
+                  <div className="border-0 mr-3">
                     <img
                       src={
                         hotelDetails &&
                         hotelDetails["hotel_images"]["entrance"][i]["image"]
                       }
                       className="card-img-top"
-                      alt="..."
+                      alt="..." style={{height:'110px', width:'150px'}}
                     />
-                    <div className="card-body">
-                      <p className="card-text">
+                    <div className="">
+                      <p className="text-center">
                         {hotelDetails &&
                           hotelDetails["hotel_images"]["entrance"][i]["type"]}
                       </p>
@@ -64,29 +64,29 @@ class Rooms extends React.Component {
                   </div>
                 ))}
             </div>
-            <div className="row">
+            <div>
               <h6
                 font-size="S"
                 color="secondaryText"
                 font-family="akkuratRegular"
-                font-style="italic"
+                font-style="italic" className=" mt-3"
               >
                 Outside
               </h6>
             </div>
-            <div class="row">
+            <div  className="d-flex">
               {hotelDetails &&
                 hotelDetails["hotel_images"] &&
                 // hotelDetails["hotel_images"]["entrance"] &&
                 hotelDetails["hotel_images"]["entrance"].map((ele, i) => (
-                  <div className="card col-4 border-0">
+                  <div className="border-0 mr-3">
                     <img
                       src={hotelDetails["hotel_images"]["entrance"][i]["image"]}
                       className="card-img-top"
-                      alt="..."
+                      alt="..." style={{height:'110px', width:'150px'}}
                     />
-                    <div className="card-body">
-                      <p className="card-text">
+                    <div className="">
+                      <p className="text-center">
                         {hotelDetails["hotel_images"]["entrance"][i]["type"]}
                       </p>
                     </div>

@@ -12,17 +12,21 @@ export default class Policies extends React.Component {
     // console.log(data);
     return (
       <div>
-        <div class="card border-0 my-3">
-          <div class="card-body">
+        <div class=" border-0 mt-5">
+          
+          <div class="">
+          <h5 className="card-heading  mb-3 h5">Policies</h5>
+          <hr/>
             <ul
               style={{
                 listStyle: "none",
                 fontFamily: "tiemposText",
-                fontSize: ".9em",
+                fontSize: "13px",
+                paddingLeft : "10px"
               }}
             >
-              <h5 className="card-heading text-muted  mb-5 h5">Policies</h5>
-              <li className="text-muted">
+             
+              <li className="text-muted mb-2">
                 <span className="font-weight-bold">- Cancellation.</span>{" "}
                 Provided you book more than 7 days before the start of your
                 stay, you can cancel your booking within 24 hours and we’ll
@@ -31,7 +35,7 @@ export default class Policies extends React.Component {
                 note bookings for Hamptons and French Riviera have a separate
                 cancellation policy.
               </li>
-              <li className="text-muted ">
+              <li className="text-muted  mb-2">
                 <span className="font-weight-bold">
                   {" "}
                   - Check-in and check-out.
@@ -41,11 +45,11 @@ export default class Policies extends React.Component {
                 11AM. Early check-in and late check-out can be arranged in
                 advance, subject to availability and a charge.
               </li>
-              <li className="text-muted ">
+              <li className="text-muted  mb-2">
                 <span className="font-weight-bold">- Lead guest.</span> The lead
                 guest must be at least 25 years of age.
               </li>
-              <li className="text-muted ">
+              <li className="text-muted  mb-2">
                 <span className="font-weight-bold">
                   {" "}
                   - I.D. check and card authorisation.{" "}
@@ -54,7 +58,7 @@ export default class Policies extends React.Component {
                 $1,500 hold on a credit or debit card which will be released
                 once we confirm no damage was caused during your stay.
               </li>
-              <li className="text-muted">
+              <li className="text-muted mb-2">
                 <span className="font-weight-bold">
                   - I.D. check and card authorisation.{" "}
                 </span>{" "}
@@ -62,11 +66,11 @@ export default class Policies extends React.Component {
                 $1,500 hold on a credit or debit card which will be released
                 once we confirm no damage was caused during your stay.
               </li>
-              <li className="text-muted">
+              <li className="text-muted mb-2">
                 <span className="font-weight-bold">- Smoking.</span>
                 Guests are not permitted to smoke inside any onefinestay home.
               </li>
-              <li className="text-muted">
+              <li className="text-muted mb-2">
                 <span className="font-weight-bold">- Cleaning.</span>
                 We carefully clean and prepare each home before you arrive and
                 after you depart, and for stays longer than seven days we
@@ -75,13 +79,13 @@ export default class Policies extends React.Component {
                 to availability and a charge.
               </li>
 
-              <li className="text-muted">
+              <li className="text-muted mb-2">
                 <span className="font-weight-bold">- Payment.</span>
                 We accept Visa, Mastercard and American Express, and bank
                 transfers for stays with at least 7 days’ notice.
               </li>
 
-              <li className="text-muted">
+              <li className="text-muted mb-2">
                 For more detail on our policies read the FAQ.
               </li>
             </ul>
