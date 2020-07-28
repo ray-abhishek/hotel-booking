@@ -74,17 +74,17 @@ class BookingBox extends React.Component{
           // console.log( "date" ,arrival, departure)
 
         return(
-            <div className="clearfix">
-              <div className="card p-5 mr-5 float-right" style={{width:350, height:"auto"}}>
+            <div className="clearfix" style={{fontSize:'15px'}}>
+              <div className="card p-3" style={{width:300, height:"auto"}}>
              <form
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
           <div className="form-row row mb-5">              
-            <div className="form-group" style={{width: 250, height: 33}}>
-                <div> Arrival Date</div>
-                <div className="border border-dark pl-3 p-1 pr-3 mt-2 rounded d-flex">
+            <div className="form-group" style={{fontSize:'15px',width: 250, height: 33}}>
+                <div style={{fontSize:'14px'}}> Arrival Date</div>
+                <div className="border border-medium pl-3 p-1 pr-3 mt-1 rounded d-flex">
                
                   <DatePicker
                   style
@@ -137,10 +137,10 @@ class BookingBox extends React.Component{
           </div>
           <div className="form-row row mb-5">    
             <div className="form-group" style={{width: 250, height: 33}}>
-                  <div>Departure Date </div>
+                  <div style={{fontSize:'14px'}}>Departure Date </div>
               {/* <div style={child3}> */}
               
-                <div  className="border border-dark pl-3 p-1 pr-3 mt-2 d-flex rounded">
+                <div  className="border border-medium pl-3 pl-1 pr-3 mt-1 d-flex rounded">
                
                   <DatePicker
                     className="datepicker"
@@ -166,12 +166,14 @@ class BookingBox extends React.Component{
             </div>
                   </div>
                   </form>
+                 <div className="d-none">
                  <p className="text-danger">The minimum length of stay for this home is 30 nights</p>
                  <p className="text-muted">Please enquire about these dates and a Travel Advisor will get back to you</p>
-            <button className= "btn btn-danger btn-lg btn-block mb-3">Request a Booking</button>
+                 </div>
+            <button className= "btn btn-danger btn-lg btn-block mb-3" style={{fontSize:'15px'}}>Request a Booking</button>
             <hr/>
             <div className="card mt-3 pl-3 pt-2 pb-2">
-                    <div className="text-center"><strong> Ask a Question </strong></div>
+                    <div className="text-center" style={{fontSize:'15px', fontWeight: '500'}}>Ask a Question </div>
                   </div>
                   <div className="mt-5 clearfix">
                     <small style={contact} >Contact us</small>

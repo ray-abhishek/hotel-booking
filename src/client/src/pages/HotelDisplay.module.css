@@ -1,0 +1,8 @@
+.bioBox {
+    font-size: 13px;
+}
+
+.hdContainer {
+    display : flex;
+    flex-direction: row;
+}
