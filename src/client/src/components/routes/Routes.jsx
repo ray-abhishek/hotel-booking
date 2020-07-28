@@ -5,20 +5,17 @@ import Catalog from "../../pages/Catalog";
 import BookingPage from "../../pages/BookingPage";
 import ConfirmationPage from "../../pages/ConfirmationPage";
 import HotelDisplay from "../../pages/HotelDisplay";
-
 import SearchBar from "../common/SearchBar";
 import ImageCarousel from "../hotelDisplay/ImageCarousel";
 import BookingBox from "../hotelDisplay/BookingBox";
-import AboutHotel from '../hotelDisplay/AboutHotel';
-
-
+import AboutHotel from "../hotelDisplay/AboutHotel";
 
 const Routes = (props) => {
   return (
     <>
       <Switch />
       <Route
-        // exact
+        exact
         path="/"
         exact
         render={(props) => <LandingPage {...props} />}
@@ -30,47 +27,17 @@ const Routes = (props) => {
         render={(props) => <Catalog {...props} />}
       />
 
-      {/* commented route I have uncommented for testing purpose */}
-      {/* <Route
-        exact
-        path="/test"
-        render={(props) => <ImageCarousel {...props} />}
-      />
-      <Route
-        exact
-        path="/booking"
-        render={(props) => <BookingBox {...props} />}
-      />
-      <Route
-        exact
-        path="/bookingdate"
-        render={(props) => <AboutHotel {...props} />}
-      /> */}
-      {/* Booking Box demo route above */}
-
-
       <Route
         exact
         path="/search/:location/:id"
         render={(props) => <Catalog {...props} />}
       />
-      {/* <Route
-        exact
-        path="/search/:location/:id/:page"
-        render={(props) => <Catalog {...props} />}
-      /> */}
 
       <Route
         exact
         path="/home-listing/:id/"
         render={(props) => <HotelDisplay {...props} />}
       />
-
-      {/* <Route
-        exact
-        path="/booked-dates/:id/"
-        render={(props) => <HotelDisplay {...props} />}
-      /> */}
       <Route
         exact
         path="/home-listing/:id/request-booking"

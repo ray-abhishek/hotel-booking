@@ -7,7 +7,6 @@ import style from "./HotelDetails.module.css";
 // import Slider from 'react-animated-slider';
 // import Slider from 'react-slick';
 
-
 class ImageCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +27,8 @@ class ImageCarousel extends React.Component {
     return (
       <div>
         <div className={style.container}>
-          {hotelDetails.hotel_images &&
+          {hotelDetails &&
+            hotelDetails.hotel_images &&
             hotelDetails.hotel_images["entrance"]?.map((item, i) => (
               <div class={style.row}>
                 <div class={style.column}>
@@ -69,7 +69,6 @@ class ImageCarousel extends React.Component {
               </div>
             ))}
         </div>
-
       </div>
     );
   }
