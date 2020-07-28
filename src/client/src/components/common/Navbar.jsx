@@ -37,7 +37,7 @@ class Navbar extends React.Component {
           {/* Home Link */}
           <Link to="/">
             {" "}
-            <img src="./logo.svg" width="155px" height="30px" />
+            <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg" width="155px" height="30px" />
           </Link>
           <div className="d-flex flex-row bd-highlight">
             <Link

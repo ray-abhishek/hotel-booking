@@ -59,7 +59,7 @@ class Description extends React.Component {
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            {this.state.show ? `^ show more` : `v hide`}
+            {this.state.show ? `v show more` : `^ hide`}
           </p>
         </div>
       </>

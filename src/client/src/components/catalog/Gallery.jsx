@@ -23,7 +23,7 @@ class Gallery extends React.Component {
     console.log(data);
     return (
       <div className="container ml-4">
-        {data?.map((item) => (
+        { data?.map((item) => (
           <div
             onClick={() => this.handleSearch(item.id)}
             className="card mb-3 border-0"
@@ -46,7 +46,7 @@ class Gallery extends React.Component {
                     <img
                       src={item.hotel_images[1]}
                       className="card-img d-block w-100 img-fluid"
-                      alt={item.name}
+                      alt={item.name} style={{height: 250}}
                     />
                   </div>
                 </div>
