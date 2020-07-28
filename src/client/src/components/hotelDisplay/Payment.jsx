@@ -14,7 +14,7 @@ class Payment extends React.Component {
   //   componentDidMount() {
   //     console.log("params similar page", this.props);
   //     axios
-  //       .get("https://1280c16124f0.ngrok.io/get-similar/" + this.props.paramsId)
+  //       .get("https://9e93fb84fe29.ngrok.io/get-similar/" + this.props.paramsId)
   //       .then((res) => {
   //         console.log("res data", res.data);
   //         this.setState({
@@ -25,7 +25,7 @@ class Payment extends React.Component {
 
   dispalyRazorPay = async (e) => {
     try {
-      const apiURL = "https://1280c16124f0.ngrok.io";
+      const apiURL = "https://9e93fb84fe29.ngrok.io";
       e.preventDefault();
       const url = new URLSearchParams();
       url.append("order_amount", "10000");
@@ -39,7 +39,8 @@ class Payment extends React.Component {
         hotel_id: "1",
       });
       const { data } = response;
-      console.log(data);
+      console.log(data," is data  from /order")
+      console.log(data["data"]["order_id"]," is orderID from /order");
       const options = {
         key: "rzp_test_MqHwbPLOYmrkkI",
         amount: "10000",
@@ -48,7 +49,7 @@ class Payment extends React.Component {
         description: "Test Transaction",
         image:
           "https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg",
-        order_id: data.id,
+        order_id: data["data"]["order_id"],
         prefill: {
           name: "test Kumar",
           email: "test.kumar@example.com",

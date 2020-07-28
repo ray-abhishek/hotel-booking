@@ -59,7 +59,7 @@ export const logout = (payload) => ({
 export const userRegistration = (query) => (dispatch) => {
   dispatch(fetchRegistrationRequest());
   return axios
-    .post("https://1280c16124f0.ngrok.io/signup", {
+    .post("https://9e93fb84fe29.ngrok.io/signup", {
       email: query.email,
       name: query.name,
       password: query.password,
@@ -76,7 +76,7 @@ export const userRegistration = (query) => (dispatch) => {
 export const userLogin = (query) => (dispatch) => {
   dispatch(loginRequest());
   return axios
-    .post("https://1280c16124f0.ngrok.io/login", {
+    .post("https://9e93fb84fe29.ngrok.io/login", {
       email: query.email,
       password: query.password,
     })
@@ -93,7 +93,7 @@ export const googleLogin = (query) => (dispatch) => {
   dispatch(googleLoginRequest());
   console.log("axios", query);
   return axios
-    .post("https://1280c16124f0.ngrok.io/ssologin", {
+    .post("https://9e93fb84fe29.ngrok.io/ssologin", {
       email: query.email,
       name: query.name,
       googleId: query.googleId,
@@ -112,7 +112,7 @@ export const logoutUser = (query) => (dispatch) => {
   dispatch(logout());
   console.log("logout Query", query);
   return axios
-    .get("https://1280c16124f0.ngrok.io/logout", {
+    .get("https://9e93fb84fe29.ngrok.io/logout", {
       headers: {
         Authorization: query, //the token is a variable which holds the token
       },

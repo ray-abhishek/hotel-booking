@@ -10,7 +10,7 @@ class Payment extends React.Component{
     }
   displayRazorPay = async (e) => {
     try {
-      const apiURL = "https://1280c16124f0.ngrok.io";
+      const apiURL = "https://9e93fb84fe29.ngrok.io";
       e.preventDefault();
       const url = new URLSearchParams();
       url.append("order_amount", "10000");
@@ -34,7 +34,7 @@ class Payment extends React.Component{
         image:
           "https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg",
         order_id: data.id,
-        callback_url : "https://1280c16124f0.ngrok.io/payment",
+        callback_url : "https://9e93fb84fe29.ngrok.io/payment",
         prefill: {
           name: "test Kumar",
           email: "test.kumar@example.com",

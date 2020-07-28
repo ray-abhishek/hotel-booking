@@ -12,7 +12,7 @@ import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
 import { fetchEntityRequest } from "../redux/action";
 import { connect } from "react-redux";
 import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
-import Payment from '../components/PayNow'
+import Payment from '../components/hotelDisplay/Payment'
 // import Axios from 'axios';
 
 class HotelDisplay extends React.Component {
