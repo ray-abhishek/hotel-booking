@@ -27,6 +27,7 @@ const Routes = (props) => {
         render={(props) => <Catalog {...props} />}
       />
 
+
       <Route
         exact
         path="/search/:location/:id"

@@ -6,6 +6,9 @@ import style from './HotelDetails.module.css';
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays, addDays } from 'date-fns' ;
 import axios from 'axios';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 // import dates from './dates.json';
 
 const ExampleCustomArrival = ({ value, onClick }) => (
@@ -27,9 +30,10 @@ class BookingBox extends React.Component{
         const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     this.state = {
-      arrivalDate: new Date(),
-      departureDate: new Date(),
-      bookedDates: ''
+      arrivalDate: null,
+      departureDate: null,
+      bookedDates: '',
+      
     };
   }
 
@@ -37,8 +41,9 @@ class BookingBox extends React.Component{
     this.setState({
       arrivalDate: date,
     }
+   
     );
-    
+    this.handledepartureDateChange()
   };
   handledepartureDateChange = (date) => {
     this.setState({
@@ -47,31 +52,38 @@ class BookingBox extends React.Component{
   };
 
     async componentDidMount (){
-      // var { id } = this.props.match.params.id
-      // var hotelId = Number(id) 
       console.log("id", this.props.match.params.id)
-      const res= await axios.get("https://1280c16124f0.ngrok.io/booked-dates/"+this.props.match.params.id)
+      const res= await axios.get("https://9e93fb84fe29.ngrok.io/booked-dates/"+this.props.match.params.id)
       console.log("booked dates" ,res.data)
         this.setState({
           bookedDates: res.data
-        })
-      
-      
+        })        
+    }
+
+    handleBooking=()=>{
+      this.props.history.push("/home-listing/"+this.props.match.params.id+"/request-booking")
     }
 
 
     render(){
         const {arrivalDate , departureDate, bookedDates} = this.state;
-        const { setStartDate, getFullYear, getMonth, getDate } = this;
-        
-        // bookedDates && console.log("bookded ates arra data",  bookedDates.data["ahead"])
+        const { setStartDate, getFullYear, getMonth, getDate, handleBooking } = this;
+        const { hotelData } = this.props
+        console.log("hotelData", hotelData)
         let arrival = 
-        `${arrivalDate.getFullYear()}-${arrivalDate.getMonth() + 1}-${arrivalDate.getDate()}`;
+        `${arrivalDate && arrivalDate.getFullYear()}-${arrivalDate && arrivalDate.getMonth() + 1}-${arrivalDate && arrivalDate.getDate()}`;
           
-        let departure = `${departureDate.getFullYear()}-${departureDate.getMonth() + 1}-${departureDate.getDate()}
+        let departure = `${ departureDate && departureDate.getFullYear()}-${ departureDate && departureDate.getMonth() + 1}-${ departureDate && departureDate.getDate()}
           `;
 
-          // console.log( "date" ,arrival, departure)
+        // differencce of date
+         let differenceDate = Math.floor((Date.UTC( departureDate &&  departureDate.getFullYear(), departureDate &&  departureDate.getMonth(),departureDate &&  departureDate.getDate()) - Date.UTC( departureDate &&  arrivalDate.getFullYear(), departureDate &&  arrivalDate.getMonth(), departureDate &&  arrivalDate.getDate()) ) /(1000 * 60 * 60 * 24))
+
+
+
+
+          // console.log( "arrival" ,arrival)
+          // console.log( "departure" ,departure)
 
         return(
             <div className="clearfix" style={{fontSize:'15px'}}>
@@ -82,6 +94,7 @@ class BookingBox extends React.Component{
           }}
         >
           <div className="form-row row mb-5">              
+
             <div className="form-group" style={{fontSize:'15px',width: 250, height: 33}}>
                 <div style={{fontSize:'14px'}}> Arrival Date</div>
                 <div className="border border-medium pl-3 p-1 pr-3 mt-1 rounded d-flex">
@@ -91,21 +104,15 @@ class BookingBox extends React.Component{
                     className="datepicker"
                     selected={this.state.arrivalDate}
                     onChange={(date) => this.handleArrivalDateChange(date)}
-
+                    minDate={new Date()}
+                    maxDate={addDays(new Date(), 60)}
                     excludeDates={
-                      [new Date(), 
-                        subDays(new Date(), 4), 
-                        subDays(new Date(), 2),
-                        subDays(new Date(), 1),
-                        subDays(new Date(), 2),
-                        subDays(new Date(), 3), 
-                        addDays(new Date(),  1), 
-                        addDays(new Date(),  2), 
-                        addDays(new Date(),  3), 
-                        addDays(new Date(),  4), 
-                        addDays(new Date(),  5), 
-                      
-                      ]}
+                        bookedDates && bookedDates
+                       .data["ahead"].map(item=>(
+                          new Date(), addDays(new Date(), item)                         
+                        )                        
+                        )                     
+                    }
 
                     placeholderText="Arrival date"
                     selectsStart
@@ -113,16 +120,7 @@ class BookingBox extends React.Component{
                     endDate={this.state.departureDate}                 
                     customInput={<ExampleCustomArrival />}                
                   > 
-                  <div className="clearfix">
-                   <div style={reqCol}></div>  
-                   <div style={book}></div> 
-                   <div style={{ margin:10}}>Book Now</div>  
-
-                   <div style={book}></div> 
-                   <div style={reqCol}>
-                   <div style={request}></div> 
-                   <div style={{ margin:10 }}>Request Booking</div>   
-                   </div></div>
+                 
                   </DatePicker>
                   <img
                     type="calendar"
@@ -137,6 +135,7 @@ class BookingBox extends React.Component{
           </div>
           <div className="form-row row mb-5">    
             <div className="form-group" style={{width: 250, height: 33}}>
+
                   <div style={{fontSize:'14px'}}>Departure Date </div>
               {/* <div style={child3}> */}
               
@@ -146,7 +145,14 @@ class BookingBox extends React.Component{
                     className="datepicker"
                     selected={this.state.departureDate}
                     onChange={(date) => this.handledepartureDateChange(date)}
-                    // disabledKeyboardNavigation
+                    minDate={arrivalDate}
+                    maxDate={addDays(new Date(), 150)}
+
+                    excludeDates={
+                      bookedDates && bookedDates
+                      .data["ahead"].map(item=>(
+                        new Date(), addDays(new Date(), item)))                                             
+                  }
                     placeholderText="Departure date "
                     selectsStart
                     startDate={this.state.arrivalDate}
@@ -166,11 +172,30 @@ class BookingBox extends React.Component{
             </div>
                   </div>
                   </form>
-                 <div className="d-none">
-                 <p className="text-danger">The minimum length of stay for this home is 30 nights</p>
+                  {departureDate?
+                 <div>
+                 <div className="d-flex justify-content-between" style={{width: 250}}>
+                   <div className="text-muted">
+                     {differenceDate+" Nights"}
+                   </div>
+                    <strong >  {hotelData && hotelData["cost_per_night"] } $/Nights </strong> 
+                    </div>
+                    <div className="d-flex justify-content-between mt-3 mb-3" style={{width: 250}}>
+                      <div className="text-muted">
+                        Total
+                      </div>
+                     
+                      <strong > $  {hotelData && hotelData["cost_per_night"]* differenceDate }</strong>
+                     
+                    </div>
+                    </div>
+                    :
+                 <p className="text-danger">The minimum length of stay for this home is 30 nights</p>}
+                 
+                    
                  <p className="text-muted">Please enquire about these dates and a Travel Advisor will get back to you</p>
-                 </div>
-            <button className= "btn btn-danger btn-lg btn-block mb-3" style={{fontSize:'15px'}}>Request a Booking</button>
+            <button className= "btn btn-danger btn-lg btn-block mb-3" onClick={(arrival, departure)=>handleBooking(arrival, departure)}>Request a Booking</button>
+
             <hr/>
             <div className="card mt-3 pl-3 pt-2 pb-2">
                     <div className="text-center" style={{fontSize:'15px', fontWeight: '500'}}>Ask a Question </div>
@@ -219,4 +244,18 @@ const reqCol={
   display: "flex"
 }
 
-export default BookingBox;
+// const bookingCalculate={
+//   margin-top: 26px;
+//     -webkit-box-pack: justify;
+//     justify-content: space-between;
+// }
+
+const mapStateToProps =(state)=>({
+  hotelData : state.dataReducer.entityData
+})
+
+// const mapDispatchToProps=(hotelId)=({
+//   handleBooking: hotelId=>(dispatch(fetch))
+// })
+
+export default connect(mapStateToProps, null)(BookingBox);

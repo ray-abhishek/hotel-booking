@@ -23,7 +23,7 @@ class ImageCarousel extends React.Component {
   render() {
     const { hotelDetails } = this.props;
     const { openModal, currentSlide, showSlides } = this;
-
+    // console.log("hotelDetails", hotelDetails)
     return (
       <div>
         <div className={style.container}>
@@ -63,9 +63,9 @@ class ImageCarousel extends React.Component {
                   />
                 </div>
 
-                {/* 
+                
   <a class={style.prev} onclick="plusSlides(-1)">&#10094;</a>
-  <a class={style.next} onclick="plusSlides(1)">&#10095;</a> */}
+  <a class={style.next} onclick="plusSlides(1)">&#10095;</a>
               </div>
             ))}
         </div>

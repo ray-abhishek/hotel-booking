@@ -32,7 +32,7 @@ class HotelDisplay extends React.Component {
 
   render() {
     // console.log("match params", this.props.match.params);
-    console.log(this.props.data, "inside homeDisplay");
+    // console.log(this.props.data, "inside homeDisplay");
     return (
       <>
       <div className="">
