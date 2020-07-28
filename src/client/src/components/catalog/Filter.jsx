@@ -3,12 +3,8 @@ import style from "./Filter.module.css";
 import {
   fetchCatalogRequest,
   fetchCatalogListSuccess,
-  totalPages,
-  totalRes,
 } from "../../redux/action";
 import { connect } from "react-redux";
-import { Router, Link } from "react-router-dom";
-import { node } from "prop-types";
 import queryString from "query-string";
 import Gallery from "./Gallery";
 
@@ -28,7 +24,7 @@ class Filter extends Component {
     const { fetchCatalogRequest, history, location, match } = this.props;
     const values = queryString.parse(this.props.location.search);
     this.setState({
-      feature: values.feature || [],
+      features: values.features || [],
       minPrice: values.minPrice || 100,
       sort: values.sort || "Recommended",
       perPage: values.perPage > 10 ? values.perPage : 10,
@@ -48,11 +44,10 @@ class Filter extends Component {
 
     //url construction
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
-    // console.log(url, "url");
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -84,7 +79,7 @@ class Filter extends Component {
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url +=
@@ -121,7 +116,7 @@ class Filter extends Component {
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -152,7 +147,7 @@ class Filter extends Component {
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -183,18 +178,12 @@ class Filter extends Component {
     console.log(totalResults, " is total Results");
 
     console.log(
-      values.feature,
+      values.features,
       values.minPrice,
       values.sort,
       values.perPage,
       "values"
     );
-    // console.log(
-    //   location.search.replace(
-    //     /(%20)(&)(feature=)(minPrice=)(sort=)(perPage=)/g,
-    //     ""
-    //   )
-    // );
     return (
       <div className={`row ${style.containerBox}`}>
         <div className={` ${style.filterBox}`}>
@@ -261,16 +250,16 @@ class Filter extends Component {
                     onChange={(e) => {
                       this.handleOnChange(e);
                     }}
-                    checked={location.search.includes("king")}
+                    checked={location.search.includes("beds")}
                     type="checkbox"
                     className="custom-control-input"
-                    id="king size bed"
+                    id="king size beds"
                   />
                   <label
                     className="pt-1 custom-control-label"
-                    for="king size bed"
+                    for="king size beds"
                   >
-                    King size bed
+                    King size beds
                   </label>
                 </div>
                 <div className="custom-control custom-checkbox">
@@ -312,16 +301,16 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("toys")}
+                      checked={location.search.includes("childrens")}
                       type="checkbox"
                       className="custom-control-input"
-                      id="children's toys"
+                      id="childrens toys"
                     />
                     <label
                       className="pt-1 custom-control-label"
-                      for="children's toys"
+                      for="childrens toys"
                     >
-                      Children's toys
+                      Childrens toys
                     </label>
                   </div>
                   <div className="custom-control custom-checkbox">
@@ -617,12 +606,12 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("garden")}
+                      checked={location.search.includes("Garden")}
                       type="checkbox"
                       className="custom-control-input"
-                      id="garden"
+                      id="Garden"
                     />
-                    <label className="pt-1 custom-control-label" for="garden">
+                    <label className="pt-1 custom-control-label" for="Garden">
                       Garden
                     </label>
                   </div>
@@ -695,7 +684,7 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("Ensuite")}
+                      checked={location.search.includes("ensuite")}
                       type="checkbox"
                       className="custom-control-input"
                       id="ensuite"
@@ -749,19 +738,7 @@ class Filter extends Component {
                 <div className={`${style.sortButtonComponent}`}>
                   <div class="form-group">
                     <select
-                      onChange={(e) => {
-                        this.setState({
-                          sort: e.target.value,
-                        });
-                        if (location.search == "")
-                          this.props.history.push(
-                            `${match.url}/?sort=${e.target.value}`
-                          );
-                        else
-                          this.props.history.push(
-                            `${match.url}&sort=${e.target.value}`
-                          );
-                      }}
+                      onChange={(e) => this.handleSortChange(e)}
                       class="form-control"
                       id="sort"
                     >

@@ -68,23 +68,6 @@ class HotelDisplay extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <Description {...this.props} />
-              <Rooms {...this.props} />
-              <FeaturesDetails {...this.props} />
-              <FindOutMore />
-              <HomeTruths {...this.props} />
-              <Policies {...this.props} />
-            </div>
-            <div className="col-4 mt-3">
-              <StickyBox offsetTop={20} offsetBottom={20}>
-                <BookingBox {...this.props} />
-              </StickyBox>{" "}
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
               <SimilarHomes paramsId={this.props.match.params.id} />
             </div>
           </div>

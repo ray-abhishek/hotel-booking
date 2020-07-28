@@ -19,41 +19,42 @@ class Pagination extends Component {
       page: 1,
     };
   }
-
-  // componentDidMount() {
-  //   const { fetchCatalogRequest, history, location, match } = this.props;
-  //   const values = queryString.parse(this.props.location.search);
-  //   this.setState({
-  //     feature:
-  //       !values.feature || (values.feature && values.feature.length > 0)
-  //         ? values.feature
-  //         : [],
-  //     minPrice:
-  //       !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
-  //     sort:
-  //       !values.sort ||
-  //       values.sort == "Recommended" ||
-  //       values.sort == "Recommended"
-  //         ? "Recommended"
-  //         : values.sort,
-  //     perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
-  //   });
-  //   fetchCatalogRequest(`${location.pathname}${location.search}`);
-  // }
+  componentDidMount() {
+    const { fetchCatalogRequest, history, location, match } = this.props;
+    const values = queryString.parse(this.props.location.search);
+    this.setState({
+      features:
+        !values.features || (values.features && values.features.length > 0)
+          ? values.features
+          : [],
+      minPrice:
+        !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
+      sort:
+        !values.sort ||
+        values.sort == "Recommended" ||
+        values.sort == "Recommended"
+          ? "Recommended"
+          : values.sort,
+      perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
+    });
+    fetchCatalogRequest(`${location.pathname}${location.search}`);
+  }
 
   handlePageChange = (e) => {
     e.preventDefault();
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;
+    console.log(location, "this is location obj from pagination page handler");
 
     this.setState({
       page: e.target.id,
     });
+
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
     let query = "";
     if (features.length > 0) {
-      let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+      let stringArr = features?.map((ele, i) =>
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -73,46 +74,40 @@ class Pagination extends Component {
     fetchCatalogRequest(url);
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  componentWillReceiveProps(nextProps, nextState) {
     const { fetchCatalogRequest } = this.props;
     const { location } = nextProps;
 
-    // const values = queryString.parse(location.search);
-    // console.log(
-    //   location.search,
-    //   values,
-    //   "this is next props obj from pagination"
-    // );
-    // this.setState({
-    //   feature:
-    //     !values.feature || (values.feature && values.feature.length > 0)
-    //       ? values.feature
-    //       : [],
-    //   minPrice:
-    //     !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
-    //   sort:
-    //     !values.sort ||
-    //     values.sort == "Recommended" ||
-    //     values.sort == "Recommended"
-    //       ? "Recommended"
-    //       : values.sort,
-    //   perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
-    // });
+    const values = queryString.parse(location.search);
+    this.setState({
+      features:
+        !values.features ||
+        (this.state.features && values.features && values.features.length > 0)
+          ? [...this.state.features, values.features]
+          : [],
+      minPrice:
+        !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
+      sort:
+        !values.sort ||
+        values.sort == "Recommended" ||
+        values.sort == "Recommended"
+          ? "Recommended"
+          : values.sort,
+      perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
+    });
   }
 
   render() {
     const { page } = this.state;
+    const { totalPages } = this.props;
+    console.log(totalPages, "total pages");
+    console.log(this.state, "state updated in pagination");
     return (
       <nav aria-label="Page navigation example" className="col-3 offset-6">
         <ul class="pagination">
           <li class="page-item">
             <a
-              onClick={(e) => {
-                this.setState({
-                  page: page != 1 ? Number(page) - 1 : page,
-                });
-                this.props.history.push(`/search/${page}`);
-              }}
+              onClick={(e) => this.handlePageChange(e)}
               class="page-link"
               aria-label="Previous"
             >
@@ -160,7 +155,9 @@ class Pagination extends Component {
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  totalPages: state.dataReducer.totalPages,
+});
 const mapDispatchToProps = (dispatch) => ({
   fetchCatalogRequest: (payload) => dispatch(fetchCatalogRequest(payload)),
   fetchCatalogListSuccess: (payload) =>
