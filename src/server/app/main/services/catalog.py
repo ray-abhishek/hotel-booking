@@ -11,9 +11,28 @@ def get_catalog_data(data):
 
     per_page = 10
     
-    query = 'SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, ee.bathrooms, ee.cost_per_night, ee.features FROM hotels as ee WHERE'
+    """    SELECT * FROM hotels WHERE id NOT IN ( SELECT hotel_id FROM bookings WHERE checkin_dt <= "2020-05-13 00:00:00" AND checkout_dt >= "2020-05-11 00:00:00" );
+    """
 
-    count_query = 'SELECT count(ee.id) FROM hotels as ee WHERE'
+    if data["arrivalDate"] and data["departureDate"]:
+        print(data["arrivalDate"]," arrival Date before formatting")
+        checkin = data["arrivalDate"]+" 00:00:00"
+        print(checkin," departure Date after formatting")
+
+        print(data["departureDate"]," departureDate Date before formatting")
+        checkout = data["departureDate"]+" 00:00:00"
+        print(checkout," departure Date after formatting")
+
+        query = 'SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, ee.bathrooms, ee.cost_per_night, ee.features FROM hotels as ee WHERE ee.id NOT IN ( SELECT hotel_id FROM bookings WHERE checkin_dt <= "%s" AND checkout_dt >= "%s" ) AND'%(checkout, checkin)
+
+        count_query = 'SELECT count(ee.id) FROM hotels as ee WHERE ee.id NOT IN ( SELECT hotel_id FROM bookings WHERE checkin_dt <= "%s" AND checkout_dt >= "%s" ) AND'%(checkout, checkin)
+
+    else:
+        query = 'SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, ee.bathrooms, ee.cost_per_night, ee.features FROM hotels as ee WHERE'
+
+        count_query = 'SELECT count(ee.id) FROM hotels as ee WHERE'
+
+
 
     if data.get("sleeps"):
         query += ' ee.capacity >= "%s" AND'%(data["sleeps"])
@@ -76,12 +95,13 @@ def get_catalog_data(data):
         if row[0]%per_page > 0:
             total_pages = total_pages + 1
 
+    print(query," IS THE QUERY TO BE EXECUTED TO FETCH CATALOG DATA")
     data_raw = db.engine.execute(query)
     
     send_data = []
 
     for row in data_raw:
-        
+        print(row," is row")
         if data.get("feature"):
             param_features = list(data.get("feature"))
             param_features_lowercase = [el.lower() for el in param_features]
@@ -145,3 +165,4 @@ if data.get('page'):
         query = query + "ORDER BY ee.cost_per_night ASC LIMIT %d"%(per_page)
 
 """
+

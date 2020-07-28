@@ -70,7 +70,8 @@ const locationStyle = {
 }
 
 const findoutMoreButton = {
-    backgroundColor : 'white'
+    backgroundColor : 'white',
+    
 }
 
 const imgStyle = {
