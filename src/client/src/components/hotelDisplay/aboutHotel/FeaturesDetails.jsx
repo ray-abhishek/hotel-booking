@@ -71,7 +71,7 @@ class FeaturesDetails extends React.Component {
 
   render() {
     const { data, hotelDetails } = this.props;
-    console.log(hotelDetails, "features");
+    // console.log(hotelDetails, "features");
     const right =
       "https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/cc59a9d49bc343ec25e90bf214deb2c7.svg";
     const wrong =

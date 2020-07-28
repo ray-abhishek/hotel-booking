@@ -9,7 +9,7 @@ class Features extends React.Component {
 
   render() {
     const { data, hotelDetails } = this.props;
-    console.log(hotelDetails, "features");
+    // console.log(hotelDetails, "features");
     return (
       <div>
         {hotelDetails && (

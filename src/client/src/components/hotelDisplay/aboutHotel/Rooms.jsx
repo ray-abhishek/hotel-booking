@@ -9,7 +9,7 @@ class Rooms extends React.Component {
 
   render() {
     const { hotelDetails } = this.props;
-    console.log(hotelDetails, "Rooms");
+    // console.log(hotelDetails, "Rooms");
     return (
       <div
         class="card border-0 mx-5 my-3"
