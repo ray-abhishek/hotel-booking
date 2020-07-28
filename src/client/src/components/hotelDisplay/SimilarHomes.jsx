@@ -12,6 +12,7 @@ class SimilarHomes extends React.Component {
   }
 
 
+
   componentDidMount(){
     console.log( "params similar page",this.props)
     axios.get("https://1280c16124f0.ngrok.io/get-similar/"+this.props.paramsId)
@@ -23,6 +24,7 @@ class SimilarHomes extends React.Component {
     })
     
 }
+
 
   render() {
     // const { similarHomesData } = this.props;

@@ -113,6 +113,7 @@ export const logoutUser=query=>dispatch=>{
     console.log("logout Query", query)
     return (
 
+
         axios.get('https://1280c16124f0.ngrok.io/logout', {
             headers: {
                 Authorization: query //the token is a variable which holds the token
@@ -121,6 +122,7 @@ export const logoutUser=query=>dispatch=>{
                 console.log("logoutRes",logoutRes)
             return dispatch(logout(logoutRes))        
             }
+
         )
         .catch((error)=>{
             console.log(error)

@@ -28,11 +28,11 @@ class Description extends React.Component {
           >
             Description
           </h2>
-          {hotelDetails["description"] && (
+          {hotelDetails && hotelDetails["description"] && (
             <h4>{hotelDetails["description"][0]}</h4>
           )}
 
-          {hotelDetails["description"] && (
+          {hotelDetails && hotelDetails["description"] && (
             <p
               id="collapseOne"
               className="collapse show "
@@ -44,7 +44,7 @@ class Description extends React.Component {
               <div>{hotelDetails["description"][2]}</div>
             </p>
           )}
-          {this.state.show && hotelDetails["description"] && (
+          {this.state.show && hotelDetails && hotelDetails["description"] && (
             <p>{hotelDetails["description"][1]}</p>
           )}
           <p
@@ -68,7 +68,7 @@ class Description extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  hotelDetails: state.dataReducer.data,
+  hotelDetails: state.dataReducer.entityData,
 });
 
 export default connect(mapStateToProps, null)(Description);

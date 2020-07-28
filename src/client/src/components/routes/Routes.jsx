@@ -8,6 +8,8 @@ import HotelDisplay from "../../pages/HotelDisplay";
 import SearchBar from "../common/SearchBar";
 import ImageCarousel from "../hotelDisplay/ImageCarousel";
 import BookingBox from "../hotelDisplay/BookingBox";
+import AboutHotel from '../hotelDisplay/AboutHotel';
+
 
 const Routes = (props) => {
   return (
@@ -35,6 +37,11 @@ const Routes = (props) => {
         exact
         path="/booking"
         render={(props) => <BookingBox {...props} />}
+      />
+      <Route
+        exact
+        path="/bookingdate"
+        render={(props) => <AboutHotel {...props} />}
       /> */}
       {/* Booking Box demo route above */}
 
@@ -54,6 +61,12 @@ const Routes = (props) => {
         path="/home-listing/:id/"
         render={(props) => <HotelDisplay {...props} />}
       />
+
+      {/* <Route
+        exact
+        path="/booked-dates/:id/"
+        render={(props) => <HotelDisplay {...props} />}
+      /> */}
       <Route
         exact
         path="/home-listing/:hotel-id/request-booking"
