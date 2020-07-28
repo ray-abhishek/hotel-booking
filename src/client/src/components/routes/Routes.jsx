@@ -5,10 +5,12 @@ import Catalog from "../../pages/Catalog";
 import BookingPage from "../../pages/BookingPage";
 import ConfirmationPage from "../../pages/ConfirmationPage";
 import HotelDisplay from "../../pages/HotelDisplay";
+
 import SearchBar from "../common/SearchBar";
 import ImageCarousel from "../hotelDisplay/ImageCarousel";
 import BookingBox from "../hotelDisplay/BookingBox";
 import AboutHotel from '../hotelDisplay/AboutHotel';
+
 
 
 const Routes = (props) => {
@@ -27,8 +29,9 @@ const Routes = (props) => {
         path="/search/:page"
         render={(props) => <Catalog {...props} />}
       />
+
       {/* commented route I have uncommented for testing purpose */}
-      <Route
+      {/* <Route
         exact
         path="/test"
         render={(props) => <ImageCarousel {...props} />}
@@ -41,20 +44,21 @@ const Routes = (props) => {
       <Route
         exact
         path="/bookingdate"
-        render={(props) => <AboutHotel {...props} />}
-      />
+        render={(props) => <AboutHotel {...props} />} */}
+      {/* /> */}
       {/* Booking Box demo route above */}
+
 
       <Route
         exact
         path="/search/:location/:id"
         render={(props) => <Catalog {...props} />}
       />
-      <Route
+      {/* <Route
         exact
         path="/search/:location/:id/:page"
         render={(props) => <Catalog {...props} />}
-      />
+      /> */}
 
       <Route
         exact

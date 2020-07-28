@@ -7,6 +7,9 @@ from app.main.routes.Entity import Entity
 from app.main.routes.User_oAuth import UserOAuth
 from app.main.routes.HotelDisplay import HotelDisplay
 from app.main.routes.SimilarHotels import SimilarHotels
+from app.main.routes.BookedDates import BookedDates
+from app.main.routes.Orders import Orders
+from app.main.routes.Payments import Payments
 
 def add_resources(app):
     """
@@ -23,8 +26,11 @@ def add_resources(app):
     api.add_resource(Catalog, '/search', '/search/<location>', '/search/<location>/<page>')
     api.add_resource(HotelDisplay, '/home-listing/<hotelid>')
     api.add_resource(SimilarHotels,'/get-similar/<hotelid>')
+    api.add_resource(BookedDates, '/booked-dates/<hotelid>')
     #api.add_resource(Catalog, '/search/<location>')
     api.add_resource(Entity, '/add')
+    api.add_resource(Orders, '/order')
+    api.add_resource(Payments, '/payment')
 
 def register_blueprints(app):
     """
