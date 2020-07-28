@@ -5,8 +5,6 @@ import {
   fetchCatalogListSuccess,
 } from "../../redux/action";
 import { connect } from "react-redux";
-import { Router, Link } from "react-router-dom";
-import { node } from "prop-types";
 import queryString from "query-string";
 import Gallery from "./Gallery";
 
@@ -26,7 +24,7 @@ class Filter extends Component {
     const { fetchCatalogRequest, history, location, match } = this.props;
     const values = queryString.parse(this.props.location.search);
     this.setState({
-      feature: values.feature || [],
+      features: values.features || [],
       minPrice: values.minPrice || 100,
       sort: values.sort || "Recommended",
       perPage: values.perPage > 10 ? values.perPage : 10,
@@ -46,11 +44,10 @@ class Filter extends Component {
 
     //url construction
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
-    console.log(url, "url");
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -82,7 +79,7 @@ class Filter extends Component {
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url +=
@@ -119,7 +116,7 @@ class Filter extends Component {
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -150,7 +147,7 @@ class Filter extends Component {
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
-        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+        i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
       url += stringArr.join("");
       url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -175,31 +172,25 @@ class Filter extends Component {
   };
 
   render() {
-    const { history, location, match, totalResults } = this.props;
-    const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
+    const { location, totalResults } = this.props;
+    // const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
     const values = queryString.parse(this.props.location.search);
-    console.log(totalResults," is total Results")
-    
+    console.log(totalResults, " is total Results");
+
     console.log(
-      values.feature,
+      values.features,
       values.minPrice,
       values.sort,
       values.perPage,
       "values"
     );
-    // console.log(
-    //   location.search.replace(
-    //     /(%20)(&)(feature=)(minPrice=)(sort=)(perPage=)/g,
-    //     ""
-    //   )
-    // );
     return (
       <div className={`row ${style.containerBox}`}>
         <div className={` ${style.filterBox}`}>
-          <div className="card mb-3" style={{ height: "8rem"}}>
+          <div className="card mb-3" style={{ height: "8rem" }}>
             <div className="card-body">
               <div class="form-group">
-                <label for="formControlRange">Price per night</label>
+                <label for="pt-1 formControlRange">Price per night</label>
                 <input
                   type="range"
                   class="form-control-range"
@@ -213,7 +204,7 @@ class Filter extends Component {
               </div>
             </div>
           </div>
-          <div class="card" style={{  }}>
+          <div class="card" style={{}}>
             <div className="card-header">Features</div>
             <div class="card">
               <div className="card-body">
@@ -227,7 +218,10 @@ class Filter extends Component {
                     id="pets welcome"
                     onChange={(e) => this.handleOnChange(e)}
                   />
-                  <label className="custom-control-label" for="pets welcome">
+                  <label
+                    className="pt-1 custom-control-label"
+                    for="pets welcome"
+                  >
                     Pets welcome
                   </label>
                 </div>
@@ -246,7 +240,7 @@ class Filter extends Component {
                     className="custom-control-input"
                     id="double bed"
                   />
-                  <label className="custom-control-label" for="double bed">
+                  <label className="pt-1 custom-control-label" for="double bed">
                     Double bed
                   </label>
                 </div>
@@ -256,13 +250,16 @@ class Filter extends Component {
                     onChange={(e) => {
                       this.handleOnChange(e);
                     }}
-                    checked={location.search.includes("king")}
+                    checked={location.search.includes("beds")}
                     type="checkbox"
                     className="custom-control-input"
-                    id="king size bed"
+                    id="king size beds"
                   />
-                  <label className="custom-control-label" for="king size bed">
-                    King size bed
+                  <label
+                    className="pt-1 custom-control-label"
+                    for="king size beds"
+                  >
+                    King size beds
                   </label>
                 </div>
                 <div className="custom-control custom-checkbox">
@@ -273,7 +270,7 @@ class Filter extends Component {
                     className="custom-control-input"
                     id="single bed"
                   />
-                  <label className="custom-control-label" for="single bed">
+                  <label className="pt-1 custom-control-label" for="single bed">
                     Single bed
                   </label>
                 </div>
@@ -286,7 +283,7 @@ class Filter extends Component {
                     id="super king size bed"
                   />
                   <label
-                    className="custom-control-label"
+                    className="pt-1 custom-control-label"
                     for="super king size bed"
                   >
                     Super king size bed
@@ -304,16 +301,16 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("toys")}
+                      checked={location.search.includes("childrens")}
                       type="checkbox"
                       className="custom-control-input"
-                      id="children's toys"
+                      id="childrens toys"
                     />
                     <label
-                      className="custom-control-label"
-                      for="children's toys"
+                      className="pt-1 custom-control-label"
+                      for="childrens toys"
                     >
-                      Children's toys
+                      Childrens toys
                     </label>
                   </div>
                   <div className="custom-control custom-checkbox">
@@ -325,7 +322,7 @@ class Filter extends Component {
                       id="satellite or cable"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="satellite or cable"
                     >
                       Satellite or cable
@@ -349,7 +346,7 @@ class Filter extends Component {
                       id="washing machine"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="washing machine"
                     >
                       Washing machine
@@ -363,7 +360,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="tumble dryer"
                     />
-                    <label className="custom-control-label" for="tumble dryer">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="tumble dryer"
+                    >
                       Tumble dryer
                     </label>
                   </div>
@@ -375,7 +375,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="washer dryer"
                     />
-                    <label className="custom-control-label" for="washer dryer">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="washer dryer"
+                    >
                       Washer dryer
                     </label>
                   </div>
@@ -397,7 +400,7 @@ class Filter extends Component {
                       id="babies welcome"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="babies welcome"
                     >
                       Babies welcome
@@ -412,7 +415,7 @@ class Filter extends Component {
                       id="toddlers welcome"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="toddlers welcome"
                     >
                       Toddlers welcome
@@ -427,7 +430,7 @@ class Filter extends Component {
                       id="children welcome"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="children welcome"
                     >
                       Children welcome
@@ -450,7 +453,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Dishwasher"
                     />
-                    <label className="custom-control-label" for="Dishwasher">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="Dishwasher"
+                    >
                       Dishwasher
                     </label>
                   </div>
@@ -462,7 +468,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="hob electric"
                     />
-                    <label className="custom-control-label" for="hob electric">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="hob electric"
+                    >
                       Hob electric
                     </label>
                   </div>
@@ -474,7 +483,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="hob gas"
                     />
-                    <label className="custom-control-label" for="hob gas">
+                    <label className="pt-1 custom-control-label" for="hob gas">
                       Hob gas
                     </label>
                   </div>
@@ -486,7 +495,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="hob induction"
                     />
-                    <label className="custom-control-label" for="hob induction">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="hob induction"
+                    >
                       Hob induction
                     </label>
                   </div>
@@ -498,7 +510,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Oven"
                     />
-                    <label className="custom-control-label" for="Oven">
+                    <label className="pt-1 custom-control-label" for="Oven">
                       Oven
                     </label>
                   </div>
@@ -510,7 +522,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Microwave"
                     />
-                    <label className="custom-control-label" for="Microwave">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="Microwave"
+                    >
                       Microwave
                     </label>
                   </div>
@@ -531,7 +546,10 @@ class Filter extends Component {
                     className="custom-control-input"
                     id="swimming pool"
                   />
-                  <label className="custom-control-label" for="swimming pool">
+                  <label
+                    className="pt-1 custom-control-label"
+                    for="swimming pool"
+                  >
                     Swimming pool
                   </label>
                 </div>
@@ -552,7 +570,7 @@ class Filter extends Component {
                       id="air conditioning"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="air conditioning"
                     >
                       Air-conditioning
@@ -567,7 +585,7 @@ class Filter extends Component {
                       id="balcony terrace"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="balcony terrace"
                     >
                       Balcony terrace
@@ -581,19 +599,19 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Elevator"
                     />
-                    <label className="custom-control-label" for="Elevator">
+                    <label className="pt-1 custom-control-label" for="Elevator">
                       Elevator
                     </label>
                   </div>
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("garden")}
+                      checked={location.search.includes("Garden")}
                       type="checkbox"
                       className="custom-control-input"
-                      id="garden"
+                      id="Garden"
                     />
-                    <label className="custom-control-label" for="garden">
+                    <label className="pt-1 custom-control-label" for="Garden">
                       Garden
                     </label>
                   </div>
@@ -606,7 +624,7 @@ class Filter extends Component {
                       id="off road parking"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="off road parking"
                     >
                       Off Road Parking
@@ -621,7 +639,7 @@ class Filter extends Component {
                       id="roof terrace garden"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="roof terrace garden"
                     >
                       Roof terrace garden
@@ -636,7 +654,7 @@ class Filter extends Component {
                       id="secure parking"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="secure parking"
                     >
                       Secure parking
@@ -659,19 +677,19 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Gym"
                     />
-                    <label className="custom-control-label" for="Gym">
+                    <label className="pt-1 custom-control-label" for="Gym">
                       Gym
                     </label>
                   </div>
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("Ensuite")}
+                      checked={location.search.includes("ensuite")}
                       type="checkbox"
                       className="custom-control-input"
                       id="ensuite"
                     />
-                    <label className="custom-control-label" for="ensuite">
+                    <label className="pt-1 custom-control-label" for="ensuite">
                       Ensuite
                     </label>
                   </div>
@@ -684,69 +702,60 @@ class Filter extends Component {
         <div className={`${style.galleryBox}`}>
           <div className="">
             <div className={`${style.sortBox}`}>
-              <div className={`${style.totalHotels}`}><span className={`${style.bgHighlight}`}><b>{totalResults}</b> luxury homes to rent</span></div>
+              <div className={`${style.totalHotels}`}>
+                <span className={`${style.bgHighlight}`}>
+                  <b>{totalResults}</b> luxury homes to rent
+                </span>
+              </div>
               <div className={`${style.sortElement}`}>
                 <div className={`${style.perPageComponent}`}>
-                <button
-                id="10"
-                onClick={(e) => this.handlePerPageChange(e)}
-                className={`px-2 ${style.perPage}`}
-                // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-                >
-                10
-                </button>
-                <button
-                id="30"
-                onClick={(e) => this.handlePerPageChange(e)}
-                className={`px-2 ${style.perPage}`}
-                // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-                >
-                30
-                </button>
-                <button
-                id="50"
-                onClick={(e) => this.handlePerPageChange(e)}
-                className={`px-2 ${style.perPage}`}
-                // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-                >
-                50
-                </button>
-              <span>per page</span>
-            </div>
-                <div className={`${style.sortButtonComponent}`}>
-                <div class="form-group">
-                  <select
-                    onChange={(e) => {
-                      this.setState({
-                        sort: e.target.value,
-                      });
-                      if (location.search == "")
-                        this.props.history.push(
-                          `${match.url}/?sort=${e.target.value}`
-                        );
-                      else
-                        this.props.history.push(
-                          `${match.url}&sort=${e.target.value}`
-                        );
-                    }}
-                    class="form-control"
-                    id="sort"
+                  <button
+                    id="10"
+                    onClick={(e) => this.handlePerPageChange(e)}
+                    className={`px-2 ${style.perPage}`}
+                    // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
                   >
-                    <option selected>Sort By</option>
-                    <option value="Recommended">Recommended</option>
-                    <option value="RecentlyAdded">Recently added</option>
-                    <option value="SleepsMost">Sleeps (most)</option>
-                    <option value="SleepsFewest">Sleeps (fewest)</option>
-                    <option value="PriceHighest">Price (highest)</option>
-                    <option value="PriceLowest">Price (lowest)</option>
-                  </select>
-                </div> 
-              </div> 
-              </div> 
+                    10
+                  </button>
+                  <button
+                    id="30"
+                    onClick={(e) => this.handlePerPageChange(e)}
+                    className={`px-2 ${style.perPage}`}
+                    // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
+                  >
+                    30
+                  </button>
+                  <button
+                    id="50"
+                    onClick={(e) => this.handlePerPageChange(e)}
+                    className={`px-2 ${style.perPage}`}
+                    // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
+                  >
+                    50
+                  </button>
+                  <span>per page</span>
+                </div>
+                <div className={`${style.sortButtonComponent}`}>
+                  <div class="form-group">
+                    <select
+                      onChange={(e) => this.handleSortChange(e)}
+                      class="form-control"
+                      id="sort"
+                    >
+                      <option selected>Sort By</option>
+                      <option value="Recommended">Recommended</option>
+                      <option value="RecentlyAdded">Recently added</option>
+                      <option value="SleepsMost">Sleeps (most)</option>
+                      <option value="SleepsFewest">Sleeps (fewest)</option>
+                      <option value="PriceHighest">Price (highest)</option>
+                      <option value="PriceLowest">Price (lowest)</option>
+                    </select>
+                  </div>
+                </div>
               </div>
+            </div>
             <Gallery {...this.props} />
           </div>
-          
         </div>
       </div>
     );
@@ -763,4 +772,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCatalogListSuccess(payload)),
 });
 
-export default connect(mapStateToProps , mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

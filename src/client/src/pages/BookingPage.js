@@ -9,7 +9,7 @@ class BookingPage extends React.Component {
   }
   render() {
     return (
-      <div className="col-12 col-md-10 offset-md-1">
+      <div className="col-12 col-md-8 offset-md-2">
         <BookingForm {...this.props} />
       </div>
     );
