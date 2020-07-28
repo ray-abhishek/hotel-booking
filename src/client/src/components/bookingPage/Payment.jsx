@@ -6,9 +6,7 @@ import {} from "../../redux/action";
 class Payment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      similarHomesData: [],
-    };
+    this.state = {};
   }
 
   //   componentDidMount() {

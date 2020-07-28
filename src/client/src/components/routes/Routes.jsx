@@ -5,9 +5,9 @@ import Catalog from "../../pages/Catalog";
 import BookingPage from "../../pages/BookingPage";
 import ConfirmationPage from "../../pages/ConfirmationPage";
 import HotelDisplay from "../../pages/HotelDisplay";
-import SearchBar from "../common/SearchBar";
-import ImageCarousel from "../hotelDisplay/ImageCarousel";
-import BookingBox from "../hotelDisplay/BookingBox";
+// import SearchBar from "../common/SearchBar";
+// import ImageCarousel from "../hotelDisplay/ImageCarousel";
+// import BookingBox from "../hotelDisplay/BookingBox";
 
 const Routes = (props) => {
   return (
@@ -25,29 +25,17 @@ const Routes = (props) => {
         path="/search/:page"
         render={(props) => <Catalog {...props} />}
       />
-      {/* commented route I have uncommented for testing purpose */}
-      {/* <Route
-        exact
-        path="/test"
-        render={(props) => <ImageCarousel {...props} />}
-      />
-      <Route
-        exact
-        path="/booking"
-        render={(props) => <BookingBox {...props} />}
-      /> */}
-      {/* Booking Box demo route above */}
 
       <Route
         exact
         path="/search/:location/:id"
         render={(props) => <Catalog {...props} />}
       />
-      <Route
+      {/* <Route
         exact
         path="/search/:location/:id/:page"
         render={(props) => <Catalog {...props} />}
-      />
+      /> */}
 
       <Route
         exact
@@ -56,8 +44,8 @@ const Routes = (props) => {
       />
       <Route
         exact
-        path="/home-listing/:hotel-id/request-booking"
-        render={(props) => <BookingPage />}
+        path="/home-listing/:id/request-booking"
+        render={(props) => <BookingPage {...props} />}
       />
       <Route
         exact

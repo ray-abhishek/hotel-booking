@@ -1,5 +1,4 @@
 import React from "react";
-
 import ImageCarousel from "../components/hotelDisplay/ImageCarousel";
 import { Route } from "react-router-dom";
 import Description from "../components/hotelDisplay/aboutHotel/Description";
@@ -12,7 +11,6 @@ import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
 import { fetchEntityRequest } from "../redux/action";
 import { connect } from "react-redux";
 import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
-import Payment from '../components/hotelDisplay/Payment'
 // import Axios from 'axios';
 
 class HotelDisplay extends React.Component {
@@ -37,7 +35,7 @@ class HotelDisplay extends React.Component {
         Hotel Display
         {this.props.match.params.id}
         <ImageCarousel />
-        <Payment/>
+        {/* <Payment {...this.props} /> */}
         <Features {...this.props} />
         <Description {...this.props} />
         <Rooms {...this.props} />
