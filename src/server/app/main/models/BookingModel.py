@@ -2,13 +2,21 @@ from .. import db
 import datetime
 
 class BookingModel(db.Model):
-
-    __tablename__ = "bookings"
+    
+    __tablename__ = 'bookings'
 
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True),
                            nullable=True, default=datetime.datetime.now())
-    
-    name = db.Column(db.String(70), nullable=False)
-    email = db.Column(db.String(70), nullable=False)
-    password = db.Column(db.String(255), nullable=True)
+    hotel_id = db.Column(db.Integer, db.ForeignKey('hotels.id'), nullable=False)
+    checkin_dt = db.Column(db.DateTime(timezone=True), nullable=True)
+    checkout_dt = db.Column(db.DateTime(timezone=True), nullable=True)
+    status = db.Column(db.String(70), nullable=True)
+
+
+
+
+
+
+
+
