@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import style from "./Filter.module.css";
-import { fetchCatalogRequest, fetchCatalogListSuccess } from "../../redux/action";
+import {
+  fetchCatalogRequest,
+  fetchCatalogListSuccess,
+} from "../../redux/action";
 import { connect } from "react-redux";
 import { Router, Link } from "react-router-dom";
 import { node } from "prop-types";
@@ -15,6 +18,7 @@ class Filter extends Component {
       minPrice: 100,
       page: 1,
       perPage: 10,
+      sort: "Recommended",
     };
   }
 
@@ -27,121 +31,155 @@ class Filter extends Component {
       sort: values.sort || "Recommended",
       perPage: values.perPage > 10 ? values.perPage : 10,
     });
-    // console.log(
-    //   location.search.replace(
-    //     /[(%20)(&)(feature=)(minPrice=)(sort=)(perPage=)]/g,
-    //     ""
-    //   )
-    // );
     fetchCatalogRequest(`${location.pathname}${location.search}`);
   }
 
   handleOnChange = (e) => {
     const { id } = e.target;
-    const { features, minPrice, perPage } = this.state;
-    const { location, history, match } = this.props;
+    const { features, minPrice, perPage, page, sort } = this.state;
+    const { location, history, match, fetchCatalogRequest } = this.props;
     let index = features.indexOf(id);
     index == -1 ? features.push(id) : features.splice(index, 1);
     this.setState({
       features,
     });
 
-    //uri construction
+    //url construction
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
     console.log(url, "url");
-
+    let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
         i == 0 ? `?feature=${ele}` : `&feature=${ele}`
       );
       url += stringArr.join("");
-      url += minPrice !== 100 ? `&minPrice=${minPrice}` : "";
+      url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
       url += perPage > 10 ? `&perPage=${perPage}` : "";
+      url += page > 1 ? `&page=${page}` : "";
+      url +=
+        sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     } else {
-      if (minPrice !== 100 && perPage > 10) {
-        url += `?minPrice=${minPrice}&perPage=${perPage}`;
-      } else if (minPrice !== 100) {
-        url += `?minPrice=${minPrice}`;
-      } else if (perPage > 10) {
-        url += `?perPage=${perPage}`;
-      }
+      query += minPrice != 100 ? `&minPrice=${minPrice}` : "";
+      query += perPage > 10 ? `&perPage=${perPage}` : "";
+      query += page > 1 ? `&page=${page}` : "";
+      query +=
+        sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     }
-
+    url += query.length > 0 ? "?" + query.slice(1) : "";
     history.push(url);
-    this.props.fetchCatalogRequest(url);
+    fetchCatalogRequest(url);
   };
 
   handlePriceChange = (e) => {
-    const { features, minPrice, perPage } = this.state;
-    const { location, history, match } = this.props;
+    const { features, minPrice, perPage, page, sort } = this.state;
+    const { location, history, match, fetchCatalogRequest } = this.props;
 
     this.setState({
       minPrice: e.target.valueAsNumber,
     });
 
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
-    console.log(url, "url");
-
+    let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
         i == 0 ? `?feature=${ele}` : `&feature=${ele}`
       );
       url += stringArr.join("");
       url +=
-        e.target.valueAsNumber !== 100
+        e.target.valueAsNumber != 100
           ? `&minPrice=${e.target.valueAsNumber}`
           : "";
       url += perPage > 10 ? `&perPage=${perPage}` : "";
+      url += page > 1 ? `&page=${page}` : "";
+      url +=
+        sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     } else {
-      if (e.target.valueAsNumber !== 100 && perPage > 10) {
-        url += `?minPrice=${e.target.valueAsNumber}&perPage=${perPage}`;
-      } else if (e.target.valueAsNumber !== 100) {
-        url += `?minPrice=${e.target.valueAsNumber}`;
-      } else if (perPage > 10) {
-        url += `?perPage=${perPage}`;
-      }
+      query +=
+        e.target.valueAsNumber != 100
+          ? `&minPrice=${e.target.valueAsNumber}`
+          : "";
+      query += perPage > 10 ? `&perPage=${perPage}` : "";
+      query += page > 1 ? `&page=${page}` : "";
+      query +=
+        sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     }
-
+    url += query.length > 0 ? "?" + query.slice(1) : "";
     history.push(url);
-    this.props.fetchCatalogRequest(url);
+    fetchCatalogRequest(url);
   };
 
   handlePerPageChange = (e) => {
-    const { features, minPrice, perPage } = this.state;
-    const { location, history, match } = this.props;
+    const { features, minPrice, perPage, page, sort } = this.state;
+    const { location, history, match, fetchCatalogRequest } = this.props;
 
     this.setState({
       perPage: e.target.id,
     });
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
-    console.log(url, "url");
-
+    let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
         i == 0 ? `?feature=${ele}` : `&feature=${ele}`
       );
       url += stringArr.join("");
-      url += minPrice !== 100 ? `&minPrice=${minPrice}` : "";
+      url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
       url += e.target.id > 10 ? `&perPage=${e.target.id}` : "";
+      url += page > 1 ? `&page=${page}` : "";
+      url +=
+        sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     } else {
-      if (minPrice !== 100 && e.target.id > 10) {
-        url += `?minPrice=${minPrice}&perPage=${e.target.id}`;
-      } else if (minPrice !== 100) {
-        url += `?minPrice=${minPrice}`;
-      } else if (e.target.id > 10) {
-        url += `?perPage=${e.target.id}`;
-      }
+      query += minPrice != 100 ? `&minPrice=${minPrice}` : "";
+      query += e.target.id > 10 ? `&perPage=${e.target.id}` : "";
+      query += page > 1 ? `&page=${page}` : "";
+      query +=
+        sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     }
-
+    url += query.length > 0 ? "?" + query.slice(1) : "";
     history.push(url);
-    this.props.fetchCatalogRequest(url);
+    fetchCatalogRequest(url);
+  };
+
+  handleSortChange = (e) => {
+    const { features, minPrice, perPage, page, sort } = this.state;
+    const { location, history, match, fetchCatalogRequest } = this.props;
+
+    this.setState({
+      sort: e.target.value,
+    });
+    let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
+    let query = "";
+    if (features.length > 0) {
+      let stringArr = features.map((ele, i) =>
+        i == 0 ? `?feature=${ele}` : `&feature=${ele}`
+      );
+      url += stringArr.join("");
+      url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
+      url += perPage > 10 ? `&perPage=${perPage}` : "";
+      url += page > 1 ? `&page=${page}` : "";
+      url +=
+        e.target.value == "Recommended" || e.target.value == "recommended"
+          ? ""
+          : `&sort=${e.target.value}`;
+    } else {
+      query += minPrice != 100 ? `&minPrice=${minPrice}` : "";
+      query += perPage > 10 ? `&perPage=${perPage}` : "";
+      query += page > 1 ? `&page=${page}` : "";
+      query +=
+        e.target.value == "Recommended" || e.target.value == "recommended"
+          ? ""
+          : `&sort=${e.target.value}`;
+    }
+    url += query.length > 0 ? "?" + query.slice(1) : "";
+    history.push(url);
+    fetchCatalogRequest(url);
   };
 
   render() {
-    const { history, location, match } = this.props;
+    const { history, location, match, totalResults } = this.props;
     const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
     const values = queryString.parse(this.props.location.search);
-
+    console.log(totalResults," is total Results")
+    
     console.log(
       values.feature,
       values.minPrice,
@@ -156,9 +194,9 @@ class Filter extends Component {
     //   )
     // );
     return (
-      <div className="row">
-        <div className="col-2 offset-lg-1">
-          <div className="card mb-3" style={{ height: "8rem", width: "16rem" }}>
+      <div className={`row ${style.containerBox}`}>
+        <div className={` ${style.filterBox}`}>
+          <div className="card mb-3" style={{ height: "8rem"}}>
             <div className="card-body">
               <div class="form-group">
                 <label for="formControlRange">Price per night</label>
@@ -175,7 +213,7 @@ class Filter extends Component {
               </div>
             </div>
           </div>
-          <div class="card" style={{ width: "16rem" }}>
+          <div class="card" style={{  }}>
             <div className="card-header">Features</div>
             <div class="card">
               <div className="card-body">
@@ -643,74 +681,86 @@ class Filter extends Component {
             </div>
           </div>
         </div>
-        <div className="col-8">
-          <div className="row">
-            <div className="col-2 offset-md-3 offset-lg-1">hotel count</div>
-            <div className="col-3 offset-lg-2">
-              <button
+        <div className={`${style.galleryBox}`}>
+          <div className="">
+            <div className={`${style.sortBox}`}>
+              <div className={`${style.totalHotels}`}><span className={`${style.bgHighlight}`}><b>{totalResults}</b> luxury homes to rent</span></div>
+              <div className={`${style.sortElement}`}>
+                <div className={`${style.perPageComponent}`}>
+                <button
                 id="10"
                 onClick={(e) => this.handlePerPageChange(e)}
                 className={`px-2 ${style.perPage}`}
                 // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-              >
+                >
                 10
-              </button>
-              <button
+                </button>
+                <button
                 id="30"
                 onClick={(e) => this.handlePerPageChange(e)}
                 className={`px-2 ${style.perPage}`}
                 // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-              >
+                >
                 30
-              </button>
-              <button
+                </button>
+                <button
                 id="50"
                 onClick={(e) => this.handlePerPageChange(e)}
                 className={`px-2 ${style.perPage}`}
                 // to={`/search${location.pathname}${location.search}&perPage=${this.state.perPage}`}
-              >
+                >
                 50
-              </button>
+                </button>
               <span>per page</span>
             </div>
-            <div className="col-2">
-              <div class="form-group">
-                <select
-                  onChange={(e) => {
-                    this.setState({
-                      sort: e.target.value,
-                    });
-                    if (location.search == "")
-                      this.props.history.push(
-                        `${match.url}/?sort=${e.target.value}`
-                      );
-                    else
-                      this.props.history.push(
-                        `${match.url}&sort=${e.target.value}`
-                      );
-                  }}
-                  class="form-control"
-                  id="sort"
-                >
-                  <option selected>Sort</option>
-                  <option value="Recommended">Recommended</option>
-                  <option value="RecentlyAdded">Recently added</option>
-                  <option value="SleepsMost">Sleeps (most)</option>
-                  <option value="SleepsFewest">Sleeps (fewest)</option>
-                  <option value="PriceHighest">Price (highest)</option>
-                  <option value="PriceLowest">Price (lowest)</option>
-                </select>
+                <div className={`${style.sortButtonComponent}`}>
+                <div class="form-group">
+                  <select
+                    onChange={(e) => {
+                      this.setState({
+                        sort: e.target.value,
+                      });
+                      if (location.search == "")
+                        this.props.history.push(
+                          `${match.url}/?sort=${e.target.value}`
+                        );
+                      else
+                        this.props.history.push(
+                          `${match.url}&sort=${e.target.value}`
+                        );
+                    }}
+                    class="form-control"
+                    id="sort"
+                  >
+                    <option selected>Sort By</option>
+                    <option value="Recommended">Recommended</option>
+                    <option value="RecentlyAdded">Recently added</option>
+                    <option value="SleepsMost">Sleeps (most)</option>
+                    <option value="SleepsFewest">Sleeps (fewest)</option>
+                    <option value="PriceHighest">Price (highest)</option>
+                    <option value="PriceLowest">Price (lowest)</option>
+                  </select>
+                </div> 
+              </div> 
+              </div> 
               </div>
-            </div>
+            <Gallery {...this.props} />
           </div>
-          <Gallery {...this.props} />
+          
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  totalResults: state.dataReducer.totalRes,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   fetchCatalogRequest: (payload) => dispatch(fetchCatalogRequest(payload)),
-  fetchCatalogListSuccess: (payload) => dispatch(fetchCatalogListSuccess(payload)),
+  fetchCatalogListSuccess: (payload) =>
+    dispatch(fetchCatalogListSuccess(payload)),
 });
-export default connect(null, mapDispatchToProps)(Filter);
+
+export default connect(mapStateToProps , mapDispatchToProps)(Filter);

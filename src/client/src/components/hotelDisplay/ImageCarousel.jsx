@@ -2,9 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import HotelDisplay from "../../pages/HotelDisplay";
 import style from "./HotelDetails.module.css";
+
 // import data from '../../data.json';
 // import Slider from 'react-animated-slider';
 // import Slider from 'react-slick';
+
 
 class ImageCarousel extends React.Component {
   constructor(props) {
@@ -67,13 +69,14 @@ class ImageCarousel extends React.Component {
               </div>
             ))}
         </div>
+
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  hotelDetails: state.dataReducer.data,
+  hotelDetails: state.dataReducer.entityData,
 });
 
 export default connect(mapStateToProps, null)(ImageCarousel);

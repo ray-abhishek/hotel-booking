@@ -47,11 +47,11 @@ import {
   FETCH_CATALOG_LIST_SUCCESS,
 } from "./actionTypes";
 // import data from '../data.json';
-// import dummyData from '../data.json'; 
+// import dummyData from '../data.json';
 
 const initState = {
   catalogData: [],
-  entityData : {},
+  entityData: {},
   isLoading: false,
   isError: false,
   totalPages: 1,

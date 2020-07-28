@@ -1,5 +1,4 @@
 import React from "react";
-
 import ImageCarousel from "../components/hotelDisplay/ImageCarousel";
 import { Route } from "react-router-dom";
 import Description from "../components/hotelDisplay/aboutHotel/Description";
@@ -35,6 +34,7 @@ class HotelDisplay extends React.Component {
     // console.log("match params", this.props.match.params);
     console.log(this.props.data, "inside homeDisplay");
     return (
+
       <>
       <div className="container">
         <div className="row">
@@ -48,6 +48,7 @@ class HotelDisplay extends React.Component {
       <div className="row d-flex">      
       
       <div className="col-8 ">
+
         <Features {...this.props} />
      
         <Description {...this.props} />
