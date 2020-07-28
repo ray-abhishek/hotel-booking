@@ -20,26 +20,26 @@ class Pagination extends Component {
     };
   }
 
-  componentDidMount() {
-    const { fetchCatalogRequest, history, location, match } = this.props;
-    const values = queryString.parse(this.props.location.search);
-    this.setState({
-      feature:
-        !values.feature || (values.feature && values.feature.length > 0)
-          ? values.feature
-          : [],
-      minPrice:
-        !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
-      sort:
-        !values.sort ||
-        values.sort == "Recommended" ||
-        values.sort == "Recommended"
-          ? "Recommended"
-          : values.sort,
-      perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
-    });
-    fetchCatalogRequest(`${location.pathname}${location.search}`);
-  }
+  // componentDidMount() {
+  //   const { fetchCatalogRequest, history, location, match } = this.props;
+  //   const values = queryString.parse(this.props.location.search);
+  //   this.setState({
+  //     feature:
+  //       !values.feature || (values.feature && values.feature.length > 0)
+  //         ? values.feature
+  //         : [],
+  //     minPrice:
+  //       !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
+  //     sort:
+  //       !values.sort ||
+  //       values.sort == "Recommended" ||
+  //       values.sort == "Recommended"
+  //         ? "Recommended"
+  //         : values.sort,
+  //     perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
+  //   });
+  //   fetchCatalogRequest(`${location.pathname}${location.search}`);
+  // }
 
   handlePageChange = (e) => {
     e.preventDefault();
@@ -74,12 +74,40 @@ class Pagination extends Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.page !== nextProps.page) {
-      return true;
-    }
-    if (this.state.page !== nextState.page) {
-      return true;
-    }
+    const { fetchCatalogRequest } = this.props;
+    const { location } = nextProps;
+
+    const values = queryString.parse(location.search);
+    console.log(
+      location.search,
+      values,
+      "this is next props obj from pagination"
+    );
+    this.setState({
+      feature:
+        !values.feature || (values.feature && values.feature.length > 0)
+          ? values.feature
+          : [],
+      minPrice:
+        !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
+      sort:
+        !values.sort ||
+        values.sort == "Recommended" ||
+        values.sort == "Recommended"
+          ? "Recommended"
+          : values.sort,
+      perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
+    });
+
+    // console.log(values, "this is a state from pagination");
+    // fetchCatalogRequest(`${location.pathname}${location.search}`);
+
+    // if (this.props.page !== nextProps.page) {
+    //   return true;
+    // }
+    // if (this.state.page !== nextState.page) {
+    //   return true;
+    // }
     return false;
   }
 

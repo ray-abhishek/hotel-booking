@@ -3,6 +3,8 @@ import style from "./Filter.module.css";
 import {
   fetchCatalogRequest,
   fetchCatalogListSuccess,
+  totalPages,
+  totalRes,
 } from "../../redux/action";
 import { connect } from "react-redux";
 import { Router, Link } from "react-router-dom";
@@ -46,7 +48,7 @@ class Filter extends Component {
 
     //url construction
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
-    console.log(url, "url");
+    // console.log(url, "url");
     let query = "";
     if (features.length > 0) {
       let stringArr = features.map((ele, i) =>
@@ -181,17 +183,22 @@ class Filter extends Component {
       match,
       fetchCatalogRequest,
       fetchCatalogListSuccess,
+      totalPages,
+      totalRes,
     } = this.props;
     const values = queryString.parse(this.props.location.search);
-    console.log(this.props, "this are the props passed from catalog");
-
+    // console.log(this.props, "this are the props passed from catalog");
+    const font = {
+      fontFamily: "tiemposText",
+      fontSize: ".8em",
+    };
     return (
-      <div className="row">
+      <div className="row" style={font}>
         <div className="col-2 offset-lg-1">
           <div className="card mb-3" style={{ height: "8rem", width: "16rem" }}>
             <div className="card-body">
               <div class="form-group">
-                <label for="formControlRange">Price per night</label>
+                <label for="pt-1 formControlRange">Price per night</label>
                 <input
                   type="range"
                   class="form-control-range"
@@ -219,7 +226,10 @@ class Filter extends Component {
                     id="pets welcome"
                     onChange={(e) => this.handleOnChange(e)}
                   />
-                  <label className="custom-control-label" for="pets welcome">
+                  <label
+                    className="pt-1 custom-control-label"
+                    for="pets welcome"
+                  >
                     Pets welcome
                   </label>
                 </div>
@@ -238,7 +248,7 @@ class Filter extends Component {
                     className="custom-control-input"
                     id="double bed"
                   />
-                  <label className="custom-control-label" for="double bed">
+                  <label className="pt-1 custom-control-label" for="double bed">
                     Double bed
                   </label>
                 </div>
@@ -253,7 +263,10 @@ class Filter extends Component {
                     className="custom-control-input"
                     id="king size bed"
                   />
-                  <label className="custom-control-label" for="king size bed">
+                  <label
+                    className="pt-1 custom-control-label"
+                    for="king size bed"
+                  >
                     King size bed
                   </label>
                 </div>
@@ -265,7 +278,7 @@ class Filter extends Component {
                     className="custom-control-input"
                     id="single bed"
                   />
-                  <label className="custom-control-label" for="single bed">
+                  <label className="pt-1 custom-control-label" for="single bed">
                     Single bed
                   </label>
                 </div>
@@ -278,7 +291,7 @@ class Filter extends Component {
                     id="super king size bed"
                   />
                   <label
-                    className="custom-control-label"
+                    className="pt-1 custom-control-label"
                     for="super king size bed"
                   >
                     Super king size bed
@@ -302,7 +315,7 @@ class Filter extends Component {
                       id="children's toys"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="children's toys"
                     >
                       Children's toys
@@ -317,7 +330,7 @@ class Filter extends Component {
                       id="satellite or cable"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="satellite or cable"
                     >
                       Satellite or cable
@@ -341,7 +354,7 @@ class Filter extends Component {
                       id="washing machine"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="washing machine"
                     >
                       Washing machine
@@ -355,7 +368,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="tumble dryer"
                     />
-                    <label className="custom-control-label" for="tumble dryer">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="tumble dryer"
+                    >
                       Tumble dryer
                     </label>
                   </div>
@@ -367,7 +383,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="washer dryer"
                     />
-                    <label className="custom-control-label" for="washer dryer">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="washer dryer"
+                    >
                       Washer dryer
                     </label>
                   </div>
@@ -389,7 +408,7 @@ class Filter extends Component {
                       id="babies welcome"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="babies welcome"
                     >
                       Babies welcome
@@ -404,7 +423,7 @@ class Filter extends Component {
                       id="toddlers welcome"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="toddlers welcome"
                     >
                       Toddlers welcome
@@ -419,7 +438,7 @@ class Filter extends Component {
                       id="children welcome"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="children welcome"
                     >
                       Children welcome
@@ -442,7 +461,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Dishwasher"
                     />
-                    <label className="custom-control-label" for="Dishwasher">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="Dishwasher"
+                    >
                       Dishwasher
                     </label>
                   </div>
@@ -454,7 +476,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="hob electric"
                     />
-                    <label className="custom-control-label" for="hob electric">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="hob electric"
+                    >
                       Hob electric
                     </label>
                   </div>
@@ -466,7 +491,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="hob gas"
                     />
-                    <label className="custom-control-label" for="hob gas">
+                    <label className="pt-1 custom-control-label" for="hob gas">
                       Hob gas
                     </label>
                   </div>
@@ -478,7 +503,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="hob induction"
                     />
-                    <label className="custom-control-label" for="hob induction">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="hob induction"
+                    >
                       Hob induction
                     </label>
                   </div>
@@ -490,7 +518,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Oven"
                     />
-                    <label className="custom-control-label" for="Oven">
+                    <label className="pt-1 custom-control-label" for="Oven">
                       Oven
                     </label>
                   </div>
@@ -502,7 +530,10 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Microwave"
                     />
-                    <label className="custom-control-label" for="Microwave">
+                    <label
+                      className="pt-1 custom-control-label"
+                      for="Microwave"
+                    >
                       Microwave
                     </label>
                   </div>
@@ -523,7 +554,10 @@ class Filter extends Component {
                     className="custom-control-input"
                     id="swimming pool"
                   />
-                  <label className="custom-control-label" for="swimming pool">
+                  <label
+                    className="pt-1 custom-control-label"
+                    for="swimming pool"
+                  >
                     Swimming pool
                   </label>
                 </div>
@@ -544,7 +578,7 @@ class Filter extends Component {
                       id="air conditioning"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="air conditioning"
                     >
                       Air-conditioning
@@ -559,7 +593,7 @@ class Filter extends Component {
                       id="balcony terrace"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="balcony terrace"
                     >
                       Balcony terrace
@@ -573,7 +607,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Elevator"
                     />
-                    <label className="custom-control-label" for="Elevator">
+                    <label className="pt-1 custom-control-label" for="Elevator">
                       Elevator
                     </label>
                   </div>
@@ -585,7 +619,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="garden"
                     />
-                    <label className="custom-control-label" for="garden">
+                    <label className="pt-1 custom-control-label" for="garden">
                       Garden
                     </label>
                   </div>
@@ -598,7 +632,7 @@ class Filter extends Component {
                       id="off road parking"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="off road parking"
                     >
                       Off Road Parking
@@ -613,7 +647,7 @@ class Filter extends Component {
                       id="roof terrace garden"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="roof terrace garden"
                     >
                       Roof terrace garden
@@ -628,7 +662,7 @@ class Filter extends Component {
                       id="secure parking"
                     />
                     <label
-                      className="custom-control-label"
+                      className="pt-1 custom-control-label"
                       for="secure parking"
                     >
                       Secure parking
@@ -651,7 +685,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="Gym"
                     />
-                    <label className="custom-control-label" for="Gym">
+                    <label className="pt-1 custom-control-label" for="Gym">
                       Gym
                     </label>
                   </div>
@@ -663,7 +697,7 @@ class Filter extends Component {
                       className="custom-control-input"
                       id="ensuite"
                     />
-                    <label className="custom-control-label" for="ensuite">
+                    <label className="pt-1 custom-control-label" for="ensuite">
                       Ensuite
                     </label>
                   </div>
@@ -675,7 +709,9 @@ class Filter extends Component {
         </div>
         <div className="col-8">
           <div className="row">
-            <div className="col-2 offset-md-3 offset-lg-1">hotel count</div>
+            <div className="col-2 offset-md-3 offset-lg-1">
+              {totalRes} luxury homes to rent
+            </div>
             <div className="col-3 offset-lg-2">
               <button
                 id="10"
@@ -727,9 +763,14 @@ class Filter extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  totalPages: state.dataReducer.totalPages,
+  totalRes: state.dataReducer.totalRes,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   fetchCatalogRequest: (payload) => dispatch(fetchCatalogRequest(payload)),
   fetchCatalogListSuccess: (payload) =>
     dispatch(fetchCatalogListSuccess(payload)),
 });
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
