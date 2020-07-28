@@ -46,7 +46,7 @@ class BookingForm extends Component {
     console.log(this.state, "form details");
     return (
       <div className="row">
-        <div className="col-12 col-md-8 order-2 order-md-1">
+        <div className="col-12 col-md-7 order-2 order-md-1">
           <h3 className="my-5">Request a booking</h3>
           <p className="my-4">
             We’re available round-the-clock to help you plan your stay.
@@ -149,15 +149,12 @@ class BookingForm extends Component {
               </label>
             </div>
             <div className="text-center ">
-              {/* <button type="submit" class="btn btn-danger my-3">
-                Request a booking
-              </button> */}
               <Payment {...this.props} />
             </div>
           </form>
         </div>
         <div
-          className="col-12 border-0 card col-md-4 order-1 order-md-2 my-5"
+          className="col-12 border-0 card col-md-5 order-1 order-md-2 my-5"
           style={{ maxHeight: "550px" }}
         >
           <img
