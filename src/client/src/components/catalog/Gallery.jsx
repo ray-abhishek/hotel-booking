@@ -24,6 +24,7 @@ class Gallery extends React.Component {
     const { data } = this.props;
     console.log(data);
     return (
+
       <div className="">
         {data?.map((item) => (
           <>
@@ -49,6 +50,7 @@ class Gallery extends React.Component {
                     <img
                       src={item.hotel_images[1]}
                       className="card-img d-block w-100 img-fluid"
+
                       alt={item.name} style={{height: 230}}
                     />
                   </div>

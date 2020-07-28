@@ -9,7 +9,7 @@ class HomeTruths extends React.Component {
 
   render() {
     const { data, title, location, people, bathrooms, bedrooms } = this.props;
-    console.log(data);
+    // console.log(data);
     return (
       <div>
         <div class="card border-0 my-3">
