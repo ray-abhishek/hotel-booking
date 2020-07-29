@@ -17,6 +17,11 @@ import Footer from './components/common/Footer';
 import store from './redux/store';
 import Gallery from './components/catalog/Gallery';
 import LandingPage from './pages/LandingPage';
+import ReactGA from 'react-ga';
+
+
+ReactGA.initialize("UA-97383215-6");
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   return (

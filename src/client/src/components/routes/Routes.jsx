@@ -10,6 +10,7 @@ import ImageCarousel from "../hotelDisplay/ImageCarousel";
 import BookingBox from "../hotelDisplay/BookingBox";
 import AboutHotel from "../hotelDisplay/AboutHotel";
 
+
 const Routes = (props) => {
   return (
     <>

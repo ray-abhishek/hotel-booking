@@ -5,6 +5,7 @@ import GoogleLogin from "react-google-login";
 import style from "./Login.module.css";
 import { Redirect, Link } from "react-router-dom";
 
+
 class Login extends React.Component {
   constructor(props) {
     super(props);

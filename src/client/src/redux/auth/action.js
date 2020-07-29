@@ -1,4 +1,6 @@
 import React from "react";
+import ReactGA from 'react-ga';
+
 import {
   FETCH_REG_REQUEST,
   FETCH_REG_FAILURE,
@@ -58,6 +60,11 @@ export const logout = (payload) => ({
 
 export const userRegistration = (query) => (dispatch) => {
   dispatch(fetchRegistrationRequest());
+  ReactGA.event({
+    category: "Signup Button",
+    action: "new User Signup",
+    label: "Account Created"
+  })
   return axios
     .post("https://c339083f82fb.ngrok.io/signup", {
       email: query.email,
@@ -75,6 +82,11 @@ export const userRegistration = (query) => (dispatch) => {
 
 export const userLogin = (query) => (dispatch) => {
   dispatch(loginRequest());
+  ReactGA.event({
+    category: "Login Button",
+    action: " User Login",
+    label: "Account Login"
+  })
   return axios
     .post("https://c339083f82fb.ngrok.io/login", {
       email: query.email,
