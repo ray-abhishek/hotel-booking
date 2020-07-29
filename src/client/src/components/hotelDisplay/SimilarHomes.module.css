@@ -1,0 +1,9 @@
+
+.dot::before {
+    position: relative;
+    left: 0px;
+    content: "•";
+    display: inline-block;
+    color: rgb(201, 200, 202);
+    margin: 0px 0px 0px 2px;    
+}

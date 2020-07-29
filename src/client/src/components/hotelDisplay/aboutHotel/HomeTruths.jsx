@@ -20,7 +20,7 @@ class HomeTruths extends React.Component {
               style={{
                 listStyle: "none",
                 fontFamily: "tiemposText",
-                fontSize: "13px",
+                fontSize: "14px",
                 paddingLeft : "10px"
               }}
             >

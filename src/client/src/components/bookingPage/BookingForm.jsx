@@ -167,16 +167,15 @@ class BookingForm extends Component {
           <div className="row">
             <div class="card col-6 col-md-12 border-0">
               <div class="card-body bg-dark text-light">
-                <h5>Card title</h5>
+                <h5>Clement Place II</h5>
                 <p>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Chelsea, Manhattan
                 </p>
               </div>
             </div>
             <div class="card col-6 col-md-12 border-0 ">
               <div className="bg-dark text-light pb-5">
-                <p class=" p-md-3 py-5">Some quick example text to build.</p>
+                <p class=" p-md-3 py-5"><u>Send us an email.</u></p>
               </div>
             </div>
           </div>

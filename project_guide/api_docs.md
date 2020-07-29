@@ -220,14 +220,22 @@ GET `/get-similar/<hotel-id>`
 
 ### Booking Page
 
-GET `/home-listing/<hotel-id>/request-booking`
+GET `/order`
 
 #### REQUEST
 
 ```json
 {
-	"arrivalDate": "STRING",
-	"departureDate": "STRING",
+	"name": "STRING",
+	"email": "STRING",
+    "message" : "STRING",
+    "phone_number" : "STRING",
+    "order_amount" : "STRING",
+    "order_currency" : "STRING",
+    "order_receipt" : "STRING",
+    "book_from" : "STRING",
+    "book_to" : "STRING",
+    "hotel_id" : "STRING"
 }
 ```
 
@@ -235,8 +243,13 @@ GET `/home-listing/<hotel-id>/request-booking`
 
 ```json
 {
-    "status": "success",
-    "estimated_cost": "STRING",
+    "order_id": "STRING",
+    "currency": "STRING",
+    "amount" : "STRING",
+    "name" : "STRING",
+    "description" : "STRING",
+    "email" : "STRING",
+    "contact" : "STRING"
 }
 ```
 -----
@@ -265,3 +278,7 @@ POST `/home-listing/<hotel-id>/request-booking/confirmed/`
 }
 
 ```
+
+
+-------
+

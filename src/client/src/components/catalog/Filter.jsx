@@ -193,7 +193,7 @@ class Filter extends Component {
                 <label for="pt-1 formControlRange">Price per night</label>
                 <input
                   type="range"
-                  class="form-control-range"
+                  class="custom-range"
                   id="formControlRange"
                   min="100"
                   max="5000"
@@ -301,7 +301,7 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("childrens")}
+                      checked={location.search.includes("childrens toys")}
                       type="checkbox"
                       className="custom-control-input"
                       id="childrens toys"
@@ -424,7 +424,7 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("children")}
+                      checked={location.search.includes("children welcome")}
                       type="checkbox"
                       className="custom-control-input"
                       id="children welcome"

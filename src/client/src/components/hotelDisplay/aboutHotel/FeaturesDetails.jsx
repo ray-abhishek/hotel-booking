@@ -88,7 +88,7 @@ class FeaturesDetails extends React.Component {
         <h3>Features</h3>
         <hr />
         <h6 className="mb-4 font-weight-bold">Families</h6>
-        <div className="row">
+        <div className="row" style={{fontSize:'15px'}}>
           <div className="clo-6 col-md-4 my-2">
             {hotelDetails &&
             hotelDetails.families &&
@@ -111,7 +111,7 @@ class FeaturesDetails extends React.Component {
             )}
             Babies welcome
           </div>
-          <div className="clo-6 col-md-4 my-2">
+          <div className="clo-6 col-md-4 my-2" style={{fontSize:'15px'}}>
             {hotelDetails &&
             hotelDetails.families &&
             hotelDetails.families.includes("Children welcome") ? (
@@ -133,7 +133,7 @@ class FeaturesDetails extends React.Component {
             )}
             Children welcome
           </div>
-          <div className="clo-6 col-md-4 my-2">
+          <div className="clo-6 col-md-4 my-2" style={{fontSize:'15px'}}>
             {hotelDetails &&
             hotelDetails.families &&
             hotelDetails.families.includes("Toddlers welcome") ? (
@@ -155,7 +155,7 @@ class FeaturesDetails extends React.Component {
             )}
             Toddlers welcome
           </div>
-          <div className="clo-6 col-md-4 my-2">
+          <div className="clo-6 col-md-4 my-2" style={{fontSize:'15px'}}>
             {hotelDetails &&
             hotelDetails.families &&
             hotelDetails.families.includes("Pets Welcome") ? (
@@ -248,7 +248,7 @@ class FeaturesDetails extends React.Component {
                     alt="check_slate"
                     width="9px"
                   />
-                  <span>{ele}</span>
+                  <span style={{fontSize:'15px'}}>{ele}</span>
                 </span>
               ))}
           </div>
@@ -256,7 +256,7 @@ class FeaturesDetails extends React.Component {
 
         <br />
         <h6 className="my-4 font-weight-bold">Amenities</h6>
-        <div className="row">
+        <div className="row" style={{fontSize:'15px'}}>
           <div className="clo-6 col-md-4 my-2">
             {hotelDetails &&
             hotelDetails.families &&

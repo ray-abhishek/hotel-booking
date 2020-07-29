@@ -56,20 +56,13 @@ class HotelDisplay extends React.Component {
           </div>
           <div className="ml-4">
             <StickyBox offsetTop={20} offsetBottom={20} >
-              <BookingBox {...this.props} />
+              <BookingBox {...this.props}/>
             </StickyBox> 
           </div>
         </div>
-        <SimilarHomes paramsId={this.props.match.params.id} />
+        <SimilarHomes paramsId={this.props.match.params.id}/>
       </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
 
-        
-          </div>
-        </div>
-      </div>
     </>
     );
   }

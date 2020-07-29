@@ -9,7 +9,7 @@
 
 
 .containerBox{
-  margin : 0 auto;
+  margin : 20px auto;
   max-width: 1032px;
   display : flex;
   flex-direction: row;

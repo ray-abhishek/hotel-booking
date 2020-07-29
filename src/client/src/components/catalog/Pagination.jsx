@@ -25,7 +25,7 @@ class Pagination extends Component {
     this.setState({
       features:
         !values.features || (values.features && values.features.length > 0)
-          ? values.features
+        ? [...this.state.features, values.features]
           : [],
       minPrice:
         !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,

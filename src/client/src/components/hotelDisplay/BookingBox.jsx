@@ -51,9 +51,9 @@ class BookingBox extends React.Component{
     });
   };
 
-    async componentDidMount (){
+     componentDidMount (){
       console.log("id", this.props.match.params.id)
-      const res= await axios.get("https://9e93fb84fe29.ngrok.io/booked-dates/"+this.props.match.params.id)
+      const res=  axios.get("https://c339083f82fb.ngrok.io/booked-dates/"+this.props.match.params.id)
       console.log("booked dates" ,res.data)
         this.setState({
           bookedDates: res.data
@@ -108,7 +108,7 @@ class BookingBox extends React.Component{
                     maxDate={addDays(new Date(), 60)}
                     excludeDates={
                         bookedDates && bookedDates
-                       .data["ahead"].map(item=>(
+                       .data["ahead"]?.map(item=>(
                           new Date(), addDays(new Date(), item)                         
                         )                        
                         )                     
@@ -150,7 +150,7 @@ class BookingBox extends React.Component{
 
                     excludeDates={
                       bookedDates && bookedDates
-                      .data["ahead"].map(item=>(
+                      .data["ahead"]?.map(item=>(
                         new Date(), addDays(new Date(), item)))                                             
                   }
                     placeholderText="Departure date "
