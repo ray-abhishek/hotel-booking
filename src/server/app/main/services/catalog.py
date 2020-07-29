@@ -97,7 +97,7 @@ def get_catalog_data(data):
 
     print(query," IS THE QUERY TO BE EXECUTED TO FETCH CATALOG DATA")
     data_raw = db.engine.execute(query)
-    
+    print(total_results," is the total_results")
     send_data = []
 
     for row in data_raw:
@@ -105,15 +105,16 @@ def get_catalog_data(data):
         if data.get("feature"):
             param_features = list(data.get("feature"))
             param_features_lowercase = [el.lower() for el in param_features]
-            print(param_features," are features sent in params")
+            #print(param_features," are features sent in params")
             hotel_features = json.loads(row["features"])
-            print(hotel_features," are the hotel features in json")
+            #print(hotel_features," are the hotel features in json")
             hotel_all_features = []
             for feature_type in hotel_features:
                 hotel_all_features.extend(hotel_features[feature_type])
-            print(hotel_all_features, " are all the features of hotel in a single array")
+            #print(hotel_all_features, " are all the features of hotel in a single array")
             all_features_lowercase = [el.lower() for el in hotel_all_features]
             result = all(elem in all_features_lowercase for elem in param_features_lowercase)
+            
             print(result," is result of feature check")
             if not result:
                 continue

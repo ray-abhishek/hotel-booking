@@ -30,8 +30,8 @@ class SimilarHomes extends React.Component {
     // console.log("params similar hioes", this.state.similarHomesData);
     return (
       <div>
-        <h2 className="m-1 p-4">Similar Homes</h2>
-        <div class="row row-cols-1 row-cols-md-3 m-1 p-4">
+        <h4 className="mt-5 mb-4 pl-3">Similar Homes</h4>
+        <div class="row row-cols-1 row-cols-md-3 m-1 p-0">
           {similarHomesData?.map((item) => (
             <div class="col mb-4">
               <div class="card h-100">
@@ -39,7 +39,7 @@ class SimilarHomes extends React.Component {
                   src={item && item.hotel_images[0]}
                   class="card-img-top img-fluid"
                   alt="..."
-                  style={{ height: 250 }}
+                  style={{ height: 200 }}
                 />
                 <div class="card-body">
                   <h5 class="card-title text-danger">{item && item.name}</h5>

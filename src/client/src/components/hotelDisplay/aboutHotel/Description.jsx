@@ -12,24 +12,25 @@ class Description extends React.Component {
     return (
       <>
         <div
-          className="accordion mx-5 my-3"
+          className="accordion"
           id="accordionExample"
           style={{
             fontFamily: "tiemposText",
             fontSize: ".9em",
           }}
         >
-          <h2
+          <h5
             font-family="tiemposText"
-            font-weight="400"
+            font-weight="800"
             font-size="L"
             color="secondary"
-            className="sc-15ch3b2-1 fRbMas"
+            className="sc-15ch3b2-1 fRbMas mt-5"
           >
             Description
-          </h2>
+          </h5>
+          <hr/>
           {hotelDetails && hotelDetails["description"] && (
-            <h4>{hotelDetails["description"][0]}</h4>
+            <p style={{fontSize:'16px'}}>{hotelDetails["description"][0]}</p>
           )}
 
           {hotelDetails && hotelDetails["description"] && (
@@ -38,9 +39,9 @@ class Description extends React.Component {
               className="collapse show "
               aria-labelledby="headingOne"
               data-parent="#accordionExample"
-              style={{ overflowY: "hidden" }}
+              style={{ overflowY: "hidden", fontSize: "15px" }}
             >
-              <div> {hotelDetails["description"][1]}</div>
+              <div> {hotelDetails["description"][1]}</div><br/>
               <div>{hotelDetails["description"][2]}</div>
             </p>
           )}
@@ -59,7 +60,7 @@ class Description extends React.Component {
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            {this.state.show ? `v show more` : `^ hide`}
+            <p style={{fontSize:'12px', padding: '0px'}}><i class="fa fa-caret-down lg" aria-hidden="true"></i>{this.state.show ? ` show more` : ` hide`}</p>
           </p>
         </div>
       </>
