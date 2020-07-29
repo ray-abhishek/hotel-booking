@@ -1,27 +1,13 @@
 .myDropdownToggle::after {
   content: none;
   border: none;
-  background: white !important;
-  z-index: 5;
+  background: white;
 }
 
 .myDropdownToggle {
   border: none;
-  background: white !important;
-  z-index: 5;
+  background: white;
 }
 .test {
   background: black;
-}
-
-.react-datepicker {
-  z-index: 3;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
-  background-color:white !important;
-  color: #000;
-  border: 0px;
-  border-radius: 0;
-  display: inline-block;
-  position: relative;
 }

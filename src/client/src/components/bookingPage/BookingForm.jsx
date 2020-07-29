@@ -39,10 +39,11 @@ class BookingForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    //  console.log("submit", e);
+    console.log("submit", e);
   };
 
   render() {
+
     const { hotelData, details, differenceDate } = this.props.location.state;
     // console.log(hotelData, details, "form details");
     // console.log(details["arrivalDate"], "arrivaldate");
@@ -159,15 +160,7 @@ class BookingForm extends Component {
               </label>
             </div>
             <div className="text-center ">
-              <Payment
-                {...this.props}
-                personDetails={{
-                  ...this.state,
-                  arrival: arrival,
-                  departure: departure,
-                  differenceDate: differenceDate,
-                }}
-              />
+              <Payment {...this.props} />
             </div>
           </form>
         </div>
@@ -176,12 +169,7 @@ class BookingForm extends Component {
           style={{ maxHeight: "550px" }}
         >
           <img
-            src={
-              hotelData &&
-              hotelData["hotel_images"] &&
-              hotelData["hotel_images"]["entrance"]["0"]["image"] &&
-              `${hotelData["hotel_images"]["entrance"]["0"]["image"]}`
-            }
+            src="https://onefinestay.imgix.net/media-library/2017-03-27-22-00-15-461248-EMM354-TAKE-01-19.jpg?auto=format&w=900&dpr=1"
             class="card-img-top d-none d-md-block"
             style={{ height: "170px" }}
             alt="..."
@@ -190,56 +178,16 @@ class BookingForm extends Component {
           <div className="row">
             <div class="card col-6 col-md-12 border-0">
               <div class="card-body bg-dark text-light">
-
-                <h5>{hotelData && hotelData["name"] && hotelData["name"]}</h5>
-                <h6>
-                  {hotelData && hotelData["location"] && hotelData["location"]}
-                </h6>
-                <h6>
-                  <span style={{ padding: "0,10px" }}>
-                    {hotelData &&
-                      hotelData["people"] &&
-                      ` ${hotelData["people"]}`}{" "}
-                    Sleeps |
-                  </span>
-                  <span style={{ padding: "0,10px" }}>
-                    {hotelData &&
-                      hotelData["bedrooms"] &&
-                      ` ${hotelData["bedrooms"]}`}{" "}
-                    bedrooms |
-                  </span>
-                  <span style={{ padding: "0,10px" }}>
-                    {hotelData &&
-                      hotelData["bathrooms"] &&
-                      ` ${hotelData["bathrooms"]}`}{" "}
-                    bathrooms
-                  </span>
-                </h6>
+                <h5>Card title</h5>
                 <p>
-                  {arrival && `${arrival}  ->  `}
-                  {departure && `${departure}`}
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
                 </p>
               </div>
             </div>
             <div class="card col-6 col-md-12 border-0 ">
-              <div className="bg-dark text-light text-center pb-5">
-                <p class=" p-md-3 py-5">
-                  <img
-                    style={{ verticalAlign: "middle", width: "18px" }}
-                    type="envelop_white"
-                    src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/4626e10de839567e2dcd31fe962ebf69.svg"
-                    alt="envelop_white"
-                  />
-                  {`  Send us an email `}
-                  <br />
-                  <img
-                    style={{ verticalAlign: "middle" }}
-                    type="phone_white"
-                    src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/a208188ddf764d570bdc73f484ee1ca4.svg"
-                    alt="phone_white"
-                  />
-                  {`  +1 855-553-4954`}
-                </p>
+              <div className="bg-dark text-light pb-5">
+                <p class=" p-md-3 py-5">Some quick example text to build.</p>
               </div>
             </div>
           </div>

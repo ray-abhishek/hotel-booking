@@ -6,11 +6,9 @@ import {} from "../../redux/action";
 class Payment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      formData: this.props.personDetails,
-      order_id: "",
-    };
+    this.state = {};
   }
+
 
   dispalyRazorPay = async (e) => {
     const { arrivalDate, departureDate } = this.props.location.state.details;
@@ -38,26 +36,19 @@ class Payment extends React.Component {
         departureDate.getMonth() + 1
       }-${departureDate.getDate()}`;
     try {
-      const apiURL = "https://c339083f82fb.ngrok.io";
+      const apiURL = "https://9e93fb84fe29.ngrok.io";
       e.preventDefault();
-      // const url = new URLSearchParams();
-      // url.append("order_amount", "10000");
-      // url.append("currency", "INR");
+      const url = new URLSearchParams();
+      url.append("order_amount", "10000");
+      url.append("currency", "INR");
       //   parser.add_argument('book_from', type=str,required=False)
       //   parser.add_argument('book_to', type=str,required=False)
       const response = await axios.post(apiURL + "/order", {
-        name: `${firstname} ${lastName}`,
-        email: `${email}`,
-        message: `${message}`,
-        phone_number: `${mobileNo}`,
-        order_amount: `${amount}`,
-        order_currency: `INR`,
+        order_amount: "10000",
+        order_currency: "INR",
         order_receipt: `recipi${Date.now()}`,
-        book_from: `${arrival}`,
-        book_to: `${departure}`,
-        hotel_id: `${id}`,
+        hotel_id: "1",
       });
-
       const { data } = response;
       console.log(data, " is data  from /order");
       ////console.log(data["data"]["order_id"], " is orderID from /order");
@@ -128,7 +119,6 @@ class Payment extends React.Component {
   render() {
     // console.log(this.state, "state in payment");
     // console.log(this.props, "props in payment");
-
     return (
       <div>
         <div

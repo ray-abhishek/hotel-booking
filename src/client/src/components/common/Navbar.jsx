@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Login from "../admin/Login";
 import Signup from "../admin/Signup";
 import { connect } from "react-redux";
-import { logoutUser } from "../../redux/auth/action";
+import { logoutUser } from '../../redux/auth/action';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Navbar extends React.Component {
   };
 
   handleClick = () => {
-    ////console.log("loagout");
+    console.log("loagout");
     alert("logout");
   };
 
@@ -30,18 +30,14 @@ class Navbar extends React.Component {
     const { loginSuccess, isSignup, isLogin, logoutUser } = this.props;
     const { isToggle } = this.state;
 
-    ////console.log(loginSuccess);
+    console.log(loginSuccess);
     return (
       <>
         <nav className="navbar navbar-light bg-white">
           {/* Home Link */}
           <Link to="/">
             {" "}
-            <img
-              src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg"
-              width="155px"
-              height="30px"
-            />
+            <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg" width="155px" height="30px" />
           </Link>
           <div className="d-flex flex-row bd-highlight">
             <Link
@@ -64,10 +60,11 @@ class Navbar extends React.Component {
             </Link>
             {/* Login and Logout toggling */}
             {
-              // loginSuccess.data && loginSuccess.data.status === "success"
-              isLogin === true ? (
-                <nav class="navbar navbar-expand-lg">
-                  {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
+            // loginSuccess.data && loginSuccess.data.status === "success" 
+              isLogin===true
+            ? (
+              <nav class="navbar navbar-expand-lg">
+                {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
                   <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                       <a
@@ -91,32 +88,23 @@ class Navbar extends React.Component {
                         <a class="dropdown-item" href="https://www.google.com/">
                           Change Password
                         </a>
-                        <a
-                          class="dropdown-item"
-                          onClick={() =>
-                            logoutUser(
-                              loginSuccess.data &&
-                                loginSuccess.data.Authorization
-                            )
-                          }
-                        >
+                        <a class="dropdown-item" onClick={()=>logoutUser(loginSuccess.data && loginSuccess.data.Authorization)}>
                           Logout
                         </a>
                       </div>
                     </li>
                   </ul>
-                  {/* </div> */}
-                </nav>
-              ) : (
-                <Link
-                  className="p-2 bd-highlight p-3 text-decoration-none text-dark"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
-                >
-                  Log in <span className={style.line}></span>
-                </Link>
-              )
-            }
+                {/* </div> */}
+              </nav>
+            ) : (
+              <Link
+                className="p-2 bd-highlight p-3 text-decoration-none text-dark"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Log in <span className={style.line}></span>
+              </Link>
+            )}
 
             <div
               class="modal fade"
@@ -193,11 +181,11 @@ class Navbar extends React.Component {
 const mapStateToProps = (state) => ({
   loginSuccess: state.authReducer.loginData,
   isSignup: state.authReducer.isSignup,
-  isLogin: state.authReducer.isLogin,
+  isLogin: state.authReducer.isLogin
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  logoutUser: (authStr) => dispatch(logoutUser(authStr)),
-});
+const mapDispatchToProps=(dispatch)=>({
+  logoutUser: (authStr)=>dispatch(logoutUser(authStr))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
