@@ -18,18 +18,18 @@ class HomeTruths extends React.Component {
       marginLeft: "25%",
     };
     let font = { fontSize: ".8em" };
-    console.log(data);
+    ////console.log(data);
     return (
-      <div
-        class="card my-3 text-center"
-        style={{ fontFamily: "tiemposText" }}
-      >
+      <div class="card my-3 text-center" style={{ fontFamily: "tiemposText" }}>
         <div className="text-center mt-4 mb-2">
           <h1 class="badge badge-info p-2" style={{ background: "darkblue" }}>
             City Collection
           </h1>{" "}
         </div>
-        <dir className="row" style={{paddingLeft:'0px', marginRight:'20px', marginLeft:'0px'}}>
+        <dir
+          className="row"
+          style={{ paddingLeft: "0px", marginRight: "20px", marginLeft: "0px" }}
+        >
           <dir className="col-3 text-center">
             <div style={round}>
               <i class="h1 fas fa-home"></i>

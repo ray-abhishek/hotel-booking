@@ -65,11 +65,11 @@ export const userRegistration = (query) => (dispatch) => {
       password: query.password,
     })
     .then((res) => {
-      console.log(res);
+      ////console.log(res);
       return dispatch(registrationSuccess(res));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };
 
@@ -81,17 +81,17 @@ export const userLogin = (query) => (dispatch) => {
       password: query.password,
     })
     .then((loginRes) => {
-      console.log("login data", loginRes);
+      ////console.log("login data", loginRes);
       return dispatch(loginSuccess(loginRes));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };
 
 export const googleLogin = (query) => (dispatch) => {
   dispatch(googleLoginRequest());
-  console.log("axios", query);
+  ////console.log("axios", query);
   return axios
     .post("https://c339083f82fb.ngrok.io/ssologin", {
       email: query.email,
@@ -100,17 +100,17 @@ export const googleLogin = (query) => (dispatch) => {
       imageUrl: query.imageUrl,
     })
     .then((loginRes) => {
-      console.log("Google login data", loginRes);
+      ////console.log("Google login data", loginRes);
       return dispatch(googleLoginSuccess(loginRes));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };
 
 export const logoutUser = (query) => (dispatch) => {
   dispatch(logout());
-  console.log("logout Query", query);
+  ////console.log("logout Query", query);
   return axios
     .get("https://c339083f82fb.ngrok.io/logout", {
       headers: {
@@ -118,10 +118,10 @@ export const logoutUser = (query) => (dispatch) => {
       },
     })
     .then((logoutRes) => {
-      console.log("logoutRes", logoutRes);
+      ////console.log("logoutRes", logoutRes);
       return dispatch(logout(logoutRes));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };

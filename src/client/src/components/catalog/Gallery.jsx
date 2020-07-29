@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { fetchEntityRequest } from "../../redux/action";
 import style from "./Gallery.module.css";
 
-
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
@@ -22,12 +21,12 @@ class Gallery extends React.Component {
 
   render() {
     const { data } = this.props;
-    console.log(data);
+    ////console.log(data);
     return (
-
       <div className="">
         {data?.map((item) => (
           <>
+
           <div
             
             className="card mb-3 border-0"
@@ -45,16 +44,41 @@ class Gallery extends React.Component {
                       className="card-img d-block w-100 img-fluid"
                       alt={item.name} style={{height: 230}}
                     />
-                  </div>
-                  <div class="carousel-item">
-                    <img
-                      src={item.hotel_images[1]}
-                      className="card-img d-block w-100 img-fluid"
 
-                      alt={item.name} style={{height: 230}}
-                    />
                   </div>
+
+                  <a
+                    class="carousel-control-prev"
+                    href="#carouselExampleControls"
+                    role="button"
+                    data-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="false"
+                    ></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a
+                    class="carousel-control-next"
+                    href="#carouselExampleControls"
+                    role="button"
+                    data-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="false"
+                    ></span>
+                    <span class="sr-only">Next</span>
+                  </a>
                 </div>
+                <div className="col-md-6 mt-4 pl-4">
+                  <div
+                    onClick={() => this.handleSearch(item.id)}
+                    className="cart-body"
+                  >
+                    <h4 className={`${style.hotelName}`}>{item.name}</h4>
+
 
                 <a
                   class="carousel-control-prev"
@@ -96,21 +120,29 @@ class Gallery extends React.Component {
                     </small>
                     <small className={`${style.dot}`}>
                       {item.bathrooms + " bathrooms "}
+
                       </small>
-                  </div>
-                  <hr />
-                  <div className="text-muted">
-                    from <b className={`${style.largerText}`}>${item.cost_per_night}</b> / night
-                  </div>
-                  <div className="text-muted">
-                    {"approx $" + item.cost_per_bedroom + " / bedroom"}
+                      <small className={`${style.dot}`}>
+                        {item.bathrooms + " bathrooms "}
+                      </small>
+                    </div>
+                    <hr />
+                    <div className="text-muted">
+                      from{" "}
+                      <b className={`${style.largerText}`}>
+                        ${item.cost_per_night}
+                      </b>{" "}
+                      / night
+                    </div>
+                    <div className="text-muted">
+                      {"approx $" + item.cost_per_bedroom + " / bedroom"}
+                    </div>
                   </div>
                 </div>
+                <hr />
               </div>
-              <hr />
             </div>
-          </div>
-          <hr/>
+            <hr />
           </>
         ))}
       </div>
