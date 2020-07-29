@@ -24,13 +24,13 @@ export const fetchHotelDataSuccess = (payload) => ({
 });
 
 export const fetchRequest = (payload) => (dispatch) => {
-  console.log(payload, "payload");
-  console.log(`http://localhost:3001${payload}`, "url");
+  ////console.log(payload, "payload");
+  ////console.log(`http://localhost:3001${payload}`, "url");
   dispatch(fetchHotelDataRequest());
   return axios
     .get(`http://localhost:3001${payload}`)
     .then((res) => {
-      console.log(res);
+      ////console.log(res);
       return res;
     })
     .then((res) => dispatch(fetchHotelDataSuccess(res)))
@@ -90,24 +90,26 @@ export const fetchUserData=query=>dispatch=>{
         // }
         )
         .then((res)=>{
-            console.log(res.data)
+            ////console.log(res.data)
             return dispatch(fetchListSuccess(res.data))
         })
         .catch((error)=>{
-            console.log(error)
+            ////console.log(error)
         })
     )
 }
 */
 
 export const fetchCatalogRequest = (payload) => (dispatch) => {
-  console.log(payload, "payload");
-  console.log(`https://c339083f82fb.ngrok.io${payload}`, "url");
+
+  ////console.log(payload, "payload");
+  ////console.log(`https://c339083f82fb.ngrok.io${payload}`, "url");
+
   dispatch(fetchCatalogListRequest());
   return axios
     .get(`https://c339083f82fb.ngrok.io${payload}`)
     .then((res) => {
-      console.log(res.data);
+      ////console.log(res.data);
       return res;
     })
     .then((res) => dispatch(fetchCatalogListSuccess(res.data)))
@@ -115,13 +117,15 @@ export const fetchCatalogRequest = (payload) => (dispatch) => {
 };
 
 export const fetchEntityRequest = (payload) => (dispatch) => {
-  console.log(payload, "payload");
-  console.log(`https://c339083f82fb.ngrok.io${payload}`, "url");
+
+  ////console.log(payload, "payload");
+  ////console.log(`https://c339083f82fb.ngrok.io${payload}`, "url");
+
   dispatch(fetchEntityListRequest());
   return axios
     .get(`https://c339083f82fb.ngrok.io${payload}`)
     .then((res) => {
-      console.log(res.data);
+      ////console.log(res.data);
       return res;
     })
     .then((res) => dispatch(fetchEntityListSuccess(res.data)))

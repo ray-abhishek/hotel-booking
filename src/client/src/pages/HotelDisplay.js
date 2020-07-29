@@ -11,8 +11,8 @@ import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
 import { fetchEntityRequest } from "../redux/action";
 import { connect } from "react-redux";
 import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
-import BookingBox from '../components/hotelDisplay/BookingBox';
-import StickyBox from 'react-sticky-box';
+import BookingBox from "../components/hotelDisplay/BookingBox";
+import StickyBox from "react-sticky-box";
 import style from "./HotelDisplay.module.css";
 // import Axios from 'axios';
 
@@ -23,46 +23,45 @@ class HotelDisplay extends React.Component {
   }
 
   componentDidMount() {
-    console.log("this.componentDidMount worked");
+    ////console.log("this.componentDidMount worked");
     const { fetchEntityRequest, data, location } = this.props;
     let url = `${location.pathname}${location.search}`;
     fetchEntityRequest(url);
-    console.log(url, "url hotel Display");
+    ////console.log(url, "url hotel Display");
   }
 
   render() {
-    // console.log("match params", this.props.match.params);
-    // console.log(this.props.data, "inside homeDisplay");
+    // ////console.log("match params", this.props.match.params);
+    // ////console.log(this.props.data, "inside homeDisplay");
     return (
       <>
-      <div className="">
-
+        <div className="">
           <ImageCarousel />
-
-      </div>
-
-      <div className="container mt-5" style={{maxWidth:'850px'}}>
-        <div className={`${style.hdContainer}`}>      
-      
-          <div className={`${style.bioBox}`}>
-
-            <Features {...this.props} />
-            <Description {...this.props} />
-            <Rooms {...this.props} />
-            <FeaturesDetails {...this.props} />
-            <FindOutMore />
-            <HomeTruths {...this.props} />
-            <Policies {...this.props} />
-          </div>
-          <div className="ml-4">
-            <StickyBox offsetTop={20} offsetBottom={20} >
-              <BookingBox {...this.props}/>
-            </StickyBox> 
-          </div>
         </div>
+
+
+        <div className="container mt-5" style={{ maxWidth: "850px" }}>
+          <div className={`${style.hdContainer}`}>
+            <div className={`${style.bioBox}`}>
+              <Features {...this.props} />
+              <Description {...this.props} />
+              <Rooms {...this.props} />
+              <FeaturesDetails {...this.props} />
+              <FindOutMore />
+              <HomeTruths {...this.props} />
+              <Policies {...this.props} />
+            </div>
+            <div className="ml-4">
+              <StickyBox offsetTop={20} offsetBottom={20}>
+                <BookingBox {...this.props} />
+              </StickyBox>
+            </div>
+          </div>
+          <SimilarHomes paramsId={this.props.match.params.id} />
+        </div>
+
         <SimilarHomes paramsId={this.props.match.params.id}/>
       </div>
-
     </>
     );
   }

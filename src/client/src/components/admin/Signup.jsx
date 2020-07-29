@@ -14,6 +14,7 @@ class Signup extends React.Component {
       email: "",
       password: "",
       googleResponse: "",
+      hidden: true 
     };
   }
 
@@ -23,21 +24,28 @@ class Signup extends React.Component {
     });
   };
 
+  toggleShow=()=> {
+    this.setState({ hidden: !this.state.hidden });
+  }
+
   // Google Auth response 
+
   responseGoogle = (response) => {
     this.setState({
       googleResponse: response.profileObj,
     });
-    console.log("sign up google res", response.profileObj);
+    ////console.log("sign up google res", response.profileObj);
     this.props.googleLoginData(response.profileObj);
   };
 
   render() {
-    const { handleChange } = this;
-    const { name, email, password } = this.state;
+    const { handleChange, toggleShow } = this;
+    const { name, email, password, hidden } = this.state;
     const { userRegistration, handleData, isSignup } = this.props;
-    const { data } = this.props.data;
-    console.log(data);
+
+    // const { data } = this.props.data;
+    // console.log(data);
+
 
     return (
       <div className={style.card}>
@@ -45,9 +53,7 @@ class Signup extends React.Component {
         <div className="form-row mt-1">
           <div className="form-group col-12">
             <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-user-circle"></i>
-              </span>
+             
               <input
                 className="form-control"
                 style={{ marginBottom: 5 }}
@@ -55,15 +61,14 @@ class Signup extends React.Component {
                 value={name}
                 name="name"
                 onChange={handleChange}
-                placeholder="enter your name" required
+                placeholder="enter your name"
+                required
               />
             </div>
           </div>
           <div className="form-group col-12">
             <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-envelope"></i>
-              </span>
+              
               <input
                 className="form-control"
                 style={{ marginBottom: 5 }}
@@ -71,31 +76,35 @@ class Signup extends React.Component {
                 value={email}
                 name="email"
                 onChange={handleChange}
-                placeholder="enter your email" required
+                placeholder="enter your email"
+                required
               />
             </div>
           </div>
           <div className="form-group col-12">
             <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-unlock-alt"></i>
-              </span>
+              
               <input
                 className="form-control"
                 style={{ marginBottom: 5 }}
-                type="password"
+                type={this.state.hidden ? "password" : "text"}
                 value={password}
                 name="password"
                 onChange={handleChange}
-                placeholder="enter your password" required
+                placeholder="enter your password"
+                required
               />
+              {hidden===false?  
+                <i class="far fa-eye"  onClick={toggleShow} style={eye}></i>
+                : 
+                <i class="far fa-eye-slash" onClick={toggleShow} style={eye}></i> }
             </div>
           </div>
         </div>
-      {/* // signup button */}
+        {/* // signup button */}
         <div className="text-center pb-3">
-          <button
-            className="btn btn-primary"
+          <button disabled={(email.length  && password.length) <1}
+            className={(email.length && password.length) < 1 ? " btn btn-light btn-block" : "btn btn-danger btn-block"} 
             onClick={() => userRegistration(this.state)}
           >
             Sign UP
@@ -105,7 +114,6 @@ class Signup extends React.Component {
         </div>
         <hr />
         <div>
-
           {/* Google Login  */}
 
           <GoogleLogin
@@ -120,6 +128,13 @@ class Signup extends React.Component {
     );
   }
 }
+
+const eye={
+  marginLeft: -30,
+   cursor: "pointer",
+   paddingTop: 10
+}
+
 
 const mapStateToProps = (state) => ({
   data: state.authReducer.signupData,

@@ -8,11 +8,18 @@ function Header(props) {
         <h1 style={h1Style}>
           Enjoy the <i>finest</i> homes and service all around the world
         </h1>
-        <SearchBar {...props} />
+        <div style={searchStyle}>
+          <SearchBar {...props} />
+        </div>
       </div>
     </div>
   );
 }
+
+const searchStyle = {
+  margin: "4rem auto 6rem auto",
+  maxWidth: "800px",
+};
 
 const imgStyle = {
   backgroundImage:

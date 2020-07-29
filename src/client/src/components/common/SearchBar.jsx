@@ -41,7 +41,7 @@ class SearchBar extends Component {
   };
 
   handleOnClick = (e) => {
-    console.log(this.props, "clicked");
+    ////console.log(this.props, "clicked");
     const { arrivalDate, departureDate } = this.state;
     const { fetchCatalogRequest } = this.props;
     let url = "/search";
@@ -72,7 +72,7 @@ class SearchBar extends Component {
       url += query.length > 0 ? `?${query}` : "";
       this.props.history.push(url);
     }
-    console.log(url, "fetchCatalogRequest url");
+    ////console.log(url, "fetchCatalogRequest url");
     fetchCatalogRequest(url);
   };
 
@@ -214,8 +214,8 @@ const searchBarStyle = {
   backgroundColor: "white",
   maxHeight: "42px",
   borderRadius: "5px",
-  maxWidth: "800px",
-  margin: "4rem auto 6rem auto",
+  // maxWidth: "800px",
+  // margin: "4rem auto 6rem auto",
 };
 
 const searchImgStyle = {
