@@ -20,8 +20,8 @@ class HomeTruths extends React.Component {
               style={{
                 listStyle: "none",
                 fontFamily: "tiemposText",
-                fontSize: "13px",
-                paddingLeft: "10px",
+                fontSize: "14px",
+                paddingLeft : "10px"
               }}
             >
               <li className="text-muted">
