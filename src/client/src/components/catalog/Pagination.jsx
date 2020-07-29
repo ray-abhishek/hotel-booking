@@ -113,11 +113,19 @@ class Pagination extends Component {
     });
   }
 
+  pages = (totalPages) => {
+    let pages = [];
+    for (let i = 0; i < totalPages; i++) {
+      pages.push(i + 1);
+    }
+    return pages;
+  };
   render() {
     const { page } = this.state;
     const { totalPages } = this.props;
     ////console.log(totalPages, "total pages");
     //console.log(this.state, "state updated in pagination");
+    let pages = this.pages();
     return (
       <nav aria-label="Page navigation example" className="col-3 offset-6">
         <ul class="pagination">
@@ -130,7 +138,7 @@ class Pagination extends Component {
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item">
+          {/* <li class="page-item">
             <a
               onClick={(e) => this.handlePageChange(e)}
               class="page-link"
@@ -138,8 +146,8 @@ class Pagination extends Component {
             >
               1
             </a>
-          </li>
-          <li class="page-item">
+          </li> */}
+          {/* <li class="page-item">
             <a
               onClick={(e) => this.handlePageChange(e)}
               class="page-link"
@@ -155,8 +163,23 @@ class Pagination extends Component {
               id="3"
             >
               3
-            </a>
-          </li>
+            </a> */}
+          {/* </li> */}
+
+          {pages &&
+            pages.length > 0 &&
+            pages.map((ele) => (
+              <li class="page-item">
+                <a
+                  onClick={(e) => this.handlePageChange(e)}
+                  class="page-link"
+                  id={ele}
+                >
+                  {ele}
+                </a>
+              </li>
+            ))}
+
           <li class="page-item">
             <a
               onClick={(e) => this.handlePageChange(e)}
