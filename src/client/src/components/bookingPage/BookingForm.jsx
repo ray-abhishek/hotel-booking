@@ -44,8 +44,8 @@ class BookingForm extends Component {
 
   render() {
     const { hotelData, details, differenceDate } = this.props.location.state;
-    console.log(hotelData, details, "form details");
-    console.log(details["arrivalDate"], "arrivaldate");
+    // console.log(hotelData, details, "form details");
+    // console.log(details["arrivalDate"], "arrivaldate");
     let arrival =
       details &&
       details["arrivalDate"] &&
