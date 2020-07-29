@@ -190,6 +190,7 @@ class BookingForm extends Component {
           <div className="row">
             <div class="card col-6 col-md-12 border-0">
               <div class="card-body bg-dark text-light">
+
                 <h5>{hotelData && hotelData["name"] && hotelData["name"]}</h5>
                 <h6>
                   {hotelData && hotelData["location"] && hotelData["location"]}

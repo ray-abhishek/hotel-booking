@@ -47,6 +47,7 @@ class BookingBox extends React.Component {
     });
   };
 
+
   componentDidMount() {
     console.log("id", this.props.match.params.id);
     const res = axios.get(
@@ -57,6 +58,7 @@ class BookingBox extends React.Component {
       bookedDates: res.data,
     });
   }
+
 
   handleBooking = () => {
     ////console.log("hotelData", hotelData);

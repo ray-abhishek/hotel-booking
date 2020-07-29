@@ -12,6 +12,7 @@ class Payment extends React.Component {
     };
   }
 
+
   dispalyRazorPay = async (e) => {
     const { arrivalDate, departureDate } = this.props.location.state.details;
     const {
@@ -59,35 +60,36 @@ class Payment extends React.Component {
       });
 
       const { data } = response;
-      ////console.log(data, " is data  from /order");
-      ////console.log(data["data"]["order_id"], " is orderID from /order");
-      this.setState({ order_id: data["data"]["order_id"] });
+      console.log(data," is data  from /order")
+      console.log(data["data"]["order_id"]," is orderID from /order");
+      this.setState({order_id : data["data"]["order_id"]})
       const options = {
         key: "rzp_test_MqHwbPLOYmrkkI",
-        amount: "10000",
-        currency: "INR",
-        name: `${firstname} ${lastName}`,
-        description: `PAyment for hotel booking`,
+        amount: data["data"]["amount"],
+        currency: data["data"]["currency"],
+        name: data["data"]["name"],
+        description: data["data"]["description"],
         image:
           "https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg",
         order_id: data["data"]["order_id"],
         prefill: {
-          name: "test Kumar",
-          email: "test.kumar@example.com",
-          contact: "9999999999",
+          name: data["data"]["name"],
+          email: data["data"]["email"],
+          contact: data["data"]["contact"],
         },
         theme: {
           color: "#0080FF",
         },
         handler: async (response) => {
-          ////console.log(response, "respone");
+
+          console.log(response, "respone");
           const res = await axios.post(`${apiURL}/payment`, {
             ...response,
             order_id: this.state.order_id,
           });
           const { data } = res;
           ////console.log(data, "backend");
-          res.status === "success"
+          data.status === "success"
             ? alert("payment successful")
             : alert("payment fail");
         },
