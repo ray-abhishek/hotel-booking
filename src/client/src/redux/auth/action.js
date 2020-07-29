@@ -59,69 +59,69 @@ export const logout = (payload) => ({
 export const userRegistration = (query) => (dispatch) => {
   dispatch(fetchRegistrationRequest());
   return axios
-    .post("https://9e93fb84fe29.ngrok.io/signup", {
+    .post("https://7d6daa289cc2.ngrok.io/signup", {
       email: query.email,
       name: query.name,
       password: query.password,
     })
     .then((res) => {
-      console.log(res);
+      ////console.log(res);
       return dispatch(registrationSuccess(res));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };
 
 export const userLogin = (query) => (dispatch) => {
   dispatch(loginRequest());
   return axios
-    .post("https://9e93fb84fe29.ngrok.io/login", {
+    .post("https://7d6daa289cc2.ngrok.io/login", {
       email: query.email,
       password: query.password,
     })
     .then((loginRes) => {
-      console.log("login data", loginRes);
+      ////console.log("login data", loginRes);
       return dispatch(loginSuccess(loginRes));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };
 
 export const googleLogin = (query) => (dispatch) => {
   dispatch(googleLoginRequest());
-  console.log("axios", query);
+  ////console.log("axios", query);
   return axios
-    .post("https://9e93fb84fe29.ngrok.io/ssologin", {
+    .post("https://7d6daa289cc2.ngrok.io/ssologin", {
       email: query.email,
       name: query.name,
       googleId: query.googleId,
       imageUrl: query.imageUrl,
     })
     .then((loginRes) => {
-      console.log("Google login data", loginRes);
+      ////console.log("Google login data", loginRes);
       return dispatch(googleLoginSuccess(loginRes));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };
 
 export const logoutUser = (query) => (dispatch) => {
   dispatch(logout());
-  console.log("logout Query", query);
+  ////console.log("logout Query", query);
   return axios
-    .get("https://9e93fb84fe29.ngrok.io/logout", {
+    .get("https://7d6daa289cc2.ngrok.io/logout", {
       headers: {
         Authorization: query, //the token is a variable which holds the token
       },
     })
     .then((logoutRes) => {
-      console.log("logoutRes", logoutRes);
+      ////console.log("logoutRes", logoutRes);
       return dispatch(logout(logoutRes));
     })
     .catch((error) => {
-      console.log(error);
+      ////console.log(error);
     });
 };

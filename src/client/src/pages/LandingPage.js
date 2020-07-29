@@ -10,7 +10,7 @@ class LandingPage extends React.Component {
     this.state = {};
   }
   render() {
-    console.log("HI FROM LANDING PAGE");
+    ////console.log("HI FROM LANDING PAGE");
     return (
       <>
         <Header {...this.props} />

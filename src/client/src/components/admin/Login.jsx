@@ -27,15 +27,15 @@ class Login extends React.Component {
     this.setState({
       googleResponse: response.profileObj,
     });
-    // console.log(response.profileObj);
+    // ////console.log(response.profileObj);
     this.props.googleLoginData(response.profileObj);
   };
   render() {
     const { handleChange } = this;
     const { password, email } = this.state;
     const { userLogin, loginData, googleLoginData, isLogin } = this.props;
-    console.log(loginData);
-  
+    ////console.log(loginData);
+
     return (
       <div className={style.card}>
         <div className="form-row mt-1">
@@ -51,7 +51,8 @@ class Login extends React.Component {
                 value={email}
                 name="email"
                 onChange={handleChange}
-                placeholder="enter email" required
+                placeholder="enter email"
+                required
               />
             </div>{" "}
           </div>
@@ -68,7 +69,8 @@ class Login extends React.Component {
                 value={password}
                 name="password"
                 onChange={handleChange}
-                placeholder=" enter your password" required
+                placeholder=" enter your password"
+                required
               />
             </div>
           </div>

@@ -39,11 +39,11 @@ class BookingForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit", e);
+    //  console.log("submit", e);
   };
 
   render() {
-    console.log(this.state, "form details");
+    console.log(this.props.location, "form details");
     return (
       <div className="row">
         <div className="col-12 col-md-7 order-2 order-md-1">
@@ -149,7 +149,7 @@ class BookingForm extends Component {
               </label>
             </div>
             <div className="text-center ">
-              <Payment {...this.props} />
+              <Payment {...this.props} personDetails={this.state} />
             </div>
           </form>
         </div>

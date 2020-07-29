@@ -9,21 +9,9 @@ class Payment extends React.Component {
     this.state = {};
   }
 
-  //   componentDidMount() {
-  //     console.log("params similar page", this.props);
-  //     axios
-  //       .get("https://9e93fb84fe29.ngrok.io/get-similar/" + this.props.paramsId)
-  //       .then((res) => {
-  //         console.log("res data", res.data);
-  //         this.setState({
-  //           similarHomesData: res.data.data,
-  //         });
-  //       });
-  //   }
-
   dispalyRazorPay = async (e) => {
     try {
-      const apiURL = "https://9e93fb84fe29.ngrok.io";
+      const apiURL = "https://7d6daa289cc2.ngrok.io";
       e.preventDefault();
       const url = new URLSearchParams();
       url.append("order_amount", "10000");
@@ -37,8 +25,8 @@ class Payment extends React.Component {
         hotel_id: "1",
       });
       const { data } = response;
-      console.log(data," is data  from /order")
-      console.log(data["data"]["order_id"]," is orderID from /order");
+      ////console.log(data, " is data  from /order");
+      ////console.log(data["data"]["order_id"], " is orderID from /order");
       const options = {
         key: "rzp_test_MqHwbPLOYmrkkI",
         amount: "10000",
@@ -57,10 +45,10 @@ class Payment extends React.Component {
           color: "#0080FF",
         },
         handler: async (response) => {
-          console.log(response, "respone");
+          ////console.log(response, "respone");
           const res = await axios.post(`${apiURL}/payment`, response);
           const { data } = res;
-          console.log(data, "backend");
+          ////console.log(data, "backend");
           res.status === "success"
             ? alert("payment successful")
             : alert("payment fail");
@@ -69,11 +57,14 @@ class Payment extends React.Component {
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (err) {
-      console.log(err);
+      ////console.log(err);
     }
   };
 
   render() {
+    console.log(this.state, "state in payment");
+    console.log(this.props, "props in payment");
+
     return (
       <div>
         <div

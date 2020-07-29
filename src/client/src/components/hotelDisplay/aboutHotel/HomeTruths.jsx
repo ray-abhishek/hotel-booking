@@ -9,23 +9,21 @@ class HomeTruths extends React.Component {
 
   render() {
     const { data, title, location, people, bathrooms, bedrooms } = this.props;
-    // console.log(data);
+    // ////console.log(data);
     return (
       <div>
         <div class="border-0 mt-5">
           <div class="">
-          <h5 className="card-heading h5">Home truths</h5>
-          <hr />
+            <h5 className="card-heading h5">Home truths</h5>
+            <hr />
             <ul
               style={{
                 listStyle: "none",
                 fontFamily: "tiemposText",
                 fontSize: "13px",
-                paddingLeft : "10px"
+                paddingLeft: "10px",
               }}
             >
-              
-              
               <li className="text-muted">
                 - The bunk bed in the second bedroom will comfortably sleep two
                 adults on the bottom double, and has room for a further one
