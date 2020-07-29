@@ -57,8 +57,11 @@ class Payment extends React.Component {
         book_to: `${departure}`,
         hotel_id: `${id}`,
       });
-
       const { data } = response;
+      if (data.status === "failure") {
+        return alert(data.message);
+      }
+
       console.log(data, " is data  from /order");
       ////console.log(data["data"]["order_id"], " is orderID from /order");
       this.setState({ order_id: data["data"]["order_id"] });
@@ -81,38 +84,36 @@ class Payment extends React.Component {
         },
         handler: async (response) => {
           console.log(response, "respone in payment by handler");
-          const res = await axios
-            .post(`${apiURL}/payment`, {
-              ...response,
-              order_id: this.state.order_id,
-            })
-            .then((res) => {
-              if (res.status === 200) {
-                res.data.status === "success"
-                  ? this.props.history.push({
-                      pathname: "/request-booking/confirmed",
-                      state: {
-                        data: res.data,
-                        props: this.props,
-                        info: {
-                          email,
-                          countryCode,
-                          firstname,
-                          lastName,
-                          message,
-                          mobileNo,
-                          notification,
-                          differenceDate,
-                          amount,
-                          arrival,
-                          departure,
-                        },
-                      },
-                    })
-                  : alert("payment fail");
-                return res;
-              }
-            });
+          const res = await axios.post(`${apiURL}/payment`, {
+            ...response,
+            order_id: this.state.order_id,
+          });
+
+          if (res.res.data.status !== "success") {
+            return alert(res.data.message);
+          }
+
+          this.props.history.push({
+            pathname: "/request-booking/confirmed",
+            state: {
+              data: res.data,
+              props: this.props,
+              info: {
+                email,
+                countryCode,
+                firstname,
+                lastName,
+                message,
+                mobileNo,
+                notification,
+                differenceDate,
+                amount,
+                arrival,
+                departure,
+              },
+            },
+          });
+
           const { data } = res;
           ////console.log(data, "backend");
         },

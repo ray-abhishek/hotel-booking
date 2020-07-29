@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import queryString from "query-string";
 import Gallery from "./Gallery";
 import SearchBar from "../../components/common/SearchBar";
+import FilterModal from "./FilterModal";
+import SearchModal from "./SearchModal";
 
 class Filter extends Component {
   constructor(props) {
@@ -18,6 +20,8 @@ class Filter extends Component {
       page: 1,
       perPage: 10,
       sort: "Recommended",
+      filter: false,
+      search: false,
     };
   }
 
@@ -176,9 +180,11 @@ class Filter extends Component {
     const { location, totalResults } = this.props;
     // const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
     const values = queryString.parse(this.props.location.search);
-
+    let query = location.search;
     return (
       <>
+        <FilterModal {...this.props} />
+        <SearchModal {...this.props} />
         <div
           className="d-none d-md-block"
           style={{
@@ -206,17 +212,23 @@ class Filter extends Component {
         <div className="d-block d-md-none text-center">
           <span
             className="btn btn-danger"
+            onClick={this.toggleSearch}
             style={{ margin: "10px 6px", padding: "6px 20%" }}
+            data-toggle="modal"
+            data-target="#searchModal"
           >
             Search
           </span>
           <span
             className="btn btn-dark "
             style={{ margin: "10px 6px", padding: "6px 10%" }}
+            data-toggle="modal"
+            data-target="#filterModal"
           >
             filter
           </span>
         </div>
+
         <div className={`row ${style.containerBox}`}>
           <div className={`d-none d-md-block ${style.filterBox}`}>
             <div className="card mb-3" style={{ height: "8rem" }}>
@@ -244,7 +256,7 @@ class Filter extends Component {
                   <br />
                   <div className="custom-control custom-checkbox">
                     <input
-                      checked={location.search.includes("pets")}
+                      checked={query.includes("pets")}
                       type="checkbox"
                       className="custom-control-input"
                       id="pets welcome"
@@ -267,7 +279,7 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("double")}
+                      checked={query.includes("double")}
                       type="checkbox"
                       className="custom-control-input"
                       id="double bed"
@@ -285,7 +297,7 @@ class Filter extends Component {
                       onChange={(e) => {
                         this.handleOnChange(e);
                       }}
-                      checked={location.search.includes("beds")}
+                      checked={query.includes("beds")}
                       type="checkbox"
                       className="custom-control-input"
                       id="king size beds"
@@ -300,7 +312,7 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("single")}
+                      checked={query.includes("single")}
                       type="checkbox"
                       className="custom-control-input"
                       id="single bed"
@@ -315,7 +327,7 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("super")}
+                      checked={query.includes("super")}
                       type="checkbox"
                       className="custom-control-input"
                       id="super king size bed"
@@ -339,7 +351,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("childrens toys")}
+                        checked={query.includes("childrens toys")}
                         type="checkbox"
                         className="custom-control-input"
                         id="childrens toys"
@@ -354,7 +366,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("satellite")}
+                        checked={query.includes("satellite")}
                         type="checkbox"
                         className="custom-control-input"
                         id="satellite or cable"
@@ -378,7 +390,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("washing")}
+                        checked={query.includes("washing")}
                         type="checkbox"
                         className="custom-control-input"
                         id="washing machine"
@@ -393,7 +405,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("tumble")}
+                        checked={query.includes("tumble")}
                         type="checkbox"
                         className="custom-control-input"
                         id="tumble dryer"
@@ -408,7 +420,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("washer")}
+                        checked={query.includes("washer")}
                         type="checkbox"
                         className="custom-control-input"
                         id="washer dryer"
@@ -432,7 +444,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("babies")}
+                        checked={query.includes("babies")}
                         type="checkbox"
                         className="custom-control-input"
                         id="babies welcome"
@@ -447,7 +459,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("toddlers")}
+                        checked={query.includes("toddlers")}
                         type="checkbox"
                         className="custom-control-input"
                         id="toddlers welcome"
@@ -462,7 +474,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("children welcome")}
+                        checked={query.includes("children welcome")}
                         type="checkbox"
                         className="custom-control-input"
                         id="children welcome"
@@ -486,7 +498,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("Dishwasher")}
+                        checked={query.includes("Dishwasher")}
                         type="checkbox"
                         className="custom-control-input"
                         id="Dishwasher"
@@ -501,7 +513,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("electric")}
+                        checked={query.includes("electric")}
                         type="checkbox"
                         className="custom-control-input"
                         id="hob electric"
@@ -516,7 +528,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("gas")}
+                        checked={query.includes("gas")}
                         type="checkbox"
                         className="custom-control-input"
                         id="hob gas"
@@ -531,7 +543,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("induction")}
+                        checked={query.includes("induction")}
                         type="checkbox"
                         className="custom-control-input"
                         id="hob induction"
@@ -546,7 +558,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("Oven")}
+                        checked={query.includes("Oven")}
                         type="checkbox"
                         className="custom-control-input"
                         id="Oven"
@@ -558,7 +570,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("Microwave")}
+                        checked={query.includes("Microwave")}
                         type="checkbox"
                         className="custom-control-input"
                         id="Microwave"
@@ -582,7 +594,7 @@ class Filter extends Component {
                   <div className="custom-control custom-checkbox">
                     <input
                       onChange={(e) => this.handleOnChange(e)}
-                      checked={location.search.includes("swimming")}
+                      checked={query.includes("swimming")}
                       type="checkbox"
                       className="custom-control-input"
                       id="swimming pool"
@@ -605,7 +617,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("conditioning")}
+                        checked={query.includes("conditioning")}
                         type="checkbox"
                         className="custom-control-input"
                         id="air conditioning"
@@ -620,7 +632,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("balcony")}
+                        checked={query.includes("balcony")}
                         type="checkbox"
                         className="custom-control-input"
                         id="balcony terrace"
@@ -635,7 +647,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("Elevator")}
+                        checked={query.includes("Elevator")}
                         type="checkbox"
                         className="custom-control-input"
                         id="Elevator"
@@ -650,7 +662,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("Garden")}
+                        checked={query.includes("Garden")}
                         type="checkbox"
                         className="custom-control-input"
                         id="Garden"
@@ -662,7 +674,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("road")}
+                        checked={query.includes("road")}
                         type="checkbox"
                         className="custom-control-input"
                         id="off road parking"
@@ -677,7 +689,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("roof")}
+                        checked={query.includes("roof")}
                         type="checkbox"
                         className="custom-control-input"
                         id="roof terrace garden"
@@ -692,7 +704,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("secure")}
+                        checked={query.includes("secure")}
                         type="checkbox"
                         className="custom-control-input"
                         id="secure parking"
@@ -716,7 +728,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("Gym")}
+                        checked={query.includes("Gym")}
                         type="checkbox"
                         className="custom-control-input"
                         id="Gym"
@@ -728,7 +740,7 @@ class Filter extends Component {
                     <div className="custom-control custom-checkbox">
                       <input
                         onChange={(e) => this.handleOnChange(e)}
-                        checked={location.search.includes("ensuite")}
+                        checked={query.includes("ensuite")}
                         type="checkbox"
                         className="custom-control-input"
                         id="ensuite"

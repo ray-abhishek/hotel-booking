@@ -113,7 +113,8 @@ class Pagination extends Component {
     });
   }
 
-  pages = (totalPages) => {
+  pages = () => {
+    const { totalPages } = this.props;
     let pages = [];
     for (let i = 0; i < totalPages; i++) {
       pages.push(i + 1);
@@ -126,45 +127,21 @@ class Pagination extends Component {
     ////console.log(totalPages, "total pages");
     //console.log(this.state, "state updated in pagination");
     let pages = this.pages();
+    console.log(page);
     return (
       <nav aria-label="Page navigation example" className="col-3 offset-6">
         <ul class="pagination">
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              aria-label="Previous"
-            >
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          {/* <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="1"
-            >
-              1
-            </a>
-          </li> */}
-          {/* <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="2"
-            >
-              2
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="3"
-            >
-              3
-            </a> */}
-          {/* </li> */}
+          {page != 1 && (
+            <li class="page-item">
+              <a
+                onClick={(e) => this.handlePageChange(e)}
+                class="page-link"
+                aria-label="Previous"
+              >
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          )}
 
           {pages &&
             pages.length > 0 &&
@@ -180,15 +157,17 @@ class Pagination extends Component {
               </li>
             ))}
 
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              aria-label="Next"
-            >
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
+          {totalPages && page != totalPages && (
+            <li class="page-item">
+              <a
+                onClick={(e) => this.handlePageChange(e)}
+                class="page-link"
+                aria-label="Next"
+              >
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          )}
         </ul>
       </nav>
     );

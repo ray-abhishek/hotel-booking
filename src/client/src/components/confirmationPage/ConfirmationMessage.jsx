@@ -26,6 +26,7 @@ class ConfirmationMessage extends Component {
   render() {
     const { info, data } = this.props.location.state;
     const { hotelData } = this.props.location.state.props.state;
+    console.log(info, data, hotelData);
     const font = {
       fontFamily: "tiemposText",
       fontSize: ".9em",
