@@ -37,11 +37,9 @@ class HotelDisplay extends React.Component {
 
       <>
       <div className="container">
-        <div className="row">
-          <div className="col-12"  style={{width: "100%", left: -200, right: 0}}>
+          <div className="col-12"  style={{width: "100%", left: -200, right: -1000}}>
           <ImageCarousel />
           </div>
-        </div>
       </div>
 
       <div className="container">

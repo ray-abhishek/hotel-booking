@@ -51,9 +51,9 @@ class BookingBox extends React.Component{
     });
   };
 
-    async componentDidMount (){
+     componentDidMount (){
       console.log("id", this.props.match.params.id)
-      const res= await axios.get("https://9e93fb84fe29.ngrok.io/booked-dates/"+this.props.match.params.id)
+      const res=  axios.get("https://7d6daa289cc2.ngrok.io/booked-dates/"+this.props.match.params.id)
       console.log("booked dates" ,res.data)
         this.setState({
           bookedDates: res.data
@@ -77,7 +77,7 @@ class BookingBox extends React.Component{
           `;
 
         // differencce of date
-         let differenceDate = Math.floor((Date.UTC( departureDate &&  departureDate.getFullYear(), departureDate &&  departureDate.getMonth(),departureDate &&  departureDate.getDate()) - Date.UTC( departureDate &&  arrivalDate.getFullYear(), departureDate &&  arrivalDate.getMonth(), departureDate &&  arrivalDate.getDate()) ) /(1000 * 60 * 60 * 24))
+         let differenceDate = Math.floor((Date.UTC( departureDate &&  departureDate.getFullYear(), departureDate &&  departureDate.getMonth(),departureDate &&  departureDate.getDate()) - Date.UTC( arrivalDate &&  arrivalDate.getFullYear(), arrivalDate &&  arrivalDate.getMonth(), arrivalDate &&  arrivalDate.getDate()) ) /(1000 * 60 * 60 * 24))
 
 
 
@@ -104,13 +104,14 @@ class BookingBox extends React.Component{
                     selected={this.state.arrivalDate}
                     onChange={(date) => this.handleArrivalDateChange(date)}
                     minDate={new Date()}
-                    maxDate={addDays(new Date(), 60)}
+                    maxDate={addDays(new Date(), 150)}
                     excludeDates={
-                        bookedDates && bookedDates
-                       .data["ahead"].map(item=>(
+                      
+                        bookedDates && bookedDates.data["ahead"].map(item=>(
                           new Date(), addDays(new Date(), item)                         
                         )                        
-                        )                     
+                        )      
+                                     
                     }
 
                     placeholderText="Arrival date"
@@ -142,12 +143,12 @@ class BookingBox extends React.Component{
                     className="datepicker"
                     selected={this.state.departureDate}
                     onChange={(date) => this.handledepartureDateChange(date)}
-                    minDate={arrivalDate}
+                    minDate={addDays(new Date(), arrivalDate && arrivalDate.getDate()+3)}
                     maxDate={addDays(new Date(), 150)}
 
                     excludeDates={
-                      bookedDates && bookedDates
-                      .data["ahead"].map(item=>(
+                      
+                      bookedDates && bookedDates.data["ahead"]?.map(item=>(
                         new Date(), addDays(new Date(), item)))                                             
                   }
                     placeholderText="Departure date "

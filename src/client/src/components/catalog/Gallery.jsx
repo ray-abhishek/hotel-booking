@@ -35,7 +35,7 @@ class Gallery extends React.Component {
             <div key={item.id} className="row no-gutters">
               <div
                 className="col-md-6 carousel slide"
-                id="carouselExampleControls"
+                id= {`carouselExampleControls${item.id}`}
                 data-ride="carousel"
               >
                 <div class="carousel-inner">
@@ -58,7 +58,7 @@ class Gallery extends React.Component {
 
                 <a
                   class="carousel-control-prev"
-                  href="#carouselExampleControls"
+                  href={`#carouselExampleControls${item.id}`}
                   role="button"
                   data-slide="prev"
                 >
@@ -70,7 +70,7 @@ class Gallery extends React.Component {
                 </a>
                 <a
                   class="carousel-control-next"
-                  href="#carouselExampleControls"
+                  href={`#carouselExampleControls${item.id}`}
                   role="button"
                   data-slide="next"
                 >

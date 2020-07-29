@@ -114,27 +114,40 @@ class Navbar extends React.Component {
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
+               <div class="modal-dialog">
+                 
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                      Account Login
-                    </h5>
+
+                  <div className="mt-3 text-center mr-4">
+                   
                     <button
                       type="button"
                       class="close"
                       data-dismiss="modal"
                       aria-label="Close"
                     >
-                      <span aria-hidden="true">&times;</span>
+                      <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/2c409d2237e810d3a092cbba7a341934.svg" alt=""/>
                     </button>
+
+
+                  {isLogin? <h3 className="mt-4">Login Successfully</h3> :<div> {!isToggle? <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
+                       Login
+                    </h3>: <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
+                       Signup
+                    </h3> }</div>}
                   </div>
                   <div class="modal-body">
-                    {isToggle === false ? (
+                    {isLogin? <div className="p-2 pl-5 pr-5"><p className="text-center">Welcome to onefinestay. Stay in dinstinctive private homes and villas - with an unprecedented level of service.</p> 
+                      <div className="text-center pb-3 mt-4">
+                        <button className= "btn btn-danger btn-block"
+                          data-dismiss="modal">OK</button>
+                            </div></div> :
+                    <div>
+                      {!isToggle ? (
                       <>
                         <p className="text-center">
                           New to onefinestay?{" "}
-                          <Link onClick={toggleForm}>Signup</Link>
+                          <Link onClick={toggleForm} className="text-decoration-none">Signup</Link>
                         </p>
                         {isSignup == true ? <Signup /> : <Login />}
                       </>
@@ -142,22 +155,14 @@ class Navbar extends React.Component {
                       <>
                         <p className="text-center">
                           If you already have an account,{" "}
-                          <Link onClick={toggleForm}>Login</Link>
+                          <Link onClick={toggleForm} className="text-decoration-none">Login</Link>
                           {isSignup == true ? <Login /> : <Signup />}
                         </p>
                       </>
-                    )}
-                    {/* {isSignup===true?
-                    <>
-                     <p className="text-center">New to onefinestay? <Link onClick={toggleForm}>Signup</Link></p><Login/></>
-                    :
-                    <>                  
-                    <p  className="text-center">If you already have an account, <Link onClick={toggleForm}>Login</Link> 
-                    <Signup />
-                    </p></>
-                    } */}
+                    )} </div>}
                   </div>
                 </div>
+                
               </div>
             </div>
 
