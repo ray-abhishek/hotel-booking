@@ -5,3 +5,4 @@ from . import EntityModel
 from . import PolicyModel
 from . import HomeTruthModel
 from . import BookingModel
+from . import OrderModel

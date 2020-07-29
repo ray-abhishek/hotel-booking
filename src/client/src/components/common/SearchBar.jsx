@@ -23,8 +23,8 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       city: null,
-      arrivalDate: new Date(),
-      departureDate: new Date(),
+      arrivalDate: null,
+      departureDate: null,
       guests: null,
     };
   }
@@ -41,7 +41,7 @@ class SearchBar extends Component {
   };
 
   handleOnClick = (e) => {
-    console.log(this.props, "clicked");
+    ////console.log(this.props, "clicked");
     const { arrivalDate, departureDate } = this.state;
     const { fetchCatalogRequest } = this.props;
     let url = "/search";
@@ -72,7 +72,7 @@ class SearchBar extends Component {
       url += query.length > 0 ? `?${query}` : "";
       this.props.history.push(url);
     }
-    console.log(url, "fetchCatalogRequest url");
+    ////console.log(url, "fetchCatalogRequest url");
     fetchCatalogRequest(url);
   };
 
@@ -115,7 +115,7 @@ class SearchBar extends Component {
 
             <div className="form-group col-2">
               <div className="h-100" style={child2}>
-                <div className="w-100">
+                <div className="w-100" style={{backgroundColor:'white'}}>
                   <DatePicker
                     className="datepicker"
                     selected={this.state.arrivalDate}
@@ -143,7 +143,7 @@ class SearchBar extends Component {
 
             <div className="form-group col-2">
               <div className="h-100" style={child3}>
-                <div className="w-100">
+                <div className="w-100" style={{backgroundColor:'white'}}>
                   <DatePicker
                     className="datepicker"
                     selected={this.state.departureDate}
@@ -208,14 +208,14 @@ class SearchBar extends Component {
 }
 
 const searchBarStyle = {
-  zIndex: "2",
+  zIndex: "1",
   position: "relative",
   fontSize: "12px",
   backgroundColor: "white",
   maxHeight: "42px",
   borderRadius: "5px",
-  maxWidth: "800px",
-  margin: "4rem auto 6rem auto",
+  // maxWidth: "800px",
+  // margin: "4rem auto 6rem auto",
 };
 
 const searchImgStyle = {
@@ -230,10 +230,12 @@ const inputStyle = {
 };
 
 const child1 = {
+  zIndex:'2',
   height: "100%",
 };
 
 const child2 = {
+  zIndex:'2',
   height: "100%",
   display: "flex",
   flexDirection: "row",
@@ -242,6 +244,7 @@ const child2 = {
 };
 
 const child3 = {
+  zIndex:'2',
   height: "100%",
   display: "flex",
   flexDirection: "row",

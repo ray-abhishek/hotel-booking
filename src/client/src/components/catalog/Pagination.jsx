@@ -19,14 +19,21 @@ class Pagination extends Component {
       page: 1,
     };
   }
+
   componentDidMount() {
     const { fetchCatalogRequest, history, location, match } = this.props;
-    const values = queryString.parse(this.props.location.search);
+    const values = queryString.parse(location.search);
+    let featuresArr;
+    if (!values.features || values.features.length == 0) {
+      featuresArr = [];
+    } else if (values.features && typeof values.features == "string") {
+      featuresArr = [values.features];
+    } else if (typeof values.features == "object") {
+      featuresArr = values.features;
+    }
+
     this.setState({
-      features:
-        !values.features || (values.features && values.features.length > 0)
-          ? values.features
-          : [],
+      features: featuresArr,
       minPrice:
         !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
       sort:
@@ -44,13 +51,14 @@ class Pagination extends Component {
     e.preventDefault();
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;
-    console.log(location, "this is location obj from pagination page handler");
+    //console.log(match, "this is location obj from pagination page handler");
 
     this.setState({
       page: e.target.id,
     });
 
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
+
     let query = "";
     if (features.length > 0) {
       let stringArr = features?.map((ele, i) =>
@@ -69,7 +77,10 @@ class Pagination extends Component {
       query +=
         sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     }
+    //console.log("query", query);
+
     url += query.length > 0 ? "?" + query.slice(1) : "";
+    //console.log("url", url);
     history.push(url);
     fetchCatalogRequest(url);
   };
@@ -77,14 +88,19 @@ class Pagination extends Component {
   componentWillReceiveProps(nextProps, nextState) {
     const { fetchCatalogRequest } = this.props;
     const { location } = nextProps;
-
+    //console.log(nextProps, "nextprops");
     const values = queryString.parse(location.search);
+    //console.log("values", values);
+    let featuresArr;
+    if (!values.features || values.features.length == 0) {
+      featuresArr = [];
+    } else if (values.features && typeof values.features == "string") {
+      featuresArr = [values.features];
+    } else if (typeof values.features == "object") {
+      featuresArr = values.features;
+    }
     this.setState({
-      features:
-        !values.features ||
-        (this.state.features && values.features && values.features.length > 0)
-          ? [...this.state.features, values.features]
-          : [],
+      features: featuresArr,
       minPrice:
         !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
       sort:
@@ -100,8 +116,8 @@ class Pagination extends Component {
   render() {
     const { page } = this.state;
     const { totalPages } = this.props;
-    console.log(totalPages, "total pages");
-    console.log(this.state, "state updated in pagination");
+    ////console.log(totalPages, "total pages");
+    //console.log(this.state, "state updated in pagination");
     return (
       <nav aria-label="Page navigation example" className="col-3 offset-6">
         <ul class="pagination">

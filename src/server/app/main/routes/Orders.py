@@ -10,6 +10,10 @@ import datetime
 class Orders(Resource):
     parser = reqparse.RequestParser()
 
+    parser.add_argument('name', type=str,required=False)
+    parser.add_argument('email', type=str,required=False)
+    parser.add_argument('message', type=str,required=False)
+    parser.add_argument('phone_number', type=str,required=False)
     parser.add_argument('order_amount', type=str,required=False)
     parser.add_argument('order_currency', type=str,required=False)
     parser.add_argument('order_receipt', type=str,required=False)
@@ -24,6 +28,8 @@ class Orders(Resource):
         print(data," are the parameters passed to Orders POST")
         flag, order_info = create_order(data)
 
+        print(order_info," is the order_info being sent to client")
+        
         if flag:
             return {"status" : "success",  "data" : order_info}
         else:
