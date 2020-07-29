@@ -8,25 +8,24 @@
 }
 
 
-.containerBox {
-  margin: 0 auto;
+.containerBox{
+  margin : 0 auto;
   max-width: 1032px;
-  display: flex;
+  display : flex;
   flex-direction: row;
   justify-content: center;
   font-size: 12px !important;
 }
 
-.filterBox,
-.filterBox > div {
+.filterBox, .filterBox > div{
   width: 180px;
 }
 
 .filterBox {
-  margin: 0 20px 0 10px;
+  margin : 0 20px 0 10px;
 }
 
-.galleryBox {
+.galleryBox{
   width: 600px;
 }
 
@@ -34,49 +33,44 @@
   max-width: 100%;
 }
 
-.sortBox {
-  display: flex;
+.sortBox{
+  display : flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
 
-.sortElement {
-  display: flex;
+.sortElement{
+  display : flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 100%;
+  width : 100%;
 }
 
 .perPageComponent {
-  display: flex;
+  display : flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   font-weight: 100;
 }
 
-.sortButtonComponent,
-.sortButtonComponent div,
-.sortButtonComponent select {
+.sortButtonComponent, .sortButtonComponent div, .sortButtonComponent select {
   width: 130px;
-  height: 30px;
-  font-size: 12px;
+  height : 30px;
+  font-size : 12px;
 }
 
-.totalHotels {
+
+.totalHotels{
   flex-basis: 500px;
 }
 
 .bgHighlight {
+  
   position: relative;
-  top: 3px;
+  top:3px;
   background-color: rgb(246, 245, 246);
-  padding: 5px;
-  height: 100% !important;
+  padding : 5px;
+  height:100% !important;
 }
-
-/* .searchStyle {
-  margin: 1.5rem auto;
-  max-width: 1000px;
-} */
