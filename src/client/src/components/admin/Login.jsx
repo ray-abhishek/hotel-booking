@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { userLogin, googleLogin } from "../../redux/auth/action";
 import GoogleLogin from "react-google-login";
 import style from "./Login.module.css";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class Login extends React.Component {
       email: "",
       password: "",
       googleResponse: "",
+      hidden: true 
     };
   }
 
@@ -20,6 +21,11 @@ class Login extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+
+  toggleShow=()=> {
+    this.setState({ hidden: !this.state.hidden });
+  }
+
 
   // Google Response
 
@@ -31,19 +37,17 @@ class Login extends React.Component {
     this.props.googleLoginData(response.profileObj);
   };
   render() {
-    const { handleChange } = this;
-    const { password, email } = this.state;
+    const { handleChange,toggleShow } = this;
+    const { password, email, hidden  } = this.state;
     const { userLogin, loginData, googleLoginData, isLogin } = this.props;
-    ////console.log(loginData);
+
+    console.log(hidden);
 
     return (
       <div className={style.card}>
         <div className="form-row mt-1">
           <div className="form-group col-12">
             <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-user-circle"></i>
-              </span>
 
               <input
                 className="form-control"
@@ -57,43 +61,43 @@ class Login extends React.Component {
             </div>{" "}
           </div>
 
-          <div className="form-group col-12">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-unlock-alt"></i>
-              </span>
+          <div className="form-group col-12" >
+            <div class="input-group-prepend no-border">
 
               <input
                 className="form-control"
-                type="password"
+                type={this.state.hidden ? "password" : "text"}
                 value={password}
                 name="password"
                 onChange={handleChange}
-                placeholder=" enter your password"
-                required
-              />
+
+                placeholder=" enter your password" required
+              /> 
+              {hidden===false?  
+                <i class="far fa-eye"  onClick={toggleShow} style={eye}></i>
+                : 
+                <i class="far fa-eye-slash" onClick={toggleShow} style={eye}></i> }
+       
+
             </div>
           </div>
           <br />
         </div>
 
         {/* Login Button and message display of success and failure */}
+        
         <div className="text-center pb-3">
-          <button
-            className="btn btn-primary"
+          <button disabled={(email.length  && password.length) <1}
+            className=  {(email.length && password.length) < 1 ? " btn btn-light btn-block" : "btn btn-danger btn-block"} 
             data-dismiss={isLogin === true ? "modal" : undefined}
             onClick={() => userLogin(this.state)}
           >
-            {isLogin ? "Ok" : "Login"}
+            {isLogin ?   "Ok" : "Login"}
           </button>
         </div>
-        {/* {loginData.data && loginData.data.status === "failure"
-          ? loginData.data && loginData.data.message
-          : loginData.data && loginData.data.message} */}
-        <hr />
 
         {/* Google login Logic */}
-        <button className="btn btn-outline-light" data-dismiss="modal">
+        <button className="btn btn-outline-light mb-3" data-dismiss="modal">
           <GoogleLogin
             clientId="659753718488-eo6dlvve5j2c5euta6ji0iovpapfj6bu.apps.googleusercontent.com"
             buttonText="Google"
@@ -102,11 +106,20 @@ class Login extends React.Component {
             onFailure={this.responseGoogle}
             cookiePolicy={"single_host_origin"}
           />
-        </button>
+        </button><br/>
+        <Link>Forgot Password?</Link>
       </div>
     );
   }
 }
+
+const eye={
+   marginLeft: -30,
+    cursor: "pointer",
+    paddingTop: 10
+}
+
+
 
 const mapStateToProps = (state) => ({
   loginData: state.authReducer.loginData,
