@@ -39,6 +39,7 @@ class HotelDisplay extends React.Component {
 
           <ImageCarousel />
 
+
       </div>
 
       <div className="container mt-5" style={{maxWidth:'850px'}}>
@@ -66,11 +67,15 @@ class HotelDisplay extends React.Component {
         <div className="row">
           <div className="col-12">
 
+
+        <SimilarHomes paramsId={this.props.match.params.id} />
+
         
           </div>
         </div>
       </div>
     </>
+
     );
   }
 }

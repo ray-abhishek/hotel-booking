@@ -28,7 +28,6 @@ const Routes = (props) => {
         render={(props) => <Catalog {...props} />}
       />
 
-
       <Route
         exact
         path="/search/:location/:id"
@@ -47,8 +46,8 @@ const Routes = (props) => {
       />
       <Route
         exact
-        path="/home-listing/:hotel-id/request-booking/confirmed"
-        render={(props) => <ConfirmationPage />}
+        path="/request-booking/confirmed"
+        render={(props) => <ConfirmationPage {...props} />}
       />
       <Switch />
     </>

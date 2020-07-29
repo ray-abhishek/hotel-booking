@@ -43,7 +43,18 @@ class BookingForm extends Component {
   };
 
   render() {
-    console.log(this.state, "form details");
+
+    const { hotelData, details, differenceDate } = this.props.location.state;
+    // console.log(hotelData, details, "form details");
+    // console.log(details["arrivalDate"], "arrivaldate");
+    let arrival =
+      details &&
+      details["arrivalDate"] &&
+      `${details["arrivalDate"].toUTCString().slice(0, 17)}`;
+    let departure =
+      details &&
+      details["departureDate"] &&
+      `${details["departureDate"].toUTCString().slice(0, 17)}`;
     return (
       <div className="row">
         <div className="col-12 col-md-7 order-2 order-md-1">
