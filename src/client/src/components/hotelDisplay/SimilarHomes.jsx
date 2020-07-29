@@ -14,7 +14,7 @@ class SimilarHomes extends React.Component {
   componentDidMount() {
     ////console.log("params similar page", this.props);
     axios
-      .get("https://7d6daa289cc2.ngrok.io/get-similar/" + this.props.paramsId)
+      .get("https://c339083f82fb.ngrok.io/get-similar/" + this.props.paramsId)
       .then((res) => {
         ////console.log("res data", res.data);
         this.setState({

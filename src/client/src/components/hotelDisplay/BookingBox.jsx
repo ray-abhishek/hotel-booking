@@ -50,7 +50,7 @@ class BookingBox extends React.Component {
   async componentDidMount() {
     ////console.log("id", this.props.match.params.id);
     const res = await axios.get(
-      "https://7d6daa289cc2.ngrok.io/booked-dates/" + this.props.match.params.id
+      "https://c339083f82fb.ngrok.io/booked-dates/" + this.props.match.params.id
     );
     ////console.log("booked dates", res.data);
     this.setState({
@@ -59,10 +59,39 @@ class BookingBox extends React.Component {
   }
 
   handleBooking = () => {
+    ////console.log("hotelData", hotelData);
+    const { arrivalDate, departureDate } = this.state;
+    let arrival = `${arrivalDate && arrivalDate.getFullYear()}-${
+      arrivalDate && arrivalDate.getMonth() + 1
+    }-${arrivalDate && arrivalDate.getDate()}`;
+
+    let departure = `${departureDate && departureDate.getFullYear()}-${
+      departureDate && departureDate.getMonth() + 1
+    }-${departureDate && departureDate.getDate()}
+              `;
+
+    // differencce of date
+    let differenceDate = Math.floor(
+      (Date.UTC(
+        departureDate && departureDate.getFullYear(),
+        departureDate && departureDate.getMonth(),
+        departureDate && departureDate.getDate()
+      ) -
+        Date.UTC(
+          departureDate && arrivalDate.getFullYear(),
+          departureDate && arrivalDate.getMonth(),
+          departureDate && arrivalDate.getDate()
+        )) /
+        (1000 * 60 * 60 * 24)
+    );
     this.props.history.push({
       pathname:
         "/home-listing/" + this.props.match.params.id + "/request-booking",
-      state: { details: this.state, hotelData: this.props.hotelData },
+      state: {
+        details: this.state,
+        hotelData: this.props.hotelData,
+        differenceDate: differenceDate,
+      },
     });
   };
 
