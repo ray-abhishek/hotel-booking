@@ -104,7 +104,7 @@ export const fetchCatalogRequest = (payload) => (dispatch) => {
   console.log(`https://7d6daa289cc2.ngrok.io${payload}`, "url");
   dispatch(fetchCatalogListRequest());
   return axios
-    .get(`https://c339083f82fb.ngrok.io${payload}`)
+    .get(`https://3d82b4e9e58f.ngrok.io${payload}`)
     .then((res) => {
       console.log(res.data);
       return res;
@@ -118,7 +118,7 @@ export const fetchEntityRequest = (payload) => (dispatch) => {
   console.log(`https://c339083f82fb.ngrok.io${payload}`, "url");
   dispatch(fetchEntityListRequest());
   return axios
-    .get(`https://c339083f82fb.ngrok.io${payload}`)
+    .get(`https://3d82b4e9e58f.ngrok.io${payload}`)
     .then((res) => {
       console.log(res.data);
       return res;
