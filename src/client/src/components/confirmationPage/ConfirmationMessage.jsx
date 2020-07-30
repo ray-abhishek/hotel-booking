@@ -23,6 +23,15 @@ class ConfirmationMessage extends Component {
     };
   }
 
+  // this.state = {
+  //   firstname: "",
+  //   lastName: "",
+  //   email: "",
+  //   countryCode: "",
+  //   mobileNo: "",
+  //   message: "",
+  //   notification: false,
+  // };
   render() {
     const { info, data } = this.props.location.state;
     const { hotelData } = this.props.location.state.props;
