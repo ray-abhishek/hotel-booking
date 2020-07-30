@@ -27,12 +27,27 @@ class Filter extends Component {
 
   componentDidMount() {
     const { fetchCatalogRequest, history, location, match } = this.props;
-    const values = queryString.parse(this.props.location.search);
+    const values = queryString.parse(location.search);
+    let featuresArr;
+    if (!values.features || values.features.length == 0) {
+      featuresArr = [];
+    } else if (values.features && typeof values.features == "string") {
+      featuresArr = [values.features];
+    } else if (typeof values.features == "object") {
+      featuresArr = values.features;
+    }
+
     this.setState({
-      features: values.features || [],
-      minPrice: values.minPrice || 100,
-      sort: values.sort || "Recommended",
-      perPage: values.perPage > 10 ? values.perPage : 10,
+      features: featuresArr,
+      minPrice:
+        !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
+      sort:
+        !values.sort ||
+        values.sort == "Recommended" ||
+        values.sort == "Recommended"
+          ? "Recommended"
+          : values.sort,
+      perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
     });
     fetchCatalogRequest(`${location.pathname}${location.search}`);
   }
@@ -179,8 +194,10 @@ class Filter extends Component {
   render() {
     const { location, totalResults } = this.props;
     // const { fetchCatalogRequest, fetchCatalogListSuccess } = this.props;
-    const values = queryString.parse(this.props.location.search);
+    // const values = queryString.parse(this.props.location.search);
     let query = location.search;
+    query = query.replace("%20", " ");
+    console.log(query, "query");
     return (
       <>
         <FilterModal {...this.props} />

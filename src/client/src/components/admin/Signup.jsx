@@ -28,13 +28,13 @@ class Signup extends React.Component {
     this.setState({ hidden: !this.state.hidden });
   }
 
+  
   // Google Auth response 
-
   responseGoogle = (response) => {
     this.setState({
       googleResponse: response.profileObj,
     });
-    ////console.log("sign up google res", response.profileObj);
+    console.log("sign up google res", response.profileObj);
     this.props.googleLoginData(response.profileObj);
   };
 
@@ -42,10 +42,8 @@ class Signup extends React.Component {
     const { handleChange, toggleShow } = this;
     const { name, email, password, hidden } = this.state;
     const { userRegistration, handleData, isSignup } = this.props;
-
     // const { data } = this.props.data;
     // console.log(data);
-
 
     return (
       <div className={style.card}>
@@ -61,8 +59,7 @@ class Signup extends React.Component {
                 value={name}
                 name="name"
                 onChange={handleChange}
-                placeholder="enter your name"
-                required
+                placeholder="enter your name" required
               />
             </div>
           </div>
@@ -76,8 +73,7 @@ class Signup extends React.Component {
                 value={email}
                 name="email"
                 onChange={handleChange}
-                placeholder="enter your email"
-                required
+                placeholder="enter your email" required
               />
             </div>
           </div>
@@ -91,8 +87,7 @@ class Signup extends React.Component {
                 value={password}
                 name="password"
                 onChange={handleChange}
-                placeholder="enter your password"
-                required
+                placeholder="enter your password" required
               />
               {hidden===false?  
                 <i class="far fa-eye"  onClick={toggleShow} style={eye}></i>
@@ -101,7 +96,7 @@ class Signup extends React.Component {
             </div>
           </div>
         </div>
-        {/* // signup button */}
+      {/* // signup button */}
         <div className="text-center pb-3">
           <button disabled={(email.length  && password.length) <1}
             className={(email.length && password.length) < 1 ? " btn btn-light btn-block" : "btn btn-danger btn-block"} 
@@ -114,6 +109,7 @@ class Signup extends React.Component {
         </div>
         <hr />
         <div>
+
           {/* Google Login  */}
 
           <GoogleLogin

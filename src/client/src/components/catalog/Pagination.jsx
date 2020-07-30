@@ -19,7 +19,6 @@ class Pagination extends Component {
       page: 1,
     };
   }
-
   componentDidMount() {
     const { fetchCatalogRequest, history, location, match } = this.props;
     const values = queryString.parse(location.search);
@@ -51,14 +50,13 @@ class Pagination extends Component {
     e.preventDefault();
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;
-    //console.log(match, "this is location obj from pagination page handler");
+    console.log(location, "this is location obj from pagination page handler");
 
     this.setState({
       page: e.target.id,
     });
 
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
-
     let query = "";
     if (features.length > 0) {
       let stringArr = features?.map((ele, i) =>
@@ -77,10 +75,7 @@ class Pagination extends Component {
       query +=
         sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     }
-    //console.log("query", query);
-
     url += query.length > 0 ? "?" + query.slice(1) : "";
-    //console.log("url", url);
     history.push(url);
     fetchCatalogRequest(url);
   };
