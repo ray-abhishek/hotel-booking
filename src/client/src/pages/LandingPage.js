@@ -3,6 +3,7 @@ import Header from "../components/landingPage/Header";
 import Collections from "../components/landingPage/Collections";
 import { connect } from "react-redux";
 import Inspiration from "../components/landingPage/Inspiration";
+import AutocompletePlaces from "../components/common/AutocompletePlaces";
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -14,6 +15,17 @@ class LandingPage extends React.Component {
     return (
       <>
         <Header {...this.props} />
+        <div
+          style={{
+            padding: "5px",
+            background: "#4DE1FF",
+            justifyContent: "center",
+            display: "flex",
+            // padding: " 5px auto",
+          }}
+        >
+          <AutocompletePlaces />
+        </div>
         <Collections {...this.props} />
         <Inspiration {...this.props} />
       </>
