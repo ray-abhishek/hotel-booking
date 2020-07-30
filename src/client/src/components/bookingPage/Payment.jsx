@@ -39,7 +39,7 @@ class Payment extends React.Component {
         departureDate.getMonth() + 1
       }-${departureDate.getDate()}`;
     try {
-      const apiURL = "https://c339083f82fb.ngrok.io";
+      const apiURL = "https://3d82b4e9e58f.ngrok.io";
       e.preventDefault();
       // const url = new URLSearchParams();
       // url.append("order_amount", "10000");

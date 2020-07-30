@@ -35,6 +35,17 @@ def create_order(data):
     print(book_from,book_to," are bookfrom and bookto")
     #create a booking in BookingModel based on book_from and book_to and hotel_id and put status as "TEMP"
 
+    existing_booking_query = 'SELECT hotel_id from bookings WHERE checkin_dt <="%s" and checkout_dt >="%s" and hotel_id = %s;'%(book_to, book_from, hotel_id)
+
+    data_raw = db.engine.execute(existing_booking_query)
+
+    booking_data = []
+    for row in data_raw:
+        return False, {}, True
+        booking_data.append(row)
+
+    print(booking_data," is booking data")
+
     new_asset = BookingModel(hotel_id = hotel_id, checkin_dt = book_from, checkout_dt = book_to, status = "TEMPORARY")
 
     save_changes(new_asset)
@@ -68,9 +79,9 @@ def create_order(data):
     print(order_id," is the new order id")
 
     if order_id:
-        return True, {"order_id" : order_id, "currency" : order_currency, "amount" : order_amount, "name" : name, "description" : "Hotel Booking", "email" : email, "contact" : phone_number}
+        return True, {"order_id" : order_id, "currency" : order_currency, "amount" : order_amount, "name" : name, "description" : "Hotel Booking", "email" : email, "contact" : phone_number}, False
     else:
-        return False, {}
+        return False, {}, False
 
 
 
