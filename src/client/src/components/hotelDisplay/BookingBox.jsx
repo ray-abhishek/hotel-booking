@@ -9,7 +9,7 @@ import axios from 'axios';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import dates from './dates.json';
+import dates from './dates.json';
 
 const ExampleCustomArrival = ({ value, onClick }) => (
   <button style={{ border: "none", background: "white" }} onClick={onClick}>
@@ -33,7 +33,7 @@ class BookingBox extends React.Component{
       arrivalDate: new Date(),
       departureDate: new Date(),
       bookedDates: '',
-      dateBooked: false
+      isLoading: false
       
     };
   }
@@ -52,14 +52,15 @@ class BookingBox extends React.Component{
     });
   };
 
-     componentDidMount (){
+    async componentDidMount (){
       console.log("id", this.props.match.params.id)
-      const res=  axios.get("https://c339083f82fb.ngrok.io/booked-dates/"+this.props.match.params.id)
-      console.log("booked dates" ,res.data)
+      const res= await axios.get("https://3d82b4e9e58f.ngrok.io/booked-dates/"+this.props.match.params.id)
+      
         this.setState({
           bookedDates: res.data,
-          dateBooked: true
-        })        
+          isLoading: true
+        })       
+        console.log("booked dates" ,res.data) 
     }
 
     handleBooking=()=>{
@@ -68,10 +69,10 @@ class BookingBox extends React.Component{
 
 
     render(){
-        const {arrivalDate , departureDate, bookedDates, dateBooked} = this.state;
+        const {arrivalDate , departureDate, bookedDates, isLoading} = this.state;
         const { setStartDate, getFullYear, getMonth, getDate, handleBooking } = this;
         const { hotelData } = this.props
-        console.log("hotelData", hotelData)
+        // console.log("hotelData", hotelData)
         let arrival = 
         `${arrivalDate && arrivalDate.getFullYear()}-${arrivalDate && arrivalDate.getMonth() + 1}-${arrivalDate && arrivalDate.getDate()}`;
           
@@ -85,11 +86,15 @@ class BookingBox extends React.Component{
 
 
           // console.log( "arrival" ,arrival)
-          // console.log( "departure" ,departure)
+          console.log( "booking Dates" ,bookedDates)
+          if(!isLoading){
+            console.log("isLoading", isLoading)
+            return <div>Loading...</div>
+          }
 
         return(
-            <div className="clearfix" style={{fontSize:'15px'}}>
-              <div className="card p-3" style={{width:300, height:"auto"}}>
+            <div className="clearfix p-2" style={{fontSize:'15px'}}>
+              <div className="card p-4" style={{width:300, height:"auto"}}>
              <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -106,26 +111,20 @@ class BookingBox extends React.Component{
                     className="datepicker"
                     selected={this.state.arrivalDate}
                     onChange={(date) => this.handleArrivalDateChange(date)}
-                 
-                    // minDate={ this.state.arrivalDate}
-                    // maxDate={addDays(new Date(), 150)}
                     selectsStart
         
                     startDate={new Date()}
                     endDate={new Date()}
                     minDate={new Date()}
 
-                    // excludeDates={
-                    //   bookedDates &&
-                    //   bookedDates.data["ahead"].map(
-                    //   (item) => (new Date(), addDays(new Date(), item))
-                    //   )
-                    //   } 
+                    excludeDates={ 
+                      bookedDates &&
+                      bookedDates.data["ahead"].map(
+                      (item) => (new Date(), addDays(new Date(), item))
+                      )
+                      } 
 
-                    placeholderText="Arrival date"
-                    // selectsStart
-                    // startDate={ this.state.arrivalDate}
-                    // endDate={this.state.arrivalDate}                 
+                    placeholderText="Arrival date"                 
                     customInput={<ExampleCustomArrival />}                
                   > 
                  
@@ -158,23 +157,15 @@ class BookingBox extends React.Component{
                     startDate={new Date()}
                     endDate={new Date()}
                     minDate={this.state.arrivalDate}
-                    // minDate={this.state.arrivalDate}
-                    // minDate={addDays(new Date(), 4)}
-                    // maxDate={addDays(new Date(), 150)}
+ 
                     // <Button bsStyle={condition ? 'success' : undefined} /> 
-                    // excludeDates={
-                    //    dateBooked?  bookedDates && bookedDates.data["ahead"]?.map(item=>(
-                    //     addDays(new Date(), item))) : undefined
+                    excludeDates={ 
 
-
-                      // (bookedDates === null)?null: 
-                      // (bookedDates.data["ahead"]?.map(item=>(
-                      //   addDays(new Date(), item))))                                      
-                  // }
+                       bookedDates && bookedDates.data["ahead"]?.map(item=>(
+                        addDays(new Date(), item))) 
+                    }
                     placeholderText="Departure date "
-                    // selectsStart
-                    // startDate={ this.state.arrivalDate}
-                    // endDate={this.state.arrivalDate}
+
                     customInput={<ExampleCustomDeparture />}
                     
                   />
@@ -242,25 +233,6 @@ const contact ={
       textDecoration: "underline"
 }
 
-const book={
-  width: 16, 
-  height: 16, 
-  marginBottom: 2, 
-  marginRight: 5,
-  backgroundColor: "green"
-}
-const request ={
-
-  width: 16,
-      height: 16,
-      marginBottom: 2,
-      marginRight: 5,
-      backgroundColor: "SkyBlue"
-}
-
-const reqCol={
-  display: "flex"
-}
 
 
 const mapStateToProps =(state)=>({
