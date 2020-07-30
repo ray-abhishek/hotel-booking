@@ -20,14 +20,14 @@ class ConfirmationMessage extends Component {
       mobileNo: "",
       message: "",
       notification: false,
+      data: this.props.location.state || {},
     };
   }
 
-
   render() {
-    const { info, data } = this.props.location.state;
-    const { hotelData } = this.props.location.state.props;
-    const { amount_paid, order_id } = data.data;
+    const { info, data } = this.state.data;
+    const { hotelData } = this.props;
+    const { amount_paid, order_id } = data && data.data;
     console.log("confirmation details", amount_paid, order_id);
     const font = {
       fontFamily: "tiemposText",
@@ -167,10 +167,17 @@ class ConfirmationMessage extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  hotelData: state.dataReducer.entityData,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   fetchCatalogRequest: (payload) => dispatch(fetchCatalogRequest(payload)),
   fetchCatalogListSuccess: (payload) =>
     dispatch(fetchCatalogListSuccess(payload)),
 });
 
-export default connect(null, mapDispatchToProps)(ConfirmationMessage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConfirmationMessage);
