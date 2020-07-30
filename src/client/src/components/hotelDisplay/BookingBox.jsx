@@ -48,6 +48,7 @@ class BookingBox extends React.Component {
     });
   };
 
+
   handleBooking = () => {
     ////console.log("hotelData", hotelData);
     const { arrivalDate, departureDate } = this.state;

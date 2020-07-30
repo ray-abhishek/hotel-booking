@@ -12,6 +12,11 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql://root:Bluejibble@123@localhost/onefinestay'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ENV = 'development'
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = 'abhi.22.ray@gmail.com'
+    MAIL_PASSWORD = 'rainbowisback'
 
 class TestingConfig(Config):
     DEBUG = True

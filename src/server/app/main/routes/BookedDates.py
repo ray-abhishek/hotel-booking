@@ -26,4 +26,4 @@ class BookedDates(Resource):
         if flag:
             return {"status" : "success", "data" : booked_dates}
         else:
-            return {"status" : "failure" , "message" : "The hotel does not have any bookings"}
+            return {"status" : "failure" , "message" : "The hotel does not have any bookings", "data" : {"ahead" : [0], "before" : []}}
