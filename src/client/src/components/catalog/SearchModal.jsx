@@ -226,6 +226,7 @@ class SearchBarModal extends Component {
                 onClick={(e) => this.handleOnClick(e)}
                 type="submit"
                 className="btn btn-danger col-3"
+                data-dismiss="modal"
               >
                 Search
               </button>

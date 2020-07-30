@@ -129,46 +129,52 @@ class Pagination extends Component {
     let pages = this.pages();
     console.log(page);
     return (
-      <nav aria-label="Page navigation example" className="col-3 offset-6">
-        <ul class="pagination">
-          {page != 1 && (
-            <li class="page-item">
-              <a
-                onClick={(e) => this.handlePageChange(e)}
-                class="page-link"
-                aria-label="Previous"
-              >
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-          )}
-
-          {pages &&
-            pages.length > 0 &&
-            pages.map((ele) => (
+      <nav
+        aria-label="Page navigation example"
+        className="col-3 offset-6"
+        style={{ cursor: "pointer" }}
+      >
+        {totalPages && (
+          <ul class="pagination">
+            {page != 1 && (
               <li class="page-item">
                 <a
                   onClick={(e) => this.handlePageChange(e)}
                   class="page-link"
-                  id={ele}
+                  aria-label="Previous"
                 >
-                  {ele}
+                  <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
-            ))}
+            )}
 
-          {totalPages && page != totalPages && (
-            <li class="page-item">
-              <a
-                onClick={(e) => this.handlePageChange(e)}
-                class="page-link"
-                aria-label="Next"
-              >
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          )}
-        </ul>
+            {pages &&
+              pages.length > 0 &&
+              pages.map((ele) => (
+                <li class="page-item">
+                  <a
+                    onClick={(e) => this.handlePageChange(e)}
+                    class="page-link"
+                    id={ele}
+                  >
+                    {ele}
+                  </a>
+                </li>
+              ))}
+
+            {page != totalPages && (
+              <li class="page-item">
+                <a
+                  onClick={(e) => this.handlePageChange(e)}
+                  class="page-link"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            )}
+          </ul>
+        )}
       </nav>
     );
   }
@@ -181,4 +187,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCatalogListSuccess: (payload) =>
     dispatch(fetchCatalogListSuccess(payload)),
 });
-export default connect(null, mapDispatchToProps)(Pagination);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

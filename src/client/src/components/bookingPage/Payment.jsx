@@ -38,7 +38,7 @@ class Payment extends React.Component {
         departureDate.getMonth() + 1
       }-${departureDate.getDate()}`;
     try {
-      const apiURL = "https://c339083f82fb.ngrok.io";
+      const apiURL = "https://3d82b4e9e58f.ngrok.io";
       e.preventDefault();
       // const url = new URLSearchParams();
       // url.append("order_amount", "10000");
@@ -84,12 +84,14 @@ class Payment extends React.Component {
         },
         handler: async (response) => {
           console.log(response, "respone in payment by handler");
+          // let amount = Number(differenceDate) * Number(cost_per_night) * 100;
+
           const res = await axios.post(`${apiURL}/payment`, {
             ...response,
             order_id: this.state.order_id,
           });
 
-          if (res.res.data.status !== "success") {
+          if (res.data.status !== "success") {
             return alert(res.data.message);
           }
 
@@ -97,19 +99,19 @@ class Payment extends React.Component {
             pathname: "/request-booking/confirmed",
             state: {
               data: res.data,
-              props: this.props,
+              props: this.props.location.state,
               info: {
-                email,
-                countryCode,
-                firstname,
-                lastName,
-                message,
-                mobileNo,
-                notification,
-                differenceDate,
-                amount,
-                arrival,
-                departure,
+                email: email,
+                countryCode: countryCode,
+                firstname: firstname,
+                lastName: lastName,
+                message: message,
+                mobileNo: mobileNo,
+                notification: notification,
+                differenceDate: differenceDate,
+                amount: amount,
+                arrival: arrival,
+                departure: departure,
               },
             },
           });
@@ -121,7 +123,8 @@ class Payment extends React.Component {
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (err) {
-      alert("Something went wrong please fill all the fields correctly");
+      alert(err);
+      // alert("Something went wrong please fill all the fields correctly");
       ////console.log(err);
     }
   };
