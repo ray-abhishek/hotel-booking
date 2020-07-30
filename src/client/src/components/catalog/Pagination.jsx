@@ -21,12 +21,18 @@ class Pagination extends Component {
   }
   componentDidMount() {
     const { fetchCatalogRequest, history, location, match } = this.props;
-    const values = queryString.parse(this.props.location.search);
+    const values = queryString.parse(location.search);
+    let featuresArr;
+    if (!values.features || values.features.length == 0) {
+      featuresArr = [];
+    } else if (values.features && typeof values.features == "string") {
+      featuresArr = [values.features];
+    } else if (typeof values.features == "object") {
+      featuresArr = values.features;
+    }
+
     this.setState({
-      features:
-        !values.features || (values.features && values.features.length > 0)
-          ? values.features
-          : [],
+      features: featuresArr,
       minPrice:
         !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
       sort:
@@ -77,14 +83,19 @@ class Pagination extends Component {
   componentWillReceiveProps(nextProps, nextState) {
     const { fetchCatalogRequest } = this.props;
     const { location } = nextProps;
-
+    //console.log(nextProps, "nextprops");
     const values = queryString.parse(location.search);
+    //console.log("values", values);
+    let featuresArr;
+    if (!values.features || values.features.length == 0) {
+      featuresArr = [];
+    } else if (values.features && typeof values.features == "string") {
+      featuresArr = [values.features];
+    } else if (typeof values.features == "object") {
+      featuresArr = values.features;
+    }
     this.setState({
-      features:
-        !values.features ||
-        (this.state.features && values.features && values.features.length > 0)
-          ? [...this.state.features, values.features]
-          : [],
+      features: featuresArr,
       minPrice:
         !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
       sort:
@@ -97,60 +108,68 @@ class Pagination extends Component {
     });
   }
 
+  pages = () => {
+    const { totalPages } = this.props;
+    let pages = [];
+    for (let i = 0; i < totalPages; i++) {
+      pages.push(i + 1);
+    }
+    return pages;
+  };
   render() {
     const { page } = this.state;
     const { totalPages } = this.props;
-    console.log(totalPages, "total pages");
-    console.log(this.state, "state updated in pagination");
+    ////console.log(totalPages, "total pages");
+    //console.log(this.state, "state updated in pagination");
+    let pages = this.pages();
+    console.log(page);
     return (
-      <nav aria-label="Page navigation example" className="col-3 offset-6">
-        <ul class="pagination">
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              aria-label="Previous"
-            >
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="1"
-            >
-              1
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="2"
-            >
-              2
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="3"
-            >
-              3
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              aria-label="Next"
-            >
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
+      <nav
+        aria-label="Page navigation example"
+        className="col-3 offset-6"
+        style={{ cursor: "pointer" }}
+      >
+        {totalPages && (
+          <ul class="pagination">
+            {page != 1 && (
+              <li class="page-item">
+                <a
+                  onClick={(e) => this.handlePageChange(e)}
+                  class="page-link"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            )}
+
+            {pages &&
+              pages.length > 0 &&
+              pages.map((ele) => (
+                <li class="page-item">
+                  <a
+                    onClick={(e) => this.handlePageChange(e)}
+                    class="page-link"
+                    id={ele}
+                  >
+                    {ele}
+                  </a>
+                </li>
+              ))}
+
+            {page != totalPages && (
+              <li class="page-item">
+                <a
+                  onClick={(e) => this.handlePageChange(e)}
+                  class="page-link"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            )}
+          </ul>
+        )}
       </nav>
     );
   }
@@ -163,4 +182,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCatalogListSuccess: (payload) =>
     dispatch(fetchCatalogListSuccess(payload)),
 });
-export default connect(null, mapDispatchToProps)(Pagination);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

@@ -24,7 +24,7 @@ class Payments(Resource):
         print("\n\n---INSIDE POST Payments---\n")
         print(data," are the parameters passed to Payments POST")
         flag, confirmed_data = validate_payment(data)
-
+        print(confirmed_data," is payment confirmation data being sent to client")
         if flag:
             return {"status" : "success",  "message" : "success", "data" : confirmed_data}
         else:

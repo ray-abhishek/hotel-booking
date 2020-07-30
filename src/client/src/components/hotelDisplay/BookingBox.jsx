@@ -63,10 +63,33 @@ class BookingBox extends React.Component{
         console.log("booked dates" ,res.data) 
     }
 
-    handleBooking=()=>{
-      this.props.history.push("/home-listing/"+this.props.match.params.id+"/request-booking")
-    }
-
+    handleBooking = () => {
+      ////console.log("hotelData", hotelData);
+      const { arrivalDate, departureDate } = this.state;
+      // differencce of date
+      let differenceDate = Math.floor(
+        (Date.UTC(
+          departureDate && departureDate.getFullYear(),
+          departureDate && departureDate.getMonth(),
+          departureDate && departureDate.getDate()
+        ) -
+          Date.UTC(
+            arrivalDate && arrivalDate.getFullYear(),
+            arrivalDate && arrivalDate.getMonth(),
+            arrivalDate && arrivalDate.getDate()
+          )) /
+          (1000 * 60 * 60 * 24)
+      );
+      this.props.history.push({
+        pathname:
+          "/home-listing/" + this.props.match.params.id + "/request-booking",
+        state: {
+          details: this.state,
+          hotelData: this.props.hotelData,
+          differenceDate: differenceDate,
+        },
+      });
+    };
 
     render(){
         const {arrivalDate , departureDate, bookedDates, isLoading} = this.state;

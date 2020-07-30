@@ -43,7 +43,6 @@ class BookingForm extends Component {
   };
 
   render() {
-
     const { hotelData, details, differenceDate } = this.props.location.state;
     // console.log(hotelData, details, "form details");
     // console.log(details["arrivalDate"], "arrivaldate");
@@ -160,7 +159,15 @@ class BookingForm extends Component {
               </label>
             </div>
             <div className="text-center ">
-              <Payment {...this.props} />
+              <Payment
+                {...this.props}
+                personDetails={{
+                  ...this.state,
+                  arrival: arrival,
+                  departure: departure,
+                  differenceDate: differenceDate,
+                }}
+              />
             </div>
           </form>
         </div>

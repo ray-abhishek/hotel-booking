@@ -69,8 +69,7 @@ class HotelDisplay extends React.Component {
 
 
         <SimilarHomes paramsId={this.props.match.params.id} />
-
-        
+  
           </div>
         </div>
       </div>

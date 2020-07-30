@@ -6,9 +6,11 @@ import {} from "../../redux/action";
 class Payment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      formData: this.props.personDetails,
+      order_id: "",
+    };
   }
-
 
   dispalyRazorPay = async (e) => {
     const { arrivalDate, departureDate } = this.props.location.state.details;
@@ -36,20 +38,30 @@ class Payment extends React.Component {
         departureDate.getMonth() + 1
       }-${departureDate.getDate()}`;
     try {
-      const apiURL = "https://9e93fb84fe29.ngrok.io";
+      const apiURL = "https://3d82b4e9e58f.ngrok.io";
       e.preventDefault();
-      const url = new URLSearchParams();
-      url.append("order_amount", "10000");
-      url.append("currency", "INR");
+      // const url = new URLSearchParams();
+      // url.append("order_amount", "10000");
+      // url.append("currency", "INR");
       //   parser.add_argument('book_from', type=str,required=False)
       //   parser.add_argument('book_to', type=str,required=False)
       const response = await axios.post(apiURL + "/order", {
-        order_amount: "10000",
-        order_currency: "INR",
+        name: `${firstname} ${lastName}`,
+        email: `${email}`,
+        message: `${message}`,
+        phone_number: `${mobileNo}`,
+        order_amount: `${amount}`,
+        order_currency: `INR`,
         order_receipt: `recipi${Date.now()}`,
-        hotel_id: "1",
+        book_from: `${arrival}`,
+        book_to: `${departure}`,
+        hotel_id: `${id}`,
       });
       const { data } = response;
+      if (data.status === "failure") {
+        return alert(data.message);
+      }
+
       console.log(data, " is data  from /order");
       ////console.log(data["data"]["order_id"], " is orderID from /order");
       this.setState({ order_id: data["data"]["order_id"] });
@@ -72,38 +84,38 @@ class Payment extends React.Component {
         },
         handler: async (response) => {
           console.log(response, "respone in payment by handler");
-          const res = await axios
-            .post(`${apiURL}/payment`, {
-              ...response,
-              order_id: this.state.order_id,
-            })
-            .then((res) => {
-              if (res.status === 200) {
-                res.data.status === "success"
-                  ? this.props.history.push({
-                      pathname: "/request-booking/confirmed",
-                      state: {
-                        data: res.data,
-                        props: this.props,
-                        info: {
-                          email,
-                          countryCode,
-                          firstname,
-                          lastName,
-                          message,
-                          mobileNo,
-                          notification,
-                          differenceDate,
-                          amount,
-                          arrival,
-                          departure,
-                        },
-                      },
-                    })
-                  : alert("payment fail");
-                return res;
-              }
-            });
+          // let amount = Number(differenceDate) * Number(cost_per_night) * 100;
+
+          const res = await axios.post(`${apiURL}/payment`, {
+            ...response,
+            order_id: this.state.order_id,
+          });
+
+          if (res.data.status !== "success") {
+            return alert(res.data.message);
+          }
+
+          this.props.history.push({
+            pathname: "/request-booking/confirmed",
+            state: {
+              data: res.data,
+              props: this.props.location.state,
+              info: {
+                email: email,
+                countryCode: countryCode,
+                firstname: firstname,
+                lastName: lastName,
+                message: message,
+                mobileNo: mobileNo,
+                notification: notification,
+                differenceDate: differenceDate,
+                amount: amount,
+                arrival: arrival,
+                departure: departure,
+              },
+            },
+          });
+
           const { data } = res;
           ////console.log(data, "backend");
         },
@@ -111,7 +123,8 @@ class Payment extends React.Component {
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (err) {
-      alert("Something went wrong please fill all the fields correctly");
+      alert(err);
+      // alert("Something went wrong please fill all the fields correctly");
       ////console.log(err);
     }
   };
@@ -119,6 +132,7 @@ class Payment extends React.Component {
   render() {
     // console.log(this.state, "state in payment");
     // console.log(this.props, "props in payment");
+
     return (
       <div>
         <div

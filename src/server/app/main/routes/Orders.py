@@ -26,10 +26,13 @@ class Orders(Resource):
         data = Orders.parser.parse_args()
         print("\n\n---INSIDE POST Orders---\n")
         print(data," are the parameters passed to Orders POST")
-        flag, order_info = create_order(data)
+        flag, order_info, already_booked = create_order(data)
 
         print(order_info," is the order_info being sent to client")
         
+        if already_booked == True:
+            return {"status" : "failure" , "message" : "Hotel is unavailble for the dates."}
+
         if flag:
             return {"status" : "success",  "data" : order_info}
         else:
