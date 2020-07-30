@@ -12,13 +12,13 @@ import { connect } from 'react-redux';
 import dates from './dates.json';
 
 const ExampleCustomArrival = ({ value, onClick }) => (
-  <button style={{ border: "none", background: "white" }} onClick={onClick}>
+  <button style={labelStyle} onClick={onClick}>
     {value ? value : "Arrival Date"}
   </button>
 );
 
 const ExampleCustomDeparture = ({ value, onClick }) => (
-  <button style={{ border: "none", background: "white" }} onClick={onClick}>
+  <button style={labelStyle} onClick={onClick}>
     {value ? value : "Departure"}
   </button>
 );
@@ -30,8 +30,8 @@ class BookingBox extends React.Component{
         const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     this.state = {
-      arrivalDate: new Date(),
-      departureDate: new Date(),
+      arrivalDate: null,
+      departureDate: null,
       bookedDates: '',
       isLoading: false
       
@@ -94,17 +94,17 @@ class BookingBox extends React.Component{
 
         return(
             <div className="clearfix p-2" style={{fontSize:'15px'}}>
-              <div className="card p-4" style={{width:300, height:"auto"}}>
+              <div className="card py-4 px-5" style={cardStyle}>
              <form
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
-          <div className="form-row row mb-5">              
+          <div className="form-row row mb-5 mt-3">              
 
-            <div className="form-group" style={{fontSize:'15px',width: 250, height: 33}}>
-                <div style={{fontSize:'14px'}}> Arrival Date</div>
-                <div className="border border-medium pl-3 p-1 pr-3 mt-1 rounded d-flex">
+            <div className="form-group " style={formStyle}>
+                <div style={titleStyle}> Arrival Date</div>
+                <div className="border border-medium mt-1 rounded d-flex pr-2 ">
                
                   <DatePicker
                   style
@@ -135,18 +135,17 @@ class BookingBox extends React.Component{
                     width="18px"
                     src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/69db739b45ad31493bdf934e1715f135.svg"
                     alt="calendar"
-                    class="sc-1ny7b47-0 jhFEmf mt-1"
+                    class="sc-1ny7b47-0 jhFEmf mt-2"
                   />
                 </div>
             </div>
           </div>
           <div className="form-row row mb-5">    
-            <div className="form-group" style={{width: 250, height: 33}}>
+            <div className="form-group" style={formStyle}>
 
-                  <div style={{fontSize:'14px'}}>Departure Date </div>
-              {/* <div style={child3}> */}
+                  <div style={titleStyle}>Departure Date </div>
               
-                <div  className="border border-medium pl-3 pl-1 pr-3 mt-1 d-flex rounded">
+                <div  className="border border-medium d-flex justify-content-between pr-2 mt-1">
                
                   <DatePicker
                     className="datepicker"
@@ -158,7 +157,6 @@ class BookingBox extends React.Component{
                     endDate={new Date()}
                     minDate={this.state.arrivalDate}
  
-                    // <Button bsStyle={condition ? 'success' : undefined} /> 
                     excludeDates={ 
 
                        bookedDates && bookedDates.data["ahead"]?.map(item=>(
@@ -175,21 +173,21 @@ class BookingBox extends React.Component{
                     width="18px"
                     src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/69db739b45ad31493bdf934e1715f135.svg"
                     alt="calendar"
-                    class="sc-1ny7b47-0 jhFEmf mt-1"
+                    class="sc-1ny7b47-0 jhFEmf mt-2"
                   />
               </div>
             </div>
                   </div>
                   </form>
                   {departureDate?
-                 <div>
-                 <div className="d-flex justify-content-between" style={{width: 250}}>
+                 <div style={{width: 280}}>
+                 <div className="d-flex justify-content-between pr-2" >
                    <div className="text-muted">
                      {differenceDate+" Nights"}
                    </div>
                     <strong >  {hotelData && hotelData["cost_per_night"] } $/Nights </strong> 
                     </div>
-                    <div className="d-flex justify-content-between mt-3 mb-3" style={{width: 250}}>
+                    <div className="d-flex justify-content-between my-3 pr-2">
                       <div className="text-muted">
                         Total
                       </div>
@@ -198,16 +196,17 @@ class BookingBox extends React.Component{
                      
                     </div>
                     </div>
-                    :
-                 <p className="text-danger">The minimum length of stay for this home is 30 nights</p>}
+                    : ""
+                //  <p className="text-danger">The minimum length of stay for this home is 30 nights</p>
+                 }
                  
                     
                  <p className="text-muted">Please enquire about these dates and a Travel Advisor will get back to you</p>
-            <button className= "btn btn-danger btn-lg btn-block mb-3" onClick={(arrival, departure)=>handleBooking(arrival, departure)}>Request a Booking</button>
+            <button className= "btn btn-danger btn-lg btn-block mb-3" style={{backgroundColor:"#FF8065"}} onClick={(arrival, departure)=>handleBooking(arrival, departure)}>Request a Booking</button>
 
             <hr/>
             <div className="card mt-3 pl-3 pt-2 pb-2">
-                    <div className="text-center" style={{fontSize:'15px', fontWeight: '500'}}>Ask a Question </div>
+                    <div className="text-center" style={{fontSize:'18px', fontWeight: '500'}}>Ask a Question </div>
                   </div>
                   <div className="mt-5 clearfix">
                     <small style={contact} >Contact us</small>
@@ -233,11 +232,32 @@ const contact ={
       textDecoration: "underline"
 }
 
+const labelStyle = {
+  border: "none", 
+  background: "white", 
+  height: 33, 
+  opacity: 0.5
+}
 
+const cardStyle = {
+  width:380, 
+  height: "auto", 
+  backgroundColor: "#FDFDFD"
+}
+
+const formStyle = {
+  fontSize:'15px',
+  width: 280, 
+  height: 33
+}
+
+const titleStyle = {
+  fontSize:'16px', 
+fontWeight: "bold"
+}
 
 const mapStateToProps =(state)=>({
   hotelData : state.dataReducer.entityData
 })
-
 
 export default connect(mapStateToProps, null)(BookingBox);
