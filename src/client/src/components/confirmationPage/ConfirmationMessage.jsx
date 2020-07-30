@@ -42,8 +42,8 @@ class ConfirmationMessage extends Component {
       fontSize: ".9em",
     };
     return (
-      <div className="row offset-md-1" state={font}>
-        <div className="col-12 col-md-6 order-1 text-center mx-5">
+      <div className="row offset-0 offset-md-1" state={font}>
+        <div className="col-12 col-md-6 order-md-1 order-2 text-center ml-md-5">
           <h3 className="mb-2 mt-5">Thankyou for booking with us.</h3>
           <h3 className="my-2">We’ve received your booking request</h3>
           <p className="my-4">
@@ -78,7 +78,7 @@ class ConfirmationMessage extends Component {
         </div>
 
         <div
-          className="col-12 border-0 card col-md-3 order-1 order-md-2 my-5"
+          className="col-12 border-0 card col-md-4 order-1 order-md-2 my-5"
           style={{ maxHeight: "550px" }}
         >
           <img
@@ -128,10 +128,10 @@ class ConfirmationMessage extends Component {
             </div>
             <div class="card col-6 col-md-12 border-0  ">
               <div
-                className=" text-light text-center pb-sm-5 p-md-0"
+                className=" text-light text-center pb-5 p-md-0"
                 style={{ background: "#696969" }}
               >
-                <p class=" py-sm-5 py-md-0 pt-md-3">
+                <p class=" py-5 py-md-0 pt-md-3">
                   {data && order_id && (
                     <>
                       {" "}
