@@ -11,8 +11,9 @@ import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
 import { fetchEntityRequest } from "../redux/action";
 import { connect } from "react-redux";
 import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
-import BookingBox from '../components/hotelDisplay/BookingBox';
-import StickyBox from 'react-sticky-box';
+import Location from "../components/hotelDisplay/aboutHotel/Location";
+import BookingBox from "../components/hotelDisplay/BookingBox";
+import StickyBox from "react-sticky-box";
 import style from "./HotelDisplay.module.css";
 // import Axios from 'axios';
 
@@ -35,46 +36,38 @@ class HotelDisplay extends React.Component {
     // console.log(this.props.data, "inside homeDisplay");
     return (
       <>
-      <div className="">
-
+        <div className="">
           <ImageCarousel />
-
-
-      </div>
-
-      <div className="container mt-5" style={{maxWidth:'auto'}}>
-        <div className={`${style.hdContainer}`}>      
-      
-          <div className={`${style.bioBox}`}>
-
-            <Features {...this.props} />
-            <Description {...this.props} />
-            <Rooms {...this.props} />
-            <FeaturesDetails {...this.props} />
-            <FindOutMore />
-            <HomeTruths {...this.props} />
-            <Policies {...this.props} />
-          </div>
-          <div className="ml-4">
-            <StickyBox offsetTop={20} offsetBottom={20} >
-              <BookingBox {...this.props} />
-            </StickyBox> 
-          </div>
         </div>
-        <SimilarHomes paramsId={this.props.match.params.id} />
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
 
-
-        <SimilarHomes paramsId={this.props.match.params.id} />
-  
+        <div className="container mt-5" style={{ maxWidth: "850px" }}>
+          <div className={`${style.hdContainer}`}>
+            <div className={`${style.bioBox}`}>
+              <Features {...this.props} />
+              <Description {...this.props} />
+              <Rooms {...this.props} />
+              {/* <Location {...this.props} /> */}
+              <FeaturesDetails {...this.props} />
+              <FindOutMore />
+              <HomeTruths {...this.props} />
+              <Policies {...this.props} />
+            </div>
+            <div className="ml-4">
+              <StickyBox offsetTop={20} offsetBottom={20}>
+                <BookingBox {...this.props} />
+              </StickyBox>
+            </div>
           </div>
+          <SimilarHomes paramsId={this.props.match.params.id} />
         </div>
-      </div>
-    </>
-
+        {/* <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <SimilarHomes paramsId={this.props.match.params.id} />
+            </div>
+          </div>
+        </div> */}
+      </>
     );
   }
 }
