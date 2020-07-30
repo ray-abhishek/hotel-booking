@@ -34,6 +34,13 @@ const Routes = (props) => {
         render={(props) => <Catalog {...props} />}
       />
 
+      {/* Testing purpose */}
+      {/* <Route
+        exact
+        path="/booking"
+        render={(props) => <BookingBox {...props} />}
+      /> */}
+{/* above is the testing purpose */}
       <Route
         exact
         path="/home-listing/:id/"

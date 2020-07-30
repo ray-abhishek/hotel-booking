@@ -83,13 +83,16 @@ class Login extends React.Component {
 
         {/* Login Button and message display of success and failure */}
         
+        {isLogin && loginData.data.status==="failure" ?<h6 className="text-danger">{loginData.data.message} </h6>  : ''}
+
         <div className="text-center pb-3">
           <button disabled={(email.length  && password.length) <1}
             className=  {(email.length && password.length) < 1 ? " btn btn-light btn-block" : "btn btn-danger btn-block"} 
             data-dismiss={isLogin === true ? "modal" : undefined}
             onClick={() => userLogin(this.state)}
           >
-            {isLogin ?   "Ok" : "Login"}
+            Login
+            
           </button>
         </div>
 
