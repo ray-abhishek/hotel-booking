@@ -42,7 +42,7 @@ class HotelDisplay extends React.Component {
 
       </div>
 
-      <div className="container mt-5" style={{maxWidth:'850px'}}>
+      <div className="container mt-5" style={{maxWidth:'auto'}}>
         <div className={`${style.hdContainer}`}>      
       
           <div className={`${style.bioBox}`}>

@@ -130,14 +130,14 @@ class Navbar extends React.Component {
                     </button>
 
 
-                  {isLogin? <h3 className="mt-4">Login Successfully</h3> :<div> {!isToggle? <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
+                  {(isLogin && loginSuccess.data.status==="success")  ? <h3 className="mt-4">Login Successfully</h3> :<div> {!isToggle? <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
                        Login
                     </h3>: <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
                        Signup
                     </h3> }</div>}
                   </div>
                   <div class="modal-body">
-                    {isLogin? <div className="p-2 pl-5 pr-5"><p className="text-center">Welcome to onefinestay. Stay in dinstinctive private homes and villas - with an unprecedented level of service.</p> 
+                    {(isLogin && loginSuccess.data.status==="success")? <div className="p-2 pl-5 pr-5"><p className="text-center">Welcome to onefinestay. Stay in dinstinctive private homes and villas - with an unprecedented level of service.</p> 
                       <div className="text-center pb-3 mt-4">
                         <button className= "btn btn-danger btn-block"
                           data-dismiss="modal">OK</button>
