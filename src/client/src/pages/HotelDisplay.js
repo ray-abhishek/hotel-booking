@@ -46,7 +46,7 @@ class HotelDisplay extends React.Component {
               <Features {...this.props} />
               <Description {...this.props} />
               <Rooms {...this.props} />
-              <Location {...this.props} />
+              {/* <Location {...this.props} /> */}
               <FeaturesDetails {...this.props} />
               <FindOutMore />
               <HomeTruths {...this.props} />
