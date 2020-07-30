@@ -115,7 +115,7 @@ class SearchBar extends Component {
 
             <div className="form-group col-2">
               <div className="h-100" style={child2}>
-                <div className="w-100" style={{backgroundColor:'white'}}>
+                <div className="w-100" style={{ backgroundColor: "white" }}>
                   <DatePicker
                     className="datepicker"
                     selected={this.state.arrivalDate}
@@ -143,7 +143,7 @@ class SearchBar extends Component {
 
             <div className="form-group col-2">
               <div className="h-100" style={child3}>
-                <div className="w-100" style={{backgroundColor:'white'}}>
+                <div className="w-100" style={{ backgroundColor: "white" }}>
                   <DatePicker
                     className="datepicker"
                     selected={this.state.departureDate}
@@ -230,12 +230,12 @@ const inputStyle = {
 };
 
 const child1 = {
-  zIndex:'2',
+  zIndex: "2",
   height: "100%",
 };
 
 const child2 = {
-  zIndex:'2',
+  zIndex: "2",
   height: "100%",
   display: "flex",
   flexDirection: "row",
@@ -244,7 +244,7 @@ const child2 = {
 };
 
 const child3 = {
-  zIndex:'2',
+  zIndex: "2",
   height: "100%",
   display: "flex",
   flexDirection: "row",

@@ -12,7 +12,6 @@ class Payment extends React.Component {
     };
   }
 
-
   dispalyRazorPay = async (e) => {
     const { arrivalDate, departureDate } = this.props.location.state.details;
     const {
@@ -26,8 +25,8 @@ class Payment extends React.Component {
       differenceDate,
     } = this.props.personDetails;
     const { id, cost_per_night } = this.props.location.state.hotelData;
-    let amount = Number(differenceDate) * Number(cost_per_night);
-    console.log(differenceDate, cost_per_night, amount, "cost ,diff");
+    let amount = Number(differenceDate) * Number(cost_per_night) * 100;
+    // console.log(differenceDate, cost_per_night, amount, "cost ,diff");
     let arrival =
       arrivalDate &&
       `${arrivalDate.getFullYear()}-${
@@ -58,52 +57,81 @@ class Payment extends React.Component {
         book_to: `${departure}`,
         hotel_id: `${id}`,
       });
-
       const { data } = response;
-      console.log(data," is data  from /order")
-      console.log(data["data"]["order_id"]," is orderID from /order");
-      this.setState({order_id : data["data"]["order_id"]})
+      if (data.status === "failure") {
+        return alert(data.message);
+      }
+
+      console.log(data, " is data  from /order");
+      ////console.log(data["data"]["order_id"], " is orderID from /order");
+      this.setState({ order_id: data["data"]["order_id"] });
       const options = {
         key: "rzp_test_MqHwbPLOYmrkkI",
-        amount: data["data"]["amount"],
-        currency: data["data"]["currency"],
-        name: data["data"]["name"],
-        description: data["data"]["description"],
+        amount: `${data["data"]["amount"]}`,
+        currency: "INR",
+        name: `${data["data"]["name"]}`,
+        description: `${data["data"]["description"]}`,
         image:
           "https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg",
         order_id: data["data"]["order_id"],
         prefill: {
-          name: data["data"]["name"],
-          email: data["data"]["email"],
-          contact: data["data"]["contact"],
+          name: `${data["data"]["name"]}`,
+          email: `${data["data"]["email"]}`,
+          contact: `${data["data"]["contact"]}`,
         },
         theme: {
           color: "#0080FF",
         },
         handler: async (response) => {
+          console.log(response, "respone in payment by handler");
+          // let amount = Number(differenceDate) * Number(cost_per_night) * 100;
 
-          console.log(response, "respone");
           const res = await axios.post(`${apiURL}/payment`, {
             ...response,
             order_id: this.state.order_id,
           });
+
+          if (res.data.status !== "success") {
+            return alert(res.data.message);
+          }
+
+          this.props.history.push({
+            pathname: "/request-booking/confirmed",
+            state: {
+              data: res.data,
+              props: this.props.location.state,
+              info: {
+                email: email,
+                countryCode: countryCode,
+                firstname: firstname,
+                lastName: lastName,
+                message: message,
+                mobileNo: mobileNo,
+                notification: notification,
+                differenceDate: differenceDate,
+                amount: amount,
+                arrival: arrival,
+                departure: departure,
+              },
+            },
+          });
+
           const { data } = res;
           ////console.log(data, "backend");
-          data.status === "success"
-            ? alert("payment successful")
-            : alert("payment fail");
         },
       };
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (err) {
+      alert(err);
+      // alert("Something went wrong please fill all the fields correctly");
       ////console.log(err);
     }
   };
 
   render() {
     // console.log(this.state, "state in payment");
-    console.log(this.props, "props in payment");
+    // console.log(this.props, "props in payment");
 
     return (
       <div>

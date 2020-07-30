@@ -29,9 +29,10 @@ class BookingBox extends React.Component {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     this.state = {
-      arrivalDate: null,
-      departureDate: null,
+      arrivalDate: new Date(),
+      departureDate: new Date(),
       bookedDates: "",
+      dateBooked: false,
     };
   }
 
@@ -46,18 +47,6 @@ class BookingBox extends React.Component {
       departureDate: date,
     });
   };
-
-
-  componentDidMount() {
-    console.log("id", this.props.match.params.id);
-    const res = axios.get(
-      "https://3d82b4e9e58f.ngrok.io/booked-dates/" + this.props.match.params.id
-    );
-    console.log("booked dates", res.data);
-    this.setState({
-      bookedDates: res.data,
-    });
-  }
 
 
   handleBooking = () => {
@@ -80,7 +69,6 @@ class BookingBox extends React.Component {
         )) /
         (1000 * 60 * 60 * 24)
     );
-
     let departure = `${departureDate && departureDate.getFullYear()}-${
       departureDate && departureDate.getMonth() + 1
     }-${departureDate && departureDate.getDate()}`;
@@ -95,9 +83,20 @@ class BookingBox extends React.Component {
       },
     });
   };
+  componentDidMount() {
+    console.log("id", this.props.match.params.id);
+    const res = axios.get(
+      "https://3d82b4e9e58f.ngrok.io/booked-dates/" + this.props.match.params.id
+    );
+    console.log("booked dates", res.data);
+    this.setState({
+      bookedDates: res.data,
+      dateBooked: true,
+    });
+  }
 
   render() {
-    const { arrivalDate, departureDate, bookedDates } = this.state;
+    const { arrivalDate, departureDate, bookedDates, dateBooked } = this.state;
     const {
       setStartDate,
       getFullYear,
@@ -106,7 +105,7 @@ class BookingBox extends React.Component {
       handleBooking,
     } = this;
     const { hotelData } = this.props;
-    ////console.log("hotelData", hotelData);
+    console.log("hotelData", hotelData);
     let arrival = `${arrivalDate && arrivalDate.getFullYear()}-${
       arrivalDate && arrivalDate.getMonth() + 1
     }-${arrivalDate && arrivalDate.getDate()}`;
@@ -124,15 +123,17 @@ class BookingBox extends React.Component {
         departureDate && departureDate.getDate()
       ) -
         Date.UTC(
-          departureDate && arrivalDate.getFullYear(),
-          departureDate && arrivalDate.getMonth(),
-          departureDate && arrivalDate.getDate()
+          arrivalDate && arrivalDate.getFullYear(),
+          arrivalDate && arrivalDate.getMonth(),
+          arrivalDate && arrivalDate.getDate()
         )) /
         (1000 * 60 * 60 * 24)
     );
 
-    // ////console.log( "arrival" ,arrival)
-    // ////console.log( "departure" ,departure)
+    //  <Button bsStyle={condition ? 'success' : undefined} />
+
+    // console.log( "arrival" ,arrival)
+    // console.log( "departure" ,departure)
 
     return (
       <div className="clearfix" style={{ fontSize: "15px" }}>
@@ -154,18 +155,23 @@ class BookingBox extends React.Component {
                     className="datepicker"
                     selected={this.state.arrivalDate}
                     onChange={(date) => this.handleArrivalDateChange(date)}
-                    minDate={new Date()}
-                    maxDate={addDays(new Date(), 150)}
-                    excludeDates={
-                      bookedDates &&
-                      bookedDates.data["ahead"].map(
-                        (item) => (new Date(), addDays(new Date(), item))
-                      )
-                    }
-                    placeholderText="Arrival date"
+                    // minDate={ this.state.arrivalDate}
+                    // maxDate={addDays(new Date(), 150)}
                     selectsStart
-                    startDate={this.state.arrivalDate}
-                    endDate={this.state.departureDate}
+                    startDate={new Date()}
+                    endDate={new Date()}
+                    minDate={new Date()}
+                    // excludeDates={
+                    //   bookedDates &&
+                    //   bookedDates.data["ahead"].map(
+                    //   (item) => (new Date(), addDays(new Date(), item))
+                    //   )
+                    //   }
+
+                    placeholderText="Arrival date"
+                    // selectsStart
+                    // startDate={ this.state.arrivalDate}
+                    // endDate={this.state.arrivalDate}
                     customInput={<ExampleCustomArrival />}
                   ></DatePicker>
                   <img
@@ -189,21 +195,26 @@ class BookingBox extends React.Component {
                     className="datepicker"
                     selected={this.state.departureDate}
                     onChange={(date) => this.handledepartureDateChange(date)}
-                    minDate={addDays(
-                      new Date(),
-                      arrivalDate && arrivalDate.getDate() + 3
-                    )}
-                    maxDate={addDays(new Date(), 150)}
-                    excludeDates={
-                      bookedDates &&
-                      bookedDates.data["ahead"]?.map(
-                        (item) => (new Date(), addDays(new Date(), item))
-                      )
-                    }
+                    selectsEnd
+                    startDate={new Date()}
+                    endDate={new Date()}
+                    minDate={this.state.arrivalDate}
+                    // minDate={this.state.arrivalDate}
+                    // minDate={addDays(new Date(), 4)}
+                    // maxDate={addDays(new Date(), 150)}
+                    // <Button bsStyle={condition ? 'success' : undefined} />
+                    // excludeDates={
+                    //    dateBooked?  bookedDates && bookedDates.data["ahead"]?.map(item=>(
+                    //     addDays(new Date(), item))) : undefined
+
+                    // (bookedDates === null)?null:
+                    // (bookedDates.data["ahead"]?.map(item=>(
+                    //   addDays(new Date(), item))))
+                    // }
                     placeholderText="Departure date "
-                    selectsStart
-                    startDate={this.state.arrivalDate}
-                    endDate={this.state.departureDate}
+                    // selectsStart
+                    // startDate={ this.state.arrivalDate}
+                    // endDate={this.state.arrivalDate}
                     customInput={<ExampleCustomDeparture />}
                   />
                   <img
@@ -316,18 +327,8 @@ const reqCol = {
   display: "flex",
 };
 
-// const bookingCalculate={
-//   margin-top: 26px;
-//     -webkit-box-pack: justify;
-//     justify-content: space-between;
-// }
-
 const mapStateToProps = (state) => ({
   hotelData: state.dataReducer.entityData,
 });
-
-// const mapDispatchToProps=(hotelId)=({
-//   handleBooking: hotelId=>(dispatch(fetch))
-// })
 
 export default connect(mapStateToProps, null)(BookingBox);

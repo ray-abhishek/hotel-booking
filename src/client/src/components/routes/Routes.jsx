@@ -10,6 +10,7 @@ import ImageCarousel from "../hotelDisplay/ImageCarousel";
 import BookingBox from "../hotelDisplay/BookingBox";
 import AboutHotel from "../hotelDisplay/AboutHotel";
 
+
 const Routes = (props) => {
   return (
     <>
@@ -26,7 +27,6 @@ const Routes = (props) => {
         path="/search/:page"
         render={(props) => <Catalog {...props} />}
       />
-
 
       <Route
         exact
@@ -46,8 +46,8 @@ const Routes = (props) => {
       />
       <Route
         exact
-        path="/home-listing/:hotel-id/request-booking/confirmed"
-        render={(props) => <ConfirmationPage />}
+        path="/request-booking/confirmed"
+        render={(props) => <ConfirmationPage {...props} />}
       />
       <Switch />
     </>

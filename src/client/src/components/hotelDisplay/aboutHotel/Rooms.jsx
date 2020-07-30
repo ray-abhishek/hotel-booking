@@ -9,7 +9,7 @@ class Rooms extends React.Component {
 
   render() {
     const { hotelDetails } = this.props;
-    // ////console.log(hotelDetails, "Rooms");
+    // console.log(hotelDetails, "Rooms");
     return (
       <div
         class="card border-0 my-3"
@@ -53,8 +53,7 @@ class Rooms extends React.Component {
                         hotelDetails["hotel_images"]["entrance"][i]["image"]
                       }
                       className="card-img-top"
-                      alt="..."
-                      style={{ height: "110px", width: "150px" }}
+                      alt="..." style={{height:'110px', width:'150px'}}
                     />
                     <div className="">
                       <p className="text-center">
@@ -70,13 +69,12 @@ class Rooms extends React.Component {
                 font-size="S"
                 color="secondaryText"
                 font-family="akkuratRegular"
-                font-style="italic"
-                className=" mt-3"
+                font-style="italic" className=" mt-3"
               >
                 Outside
               </h6>
             </div>
-            <div className="d-flex">
+            <div  className="d-flex">
               {hotelDetails &&
                 hotelDetails["hotel_images"] &&
                 // hotelDetails["hotel_images"]["entrance"] &&
@@ -85,8 +83,7 @@ class Rooms extends React.Component {
                     <img
                       src={hotelDetails["hotel_images"]["entrance"][i]["image"]}
                       className="card-img-top"
-                      alt="..."
-                      style={{ height: "110px", width: "150px" }}
+                      alt="..." style={{height:'110px', width:'150px'}}
                     />
                     <div className="">
                       <p className="text-center">

@@ -19,7 +19,6 @@ class Pagination extends Component {
       page: 1,
     };
   }
-
   componentDidMount() {
     const { fetchCatalogRequest, history, location, match } = this.props;
     const values = queryString.parse(location.search);
@@ -51,14 +50,13 @@ class Pagination extends Component {
     e.preventDefault();
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;
-    //console.log(match, "this is location obj from pagination page handler");
+    console.log(location, "this is location obj from pagination page handler");
 
     this.setState({
       page: e.target.id,
     });
 
     let url = match.url[match.url.length - 1] !== "/" ? match.url : match.url;
-
     let query = "";
     if (features.length > 0) {
       let stringArr = features?.map((ele, i) =>
@@ -77,10 +75,7 @@ class Pagination extends Component {
       query +=
         sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     }
-    //console.log("query", query);
-
     url += query.length > 0 ? "?" + query.slice(1) : "";
-    //console.log("url", url);
     history.push(url);
     fetchCatalogRequest(url);
   };
@@ -113,60 +108,68 @@ class Pagination extends Component {
     });
   }
 
+  pages = () => {
+    const { totalPages } = this.props;
+    let pages = [];
+    for (let i = 0; i < totalPages; i++) {
+      pages.push(i + 1);
+    }
+    return pages;
+  };
   render() {
     const { page } = this.state;
     const { totalPages } = this.props;
     ////console.log(totalPages, "total pages");
     //console.log(this.state, "state updated in pagination");
+    let pages = this.pages();
+    console.log(page);
     return (
-      <nav aria-label="Page navigation example" className="col-3 offset-6">
-        <ul class="pagination">
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              aria-label="Previous"
-            >
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="1"
-            >
-              1
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="2"
-            >
-              2
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              id="3"
-            >
-              3
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              onClick={(e) => this.handlePageChange(e)}
-              class="page-link"
-              aria-label="Next"
-            >
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
+      <nav
+        aria-label="Page navigation example"
+        className="col-3 offset-6"
+        style={{ cursor: "pointer" }}
+      >
+        {totalPages && (
+          <ul class="pagination">
+            {page != 1 && (
+              <li class="page-item">
+                <a
+                  onClick={(e) => this.handlePageChange(e)}
+                  class="page-link"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            )}
+
+            {pages &&
+              pages.length > 0 &&
+              pages.map((ele) => (
+                <li class="page-item">
+                  <a
+                    onClick={(e) => this.handlePageChange(e)}
+                    class="page-link"
+                    id={ele}
+                  >
+                    {ele}
+                  </a>
+                </li>
+              ))}
+
+            {page != totalPages && (
+              <li class="page-item">
+                <a
+                  onClick={(e) => this.handlePageChange(e)}
+                  class="page-link"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            )}
+          </ul>
+        )}
       </nav>
     );
   }
@@ -179,4 +182,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCatalogListSuccess: (payload) =>
     dispatch(fetchCatalogListSuccess(payload)),
 });
-export default connect(null, mapDispatchToProps)(Pagination);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
