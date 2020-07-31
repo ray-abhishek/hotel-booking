@@ -26,6 +26,11 @@ class Navbar extends React.Component {
     alert("logout");
   };
 
+  // componentDidMount(){
+  //  let userData = JSON.parse(localStorage.getItem('userData'))
+  //  console.log('userdata', userData)
+  // }
+
   render() {
     const { handleClick, toggleForm } = this;
     const { loginSuccess, isSignup, isLogin, logoutUser } = this.props;
@@ -68,11 +73,14 @@ class Navbar extends React.Component {
               Get in Touch <span className={style.line}>|</span>
             </Link>
             {/* Login and Logout toggling */}
-            {
-              // loginSuccess.data && loginSuccess.data.status === "success"
-              isLogin === true ? (
-                <nav class="navbar navbar-expand-lg">
-                  {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
+
+            
+            {/* // loginSuccess.data && loginSuccess.data.status === "success"  */}
+              {isLogin && loginSuccess.data && loginSuccess.data.status==="success"
+            ? (
+              <nav class="navbar navbar-expand-lg">
+                {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
+
                   <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                       <a
@@ -84,7 +92,7 @@ class Navbar extends React.Component {
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        Welcome {loginSuccess.data.name}
+                        Welcome { loginSuccess.data && loginSuccess.data.name}
                       </a>
                       <div
                         class="dropdown-menu"
@@ -146,40 +154,23 @@ class Navbar extends React.Component {
                       />
                     </button>
 
-                    {isLogin && loginSuccess.data.status === "success" ? (
-                      <h3 className="mt-4">Login Successfully</h3>
-                    ) : (
-                      <div>
-                        {" "}
-                        {!isToggle ? (
-                          <h3
-                            class="modal-title text-center mb-3"
-                            style={{
-                              fontFamily: "Tiempos Text serif",
-                              fontSize: 26,
-                            }}
-                            id="exampleModalLabel"
-                          >
-                            Login
-                          </h3>
-                        ) : (
-                          <h3
-                            class="modal-title text-center mb-3"
-                            style={{
-                              fontFamily: "Tiempos Text serif",
-                              fontSize: 26,
-                            }}
-                            id="exampleModalLabel"
-                          >
-                            Signup
-                          </h3>
-                        )}
-                      </div>
-                    )}
+
+
+                  {(isLogin && loginSuccess.data && loginSuccess.data.status==="success")  ? <h3 className="mt-4">Login Successfully</h3> :<div> {!isToggle? <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
+                       Login
+                    </h3>: <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
+                       Signup
+                    </h3> }</div>}
                   </div>
                   <div class="modal-body">
-                    {isLogin && loginSuccess.data.status === "success" ? (
-                      <div className="p-2 pl-5 pr-5">
+                    {(isLogin && loginSuccess.data && loginSuccess.data.status==="success")? <div className="p-2 pl-5 pr-5"><p className="text-center">Welcome to onefinestay. Stay in dinstinctive private homes and villas - with an unprecedented level of service.</p> 
+                      <div className="text-center pb-3 mt-4">
+                        <button className= "btn btn-danger btn-block"
+                          data-dismiss="modal">OK</button>
+                            </div></div> :
+                    <div>
+                      {!isToggle ? (
+                      <>
                         <p className="text-center">
                           Welcome to onefinestay. Stay in dinstinctive private
                           homes and villas - with an unprecedented level of

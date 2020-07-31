@@ -83,6 +83,7 @@ class Filter extends Component {
   }
 
   handleOnChange = (e) => {
+
     // console.log("working");
     const { id } = e.target;
     const { features, minPrice, perPage, page, sort } = this.state;
