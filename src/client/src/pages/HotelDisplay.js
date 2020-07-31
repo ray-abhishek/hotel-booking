@@ -74,3 +74,16 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HotelDisplay);
+
+/*
+<div className="container">
+        <div className="row">
+          <div className="col-12">
+
+
+        <SimilarHomes paramsId={this.props.match.params.id} />
+  
+          </div>
+        </div>
+      </div>
+*/
