@@ -66,7 +66,7 @@ export const userRegistration = (query) => (dispatch) => {
     label: "Account Created"
   })
   return axios
-    .post("https://3d82b4e9e58f.ngrok.io/signup", {
+    .post("https://86214663421f.ngrok.io/signup", {
       email: query.email,
       name: query.name,
       password: query.password,
@@ -88,7 +88,7 @@ export const userLogin = (query) => (dispatch) => {
     label: "Account Login"
   })
   return axios
-    .post("https://3d82b4e9e58f.ngrok.io/login", {
+    .post("https://86214663421f.ngrok.io/login", {
       email: query.email,
       password: query.password,
     })
@@ -105,7 +105,7 @@ export const googleLogin = (query) => (dispatch) => {
   dispatch(googleLoginRequest());
   console.log("axios", query);
   return axios
-    .post("https://3d82b4e9e58f.ngrok.io/ssologin", {
+    .post("https://86214663421f.ngrok.io/ssologin", {
       email: query.email,
       name: query.name,
       googleId: query.googleId,
@@ -124,7 +124,7 @@ export const logoutUser = (query) => (dispatch) => {
   dispatch(logout());
   console.log("logout Query", query);
   return axios
-    .get("https://3d82b4e9e58f.ngrok.io/logout", {
+    .get("https://86214663421f.ngrok.io/logout", {
       headers: {
         Authorization: query, //the token is a variable which holds the token
       },

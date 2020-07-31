@@ -1,29 +1,18 @@
-.car{
-    width: 1047px;
-    height: 100px;
-    position: absolute;
-    left: -235px;
-    background-color: red;
-}
 
 
 .container{
-   width: 100%;
+   width: auto;
     overflow: hidden;
     
 }
 
-* {
-    box-sizing: border-box;
-  }
   
   .row{
-         width: 6400px;         
+          width: 3200px;     
           position: relative;
           animation-name: slideranimation;
           animation-duration: 20s;
-          animation-iteration-count: infinite;    
-            
+          animation-iteration-count: infinite;             
   }
 
   @keyframes slideranimation{
@@ -56,13 +45,22 @@
           }
       }
   
-      .row img{
-          float: left;
+ 
+/* 
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
       }
+
+      .column{
+        float: left;
+        width: 25%;
+      } */
+
       .cardImg{
         width: 500px;
-        height: 400px;
-        margin-right: 15px;
+        height: 400px;     
       }
 
       .prev, .next {
@@ -87,9 +85,9 @@
       }
       
       /* On hover, add a black background color with a little bit see-through */
-      .prev:hover, .next:hover {
+      /* .prev:hover, .next:hover {
         background-color: rgba(0,0,0,0.8);
-      }
+      } */
 
       
 
@@ -115,7 +113,7 @@
 
 
 
-      /* 
+      
       .previousButton, .nextButton {
 		position: absolute;
 		top: 50%;
@@ -148,7 +146,7 @@
 
 .nextButton:hover {
   right: -10px;
-} */
+}
 
 
 
