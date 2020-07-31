@@ -46,8 +46,36 @@ class FilterModal extends Component {
     fetchCatalogRequest(`${location.pathname}${location.search}`);
   }
 
-  handleOnChange = (e) => {
-    console.log("HELOOO FROM MODAL")
+  componentWillReceiveProps(nextProps, nextState) {
+    const { fetchCatalogRequest } = this.props;
+    const { location } = nextProps;
+    //console.log(nextProps, "nextprops");
+    const values = queryString.parse(location.search);
+    //console.log("values", values);
+    let featuresArr;
+    if (!values.features || values.features.length == 0) {
+      featuresArr = [];
+    } else if (values.features && typeof values.features == "string") {
+      featuresArr = [values.features];
+    } else if (typeof values.features == "object") {
+      featuresArr = values.features;
+    }
+    this.setState({
+      features: featuresArr,
+      minPrice:
+        !values.minPrice || values.minPrice == 100 ? 100 : values.minPrice,
+      sort:
+        !values.sort ||
+        values.sort == "Recommended" ||
+        values.sort == "Recommended"
+          ? "Recommended"
+          : values.sort,
+      perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
+    });
+  }
+        
+  handleOnChangeModal = (e) => {
+    // console.log("modal working");
     const { id } = e.target;
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;
@@ -64,11 +92,11 @@ class FilterModal extends Component {
       let stringArr = features.map((ele, i) =>
         i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
-      url += stringArr.join("");
-      url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
-      url += perPage > 10 ? `&perPage=${perPage}` : "";
-      url += page > 1 ? `&page=${page}` : "";
-      url +=
+      query += stringArr.join("");
+      query += minPrice != 100 ? `&minPrice=${minPrice}` : "";
+      query += perPage > 10 ? `&perPage=${perPage}` : "";
+      query += page > 1 ? `&page=${page}` : "";
+      query +=
         sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     } else {
       query += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -82,7 +110,7 @@ class FilterModal extends Component {
     fetchCatalogRequest(url);
   };
 
-  handlePriceChange = (e) => {
+  handlePriceChangeModal = (e) => {
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;
 
@@ -96,14 +124,14 @@ class FilterModal extends Component {
       let stringArr = features.map((ele, i) =>
         i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
-      url += stringArr.join("");
-      url +=
+      query += stringArr.join("");
+      query +=
         e.target.valueAsNumber != 100
           ? `&minPrice=${e.target.valueAsNumber}`
           : "";
-      url += perPage > 10 ? `&perPage=${perPage}` : "";
-      url += page > 1 ? `&page=${page}` : "";
-      url +=
+      query += perPage > 10 ? `&perPage=${perPage}` : "";
+      query += page > 1 ? `&page=${page}` : "";
+      query +=
         sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     } else {
       query +=
@@ -159,7 +187,7 @@ class FilterModal extends Component {
                         max="5000"
                         step="200"
                         value={`${this.state.minPrice}`}
-                        onChange={(e) => this.handlePriceChange(e)}
+                        onChange={(e) => this.handlePriceChangeModal(e)}
                       />
                     </div>
                   </div>
@@ -176,7 +204,7 @@ class FilterModal extends Component {
                           type="checkbox"
                           className="custom-control-input"
                           id="pets welcome"
-                          onChange={(e) => this.handleOnChange(e)}
+                          onChange={(e) => this.handleOnChangeModal(e)}
                         />
                         <label
                           className="pt-1 custom-control-label"
@@ -194,7 +222,7 @@ class FilterModal extends Component {
                       <br />
                       <div className="custom-control custom-checkbox">
                         <input
-                          onChange={(e) => this.handleOnChange(e)}
+                          onChange={(e) => this.handleOnChangeModal(e)}
                           checked={query.includes("double")}
                           type="checkbox"
                           className="custom-control-input"
@@ -211,7 +239,7 @@ class FilterModal extends Component {
                         <input
                           // e.target.setAttribute("checked", !e.target.checked);
                           onChange={(e) => {
-                            this.handleOnChange(e);
+                            this.handleOnChangeModal(e);
                           }}
                           checked={query.includes("beds")}
                           type="checkbox"
@@ -227,7 +255,7 @@ class FilterModal extends Component {
                       </div>
                       <div className="custom-control custom-checkbox">
                         <input
-                          onChange={(e) => this.handleOnChange(e)}
+                          onChange={(e) => this.handleOnChangeModal(e)}
                           checked={query.includes("single")}
                           type="checkbox"
                           className="custom-control-input"
@@ -242,7 +270,7 @@ class FilterModal extends Component {
                       </div>
                       <div className="custom-control custom-checkbox">
                         <input
-                          onChange={(e) => this.handleOnChange(e)}
+                          onChange={(e) => this.handleOnChangeModal(e)}
                           checked={query.includes("super")}
                           type="checkbox"
                           className="custom-control-input"
@@ -266,7 +294,7 @@ class FilterModal extends Component {
                         <br />
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("childrens toys")}
                             type="checkbox"
                             className="custom-control-input"
@@ -281,7 +309,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("satellite")}
                             type="checkbox"
                             className="custom-control-input"
@@ -305,7 +333,7 @@ class FilterModal extends Component {
                         <br />
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("washing")}
                             type="checkbox"
                             className="custom-control-input"
@@ -320,7 +348,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("tumble")}
                             type="checkbox"
                             className="custom-control-input"
@@ -335,7 +363,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("washer")}
                             type="checkbox"
                             className="custom-control-input"
@@ -359,7 +387,7 @@ class FilterModal extends Component {
                         <br />
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("babies")}
                             type="checkbox"
                             className="custom-control-input"
@@ -374,7 +402,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("toddlers")}
                             type="checkbox"
                             className="custom-control-input"
@@ -389,7 +417,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("children welcome")}
                             type="checkbox"
                             className="custom-control-input"
@@ -413,7 +441,7 @@ class FilterModal extends Component {
                         <br />
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("Dishwasher")}
                             type="checkbox"
                             className="custom-control-input"
@@ -428,7 +456,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("electric")}
                             type="checkbox"
                             className="custom-control-input"
@@ -443,7 +471,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("gas")}
                             type="checkbox"
                             className="custom-control-input"
@@ -458,7 +486,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("induction")}
                             type="checkbox"
                             className="custom-control-input"
@@ -473,7 +501,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("Oven")}
                             type="checkbox"
                             className="custom-control-input"
@@ -488,7 +516,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("Microwave")}
                             type="checkbox"
                             className="custom-control-input"
@@ -512,7 +540,7 @@ class FilterModal extends Component {
 
                       <div className="custom-control custom-checkbox">
                         <input
-                          onChange={(e) => this.handleOnChange(e)}
+                          onChange={(e) => this.handleOnChangeModal(e)}
                           checked={query.includes("swimming")}
                           type="checkbox"
                           className="custom-control-input"
@@ -535,7 +563,7 @@ class FilterModal extends Component {
                         <br />
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("conditioning")}
                             type="checkbox"
                             className="custom-control-input"
@@ -550,7 +578,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("balcony")}
                             type="checkbox"
                             className="custom-control-input"
@@ -565,7 +593,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("Elevator")}
                             type="checkbox"
                             className="custom-control-input"
@@ -580,7 +608,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("Garden")}
                             type="checkbox"
                             className="custom-control-input"
@@ -595,7 +623,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("road")}
                             type="checkbox"
                             className="custom-control-input"
@@ -610,7 +638,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("roof")}
                             type="checkbox"
                             className="custom-control-input"
@@ -625,7 +653,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("secure")}
                             type="checkbox"
                             className="custom-control-input"
@@ -649,7 +677,7 @@ class FilterModal extends Component {
                         <br />
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("Gym")}
                             type="checkbox"
                             className="custom-control-input"
@@ -664,7 +692,7 @@ class FilterModal extends Component {
                         </div>
                         <div className="custom-control custom-checkbox">
                           <input
-                            onChange={(e) => this.handleOnChange(e)}
+                            onChange={(e) => this.handleOnChangeModal(e)}
                             checked={query.includes("ensuite")}
                             type="checkbox"
                             className="custom-control-input"

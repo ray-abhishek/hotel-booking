@@ -46,7 +46,9 @@ class HotelDisplay extends React.Component {
               <Features {...this.props} />
               <Description {...this.props} />
               <Rooms {...this.props} />
-              { <Location {...this.props} /> }
+
+              <Location {...this.props} />
+
               <FeaturesDetails {...this.props} />
               <FindOutMore />
               <HomeTruths {...this.props} />
@@ -60,13 +62,6 @@ class HotelDisplay extends React.Component {
           </div>
           <SimilarHomes paramsId={this.props.match.params.id} />
         </div>
-        {/* <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <SimilarHomes paramsId={this.props.match.params.id} />
-            </div>
-          </div>
-        </div> */}
       </>
     );
   }

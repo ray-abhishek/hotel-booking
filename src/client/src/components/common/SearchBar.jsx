@@ -4,6 +4,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from "react-redux";
 import { fetchCatalogRequest } from "../../redux/action";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import "react-google-places-autocomplete/dist/index.min.css";
+
 // import { Redirect } from "react-router-dom";
 
 const ExampleCustomArrival = ({ value, onClick }) => (
@@ -72,8 +75,13 @@ class SearchBar extends Component {
       url += query.length > 0 ? `?${query}` : "";
       this.props.history.push(url);
     }
-    ////console.log(url, "fetchCatalogRequest url");
     fetchCatalogRequest(url);
+  };
+
+  setCity = (e) => {
+    console.log(e["description"]);
+    let cityName = e["description"].split(",")[0];
+    this.setState({ city: cityName });
   };
 
   render() {
@@ -87,16 +95,11 @@ class SearchBar extends Component {
           <div className="form-row row">
             <div className="form-group col-4">
               <div style={child1}>
-                <input
-                  type="text"
-                  list="topdestinations"
-                  style={inputStyle}
+                <GooglePlacesAutocomplete
+                  onSelect={(e) => this.setCity(e)}
+                  inputStyle={inputStyle}
                   placeholder="Where to next?"
-                  onChange={(e) => {
-                    this.setState({
-                      city: e.target.value,
-                    });
-                  }}
+                  debounce={500}
                 />
                 <img
                   type="search"
@@ -171,7 +174,6 @@ class SearchBar extends Component {
               <select
                 className="form-control border-0"
                 id="guests"
-                placeholder=""
                 onChange={(e) => {
                   this.setState({
                     guests: e.target.value,
@@ -226,7 +228,7 @@ const searchImgStyle = {
 const inputStyle = {
   padding: "12px",
   width: "100%",
-  borderRadius: "5px",
+  boxShadow: "none",
 };
 
 const child1 = {

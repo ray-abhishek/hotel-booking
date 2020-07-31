@@ -107,7 +107,7 @@ export const fetchCatalogRequest = (payload) => (dispatch) => {
   return axios
     .get(`https://86214663421f.ngrok.io${payload}`)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       return res;
     })
     .then((res) => dispatch(fetchCatalogListSuccess(res.data)))
@@ -122,7 +122,7 @@ export const fetchEntityRequest = (payload) => (dispatch) => {
   return axios
     .get(`https://86214663421f.ngrok.io${payload}`)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       return res;
     })
     .then((res) => dispatch(fetchEntityListSuccess(res.data)))
