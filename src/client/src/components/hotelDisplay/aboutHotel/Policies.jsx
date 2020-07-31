@@ -12,20 +12,24 @@ export default class Policies extends React.Component {
     // console.log(data);
     return (
       <div>
-        <div class=" border-0 mt-5">
-          
+        <div
+          class=" border-0 mt-5"
+          style={{
+            fontFamily: "tiemposText",
+            fontSize: ".9em",
+          }}
+        >
           <div class="">
-          <h5 className="card-heading  mb-3 h5">Policies</h5>
-          <hr/>
+            <h5 className="card-heading font-weight-bold mb-3 h5">Policies</h5>
+            <hr />
             <ul
               style={{
                 listStyle: "none",
                 fontFamily: "tiemposText",
                 fontSize: "13px",
-                paddingLeft : "10px"
+                paddingLeft: "10px",
               }}
             >
-             
               <li className="text-muted mb-2">
                 <span className="font-weight-bold">- Cancellation.</span>{" "}
                 Provided you book more than 7 days before the start of your

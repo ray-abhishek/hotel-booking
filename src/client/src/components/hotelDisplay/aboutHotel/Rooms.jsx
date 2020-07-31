@@ -24,6 +24,7 @@ class Rooms extends React.Component {
             font-weight="400"
             font-size="L"
             color="secondary"
+            className="font-weight-bold"
           >
             Rooms
           </h5>
@@ -37,6 +38,7 @@ class Rooms extends React.Component {
                 color="secondaryText"
                 font-family="akkuratRegular"
                 font-style="italic"
+                className="font-weight-bold"
               >
                 Entrance level
               </h6>
@@ -72,6 +74,7 @@ class Rooms extends React.Component {
                 font-family="akkuratRegular"
                 font-style="italic"
                 className=" mt-3"
+                className="font-weight-bold"
               >
                 Outside
               </h6>
