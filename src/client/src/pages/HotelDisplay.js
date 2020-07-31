@@ -11,8 +11,9 @@ import Rooms from "../components/hotelDisplay/aboutHotel/Rooms";
 import { fetchEntityRequest } from "../redux/action";
 import { connect } from "react-redux";
 import FeaturesDetails from "../components/hotelDisplay/aboutHotel/FeaturesDetails";
-import BookingBox from '../components/hotelDisplay/BookingBox';
-import StickyBox from 'react-sticky-box';
+import Location from "../components/hotelDisplay/aboutHotel/Location";
+import BookingBox from "../components/hotelDisplay/BookingBox";
+import StickyBox from "react-sticky-box";
 import style from "./HotelDisplay.module.css";
 import { StickyContainer, Sticky } from 'react-sticky';
 // import './styles1.css';
@@ -59,13 +60,13 @@ class HotelDisplay extends React.Component {
       else if((window.scrollY > 1400 && window.scrollY <1700)){
         this.setState({ isRoomBold: false, isLocation: true })
       }
-      else if((window.scrollY > 1700 && window.scrollY <2600)){
+      else if((window.scrollY > 1700 && window.scrollY <3000)){
         this.setState({  isLocation: false, isFeatureBold: true })
       }
-      else if((window.scrollY > 2600 && window.scrollY <2700)){
+      else if((window.scrollY > 3000 && window.scrollY <3100)){
         this.setState({ isFeatureBold: false, isHomeBold: true })
       }
-      else if((window.scrollY > 2700 && window.scrollY <3000)){
+      else if((window.scrollY > 3100 && window.scrollY <3300)){
         this.setState({ isHomeBold: false, isPolicyBold: true })
       }
       else{
@@ -127,6 +128,8 @@ class HotelDisplay extends React.Component {
              <Features {...this.props} />
            <div id="section1"><Description {...this.props} /></div> 
            <div id="section2"><Rooms {...this.props} /></div> 
+           <div id="section2"><Location {...this.props} /></div> 
+
            <div id="section4"><FeaturesDetails {...this.props} /></div> 
             <FindOutMore />
             <div id="section5">  <HomeTruths {...this.props} /></div> 
@@ -140,18 +143,33 @@ class HotelDisplay extends React.Component {
         </div>
         {/* <SimilarHomes paramsId={this.props.match.params.id} /> */}
       </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-12" >
+      
+{/* 
+        <div className="">
+          <ImageCarousel />
+        </div></div>
 
-
-        <SimilarHomes paramsId={this.props.match.params.id} />
-  
+        <div className="container mt-5" style={{ maxWidth: "auto" }}>
+          <div className={`${style.hdContainer}`}>
+            <div className={`${style.bioBox}`}>
+              <Features {...this.props} />
+              <Description {...this.props} />
+              <Rooms {...this.props} />
+              <Location {...this.props} />
+              <FeaturesDetails {...this.props} />
+              <FindOutMore />
+              <HomeTruths {...this.props} />
+              <Policies {...this.props} />
+            </div>
+            <div className="ml-4">
+              <StickyBox offsetTop={20} offsetBottom={20}>
+                <BookingBox {...this.props} />
+              </StickyBox>
+            </div>
           </div>
-        </div>
-      </div>
-    </>
-
+          <SimilarHomes paramsId={this.props.match.params.id} />
+        </div> */}
+      </>
     );
   }
 }
@@ -181,3 +199,16 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HotelDisplay);
+
+/*
+<div className="container">
+        <div className="row">
+          <div className="col-12">
+
+
+        <SimilarHomes paramsId={this.props.match.params.id} />
+  
+          </div>
+        </div>
+      </div>
+*/

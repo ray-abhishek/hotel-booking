@@ -1,5 +1,5 @@
 import React from "react";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
 
 import {
   FETCH_REG_REQUEST,
@@ -63,8 +63,8 @@ export const userRegistration = (query) => (dispatch) => {
   ReactGA.event({
     category: "Signup Button",
     action: "new User Signup",
-    label: "Account Created"
-  })
+    label: "Account Created",
+  });
   return axios
     .post("https://86214663421f.ngrok.io/signup", {
       email: query.email,
@@ -85,8 +85,8 @@ export const userLogin = (query) => (dispatch) => {
   ReactGA.event({
     category: "Login Button",
     action: " User Login",
-    label: "Account Login"
-  })
+    label: "Account Login",
+  });
   return axios
     .post("https://86214663421f.ngrok.io/login", {
       email: query.email,

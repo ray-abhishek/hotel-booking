@@ -3,6 +3,7 @@ import Header from "../components/landingPage/Header";
 import Collections from "../components/landingPage/Collections";
 import { connect } from "react-redux";
 import Inspiration from "../components/landingPage/Inspiration";
+import Hospitality from "../components/landingPage/Hospitality";
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -10,11 +11,20 @@ class LandingPage extends React.Component {
     this.state = {};
   }
   render() {
-    console.log("HI FROM LANDING PAGE");
     return (
       <>
         <Header {...this.props} />
+        <div
+          style={{
+            padding: "5px",
+            background: "#4DE1FF",
+            justifyContent: "center",
+            display: "flex",
+            // padding: " 5px auto",
+          }}
+        ></div>
         <Collections {...this.props} />
+        <Hospitality {...this.props} />
         <Inspiration {...this.props} />
       </>
     );
