@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GoogleMapReact from "google-map-react";
+import GoogleMapReact from 'google-map-react';
 import { connect } from "react-redux";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -23,6 +23,7 @@ class Location extends Component {
     return (
       // Important! Always set the container height explicitly
       <div>
+        <h2>Location</h2>
         {hotelData["location_info"] && (
           <div style={{ height: "50vh", width: "100%" }}>
             <GoogleMapReact
