@@ -85,7 +85,7 @@ class FeaturesDetails extends React.Component {
     };
     return (
       <div className="card border-0" style={font}>
-        <h3>Features</h3>
+        <h3 className="font-weight-bold">Features</h3>
         <hr />
         <h6 className="mb-4 font-weight-bold">Families</h6>
         <div className="row">
@@ -189,7 +189,9 @@ class FeaturesDetails extends React.Component {
                 src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/036f324cf34b32f5778266f61328bacf.svg"
                 alt="guests"
               />
-              <span style={{fontSize:'15px'}}>{hotelDetails["sleeps"][0]}</span>
+              <span style={{ fontSize: "15px" }}>
+                {hotelDetails["sleeps"][0]}
+              </span>
             </div>
             <div className="col-4">
               <img
@@ -198,13 +200,14 @@ class FeaturesDetails extends React.Component {
                 src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/902f8e1ce2c97d1c7566c8ab22432d01.svg"
                 alt="bed"
               />
-              <span style={{fontSize:'15px'}}>{hotelDetails["sleeps"][1]}</span>
-              
+              <span style={{ fontSize: "15px" }}>
+                {hotelDetails["sleeps"][1]}
+              </span>
             </div>
-            <div className="mt-4 mx-3">
+            <div className="mt-4 mx-3 col-12">
               {hotelDetails["sleeps"][2]},
-              {hotelDetails["sleeps"][3] && `${hotelDetails["sleeps"][3]}`} <u>Bed
-              size chart{" "}</u>
+              {hotelDetails["sleeps"][3] && `${hotelDetails["sleeps"][3]}`}{" "}
+              <u>Bed size chart </u>
             </div>
           </div>
         )}
@@ -223,13 +226,18 @@ class FeaturesDetails extends React.Component {
                     alt="bathtub"
                   />
                 </div>
-                <div style={{fontSize:'15px'}}>{hotelDetails["bathroom"][0]}</div>
+                <div style={{ fontSize: "15px" }}>
+                  {hotelDetails["bathroom"][0]}
+                </div>
               </div>
             </div>
             <div className="my-3">
-              {hotelDetails["bathroom"][1] && ` ${hotelDetails["bathroom"][1]}`},
-              {hotelDetails["bathroom"][2] && ` ${hotelDetails["bathroom"][2]}`},
-              {hotelDetails["bathroom"][3] && ` ${hotelDetails["bathroom"][3]}`},
+              {hotelDetails["bathroom"][1] && ` ${hotelDetails["bathroom"][1]}`}
+              ,
+              {hotelDetails["bathroom"][2] && ` ${hotelDetails["bathroom"][2]}`}
+              ,
+              {hotelDetails["bathroom"][3] && ` ${hotelDetails["bathroom"][3]}`}
+              ,
             </div>
           </div>
         )}
@@ -240,7 +248,7 @@ class FeaturesDetails extends React.Component {
             {hotelDetails &&
               hotelDetails["highlights"] &&
               hotelDetails["highlights"].map((ele) => (
-                <span style={{marginRight: '10px'}}>
+                <span style={{ marginRight: "10px" }}>
                   <img
                     type="check_slate"
                     style={checkSlate}

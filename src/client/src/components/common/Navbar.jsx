@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Login from "../admin/Login";
 import Signup from "../admin/Signup";
 import { connect } from "react-redux";
-import { logoutUser } from '../../redux/auth/action';
+import { logoutUser } from "../../redux/auth/action";
+import Destination from "../landingPage/Destination";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -33,19 +34,27 @@ class Navbar extends React.Component {
     console.log(loginSuccess);
     return (
       <>
+        <Destination />
         <nav className="navbar navbar-light bg-white">
           {/* Home Link */}
           <Link to="/">
             {" "}
-            <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg" width="155px" height="30px" />
+            <img
+              src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg"
+              width="155px"
+              height="30px"
+            />
           </Link>
           <div className="d-flex flex-row bd-highlight">
             <Link
               className="p-2 bd-highlight p-3 text-decoration-none text-dark"
-              to="destination"
+              // to="destination"
+              data-toggle="modal"
+              data-target="#destination"
             >
               Destinations <span className={style.line}>|</span>
             </Link>
+
             <Link
               className="p-2 bd-highlight p-3 text-decoration-none text-dark"
               to="wishlist"
@@ -60,11 +69,10 @@ class Navbar extends React.Component {
             </Link>
             {/* Login and Logout toggling */}
             {
-            // loginSuccess.data && loginSuccess.data.status === "success" 
-              isLogin===true
-            ? (
-              <nav class="navbar navbar-expand-lg">
-                {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
+              // loginSuccess.data && loginSuccess.data.status === "success"
+              isLogin === true ? (
+                <nav class="navbar navbar-expand-lg">
+                  {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
                   <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                       <a
@@ -88,23 +96,32 @@ class Navbar extends React.Component {
                         <a class="dropdown-item" href="https://www.google.com/">
                           Change Password
                         </a>
-                        <a class="dropdown-item" onClick={()=>logoutUser(loginSuccess.data && loginSuccess.data.Authorization)}>
+                        <a
+                          class="dropdown-item"
+                          onClick={() =>
+                            logoutUser(
+                              loginSuccess.data &&
+                                loginSuccess.data.Authorization
+                            )
+                          }
+                        >
                           Logout
                         </a>
                       </div>
                     </li>
                   </ul>
-                {/* </div> */}
-              </nav>
-            ) : (
-              <Link
-                className="p-2 bd-highlight p-3 text-decoration-none text-dark"
-                data-toggle="modal"
-                data-target="#exampleModal"
-              >
-                Log in <span className={style.line}></span>
-              </Link>
-            )}
+                  {/* </div> */}
+                </nav>
+              ) : (
+                <Link
+                  className="p-2 bd-highlight p-3 text-decoration-none text-dark"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Log in <span className={style.line}></span>
+                </Link>
+              )
+            }
 
             <div
               class="modal fade"
@@ -114,55 +131,102 @@ class Navbar extends React.Component {
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-               <div class="modal-dialog">
-                 
+              <div class="modal-dialog">
                 <div class="modal-content">
-
                   <div className="mt-3 text-center mr-4">
-                   
                     <button
                       type="button"
                       class="close"
                       data-dismiss="modal"
                       aria-label="Close"
                     >
-                      <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/2c409d2237e810d3a092cbba7a341934.svg" alt=""/>
+                      <img
+                        src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/2c409d2237e810d3a092cbba7a341934.svg"
+                        alt=""
+                      />
                     </button>
 
-
-                  {(isLogin && loginSuccess.data.status==="success")  ? <h3 className="mt-4">Login Successfully</h3> :<div> {!isToggle? <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
-                       Login
-                    </h3>: <h3 class="modal-title text-center mb-3" style={{fontFamily: "Tiempos Text serif", fontSize: 26}} id="exampleModalLabel">
-                       Signup
-                    </h3> }</div>}
+                    {isLogin && loginSuccess.data.status === "success" ? (
+                      <h3 className="mt-4">Login Successfully</h3>
+                    ) : (
+                      <div>
+                        {" "}
+                        {!isToggle ? (
+                          <h3
+                            class="modal-title text-center mb-3"
+                            style={{
+                              fontFamily: "Tiempos Text serif",
+                              fontSize: 26,
+                            }}
+                            id="exampleModalLabel"
+                          >
+                            Login
+                          </h3>
+                        ) : (
+                          <h3
+                            class="modal-title text-center mb-3"
+                            style={{
+                              fontFamily: "Tiempos Text serif",
+                              fontSize: 26,
+                            }}
+                            id="exampleModalLabel"
+                          >
+                            Signup
+                          </h3>
+                        )}
+                      </div>
+                    )}
                   </div>
                   <div class="modal-body">
-                    {(isLogin && loginSuccess.data.status==="success")? <div className="p-2 pl-5 pr-5"><p className="text-center">Welcome to onefinestay. Stay in dinstinctive private homes and villas - with an unprecedented level of service.</p> 
-                      <div className="text-center pb-3 mt-4">
-                        <button className= "btn btn-danger btn-block"
-                          data-dismiss="modal">OK</button>
-                            </div></div> :
-                    <div>
-                      {!isToggle ? (
-                      <>
+                    {isLogin && loginSuccess.data.status === "success" ? (
+                      <div className="p-2 pl-5 pr-5">
                         <p className="text-center">
-                          New to onefinestay?{" "}
-                          <Link onClick={toggleForm} className="text-decoration-none">Signup</Link>
+                          Welcome to onefinestay. Stay in dinstinctive private
+                          homes and villas - with an unprecedented level of
+                          service.
                         </p>
-                        {isSignup == true ? <Signup /> : <Login />}
-                      </>
+                        <div className="text-center pb-3 mt-4">
+                          <button
+                            className="btn btn-danger btn-block"
+                            data-dismiss="modal"
+                          >
+                            OK
+                          </button>
+                        </div>
+                      </div>
                     ) : (
-                      <>
-                        <p className="text-center">
-                          If you already have an account,{" "}
-                          <Link onClick={toggleForm} className="text-decoration-none">Login</Link>
-                          {isSignup == true ? <Login /> : <Signup />}
-                        </p>
-                      </>
-                    )} </div>}
+                      <div>
+                        {!isToggle ? (
+                          <>
+                            <p className="text-center">
+                              New to onefinestay?{" "}
+                              <Link
+                                onClick={toggleForm}
+                                className="text-decoration-none"
+                              >
+                                Signup
+                              </Link>
+                            </p>
+                            {isSignup == true ? <Signup /> : <Login />}
+                          </>
+                        ) : (
+                          <>
+                            <p className="text-center">
+                              If you already have an account,{" "}
+                              <Link
+                                onClick={toggleForm}
+                                className="text-decoration-none"
+                              >
+                                Login
+                              </Link>
+                              {isSignup == true ? <Login /> : <Signup />}
+                            </p>
+                          </>
+                        )}{" "}
+                      </div>
+                    )}
                   </div>
                 </div>
-                
               </div>
             </div>
 
@@ -181,11 +245,11 @@ class Navbar extends React.Component {
 const mapStateToProps = (state) => ({
   loginSuccess: state.authReducer.loginData,
   isSignup: state.authReducer.isSignup,
-  isLogin: state.authReducer.isLogin
+  isLogin: state.authReducer.isLogin,
 });
 
-const mapDispatchToProps=(dispatch)=>({
-  logoutUser: (authStr)=>dispatch(logoutUser(authStr))
-})
+const mapDispatchToProps = (dispatch) => ({
+  logoutUser: (authStr) => dispatch(logoutUser(authStr)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

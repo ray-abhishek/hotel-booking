@@ -13,15 +13,7 @@ class LandingPage extends React.Component {
     return (
       <>
         <Header {...this.props} />
-        <div
-          style={{
-            padding: "5px",
-            background: "#4DE1FF",
-            justifyContent: "center",
-            display: "flex",
-            // padding: " 5px auto",
-          }}
-        ></div>
+
         <Collections {...this.props} />
         <Inspiration {...this.props} />
       </>

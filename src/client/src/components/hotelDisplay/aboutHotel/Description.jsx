@@ -12,25 +12,19 @@ class Description extends React.Component {
     return (
       <>
         <div
-          className="accordion"
+          className="accordion mt-5"
           id="accordionExample"
           style={{
             fontFamily: "tiemposText",
             fontSize: ".9em",
           }}
         >
-          <h5
-            font-family="tiemposText"
-            font-weight="800"
-            font-size="L"
-            color="secondary"
-            className="sc-15ch3b2-1 fRbMas mt-5"
-          >
-            Description
-          </h5>
-          <hr/>
+          <h5 className="card-heading font-weight-bold mb-3 h5">Description</h5>
+          <hr />
           {hotelDetails && hotelDetails["description"] && (
-            <p style={{fontSize:'16px'}}>{hotelDetails["description"][0]}</p>
+            <p style={{ fontSize: "16px" }} className="font-weight-bold ">
+              {hotelDetails["description"][0]}
+            </p>
           )}
 
           {hotelDetails && hotelDetails["description"] && (
@@ -41,12 +35,15 @@ class Description extends React.Component {
               data-parent="#accordionExample"
               style={{ overflowY: "hidden", fontSize: "15px" }}
             >
-              <div> {hotelDetails["description"][1]}</div><br/>
+              <div> {hotelDetails["description"][1]}</div>
+              <br />
               <div>{hotelDetails["description"][2]}</div>
             </p>
           )}
           {this.state.show && hotelDetails && hotelDetails["description"] && (
-            <p>{hotelDetails["description"][1]}</p>
+            <p style={{ overflowY: "hidden", fontSize: "15px" }}>
+              {hotelDetails["description"][1]}
+            </p>
           )}
           <p
             onClick={(e) => {
@@ -60,7 +57,10 @@ class Description extends React.Component {
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            <p style={{fontSize:'12px', padding: '0px'}}><i class="fa fa-caret-down lg" aria-hidden="true"></i>{this.state.show ? ` show more` : ` hide`}</p>
+            <p style={{ fontSize: "12px", padding: "0px" }}>
+              <i class="fa fa-caret-down lg" aria-hidden="true"></i>
+              {this.state.show ? ` show more` : ` hide`}
+            </p>
           </p>
         </div>
       </>
