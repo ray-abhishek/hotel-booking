@@ -1,8 +1,50 @@
 .bioBox {
     font-size: 13px;
+  
 }
 
 .hdContainer {
     display : flex;
     flex-direction: row;
 }
+
+
+.nav{
+    width: 100%;
+    justify-content: center;
+    transition: 0.25s;
+    color: white;
+    height: 72px;
+    top: 0px;
+    display: none;
+   
+}
+
+.nav_text{
+    width: 100%;
+    justify-content: space-around;
+    padding: 30px 2px;
+    
+}
+
+.nav_text h1{
+    font-size: 18px;
+    transition: 0.25s;
+    color: red;
+}
+
+.nav_text h1:hover{
+    color: lightgray;
+    cursor: pointer;
+    
+}
+
+.scrolled{
+    position: fixed;
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+    display: inline-block;
+    offset-position: center;
+}
+
+   

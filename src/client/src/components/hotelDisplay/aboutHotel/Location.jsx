@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GoogleMapReact from "google-map-react";
+import GoogleMapReact from 'google-map-react';
 import { connect } from "react-redux";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 var data;
@@ -65,6 +65,7 @@ class Location extends Component {
             </div>
           )}
         </div>
+
       </div>
     );
   }

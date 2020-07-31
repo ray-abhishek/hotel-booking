@@ -10,7 +10,7 @@ import json
 #Function for fetching hotel data
 def get_hotel_data(data):
 
-    query = 'SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, ee.bathrooms, ee.description, ee.cost_per_night, ee.features FROM hotels as ee WHERE ee.id = %s'%(data["hotel_id"])
+    query = 'SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, ee.bathrooms, ee.description, ee.cost_per_night, ee.features, ee.latitude, ee.longitude FROM hotels as ee WHERE ee.id = %s'%(data["hotel_id"])
 
     query = query + ';'
 
@@ -19,7 +19,7 @@ def get_hotel_data(data):
     temp_hotel = {}
     
     for row in data_raw:
-        
+        print(row,"               is ROW INSIDE HOTEL DISPLAY                ")
         hotel_features = json.loads(row["features"])
         temp_hotel["families"] = []
         temp_hotel["families"].extend(hotel_features["accessibility"])
@@ -56,6 +56,9 @@ def get_hotel_data(data):
         temp_hotel["bathrooms"] = row["bathrooms"]
         temp_hotel["cost_per_night"] = row["cost_per_night"]
         temp_hotel["cost_per_bedroom"] = int(row["cost_per_night"])//int(row["bedrooms"])
+        temp_hotel["location_info"] = []
+        temp_hotel["location_info"].append(row["latitude"])
+        temp_hotel["location_info"].append(row["longitude"])
 
     if len(temp_hotel)>0:
         return True, temp_hotel

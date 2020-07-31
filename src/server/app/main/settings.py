@@ -16,7 +16,7 @@ class DevelopmentConfig(Config):
     MAIL_PORT = 465
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'abhi.22.ray@gmail.com'
-    MAIL_PASSWORD = 'rainbowisback'
+    MAIL_PASSWORD = 'Blackbeans@121'
 
 class TestingConfig(Config):
     DEBUG = True

@@ -45,6 +45,7 @@ class FilterModal extends Component {
     });
     fetchCatalogRequest(`${location.pathname}${location.search}`);
   }
+
   componentWillReceiveProps(nextProps, nextState) {
     const { fetchCatalogRequest } = this.props;
     const { location } = nextProps;
@@ -72,6 +73,7 @@ class FilterModal extends Component {
       perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
     });
   }
+        
   handleOnChangeModal = (e) => {
     // console.log("modal working");
     const { id } = e.target;

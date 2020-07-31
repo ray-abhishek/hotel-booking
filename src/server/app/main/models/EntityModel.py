@@ -20,6 +20,8 @@ class EntityModel(db.Model):
     features = db.Column(db.Text, nullable=False)
     home_truth_id = db.Column(db.Integer, db.ForeignKey('home_truths.id'), nullable=False)
     policy_id = db.Column(db.Integer, db.ForeignKey('policy.id'), nullable=False)
+    latitude = db.Column(db.String(70), nullable=False)
+    longitude = db.Column(db.String(70), nullable=False)
     
     
     

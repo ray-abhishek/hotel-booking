@@ -3,6 +3,7 @@ import Header from "../components/landingPage/Header";
 import Collections from "../components/landingPage/Collections";
 import { connect } from "react-redux";
 import Inspiration from "../components/landingPage/Inspiration";
+import Hospitality from "../components/landingPage/Hospitality";
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class LandingPage extends React.Component {
         <Header {...this.props} />
 
         <Collections {...this.props} />
+        <Hospitality {...this.props} />
         <Inspiration {...this.props} />
       </>
     );

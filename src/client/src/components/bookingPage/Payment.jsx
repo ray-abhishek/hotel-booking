@@ -13,6 +13,11 @@ class Payment extends React.Component {
   }
 
   dispalyRazorPay = async (e) => {
+    if (this.props.loginData.data===undefined){
+      return(alert("Please login in order to continue with Booking."))
+    }
+
+    console.log(this.props.loginData," is this.props.loginData")
     const { arrivalDate, departureDate } = this.props.location.state.details;
     const {
       email,
@@ -52,22 +57,28 @@ class Payment extends React.Component {
         departure &&
         notification
       ) {
-        response = await axios.post(apiURL + "/order", {
-          name: `${firstname} ${lastName}`,
-          email: `${email}`,
-          message: `${message}`,
-          phone_number: `${mobileNo}`,
-          order_amount: `${amount}`,
-          order_currency: `INR`,
-          order_receipt: `recipi${Date.now()}`,
-          book_from: `${arrival}`,
-          book_to: `${departure}`,
-          hotel_id: `${id}`,
-          notification: notification,
-        });
+        const response = await axios.post(apiURL + "/order", {
+        name: `${firstname} ${lastName}`,
+        email: `${email}`,
+        message: `${message}`,
+        phone_number: `${mobileNo}`,
+        order_amount: `${amount}`,
+        order_currency: `INR`,
+        order_receipt: `recipi${Date.now()}`,
+        book_from: `${arrival}`,
+        book_to: `${departure}`,
+        hotel_id: `${id}`,
+        notification : notification
+      },
+        {
+        headers: {
+          Authorization: this.props.loginData.data.Authorization, //the token is a variable which holds the token
+        },
+      });
       } else {
         return alert("please fill all the fielde");
       }
+
 
       const { data } = response;
       if (data.status === "failure") {
@@ -144,7 +155,7 @@ class Payment extends React.Component {
   render() {
     // console.log(this.state, "state in payment");
     // console.log(this.props, "props in payment");
-
+    
     return (
       <div>
         <div
@@ -159,12 +170,12 @@ class Payment extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//     data: state.dataReducer.entityData,
-//   });
+const mapStateToProps = (state) => ({
+  loginData: state.authReducer.loginData,
+});
 
 // const mapDispatchToProps = (dispatch) => ({
 //   fetchEntityRequest: (query) => dispatch(fetchEntityRequest(query)),
 // });
 
-export default connect(null, null)(Payment);
+export default connect(mapStateToProps, null)(Payment);
