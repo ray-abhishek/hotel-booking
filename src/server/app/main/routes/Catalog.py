@@ -15,7 +15,7 @@ class Catalog(Resource):
     parser.add_argument('perPage', type=str,required=False)
     parser.add_argument('sort', type=str,required=False)
     parser.add_argument('page', type=str,required=False)
-    parser.add_argument('feature', type=str,required=False, action='append')
+    parser.add_argument('features', type=str,required=False, action='append')
     parser.add_argument('maxPrice', type=str,required=False)
     parser.add_argument('minPrice', type=str,required=False)
 
@@ -34,10 +34,11 @@ class Catalog(Resource):
         flag, total_results, total_pages, catalog_data = get_catalog_data(data)
         print("\n\n")
         print(catalog_data," is catalog_data being sent to client")
+        #print(location_info," is the location_info being sent to client")
         if flag:
             return {"status" : "success", "data" : catalog_data, "totalresults" : total_results, "totalpages" : total_pages}
         else:
-            return {"status" : "failure" , "message" : "Could not fetch results. Please try again."}
+            return {"status" : "failure" , "message" : "There are no hotels available for selected parameters. Please contact us at +91 9787611290. "}
 
 
 
