@@ -33,6 +33,7 @@ class BookingBox extends React.Component {
       departureDate: null,
       bookedDates: "",
       isLoading: false,
+      data: this.props.hotelData,
     };
   }
 
@@ -83,13 +84,16 @@ class BookingBox extends React.Component {
         "/home-listing/" + this.props.match.params.id + "/request-booking",
       state: {
         details: this.state,
-        hotelData: this.props.hotelData,
+        // hotelData: this.props.hotelData,
+        hotelData: this.state.data,
         differenceDate: differenceDate,
       },
     });
   };
 
   render() {
+    console.log(this.props.hotelData, "PROPS");
+
     const { arrivalDate, departureDate, bookedDates, isLoading } = this.state;
     const {
       setStartDate,

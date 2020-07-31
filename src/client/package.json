@@ -31,6 +31,7 @@
     "react-stick": "^4.0.2",
     "react-sticky": "^6.0.3",
     "react-sticky-box": "^0.9.3",
+    "react-stickynode": "^3.0.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "rsuite": "^4.8.0",

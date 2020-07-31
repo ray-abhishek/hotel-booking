@@ -42,15 +42,22 @@ class Payment extends React.Component {
       `${departureDate.getFullYear()}-${
         departureDate.getMonth() + 1
       }-${departureDate.getDate()}`;
+
     try {
       const apiURL = "https://86214663421f.ngrok.io";
       e.preventDefault();
-      // const url = new URLSearchParams();
-      // url.append("order_amount", "10000");
-      // url.append("currency", "INR");
-      //   parser.add_argument('book_from', type=str,required=False)
-      //   parser.add_argument('book_to', type=str,required=False)
-      const response = await axios.post(apiURL + "/order", {
+      let response;
+      if (
+        firstname &&
+        lastName &&
+        email &&
+        message &&
+        mobileNo &&
+        arrival &&
+        departure &&
+        notification
+      ) {
+        const response = await axios.post(apiURL + "/order", {
         name: `${firstname} ${lastName}`,
         email: `${email}`,
         message: `${message}`,
@@ -61,12 +68,18 @@ class Payment extends React.Component {
         book_from: `${arrival}`,
         book_to: `${departure}`,
         hotel_id: `${id}`,
+        notification : notification
       },
         {
         headers: {
           Authorization: this.props.loginData.data.Authorization, //the token is a variable which holds the token
         },
       });
+      } else {
+        return alert("please fill all the fielde");
+      }
+
+
       const { data } = response;
       if (data.status === "failure") {
         return alert(data.message);

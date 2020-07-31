@@ -43,8 +43,8 @@ class BookingForm extends Component {
   };
 
   render() {
+    console.log(this.props, "form details");
     const { hotelData, details, differenceDate } = this.props.location.state;
-    // console.log(hotelData, details, "form details");
     // console.log(details["arrivalDate"], "arrivaldate");
     let arrival =
       details &&
@@ -100,7 +100,7 @@ class BookingForm extends Component {
             </div>
             <div className="form-group">
               <label class="my-1 mr-2" for="mobileNo">
-                Phone number
+                Phone number*
               </label>
 
               <div class="form-row">
@@ -131,7 +131,7 @@ class BookingForm extends Component {
               </div>
             </div>
             <div class="form-group">
-              <label for="message">message</label>
+              <label for="message">message*</label>
               <textarea
                 onChange={(e) => this.handleOnChange(e)}
                 checked={this.notification}
@@ -153,8 +153,7 @@ class BookingForm extends Component {
               />
               <label class="form-check-label " for="exampleCheck1">
                 <small>
-                  Send me emails with travel inspiration and news about
-                  onefinestay.
+                  Send me emails for order success with order details.
                 </small>
               </label>
             </div>

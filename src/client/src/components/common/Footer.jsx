@@ -8,7 +8,7 @@ function Footer(){
         <div className={style.container}>
         <div className="row mt-5 text-center mb-5">
           <div className="col-sm">
-            <img src="./images/footer-logos.svg" className="img-fluid" style={{width: "57px", height: "64px"}}/>
+            <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/671b5ff55023846ec4151c2220349b3f.svg" className="img-fluid" style={{width: "57px", height: "64px"}}/>
           </div>
          
           <div className="col-4 mt-4">
@@ -18,7 +18,7 @@ function Footer(){
             <i className="fab fa-pinterest-p" style={{marginRight: "10px"}}></i>
           </div>
           <div className="col-4">
-            <img src="./images/logo2.svg" className="img-fluid" style={{width: "78px", height: "64px"}}/>
+            <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/9e675920e1c0d5fd9522c2a49b663280.svg" className="img-fluid" style={{width: "78px", height: "64px"}}/>
           </div>
         </div> 
         <hr className={style.new1}/>
@@ -106,13 +106,13 @@ function Footer(){
                   </select>
               </div>
               <div className="col-2">
-                    <img src="./images/signature.png" className="img-fluid"/>
+                    <img src="https://onefinestay.imgix.net/media-library/signature.png" className="img-fluid"/>
               </div>
               <div className="col-2">
-                    <img src="./images/travel_made_white.png" className="img-fluid" />
+                    <img src="https://onefinestay.imgix.net/media-library/ensemble.png" className="img-fluid" />
               </div>
               <div className="col-2">
-                    <img src="/images/ensemble.png" className="img-fluid" />
+                    <img src="https://onefinestay.imgix.net/media-library/travel_made_white.png" className="img-fluid" />
               </div>
               </div>
             <small>Prices shown here are approximate conversions from local currency</small>
