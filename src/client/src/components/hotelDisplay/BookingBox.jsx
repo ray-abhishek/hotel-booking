@@ -48,11 +48,18 @@ class BookingBox extends React.Component {
     });
   };
 
-  async componentDidMount() {
-    console.log("id", this.props.match.params.id);
-    const res = await axios.get(
-      "https://86214663421f.ngrok.io/booked-dates/" + this.props.match.params.id
-    );
+
+    async componentDidMount (){
+      console.log("id", this.props.match.params.id)
+      const res= await axios.get("https://86214663421f.ngrok.io/booked-dates/"+this.props.match.params.id)
+      
+        this.setState({
+          bookedDates: res.data,
+          isLoading: true
+        })       
+        console.log("booked dates" ,res.data) 
+    }
+
 
     this.setState({
       bookedDates: res.data,
