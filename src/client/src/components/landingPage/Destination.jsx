@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class HomeTruths extends React.Component {
   constructor(props) {
@@ -22,33 +23,99 @@ class HomeTruths extends React.Component {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div className="row mx-5 mt-5 mb-3">
-              <div className="h2 col-4">Our City collection</div>
-              <div className="h2 col-4">Our Villa collection</div>
+              <div className="h4 col-3">Our City collection</div>
+              <div className="h4 col-3">Our Villa collection</div>
             </div>
 
             <div className="row mx-5 mb-5">
               <div className="col-3">
                 <div className="font-weight-bold my-3"> Europe</div>
-                <div>London</div>
-                <div>Paris</div>
-                <div>Rome</div>
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/London"
+                >
+                  London
+                </Link>
+                <br />
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Paris"
+                >
+                  Paris
+                </Link>
+                <br />
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Rome"
+                >
+                  Rome
+                </Link>
+                <br />
               </div>
               <div className="col-3">
                 <div className="font-weight-bold my-3"> Caribbean</div>
-                <div>St Barts</div>
-                <div>Turks and Caicos</div>
-                <div>St John</div>
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/St Barts"
+                >
+                  St Barts
+                </Link>
+                <br />
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Turks and Caicos"
+                >
+                  Turks and Caicos
+                </Link>
+                <br />
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/St John"
+                >
+                  St John
+                </Link>
+                <br />
               </div>
               <div className="col-3">
                 <div className="font-weight-bold my-3"> Mexico</div>
-                <div>Cabo San Lucas</div>
-                <div>Riviera Maya</div>
-                <div>Puerto Vallarta</div>
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Cabo San Lucas"
+                >
+                  Cabo San Lucas
+                </Link>
+                <br />
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Riviera Maya"
+                >
+                  Riviera Maya
+                </Link>
+                <br />
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Puerto Vallarta"
+                >
+                  Puerto Vallarta
+                </Link>
+                <br />
               </div>
               <div className="col-3">
                 <div className="font-weight-bold my-3"> USA</div>
-                <div>Breckenridge</div>
-                <div>Aspen</div>
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Breckenridge"
+                >
+                  Breckenridge
+                </Link>
+                <br />
+                <Link
+                  style={{ color: "black", textDecoration: "none" }}
+                  to="/search/Aspen"
+                >
+                  Aspen
+                </Link>
+                <br />
               </div>
             </div>
           </div>
