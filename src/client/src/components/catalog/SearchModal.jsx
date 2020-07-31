@@ -114,7 +114,7 @@ class SearchBarModal extends Component {
                   e.preventDefault();
                 }}
               >
-                <div className="form-group">
+                <div className="form-group" >
                   <div className="border row ">
                     <div className="col-7 offset-2">
                       {/* <input

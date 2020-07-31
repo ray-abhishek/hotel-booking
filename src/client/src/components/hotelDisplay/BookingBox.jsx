@@ -84,8 +84,8 @@ class BookingBox extends React.Component {
         "/home-listing/" + this.props.match.params.id + "/request-booking",
       state: {
         details: this.state,
-        // hotelData: this.props.hotelData,
-        hotelData: this.state.data,
+        hotelData: this.props.hotelData,
+        // hotelData: this.state.data,
         differenceDate: differenceDate,
       },
     });

@@ -92,8 +92,8 @@ class SearchBar extends Component {
             e.preventDefault();
           }}
         >
-          <div className="form-row row">
-            <div className="form-group col-4">
+          <div className="form-row row" style={{height:'42px'}}>
+            <div className="form-group col-4" style={{height:'42px'}}>
               <div style={child1}>
                 <GooglePlacesAutocomplete
                   onSelect={(e) => this.setCity(e)}
@@ -116,8 +116,8 @@ class SearchBar extends Component {
               </datalist>
             </div>
 
-            <div className="form-group col-2">
-              <div className="h-100" style={child2}>
+            <div className="form-group col-2" style={{height:'42px'}}>
+              <div className="" style={child2}>
                 <div className="w-100" style={{ backgroundColor: "white" }}>
                   <DatePicker
                     className="datepicker"
@@ -145,8 +145,8 @@ class SearchBar extends Component {
             </div>
 
             <div className="form-group col-2">
-              <div className="h-100" style={child3}>
-                <div className="w-100" style={{ backgroundColor: "white" }}>
+              <div className="" style={child3}>
+                <div className="w-100" style={{ backgroundColor: "white !important" }}>
                   <DatePicker
                     className="datepicker"
                     selected={this.state.departureDate}
@@ -210,18 +210,18 @@ class SearchBar extends Component {
 }
 
 const searchBarStyle = {
-  zIndex: "1",
+  //zIndex: "1",
   position: "relative",
   fontSize: "12px",
   backgroundColor: "white",
-  maxHeight: "42px",
+  height: "42px",
   borderRadius: "5px",
   // maxWidth: "800px",
   // margin: "4rem auto 6rem auto",
 };
 
 const searchImgStyle = {
-  position: "relative",
+  //position: "relative",
   right: "25px",
 };
 
@@ -232,12 +232,12 @@ const inputStyle = {
 };
 
 const child1 = {
-  zIndex: "2",
+ // zIndex: "2",
   height: "100%",
 };
 
 const child2 = {
-  zIndex: "2",
+ // zIndex: "2",
   height: "100%",
   display: "flex",
   flexDirection: "row",
@@ -246,7 +246,7 @@ const child2 = {
 };
 
 const child3 = {
-  zIndex: "2",
+ // zIndex: "2",
   height: "100%",
   display: "flex",
   flexDirection: "row",
