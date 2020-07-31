@@ -1,13 +1,23 @@
 .myDropdownToggle::after {
   content: none;
   border: none;
-  background: white;
+  background: white !important;
 }
 
 .myDropdownToggle {
   border: none;
-  background: white;
+  background: white !important;
 }
 .test {
   background: black;
+}
+
+
+.react-datepicker__month-container, .react-datepicker__tab-loop, .react-datepicker, .react-datepicker__month, .react-datepicker__week {
+  z-index : 4;
+  background-color : white !important;
+}
+
+.react-datepicker__input-container > button{
+  height : 30px !important;
 }

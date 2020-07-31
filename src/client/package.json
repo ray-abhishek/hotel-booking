@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "cypress": "^4.11.0",
-    "google-map-react": "^2.0.2",
+    "google-map-react": "^2.0.4",
     "google-maps-react": "^2.0.6",
     "prop-types": "^15.7.2",
     "query-string": "^6.13.1",

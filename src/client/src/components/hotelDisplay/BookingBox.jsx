@@ -61,13 +61,6 @@ class BookingBox extends React.Component {
     }
 
 
-    this.setState({
-      bookedDates: res.data,
-      isLoading: true,
-    });
-    console.log("booked dates", res.data);
-  }
-
   handleBooking = () => {
     ////console.log("hotelData", hotelData);
     const { arrivalDate, departureDate } = this.state;
