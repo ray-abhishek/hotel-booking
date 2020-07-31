@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from "react-redux";
 import { fetchCatalogRequest } from "../../redux/action";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import "react-google-places-autocomplete/dist/index.min.css";
 // import { Redirect } from "react-router-dom";
 
 const ExampleCustomArrival = ({ value, onClick }) => (
@@ -38,6 +40,13 @@ class SearchBarModal extends Component {
       departureDate: date,
     });
   };
+
+  setCity = (e) => {
+    console.log(e["description"]);
+    let cityName = e["description"].split(",")[0];
+    this.setState({ city: cityName });
+  };
+
   handleOnClick = (e) => {
     ////console.log(this.props, "clicked");
     const { arrivalDate, departureDate } = this.state;
@@ -108,7 +117,7 @@ class SearchBarModal extends Component {
                 <div className="form-group">
                   <div className="border row ">
                     <div className="col-7 offset-2">
-                      <input
+                      {/* <input
                         type="text"
                         list="topdestinations"
                         placeholder="Where to next?"
@@ -117,6 +126,12 @@ class SearchBarModal extends Component {
                             city: e.target.value,
                           });
                         }}
+                      /> */}
+
+                      <GooglePlacesAutocomplete
+                        onSelect={(e) => this.setCity(e)}
+                        placeholder="Where to next?"
+                        debounce={500}
                       />
                     </div>
                     <div className=" col-1">

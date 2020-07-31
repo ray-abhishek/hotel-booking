@@ -43,14 +43,14 @@ class Pagination extends Component {
           : values.sort,
       perPage: !values.perPage || values.perPage == 10 ? 10 : values.perPage,
     });
-    fetchCatalogRequest(`${location.pathname}${location.search}`);
+    // fetchCatalogRequest(`${location.pathname}${location.search}`);
   }
 
   handlePageChange = (e) => {
     e.preventDefault();
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;
-    console.log(location, "this is location obj from pagination page handler");
+    // console.log(location, "this is location obj from pagination page handler");
 
     this.setState({
       page: e.target.id,
@@ -62,11 +62,11 @@ class Pagination extends Component {
       let stringArr = features?.map((ele, i) =>
         i == 0 ? `?features=${ele}` : `&features=${ele}`
       );
-      url += stringArr.join("");
-      url += minPrice != 100 ? `&minPrice=${minPrice}` : "";
-      url += perPage > 10 ? `&perPage=${perPage}` : "";
-      url += e.target.id > 1 ? `&page=${e.target.id}` : "";
-      url +=
+      query += stringArr.join("");
+      query += minPrice != 100 ? `&minPrice=${minPrice}` : "";
+      query += perPage > 10 ? `&perPage=${perPage}` : "";
+      query += e.target.id > 1 ? `&page=${e.target.id}` : "";
+      query +=
         sort == "Recommended" || sort == "recommended" ? "" : `&sort=${sort}`;
     } else {
       query += minPrice != 100 ? `&minPrice=${minPrice}` : "";
@@ -122,7 +122,7 @@ class Pagination extends Component {
     ////console.log(totalPages, "total pages");
     //console.log(this.state, "state updated in pagination");
     let pages = this.pages();
-    console.log(page);
+    // console.log(page);
     return (
       <nav
         aria-label="Page navigation example"
