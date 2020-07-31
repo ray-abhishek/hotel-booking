@@ -53,7 +53,8 @@ class Rooms extends React.Component {
                         hotelDetails["hotel_images"]["entrance"][i]["image"]
                       }
                       className="card-img-top"
-                      alt="..." style={{height:'110px', width:'150px'}}
+                      alt="..."
+                      style={{ height: "110px", width: "150px" }}
                     />
                     <div className="">
                       <p className="text-center">
@@ -69,25 +70,27 @@ class Rooms extends React.Component {
                 font-size="S"
                 color="secondaryText"
                 font-family="akkuratRegular"
-                font-style="italic" className=" mt-3"
+                font-style="italic"
+                className=" mt-3"
               >
                 Outside
               </h6>
             </div>
-            <div  className="d-flex">
+            <div className="d-flex">
               {hotelDetails &&
                 hotelDetails["hotel_images"] &&
                 // hotelDetails["hotel_images"]["entrance"] &&
-                hotelDetails["hotel_images"]["entrance"].map((ele, i) => (
+                hotelDetails["hotel_images"]["outside"].map((ele, i) => (
                   <div className="border-0 mr-3">
                     <img
-                      src={hotelDetails["hotel_images"]["entrance"][i]["image"]}
+                      src={hotelDetails["hotel_images"]["outside"][i]["image"]}
                       className="card-img-top"
-                      alt="..." style={{height:'110px', width:'150px'}}
+                      alt="..."
+                      style={{ height: "110px", width: "150px" }}
                     />
                     <div className="">
                       <p className="text-center">
-                        {hotelDetails["hotel_images"]["entrance"][i]["type"]}
+                        {hotelDetails["hotel_images"]["outside"][i]["type"]}
                       </p>
                     </div>
                   </div>

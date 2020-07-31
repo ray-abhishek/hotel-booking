@@ -59,7 +59,7 @@ const initState = {
 };
 
 const reducer = (state = initState, { type, payload }) => {
-  console.log("reducer payload", payload);
+  // console.log("reducer payload", payload);
   switch (type) {
     case FETCH_ENTITY_LIST_REQUEST:
       return {

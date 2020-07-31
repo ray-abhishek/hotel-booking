@@ -1,84 +1,64 @@
-import React, { useState, useEffect } from "react";
-import {
-  withGoogleMap,
-  withScriptjs,
-  GoogleMap,
-  Marker,
-  InfoWindow,
-} from "react-google-maps";
-// import * as parkData from "./data/skateboard-parks.json";
-// import mapStyles from "./mapStyles";
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+import { connect } from "react-redux";
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-function Map() {
-  const [selectedPark, setSelectedPark] = useState(null);
+class Location extends Component {
+  static defaultProps = {
+    center: {
+      lat: 59.95,
+      lng: 30.33,
+    },
+    zoom: 0,
+  };
 
-  useEffect(() => {
-    const listener = (e) => {
-      if (e.key === "Escape") {
-        setSelectedPark(null);
-      }
-    };
-    window.addEventListener("keydown", listener);
+  render() {
+    const { hotelData } = this.props;
+    console.log(hotelData, "hotel Data from props in Location");
 
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
-
-  return (
-    <GoogleMap
-      defaultZoom={15}
-      defaultCenter={{ lat: 12.97675, lng: 77.57528 }}
-      //   defaultOptions={{ styles: mapStyles }}
-    >
-      {/* {parkData.features.map((park) => ( */}
-      <Marker
-        //   key={park.properties.PARK_ID}
-        position={{
-          lat: 12.97675,
-          lng: 77.57528,
-        }}
-        // onClick={() => {
-        //   setSelectedPark(park);
-        // }}
-        //   icon={{
-        //     url: `/skateboarding.svg`,
-        //     scaledSize: new window.google.maps.Size(25, 25)
-        //   }}
-      />
-      {/* ))} */}
-
-      {/* {selectedPark && (
-        <InfoWindow
-          onCloseClick={() => {
-            setSelectedPark(null);
-          }}
-          position={{
-            lat: selectedPark.geometry.coordinates[1],
-            lng: selectedPark.geometry.coordinates[0]
-          }}
-        >
-          <div>
-            <h2>{selectedPark.properties.NAME}</h2>
-            <p>{selectedPark.properties.DESCRIPTIO}</p>
+    let lat1 = hotelData["location_info"] && hotelData["location_info"][0];
+    let lng1 = hotelData["location_info"] && hotelData["location_info"][1];
+    // let lat1 = hotelData["location_info"][0];
+    // let lng1 = hotelData["location_info"][1];
+    return (
+      // Important! Always set the container height explicitly
+      <div>
+        {hotelData["location_info"] && (
+          <div style={{ height: "50vh", width: "100%" }}>
+            <GoogleMapReact
+              bootstrapURLKeys={{
+                key: "AIzaSyCcS0j7hDpSs-F4xDi2q6AkTD_sWqECR9M",
+              }}
+              defaultCenter={this.props.center}
+              defaultZoom={this.props.zoom}
+            >
+              <AnyReactComponent
+                lat={lat1}
+                lng={lng1}
+                text={
+                  <i
+                    style={{ color: "red", fontSize: "30px" }}
+                    class="fa fa-map-marker"
+                    aria-hidden="true"
+                  >
+                    <small style={{ fontSize: "15px" }}>
+                      {hotelData["name"]}
+                    </small>
+                  </i>
+                }
+              />
+            </GoogleMapReact>
           </div>
-        </InfoWindow>
-      )} */}
-    </GoogleMap>
-  );
-}
+        )}
 
-const MapWrapped = withScriptjs(withGoogleMap(Map));
-
-export default function App() {
-  return (
-    <div style={{ width: "40vw", height: "50vh" }}>
-      <MapWrapped
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCcS0j7hDpSs-F4xDi2q6AkTD_sWqECR9M`}
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
-    </div>
-  );
+        {!hotelData["location_info"] && <div>Data Loading........</div>}
+      </div>
+    );
+  }
 }
+const mapStateToProps = (state) => ({
+  hotelData: state.dataReducer.entityData,
+  catalogData: state.dataReducer.catalogData,
+});
+
+export default connect(mapStateToProps, null)(Location);
