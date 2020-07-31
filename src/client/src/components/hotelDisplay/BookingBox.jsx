@@ -186,12 +186,10 @@ class BookingBox extends React.Component {
                     selectsEnd
                     startDate={new Date()}
                     endDate={new Date()}
-                    minDate={this.state.arrivalDate}
-                    excludeDates={
-                      bookedDates &&
-                      bookedDates.data["ahead"]?.map((item) =>
-                        addDays(new Date(), item)
-                      )
+                    minDate={ this.state.arrivalDate || new Date() }
+                    excludeDates={ 
+                       bookedDates && bookedDates.data["ahead"]?.map(item=>(
+                        addDays(new Date(), item))) 
                     }
                     placeholderText="Departure date "
                     customInput={<ExampleCustomDeparture />}
