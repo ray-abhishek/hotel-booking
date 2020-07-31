@@ -5,6 +5,7 @@ import Login from "../admin/Login";
 import Signup from "../admin/Signup";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/auth/action";
+import Destination from "../landingPage/Destination";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class Navbar extends React.Component {
     console.log(loginSuccess);
     return (
       <>
+        <Destination />
         <nav className="navbar navbar-light bg-white">
           {/* Home Link */}
           <Link to="/">
@@ -51,7 +53,9 @@ class Navbar extends React.Component {
           <div className="d-flex flex-row bd-highlight">
             <Link
               className="p-2 bd-highlight p-3 text-decoration-none text-dark"
-              to="destination"
+              // to="destination"
+              data-toggle="modal"
+              data-target="#destination"
             >
               Destinations <span className={style.line}>|</span>
             </Link>

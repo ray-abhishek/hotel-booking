@@ -33,11 +33,13 @@ class HomeTruths extends React.Component {
                 <Link
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/London"
+                  //   data-dismiss="modal"
                 >
                   London
                 </Link>
                 <br />
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Paris"
                 >
@@ -45,6 +47,7 @@ class HomeTruths extends React.Component {
                 </Link>
                 <br />
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Rome"
                 >
@@ -55,6 +58,7 @@ class HomeTruths extends React.Component {
               <div className="col-3">
                 <div className="font-weight-bold my-3"> Caribbean</div>
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/St Barts"
                 >
@@ -62,6 +66,7 @@ class HomeTruths extends React.Component {
                 </Link>
                 <br />
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Turks and Caicos"
                 >
@@ -69,6 +74,7 @@ class HomeTruths extends React.Component {
                 </Link>
                 <br />
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/St John"
                 >
@@ -79,6 +85,7 @@ class HomeTruths extends React.Component {
               <div className="col-3">
                 <div className="font-weight-bold my-3"> Mexico</div>
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Cabo San Lucas"
                 >
@@ -86,6 +93,7 @@ class HomeTruths extends React.Component {
                 </Link>
                 <br />
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Riviera Maya"
                 >
@@ -93,6 +101,7 @@ class HomeTruths extends React.Component {
                 </Link>
                 <br />
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Puerto Vallarta"
                 >
@@ -103,6 +112,7 @@ class HomeTruths extends React.Component {
               <div className="col-3">
                 <div className="font-weight-bold my-3"> USA</div>
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Breckenridge"
                 >
@@ -110,6 +120,7 @@ class HomeTruths extends React.Component {
                 </Link>
                 <br />
                 <Link
+                  //   data-dismiss="modal"
                   style={{ color: "black", textDecoration: "none" }}
                   to="/search/Aspen"
                 >
