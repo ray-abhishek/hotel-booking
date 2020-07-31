@@ -47,6 +47,7 @@ class FilterModal extends Component {
   }
 
   handleOnChange = (e) => {
+    console.log("HELOOO FROM MODAL")
     const { id } = e.target;
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;

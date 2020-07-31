@@ -53,6 +53,7 @@ class Filter extends Component {
   }
 
   handleOnChange = (e) => {
+    console.log("HELOOOOO FROM NORMAL")
     const { id } = e.target;
     const { features, minPrice, perPage, page, sort } = this.state;
     const { location, history, match, fetchCatalogRequest } = this.props;

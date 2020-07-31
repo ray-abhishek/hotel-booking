@@ -13,6 +13,11 @@ class Payment extends React.Component {
   }
 
   dispalyRazorPay = async (e) => {
+    if (this.props.loginData.data===undefined){
+      return(alert("Please login in order to continue with Booking."))
+    }
+
+    console.log(this.props.loginData," is this.props.loginData")
     const { arrivalDate, departureDate } = this.props.location.state.details;
     const {
       email,
@@ -38,7 +43,7 @@ class Payment extends React.Component {
         departureDate.getMonth() + 1
       }-${departureDate.getDate()}`;
     try {
-      const apiURL = "https://3d82b4e9e58f.ngrok.io";
+      const apiURL = "https://86214663421f.ngrok.io";
       e.preventDefault();
       // const url = new URLSearchParams();
       // url.append("order_amount", "10000");
@@ -56,6 +61,11 @@ class Payment extends React.Component {
         book_from: `${arrival}`,
         book_to: `${departure}`,
         hotel_id: `${id}`,
+      },
+        {
+        headers: {
+          Authorization: this.props.loginData.data.Authorization, //the token is a variable which holds the token
+        },
       });
       const { data } = response;
       if (data.status === "failure") {
@@ -132,7 +142,7 @@ class Payment extends React.Component {
   render() {
     // console.log(this.state, "state in payment");
     // console.log(this.props, "props in payment");
-
+    
     return (
       <div>
         <div
@@ -147,12 +157,12 @@ class Payment extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//     data: state.dataReducer.entityData,
-//   });
+const mapStateToProps = (state) => ({
+  loginData: state.authReducer.loginData,
+});
 
 // const mapDispatchToProps = (dispatch) => ({
 //   fetchEntityRequest: (query) => dispatch(fetchEntityRequest(query)),
 // });
 
-export default connect(null, null)(Payment);
+export default connect(mapStateToProps, null)(Payment);
