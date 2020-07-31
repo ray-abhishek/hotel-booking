@@ -178,7 +178,7 @@ class BookingBox extends React.Component{
         
                     startDate={new Date()}
                     endDate={new Date()}
-                    minDate={this.state.arrivalDate}
+                    minDate={ this.state.arrivalDate || new Date() }
  
                     excludeDates={ 
 
