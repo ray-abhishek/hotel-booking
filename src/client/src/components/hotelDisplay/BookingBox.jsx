@@ -84,8 +84,8 @@ class BookingBox extends React.Component {
         "/home-listing/" + this.props.match.params.id + "/request-booking",
       state: {
         details: this.state,
-        // hotelData: this.props.hotelData,
-        hotelData: this.state.data,
+        hotelData: this.props.hotelData,
+        // hotelData: this.state.data,
         differenceDate: differenceDate,
       },
     });
@@ -190,10 +190,12 @@ class BookingBox extends React.Component {
                     selectsEnd
                     startDate={new Date()}
                     endDate={new Date()}
-                    minDate={ this.state.arrivalDate || new Date() }
-                    excludeDates={ 
-                       bookedDates && bookedDates.data["ahead"]?.map(item=>(
-                        addDays(new Date(), item))) 
+                    minDate={this.state.arrivalDate || new Date()}
+                    excludeDates={
+                      bookedDates &&
+                      bookedDates.data["ahead"]?.map((item) =>
+                        addDays(new Date(), item)
+                      )
                     }
                     placeholderText="Departure date "
                     customInput={<ExampleCustomDeparture />}

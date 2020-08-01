@@ -83,7 +83,6 @@ class Filter extends Component {
   }
 
   handleOnChange = (e) => {
-
     // console.log("working");
     const { id } = e.target;
     const { features, minPrice, perPage, page, sort } = this.state;
@@ -861,8 +860,8 @@ class Filter extends Component {
                         id="sort"
                       >
                         <option selected>Sort By</option>
-                        <option value="Recommended">Recommended</option>
-                        <option value="RecentlyAdded">Recently added</option>
+                        {/* <option value="Recommended">Recommended</option>
+                        <option value="RecentlyAdded">Recently added</option> */}
                         <option value="SleepsMost">Sleeps (most)</option>
                         <option value="SleepsFewest">Sleeps (fewest)</option>
                         <option value="PriceHighest">Price (highest)</option>

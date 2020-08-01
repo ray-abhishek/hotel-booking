@@ -204,7 +204,6 @@ class CatalogSearchBar extends Component {
 }
 
 const searchBarStyle = {
-  //zIndex: "1",
   position: "relative",
   fontSize: "12px",
   backgroundColor: "white",
@@ -227,12 +226,12 @@ const inputStyle = {
 };
 
 const child1 = {
- // zIndex: "2",
+  zIndex: "2",
   height: "100%",
 };
 
 const child2 = {
- // zIndex: "2",
+  zIndex: "2",
   height: "100%",
   display: "flex",
   flexDirection: "row",
@@ -241,7 +240,7 @@ const child2 = {
 };
 
 const child3 = {
- // zIndex: "2",
+  zIndex: "2",
   height: "100%",
   display: "flex",
   flexDirection: "row",
