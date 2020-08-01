@@ -1,0 +1,43 @@
+[
+    {      "id" : 1,
+            "hotel_images" : ["../images/hotelimg.jpg", "../images/hotelimg.jpg", "../images/hotelimg.jpg"],
+            "name" : "Hotel Name 1",
+            "location" : "Hotel Location 1",
+            "people" : 3,
+            "bedrooms" : 2,
+            "bathrooms" : 1,
+            "cost_per_night" : 1222,
+            "cost_per_bedroom" : 300
+    },
+    {      "id" : 2,
+            "hotel_images" : ["../images/1.jpg",
+                "../images/2.jpg","../images/3.jpg","../images/hotelimg.jpg","../images/1.jpg","../images/2.jpg","../images/3.jpg","../images/hotelimg.jpg","../images/1.jpg","../images/2.jpg","../images/3.jpg", "../images/hotelimg.jpg", "../images/1.jpg"],
+            "name" : "Hotel Name 2",
+            "location" : "Hotel Location 2",
+            "people" : 3,
+            "bedrooms" : 2,
+            "bathrooms" : 1,
+            "cost_per_night" : 1222,
+            "cost_per_bedroom" : 300
+    },
+    {      "id" : 3,
+            "hotel_images" : ["../images/hotelimg.jpg", "../images/hotelimg.jpg", "../images/hotelimg.jpg"],
+            "name" : "Hotel Name 3",
+            "location" : "Hotel Location 3",
+            "people" : 3,
+            "bedrooms" : 2,
+            "bathrooms" : 1,
+            "cost_per_night" : 1222,
+            "cost_per_bedroom" : 300
+    },
+    {      "id" : 4,
+            "hotel_images" : ["../images/hotelimg.jpg", "../images/hotelimg.jpg", "../images/hotelimg.jpg"],
+            "name" : "Hotel Name 4",
+            "location" : "Hotel Location 4",
+            "people" : 3,
+            "bedrooms" : 2,
+            "bathrooms" : 1,
+            "cost_per_night" : 1222,
+            "cost_per_bedroom" : 300
+    }
+    ]

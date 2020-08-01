@@ -1,0 +1,23 @@
+
+.dot::before {
+        position: relative;
+        left: 0px;
+        content: "•";
+        display: inline-block;
+        color: rgb(201, 200, 202);
+        margin: 0px 5px;    
+}
+
+.hotelName{
+    color : rgb(246, 99, 68);
+    font-size: 21px;
+    line-height: 30px;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+
+.largerText {
+    font-size : 17px;
+    color : black;
+    font-weight: 500;
+}
