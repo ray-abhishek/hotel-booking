@@ -13,11 +13,11 @@ class Payment extends React.Component {
   }
 
   dispalyRazorPay = async (e) => {
-    if (this.props.loginData.data===undefined){
-      return(alert("Please login in order to continue with Booking."))
+    if (this.props.loginData.data === undefined) {
+      return alert("Please login in order to continue with Booking.");
     }
 
-    console.log(this.props.loginData," is this.props.loginData")
+    console.log(this.props.loginData, " is this.props.loginData");
     const { arrivalDate, departureDate } = this.props.location.state.details;
     const {
       email,
@@ -44,7 +44,7 @@ class Payment extends React.Component {
       }-${departureDate.getDate()}`;
 
     try {
-      const apiURL = "https://86214663421f.ngrok.io";
+      const apiURL = "https://b2535470cbf1.ngrok.io";
       e.preventDefault();
       let response;
       if (
@@ -57,29 +57,30 @@ class Payment extends React.Component {
         departure &&
         notification
       ) {
-        const response = await axios.post(apiURL + "/order", {
-        name: `${firstname} ${lastName}`,
-        email: `${email}`,
-        message: `${message}`,
-        phone_number: `${mobileNo}`,
-        order_amount: `${amount}`,
-        order_currency: `INR`,
-        order_receipt: `recipi${Date.now()}`,
-        book_from: `${arrival}`,
-        book_to: `${departure}`,
-        hotel_id: `${id}`,
-        notification : notification
-      },
-        {
-        headers: {
-          Authorization: this.props.loginData.data.Authorization, //the token is a variable which holds the token
-        },
-      });
+        response = await axios.post(
+          apiURL + "/order",
+          {
+            name: `${firstname} ${lastName}`,
+            email: `${email}`,
+            message: `${message}`,
+            phone_number: `${mobileNo}`,
+            order_amount: `${amount}`,
+            order_currency: `INR`,
+            order_receipt: `recipi${Date.now()}`,
+            book_from: `${arrival}`,
+            book_to: `${departure}`,
+            hotel_id: `${id}`,
+            notification: notification,
+          },
+          {
+            headers: {
+              Authorization: this.props.loginData.data.Authorization, //the token is a variable which holds the token
+            },
+          }
+        );
       } else {
         return alert("please fill all the fielde");
       }
-
-
       const { data } = response;
       if (data.status === "failure") {
         return alert(data.message);
@@ -155,7 +156,7 @@ class Payment extends React.Component {
   render() {
     // console.log(this.state, "state in payment");
     // console.log(this.props, "props in payment");
-    
+
     return (
       <div>
         <div

@@ -9,8 +9,8 @@ import SearchBar from "../common/SearchBar";
 import ImageCarousel from "../hotelDisplay/ImageCarousel";
 import BookingBox from "../hotelDisplay/BookingBox";
 import AboutHotel from "../hotelDisplay/AboutHotel";
-
-
+import WishList from "../landingPage/WishList";
+import ContectUs from "../common/ContectUs";
 const Routes = (props) => {
   return (
     <>
@@ -21,6 +21,13 @@ const Routes = (props) => {
         exact
         render={(props) => <LandingPage {...props} />}
       />
+      <Route
+        exact
+        path="/get-in-touch"
+        exact
+        render={(props) => <ContectUs />}
+      />
+      <Route exact path="/wishlist" exact render={(props) => <WishList />} />
       <Route exact path="/search" render={(props) => <Catalog {...props} />} />
       <Route
         exact
@@ -34,13 +41,6 @@ const Routes = (props) => {
         render={(props) => <Catalog {...props} />}
       />
 
-      {/* Testing purpose */}
-      {/* <Route
-        exact
-        path="/booking"
-        render={(props) => <BookingBox {...props} />}
-      /> */}
-{/* above is the testing purpose */}
       <Route
         exact
         path="/home-listing/:id/"
