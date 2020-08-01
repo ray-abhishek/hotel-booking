@@ -61,13 +61,13 @@ class Navbar extends React.Component {
             </Link>
             <Link
               className="p-2 bd-highlight p-3 text-decoration-none text-dark"
-              to="wishlist"
+              to="/wishlist"
             >
               Wishlist <span className={style.line}>|</span>
             </Link>
             <Link
               className="p-2 bd-highlight p-3 text-decoration-none text-dark"
-              to="get-in-touch"
+              to="/get-in-touch"
             >
               Get in Touch <span className={style.line}>|</span>
             </Link>
