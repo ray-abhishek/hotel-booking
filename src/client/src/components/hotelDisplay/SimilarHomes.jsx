@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import { fetchEntityRequest } from '../../redux/action';
 import style from "./SimilarHomes.module.css";
 
 class SimilarHomes extends React.Component {
@@ -23,18 +24,22 @@ class SimilarHomes extends React.Component {
         });
       });
   }
+  handleClick=(id)=>{
+    const { fetchEntityRequest } = this.props;
+    fetchEntityRequest("/home-listing/"+id);
+  };
 
   render() {
     // const { similarHomesData } = this.props;
     const { similarHomesData } = this.state;
     // console.log("params similar below", this.props.paramsId);
-    // console.log("params similar hioes", this.state.similarHomesData);
+    console.log("params similar hioes", this.state.similarHomesData);
     return (
       <div>
         <h4 className="mt-5 mb-4 pl-3">Similar Homes</h4>
         <div class="row row-cols-1 row-cols-md-3 m-1 p-0">
           {similarHomesData?.map((item) => (
-            <div class="col mb-4">
+            <div class="col mb-4" key={item.id}>
               <div class="card h-100">
                 <img
                   src={item && item.hotel_images[0]}
@@ -43,7 +48,12 @@ class SimilarHomes extends React.Component {
                   style={{ height: 200 }}
                 />
                 <div class="card-body">
-                  <h5 class="card-title text-danger">{item && item.name}</h5>
+                <Link to={`/home-listing/${item.id}`}>
+                  <h5 class="card-title" 
+                style={{cursor: "pointer", color: "#ff8065"}} 
+                  onClick={()=>this.handleClick(item.id)}>
+                    {item && item.name}</h5>
+                    </Link>
                   <p class="card-text text-muted">{item && item.location}</p>
                   <hr />
                   <p className="card-text" style={{ fontSize: "13px" }}>
@@ -75,9 +85,12 @@ class SimilarHomes extends React.Component {
     );
   }
 }
-
 // const mapStateToProps = (state) => ({
-//   similarHomesData: state.dataReducer.data
+//   data: state.dataReducer.catalogData,
 // });
 
-export default connect(null, null)(SimilarHomes);
+const mapDispatchToProps = (dispatch) => ({
+  fetchEntityRequest: (query) => dispatch(fetchEntityRequest(query)),
+});
+
+export default connect(null, mapDispatchToProps)(SimilarHomes);

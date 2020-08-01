@@ -82,7 +82,7 @@ class Payment extends React.Component {
         return alert("please fill all the fielde");
       }
       const { data } = response;
-      if (data.status === "failure") {
+      if (data && data.status === "failure") {
         return alert(data.message);
       }
 

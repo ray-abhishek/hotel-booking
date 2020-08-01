@@ -154,7 +154,7 @@ class BookingForm extends Component {
               />
               <label class="form-check-label " for="exampleCheck1">
                 <small>
-                  Send me emails for order success with order details.
+                  Send me email for booking confirmation.
                 </small>
               </label>
             </div>

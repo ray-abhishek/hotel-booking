@@ -40,6 +40,7 @@ export const fetchRequest = (payload) => (dispatch) => {
 */
 import React from "react";
 import axios from "axios";
+import ReactGA from 'react-ga';
 import {
   FETCH_ENTITY_LIST_REQUEST,
   FETCH_ENTITY_LIST_FAILURE,
@@ -104,6 +105,11 @@ export const fetchCatalogRequest = (payload) => (dispatch) => {
   ////console.log(`https://b2535470cbf1.ngrok.io${payload}`, "url");
 
   dispatch(fetchCatalogListRequest());
+  ReactGA.event({
+    category: "See Hotels",
+    action: "List the hotels",
+    label: "New Hotel see the hotels for booking",
+  });
   return axios
     .get(`https://b2535470cbf1.ngrok.io${payload}`)
     .then((res) => {
@@ -119,6 +125,11 @@ export const fetchEntityRequest = (payload) => (dispatch) => {
   ////console.log(`https://b2535470cbf1.ngrok.io${payload}`, "url");
 
   dispatch(fetchEntityListRequest());
+  ReactGA.event({
+    category: "Request a Booking",
+    action: "new Request",
+    label: "New Hotel Booking Request",
+  });
   return axios
     .get(`https://b2535470cbf1.ngrok.io${payload}`)
     .then((res) => {

@@ -39,8 +39,41 @@ class Navbar extends React.Component {
     console.log(loginSuccess);
     return (
       <>
-        <Destination />
-        <nav className="navbar navbar-light bg-white">
+       
+       {/* <div class="fixed-top ">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-light p-4">
+     
+      <span class="text-muted">
+          <div className=" text-decoration-none">Destination</div>
+          <div className=" text-decoration-none">Wishlist</div>
+          <div className=" text-decoration-none">Make an enquiry</div>
+          <div className=" text-decoration-none">List your home</div>
+          <div className=" text-decoration-none">Login</div>
+        </span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-light d-none d-sm-block d-md-none clearfix" style={{maxWidth: 80}}>
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="https://d344sq77q05r9.cloudfront.net/prod-20-07-27-13:03/assets/12106cbd1d2511c17776298719844f27.svg"/>
+    </button>
+   
+  </nav>
+  <div className="text-center ml-4 d-none d-sm-block d-md-none float-left"><Link to="/">
+            {" "}
+            <img
+              src="https://d344sq77q05r9.cloudfront.net/prod-20-07-22-13:01/assets/2e7c492ee08ad1d2fc5320b0f01e2e25.svg"
+              width="155px"
+              height="30px"
+            />
+          </Link></div>
+</div> */}
+
+
+
+
+        {/* <Destination /> */}
+        <nav className="navbar navbar-light bg-white ">
           {/* Home Link */}
           <Link to="/">
             {" "}

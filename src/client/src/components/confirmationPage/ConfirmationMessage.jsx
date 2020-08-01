@@ -45,7 +45,7 @@ class ConfirmationMessage extends Component {
             {/* <h3 className="mb-2 mt-5">Thank you for booking with us.</h3> */}
             <h3 className="my-2">We’ve received your booking request</h3>
             <p className="my-4">
-              <span className="font-weight-bold">Thank for your request. </span>
+              <span className="font-weight-bold">Thank you for your request. </span>
               <span>So, what happens next?</span>
             </p>
             <p className="mb-5">
