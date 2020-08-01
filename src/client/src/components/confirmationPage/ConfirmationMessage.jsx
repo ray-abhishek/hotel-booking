@@ -38,8 +38,11 @@ class ConfirmationMessage extends Component {
       info &&
       data && (
         <div className="row offset-0 offset-md-1" state={font}>
-          <div className="col-12 col-md-6 order-md-1 order-2 text-center ml-md-5">
-            <h3 className="mb-2 mt-5">Thankyou for booking with us.</h3>
+          <div
+            className="col-12 col-md-6 order-md-1 order-2 text-center ml-md-5"
+            style={{ margin: "Auto 30px" }}
+          >
+            {/* <h3 className="mb-2 mt-5">Thank you for booking with us.</h3> */}
             <h3 className="my-2">We’ve received your booking request</h3>
             <p className="my-4">
               <span className="font-weight-bold">Thank for your request. </span>

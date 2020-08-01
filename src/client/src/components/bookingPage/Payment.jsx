@@ -44,7 +44,7 @@ class Payment extends React.Component {
       }-${departureDate.getDate()}`;
 
     try {
-      const apiURL = "https://86214663421f.ngrok.io";
+      const apiURL = "https://b2535470cbf1.ngrok.io";
       e.preventDefault();
       let response;
       if (

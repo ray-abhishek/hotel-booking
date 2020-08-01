@@ -112,10 +112,11 @@ class BookingForm extends Component {
                     id="countryCode"
                     name="countryCode"
                   >
-                    <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected value="+91">
+                      India
+                    </option>
+                    <option value="1">USA</option>
+                    <option value="44">UK</option>
                   </select>
                 </div>
                 <div class="col-8">

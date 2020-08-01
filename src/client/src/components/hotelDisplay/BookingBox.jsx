@@ -49,18 +49,18 @@ class BookingBox extends React.Component {
     });
   };
 
+  async componentDidMount() {
+    console.log("id", this.props.match.params.id);
+    const res = await axios.get(
+      "https://b2535470cbf1.ngrok.io/booked-dates/" + this.props.match.params.id
+    );
 
-    async componentDidMount (){
-      console.log("id", this.props.match.params.id)
-      const res= await axios.get("https://86214663421f.ngrok.io/booked-dates/"+this.props.match.params.id)
-      
-        this.setState({
-          bookedDates: res.data,
-          isLoading: true
-        })       
-        console.log("booked dates" ,res.data) 
-    }
-
+    this.setState({
+      bookedDates: res.data,
+      isLoading: true,
+    });
+    console.log("booked dates", res.data);
+  }
 
   handleBooking = () => {
     ////console.log("hotelData", hotelData);
@@ -190,10 +190,12 @@ class BookingBox extends React.Component {
                     selectsEnd
                     startDate={new Date()}
                     endDate={new Date()}
-                    minDate={ this.state.arrivalDate || new Date() }
-                    excludeDates={ 
-                       bookedDates && bookedDates.data["ahead"]?.map(item=>(
-                        addDays(new Date(), item))) 
+                    minDate={this.state.arrivalDate || new Date()}
+                    excludeDates={
+                      bookedDates &&
+                      bookedDates.data["ahead"]?.map((item) =>
+                        addDays(new Date(), item)
+                      )
                     }
                     placeholderText="Departure date "
                     customInput={<ExampleCustomDeparture />}
