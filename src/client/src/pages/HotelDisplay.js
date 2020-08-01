@@ -141,7 +141,7 @@ class HotelDisplay extends React.Component {
             </StickyBox> 
           </div>
         </div>
-        {/* <SimilarHomes paramsId={this.props.match.params.id} /> */}
+         <SimilarHomes paramsId={this.props.match.params.id} /> 
       </div>
       
 {/* 

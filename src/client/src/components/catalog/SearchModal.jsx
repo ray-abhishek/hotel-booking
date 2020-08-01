@@ -85,7 +85,7 @@ class SearchBarModal extends Component {
 
   render() {
     return (
-      <div
+      <div style={{backgroundColor : 'white'}}
         class="modal fade"
         id="searchModal"
         tabindex="-1"
@@ -114,7 +114,7 @@ class SearchBarModal extends Component {
                   e.preventDefault();
                 }}
               >
-                <div className="form-group" >
+                <div className="form-group JUGAADU" >
                   <div className="border row ">
                     <div className="col-7 offset-2">
                       {/* <input

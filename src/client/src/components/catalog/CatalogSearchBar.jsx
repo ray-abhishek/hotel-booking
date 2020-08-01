@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import style from "./SearchBar.module.css";
+import style from "./CatalogSearchBar.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from "react-redux";
@@ -21,7 +21,7 @@ const ExampleCustomDeparture = ({ value, onClick }) => (
   </button>
 );
 
-class SearchBar extends Component {
+class CatalogSearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -192,7 +192,7 @@ class SearchBar extends Component {
               style={submitButton}
               onClick={(e) => this.handleOnClick(e)}
               type="submit"
-              className="btn btn-danger col-2"
+              className="btn col-2"
             >
               Search
             </button>
@@ -210,6 +210,7 @@ const searchBarStyle = {
   backgroundColor: "white",
   height: "42px",
   borderRadius: "5px",
+  width : "665px"
   // maxWidth: "800px",
   // margin: "4rem auto 6rem auto",
 };
@@ -254,10 +255,14 @@ const child4 = {
 
 const submitButton = {
   maxHeight: "42px",
+  border: '1px solid rgb(246, 99, 68)',
+  color : 'rgb(246, 99, 68)',
+  //backgroundColor : 'rgb(246, 99, 68)',
+  //color : 'white'
 };
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCatalogRequest: (query) => dispatch(fetchCatalogRequest(query)),
 });
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(CatalogSearchBar);

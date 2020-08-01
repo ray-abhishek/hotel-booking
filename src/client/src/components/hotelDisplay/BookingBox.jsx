@@ -52,7 +52,7 @@ class BookingBox extends React.Component {
 
     async componentDidMount (){
       console.log("id", this.props.match.params.id)
-      const res= await axios.get("https://86214663421f.ngrok.io/booked-dates/"+this.props.match.params.id)
+      const res= await axios.get("https://b2535470cbf1.ngrok.io/booked-dates/"+this.props.match.params.id)
       
         this.setState({
           bookedDates: res.data,

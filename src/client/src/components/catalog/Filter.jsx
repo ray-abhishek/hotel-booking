@@ -7,7 +7,7 @@ import {
 import { connect } from "react-redux";
 import queryString from "query-string";
 import Gallery from "./Gallery";
-import SearchBar from "../../components/common/SearchBar";
+import CatalogSearchBar from "./CatalogSearchBar";
 import FilterModal from "./FilterModal";
 import SearchModal from "./SearchModal";
 import Location from "../hotelDisplay/aboutHotel/Location";
@@ -245,7 +245,8 @@ class Filter extends Component {
           className="d-none d-md-block"
           style={{
             margin: "15px auto",
-            maxWidth: "1000px",
+            boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 5px',
+            position : "sticky"
           }}
         >
           <div
@@ -255,7 +256,7 @@ class Filter extends Component {
             }}
           >
             <div>
-              <SearchBar {...this.props} />
+              <CatalogSearchBar {...this.props} />
             </div>
             <div
               className="btn btn-dark"

@@ -125,6 +125,7 @@ GET `/search/<location>`
                 "cost_per_bedroom" : "STRING",
         }
         ],
+    "location_info" : { "London" : {"Hotel ID 1" : ["lat", "long"] , "Hotel ID 2" : ["lat", "long"] }, "Tokyo" : {"Hotel ID 1" : ["lat", "long"] , "Hotel ID 2" : ["lat", "long"] }}
     "totalresults" : "STRING",
     "totalpages" : "STRING"
 }
@@ -173,7 +174,8 @@ GET `/home-listing/<hotel-id>`
             "amenities" : []
             },
         "cost_per_night" : "STRING",
-        "cost_per_bedroom" : "STRING"
+        "cost_per_bedroom" : "STRING",
+        "location_info" : ["lat", "long"]
 	}
 }
 
