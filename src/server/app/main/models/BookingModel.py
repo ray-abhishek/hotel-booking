@@ -1,4 +1,4 @@
-from .. import db
+from . import db
 import datetime
 
 class BookingModel(db.Model):

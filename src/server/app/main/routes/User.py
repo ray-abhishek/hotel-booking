@@ -1,11 +1,11 @@
 from flask import request
 from flask_restful import Resource, reqparse
-from app.main import db
-from app.main.services.user_auth import user_login, user_signup
+from ..models import db
+from ..services.user_auth import user_login, user_signup
 import jwt
-from app.main.settings import key
+from ..settings import key
 import datetime
-from app.main.utils.auth_helper import token_validate
+from ..utils.auth_helper import token_validate
 
 # Route for User login
 class UserLogin(Resource):

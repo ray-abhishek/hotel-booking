@@ -2,10 +2,10 @@ from ..models.EntityModel import EntityModel
 from ..models.BookingModel import BookingModel
 from ..models.OrderModel import OrderModel
 from ..models.UserModel import UserModel
-from app.main import db
+from ..models import db
 import jwt
 import datetime
-from app.main.settings import key
+from ..settings import key
 from ..utils.save_data import save_changes
 import json
 import razorpay
@@ -71,11 +71,11 @@ def validate_payment(data):
         print(razorpay_signature," is razorpay signature")
     
         if generated_signature == razorpay_signature:
-            
+            """
             msg = Message("Booking Confirmation", sender="abhi.22.ray@gmail.com",recipients = [user.email])
             msg.body = "Congratulations! Your booking has been confirmed. In case of any concerns, please reach us at +91 9338289938."
             mail.send(msg)
-
+            """
             update_booking_status_query = 'UPDATE bookings SET status="CONFIRMED" WHERE id = %s;'%(booking.id)
 
             db.engine.execute(update_booking_status_query)

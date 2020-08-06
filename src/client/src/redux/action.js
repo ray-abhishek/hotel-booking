@@ -102,7 +102,7 @@ export const fetchUserData=query=>dispatch=>{
 */
 export const fetchCatalogRequest = (payload) => (dispatch) => {
   ////console.log(payload, "payload");
-  ////console.log(`https://b2535470cbf1.ngrok.io${payload}`, "url");
+  ////console.log(`http://onefinestay.abhishekray.tech${payload}`, "url");
 
   dispatch(fetchCatalogListRequest());
   ReactGA.event({
@@ -111,7 +111,7 @@ export const fetchCatalogRequest = (payload) => (dispatch) => {
     label: "New Hotel see the hotels for booking",
   });
   return axios
-    .get(`https://b2535470cbf1.ngrok.io${payload}`)
+    .get(`http://onefinestay.abhishekray.tech${payload}`)
     .then((res) => {
       // console.log(res.data);
       return res;
@@ -122,7 +122,7 @@ export const fetchCatalogRequest = (payload) => (dispatch) => {
 
 export const fetchEntityRequest = (payload) => (dispatch) => {
   ////console.log(payload, "payload");
-  ////console.log(`https://b2535470cbf1.ngrok.io${payload}`, "url");
+  ////console.log(`http://onefinestay.abhishekray.tech${payload}`, "url");
 
   dispatch(fetchEntityListRequest());
   ReactGA.event({
@@ -131,7 +131,7 @@ export const fetchEntityRequest = (payload) => (dispatch) => {
     label: "New Hotel Booking Request",
   });
   return axios
-    .get(`https://b2535470cbf1.ngrok.io${payload}`)
+    .get(`http://onefinestay.abhishekray.tech${payload}`)
     .then((res) => {
       // console.log(res.data);
       return res;

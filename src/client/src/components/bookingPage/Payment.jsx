@@ -44,7 +44,7 @@ class Payment extends React.Component {
       }-${departureDate.getDate()}`;
 
     try {
-      const apiURL = "https://b2535470cbf1.ngrok.io";
+      const apiURL = "http://onefinestay.abhishekray.tech";
       e.preventDefault();
       let response;
       if (
@@ -54,8 +54,7 @@ class Payment extends React.Component {
         message &&
         mobileNo &&
         arrival &&
-        departure &&
-        notification
+        departure 
       ) {
         response = await axios.post(
           apiURL + "/order",
@@ -79,7 +78,7 @@ class Payment extends React.Component {
           }
         );
       } else {
-        return alert("please fill all the fielde");
+        return alert("p=Please fill all the fields");
       }
       const { data } = response;
       if (data && data.status === "failure") {

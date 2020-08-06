@@ -1,15 +1,19 @@
 # import respective blueprints and flask RESTful resources
 from .blueprint_test import bp
-from app.main import api
-from app.main.routes.User import UserLogin, UserSignup, UserLogout
-from app.main.routes.Catalog import Catalog
-from app.main.routes.Entity import Entity
-from app.main.routes.User_oAuth import UserOAuth
-from app.main.routes.HotelDisplay import HotelDisplay
-from app.main.routes.SimilarHotels import SimilarHotels
-from app.main.routes.BookedDates import BookedDates
-from app.main.routes.Orders import Orders
-from app.main.routes.Payments import Payments
+from .User import UserLogin, UserSignup, UserLogout
+from .Catalog import Catalog
+from .Entity import Entity
+from .User_oAuth import UserOAuth
+from .HotelDisplay import HotelDisplay
+from .SimilarHotels import SimilarHotels
+from .BookedDates import BookedDates
+from .Orders import Orders
+from .Payments import Payments
+from flask import Flask, request, Blueprint
+from flask_restful import Api
+
+api_blueprint = Blueprint('api', __name__)
+api = Api(api_blueprint)
 
 def add_resources(app):
     """
@@ -20,7 +24,6 @@ def add_resources(app):
     """
     api.add_resource(UserLogin, '/login')
     api.add_resource(UserOAuth, '/ssologin')
-    #api.add_resource(LoginCallback, '/login/callback')
     api.add_resource(UserSignup, '/signup')
     api.add_resource(UserLogout, '/logout')
     api.add_resource(Catalog, '/search', '/search/<location>', '/search/<location>/<page>')
@@ -39,5 +42,4 @@ def register_blueprints(app):
     Args:
         app (object): object of Flask representing the app in context
     """
-    app.register_blueprint(bp)
-    pass
+    app.register_blueprint(api_blueprint)

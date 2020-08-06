@@ -1,9 +1,9 @@
 from flask import request
 from flask_restful import Resource, reqparse
-from app.main import db
-from app.main.services.entity import add_entity
+from ..models import db
+from ..services.entity import add_entity
 import jwt
-from app.main.settings import key
+from ..settings import key
 import datetime
 
 # Route for Entity

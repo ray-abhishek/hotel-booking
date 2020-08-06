@@ -1,5 +1,5 @@
 import jwt
-from app.main.settings import key
+from ..settings import key
 import datetime
 
 #This checks if the JWT Auth_Token is valid or not

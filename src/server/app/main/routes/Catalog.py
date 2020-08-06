@@ -1,9 +1,9 @@
 from flask import request
 from flask_restful import Resource, reqparse
-from app.main import db
-from app.main.services.catalog import get_catalog_data
+from ..models import db
+from ..services.catalog import get_catalog_data
 import jwt
-from app.main.settings import key
+from ..settings import key
 import datetime
 
 # Route for Catalog

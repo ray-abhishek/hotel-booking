@@ -2,10 +2,10 @@ from ..models.EntityModel import EntityModel
 from ..models.BookingModel import BookingModel
 from ..models.UserModel import UserModel
 from ..models.OrderModel import OrderModel
-from app.main import db
+from ..models import db
 import jwt
 from datetime import datetime, timedelta, date
-from app.main.settings import key
+from ..settings import key
 from ..utils.save_data import save_changes
 import json
 import razorpay

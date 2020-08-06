@@ -1,8 +1,8 @@
 from ..models.EntityModel import EntityModel
 from ..models.BookingModel import BookingModel
-from app.main import db
+from ..models import db
 import jwt
-from app.main.settings import key
+from ..settings import key
 from ..utils.save_data import save_changes
 import json
 from datetime import datetime, timedelta, date

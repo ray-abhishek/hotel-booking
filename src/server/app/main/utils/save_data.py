@@ -1,4 +1,4 @@
-from app.main import db
+from ..models import db
 
 def save_changes(data):
     try:

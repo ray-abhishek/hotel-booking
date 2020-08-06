@@ -1,8 +1,8 @@
 from ..models.UserModel import UserModel
-from app.main import db
+from ..models import db
 import jwt
 import datetime
-from app.main.settings import key
+from ..settings import key
 from ..utils.save_data import save_changes
 
 #Function for login of user

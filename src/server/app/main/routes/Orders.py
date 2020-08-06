@@ -1,11 +1,11 @@
 from flask import request
 from flask_restful import Resource, reqparse
-from app.main import db
-from app.main.services.order import create_order
+from ..models import db
+from ..services.order import create_order
 import jwt
-from app.main.settings import key
-from app.main.utils.auth_helper import get_email_from_token
-from app.main.utils.validate import validate_inputs
+from ..settings import key
+from ..utils.auth_helper import get_email_from_token
+from ..utils.validate import validate_inputs
 import datetime
 
 # Route for Entity

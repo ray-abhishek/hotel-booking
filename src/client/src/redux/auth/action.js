@@ -66,7 +66,7 @@ export const userRegistration = (query) => (dispatch) => {
     label: "Account Created",
   });
   return axios
-    .post("https://b2535470cbf1.ngrok.io/signup", {
+    .post("http://onefinestay.abhishekray.tech/signup", {
       email: query.email,
       name: query.name,
       password: query.password,
@@ -88,7 +88,7 @@ export const userLogin = (query) => (dispatch) => {
     label: "Account Login",
   });
   return axios
-    .post("https://b2535470cbf1.ngrok.io/login", {
+    .post("http://onefinestay.abhishekray.tech/login", {
       email: query.email,
       password: query.password,
     })
@@ -105,7 +105,7 @@ export const googleLogin = (query) => (dispatch) => {
   dispatch(googleLoginRequest());
   console.log("axios", query);
   return axios
-    .post("https://b2535470cbf1.ngrok.io/ssologin", {
+    .post("http://onefinestay.abhishekray.tech/ssologin", {
       email: query.email,
       name: query.name,
       googleId: query.googleId,
@@ -124,7 +124,7 @@ export const logoutUser = (query) => (dispatch) => {
   dispatch(logout());
   console.log("logout Query", query);
   return axios
-    .get("https://b2535470cbf1.ngrok.io/logout", {
+    .get("http://onefinestay.abhishekray.tech/logout", {
       headers: {
         Authorization: query, //the token is a variable which holds the token
       },
