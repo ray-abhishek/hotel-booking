@@ -15,9 +15,6 @@ client.set_app_details({"title" : "onefinestay", "version" : "1.0"})
 #Function for adding to catalog data
 def create_order(data):
 
-    #hotel_images_json = json.dumps(data["hotel_images"])
-    #features_json = json.dumps(data["features"])
-
     name = data["name"]
     account_email = data["account_email"]
     email = data["email"]
@@ -27,9 +24,7 @@ def create_order(data):
     order_currency = data["order_currency"]
     order_receipt = data["order_receipt"]
     book_from = datetime.strptime(data["book_from"] , '%Y-%m-%d')
-    #book_from = datetime.date(book_from)
     book_to = datetime.strptime(data["book_to"] , '%Y-%m-%d')
-    #book_to = datetime.date(book_to)
     hotel_id = data["hotel_id"]
     notes = {'Message': message}    
     

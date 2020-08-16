@@ -22,9 +22,7 @@ class Payments(Resource):
     def post(self):
         data = Payments.parser.parse_args()
         print("\n\n---INSIDE POST Payments---\n")
-        print(data," are the parameters passed to Payments POST")
         flag, confirmed_data, order_not_found, user_not_found, booking_not_found = validate_payment(data)
-        print(confirmed_data," is payment confirmation data being sent to client")
 
         if order_not_found:
             return {"status" : "failure" , "message" : "Invalid Order ID. Please try again or reach us at +91 9438838292 for assistance."}

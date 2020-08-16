@@ -1,5 +1,4 @@
 # import respective blueprints and flask RESTful resources
-from .blueprint_test import bp
 from .User import UserLogin, UserSignup, UserLogout
 from .Catalog import Catalog
 from .Entity import Entity
@@ -30,7 +29,6 @@ def add_resources(app):
     api.add_resource(HotelDisplay, '/home-listing/<hotelid>')
     api.add_resource(SimilarHotels,'/get-similar/<hotelid>')
     api.add_resource(BookedDates, '/booked-dates/<hotelid>')
-    #api.add_resource(Catalog, '/search/<location>')
     api.add_resource(Entity, '/add')
     api.add_resource(Orders, '/order')
     api.add_resource(Payments, '/payment')
@@ -42,4 +40,4 @@ def register_blueprints(app):
     Args:
         app (object): object of Flask representing the app in context
     """
-    app.register_blueprint(api_blueprint)
+    pass

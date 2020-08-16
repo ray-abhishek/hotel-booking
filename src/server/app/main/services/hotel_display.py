@@ -19,7 +19,6 @@ def get_hotel_data(data):
     temp_hotel = {}
     
     for row in data_raw:
-        print(row,"               is ROW INSIDE HOTEL DISPLAY                ")
         hotel_features = json.loads(row["features"])
         temp_hotel["families"] = []
         temp_hotel["families"].extend(hotel_features["accessibility"])
@@ -39,15 +38,11 @@ def get_hotel_data(data):
         temp_hotel["amenities"].extend(hotel_features["property"])
         
         temp_hotel["id"] = row["id"]
-        #print(row["hotel_images"]," raw hotel images")
-        #print(json.loads(row["hotel_images"])," json hotel images")
         images = json.loads(row["hotel_images"])
-        #print(images," are hotel images")
         temp_hotel["hotel_images"] = images
         temp_hotel["name"] = row["name"]
         temp_hotel["location"] = str(row["city"])+" , "+str(row["address"])
         description_content = json.loads(row["description"])
-        #print(description_content," is the description content")
         temp_hotel["description"] = []
         temp_hotel["description"].append(description_content["title"])
         temp_hotel["description"].extend(description_content["description"])

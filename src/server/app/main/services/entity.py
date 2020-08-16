@@ -10,12 +10,6 @@ import json
 #Function for adding to catalog data
 def add_entity(data):
 
-    #hotel_images_json = json.dumps(data["hotel_images"])
-    #features_json = json.dumps(data["features"])
-
-    print(data["features"]," are the features")
-    print(data["hotel_images"]," are the image links")
-
     new_asset = EntityModel(name = data["name"],
                 hotel_images = data["hotel_images"],
                 city = data["city"],

@@ -14,16 +14,12 @@ class SimilarHotels(Resource):
     def get(self, hotelid=None):
         data = SimilarHotels.parser.parse_args()
         print("\n\n---INSIDE GET SimilarHotels---\n")
-        #data["page"] = page
-        print(hotelid," is location")
+
         if hotelid:
             data["hotelid"] = hotelid
-        print(data," are the parameters passed to SimilarHotels")
-        #params = request.args
-        #print(params," are params sent for fetching HotelDisplay data")
+
         flag, similar_data = get_similar_data(data)
 
-        print(similar_data," is SimilarHotels data being sent to client")
         if flag:
             return {"status" : "success", "data" : similar_data}
         else:

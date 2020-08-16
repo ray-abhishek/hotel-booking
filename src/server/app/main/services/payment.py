@@ -19,16 +19,11 @@ from flask_mail import Mail, Message
 #Function for adding to catalog data
 def validate_payment(data):
     with app.app_context():
-        #hotel_images_json = json.dumps(data["hotel_images"])
-        #features_json = json.dumps(data["features"])
         mail = Mail(app)
         razorpay_payment_id = data["razorpay_payment_id"]
         razorpay_order_id = data["razorpay_order_id"]
         razorpay_signature = data["razorpay_signature"]   
         order_id = data["order_id"]
-        #return True, {"message": "success"}
-
-    
 
         order = OrderModel().query.filter(OrderModel.id == order_id).first()
 
@@ -71,11 +66,11 @@ def validate_payment(data):
         print(razorpay_signature," is razorpay signature")
     
         if generated_signature == razorpay_signature:
-            """
+            
             msg = Message("Booking Confirmation", sender="abhi.22.ray@gmail.com",recipients = [user.email])
             msg.body = "Congratulations! Your booking has been confirmed. In case of any concerns, please reach us at +91 9338289938."
             mail.send(msg)
-            """
+            
             update_booking_status_query = 'UPDATE bookings SET status="CONFIRMED" WHERE id = %s;'%(booking.id)
 
             db.engine.execute(update_booking_status_query)

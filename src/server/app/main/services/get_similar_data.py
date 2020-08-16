@@ -17,45 +17,31 @@ def get_similar_data(data):
     raw_data = db.engine.execute(count_hotels_per_location_query)
 
     for row in raw_data:
-        print(row," is row of raw_data")
         count = row[0]
         print(count)
     
     similar_options = []
 
-    print("\n\n query is \n ---- \n ",query.id,query.city)
-
     if count<3:
-        #print("count<3 is TRUE")
         same_location_options = get_same_locations_data_count(count, query)
         if len(same_location_options) < count:
             other_location_options = get_other_locations_data(3, query)
         else:
             other_location_options = get_other_locations_data(3-count, query)
-        #print(same_location_options, " -------------same_location_options")
-        #print(other_location_options, " ------------other_location_options")
         similar_options = same_location_options
         similar_options.extend(other_location_options)
 
     elif count>=3:
-        #print("count>=3 is TRUE")
         same_locations_options = get_same_locations_data(query)
-        #print(same_locations_options, " -------------same_locations_options")
         similar_options = same_locations_options
     
-    
-    print(similar_options," are the similar options")
 
     send_data = []
 
     for row in similar_options:
-        #print(row," is row of similar_data query")
         temp_hotel = {}
         temp_hotel["id"] = row["id"]
-        #print(row["hotel_images"]," raw hotel images")
-        #print(json.loads(row["hotel_images"])," json hotel images")
         images = json.loads(row["hotel_images"])
-        #print(images," are entrance images")
         temp_hotel["hotel_images"] = []
         temp_hotel["hotel_images"].append(images["entrance"][0]["image"])
         temp_hotel["hotel_images"].append(images["entrance"][1]["image"])
@@ -178,7 +164,6 @@ def get_other_locations_data(count, query):
 
     cheaper_options_query = 'SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, ee.bathrooms, ee.description, ee.cost_per_night, ee.features FROM hotels as ee WHERE ee.cost_per_night<=%s and ee.id!=%s AND ee.city != "%s" ORDER BY ee.cost_per_night DESC LIMIT 0,%s'%(query.cost_per_night, query.id, query.city, count)
 
-
     final_cheaper_options_query = cheaper_options_query + ';'
 
     cheaper_options = db.engine.execute(final_cheaper_options_query)
@@ -205,14 +190,3 @@ def get_other_locations_data(count, query):
             similar_options.append(row)
 
     return similar_options
-
-
-
-
-
-
-"""
-fetch_similar_data_query = "(SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, ee.bathrooms,ee.description, ee.cost_per_night, ee.features FROM hotels as ee WHERE ee.cost_per_night<=%s and ee.id!=%s ORDER BY eecost_per_night DESC LIMIT 0,2) UNION ALL (SELECT ee.id, ee.hotel_images, ee.name, ee.city, ee.address, ee.capacity, ee.bedrooms, eebathrooms, ee.description, ee.cost_per_night, ee.features FROM hotels as ee WHERE ee.cost_per_night>=%s and ee.id!=%s ORDER BY eecost_per_night ASC LIMIT 0,1)"%(query.cost_per_night, query.id, query.cost_per_night, query.id)
-"""
-
-#data_raw = db.engine.execute(final_query)

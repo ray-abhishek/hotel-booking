@@ -24,17 +24,14 @@ class Catalog(Resource):
     def get(self, location=None):
         data = Catalog.parser.parse_args()
         print("\n\n---INSIDE GET Catalog---\n")
-        #data["page"] = page
-        print(location," is location")
+
         if location:
             data["location"] = location
-        print(data," are the parameters passed to Catalog")
+
         params = request.args
-        #print(params," are params sent for fetching catalog data")
+
         flag, total_results, total_pages, catalog_data = get_catalog_data(data)
-        print("\n\n")
-        print(catalog_data," is catalog_data being sent to client")
-        #print(location_info," is the location_info being sent to client")
+
         if flag:
             return {"status" : "success", "data" : catalog_data, "totalresults" : total_results, "totalpages" : total_pages}
         else:

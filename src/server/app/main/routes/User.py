@@ -17,9 +17,9 @@ class UserLogin(Resource):
     def post(self):
         data=UserLogin.parser.parse_args()
         print("\n\n----INSIDE UserLogin----\n\n")
-        print(data," are the parameters passed to /login")
+
         flag, token, name = user_login(data)
-        print(flag,token,name," flag, token, name being sent to client")
+
         if flag:
             return {'status': "success", 'Authorization': token, 'message': 'Login Successful', "name" : name}
         else:
@@ -37,7 +37,6 @@ class UserSignup(Resource):
     def post(self):
         data=UserSignup.parser.parse_args()
         print("\n\n----INSIDE UserSignup----\n\n")
-        print(data," are the parameters passed to /signup")
         
         flag = user_signup(data)
 
@@ -56,7 +55,7 @@ class UserLogout(Resource):
     def get(self):
         auth_token = request.headers.get('Authorization')
         print("\n\n----INSIDE UserLogout----\n\n")
-        print("Authorization Token is ",auth_token)
+
         flag_token_valid, token_data = token_validate(auth_token)
 
         if flag_token_valid:

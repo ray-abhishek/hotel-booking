@@ -27,24 +27,22 @@ class Orders(Resource):
     def post(self):
         auth_token = request.headers.get('Authorization')
 
+        print("\n\n---INSIDE POST Orders ---\n")
+
         if not auth_token:
             return {"status" : "failure" , "message" : "Please login in order to book hotel."}
 
         account_email = get_email_from_token(auth_token)
         data = Orders.parser.parse_args()
         data["account_email"] = account_email
-        print(data," are the parameters passed to Orders POST")
+
         valid_inputs_flag, error_message = validate_inputs(data)
 
         if valid_inputs_flag == False:
             return { "status" : "failure" , "message" : error_message}
 
-        print("\n\n---INSIDE POST Orders - after input validation ---\n")
         
-        print(data," are the parameters passed to Orders POST")
         flag, order_info, already_booked, user_unregistered = create_order(data)
-
-        print(order_info," is the order_info being sent to client")
         
         if user_unregistered == True:
             return {

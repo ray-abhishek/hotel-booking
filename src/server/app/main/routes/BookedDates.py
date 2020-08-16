@@ -14,15 +14,12 @@ class BookedDates(Resource):
     def get(self, hotelid=None):
         data = BookedDates.parser.parse_args()
         print("\n\n---INSIDE GET BookedDates---\n")
-        #data["page"] = page
-        print(hotelid," is hotelid")
+
         if hotelid:
             data["hotelid"] = hotelid
-        print(data," are the parameters passed to BookedDates")
-        #params = request.args
-        #print(params," are params sent for fetching BookedDates data")
+
         flag, booked_dates = get_booked_data(data)
-        print(booked_dates," is hotel data being sent to client")
+
         if flag:
             return {"status" : "success", "data" : booked_dates}
         else:

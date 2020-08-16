@@ -28,7 +28,7 @@ class Entity(Resource):
     def post(self):
         data = Entity.parser.parse_args()
         print("\n\n---INSIDE POST Entity---\n")
-        print(data," are the parameters passed to Entity POST")
+
         flag = add_entity(data)
 
         if flag:
